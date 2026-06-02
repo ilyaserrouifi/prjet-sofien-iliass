@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TSP - Complexité | P vs NP | PFE 2025-2026</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;900&family=Raleway:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Raleway', sans-serif; background: #070b12; color: #e2e8f0; }
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #0d1420; }
+    ::-webkit-scrollbar-thumb { background: #c9a84c; border-radius: 10px; }
+
+    .navbar {
+      position: fixed; top: 0; width: 100%; padding: 1rem 3rem;
+      background: rgba(7,11,18,0.96); backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(201,168,76,0.2); z-index: 1000;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .logo { font-family: 'Cinzel', serif; font-size: 1.2rem; font-weight: 700; letter-spacing: 4px; color: #c9a84c; text-decoration: none; }
+    .logo span { color: #00d4c8; }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { color: #8892a4; text-decoration: none; font-size: 0.7rem; letter-spacing: 2px; text-transform: uppercase; transition: 0.3s; }
+    .nav-links a:hover { color: #c9a84c; }
+
+    .container { max-width: 1200px; margin: 0 auto; padding: 7rem 2rem 3rem; }
+    h1 { font-family: 'Cinzel', serif; font-size: 2rem; margin-bottom: 1.5rem; border-left: 4px solid #c9a84c; padding-left: 1.2rem; }
+    h1 span { color: #c9a84c; }
+    h2 { font-family: 'Cinzel', serif; font-size: 1.5rem; margin: 2rem 0 1rem; color: #c9a84c; }
+    h3 { font-family: 'Cinzel', serif; font-size: 1.2rem; margin: 1.5rem 0 0.8rem; color: #00d4c8; }
+    .card { background: rgba(13,20,32,0.6); border: 1px solid rgba(201,168,76,0.2); border-radius: 16px; padding: 2rem; margin: 1.5rem 0; }
+    .card p { line-height: 1.8; color: #8892a4; margin-bottom: 1rem; }
+    .formula { background: #0a0f18; border-left: 3px solid #00d4c8; padding: 1rem 1.5rem; font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; color: #a7f3d0; margin: 1rem 0; overflow-x: auto; }
+    .table-classes { width: 100%; border-collapse: collapse; background: #0d1420; border-radius: 12px; overflow: hidden; margin: 1.5rem 0; }
+    .table-classes th { background: rgba(201,168,76,0.1); padding: 1rem; font-family: 'Cinzel', serif; font-size: 0.7rem; color: #c9a84c; }
+    .table-classes td { padding: 0.8rem 1rem; border-bottom: 1px solid rgba(201,168,76,0.1); color: #8892a4; }
+    .badge-p { background: rgba(0,212,200,0.15); color: #00d4c8; padding: 0.2rem 0.7rem; border-radius: 20px; font-size: 0.7rem; display: inline-block; }
+    .badge-np { background: rgba(201,168,76,0.15); color: #c9a84c; padding: 0.2rem 0.7rem; border-radius: 20px; font-size: 0.7rem; display: inline-block; }
+    .badge-npc { background: rgba(239,68,68,0.15); color: #ef4444; padding: 0.2rem 0.7rem; border-radius: 20px; font-size: 0.7rem; display: inline-block; }
+    .btn-nav { display: flex; justify-content: space-between; margin-top: 3rem; gap: 1rem; }
+    .btn-prev, .btn-next { padding: 0.8rem 2rem; text-decoration: none; border-radius: 4px; font-size: 0.7rem; letter-spacing: 2px; text-transform: uppercase; transition: 0.3s; }
+    .btn-prev { border: 1px solid #8892a4; color: #8892a4; background: transparent; }
+    .btn-prev:hover { border-color: #c9a84c; color: #c9a84c; }
+    .btn-next { background: linear-gradient(135deg, #c9a84c, #7a5c1e); color: #070b12; font-weight: 700; }
+    .btn-next:hover { transform: translateX(3px); box-shadow: 0 5px 20px rgba(201,168,76,0.3); }
+    footer { text-align: center; padding: 2rem; border-top: 1px solid rgba(201,168,76,0.1); margin-top: 2rem; color: #8892a4; font-size: 0.7rem; }
+    @media (max-width: 768px) { .navbar { padding: 1rem; } .nav-links { display: none; } .container { padding: 6rem 1rem 2rem; } }
+  </style>
+</head>
+<body>
+
+<nav class="navbar">
+  <a href="../index.html" class="logo">TSP<span>·WORLD</span></a>
+  <ul class="nav-links">
+    <li><a href="01-probleme.html">Problème</a></li>
+    <li><a href="02-complexite.html">Complexité</a></li>
+    <li><a href="03-algorithmes.html">Algorithmes</a></li>
+    <li><a href="04-comparaison.html">Comparaison</a></li>
+    <li><a href="05-equipe.html">Équipe</a></li>
+  </ul>
+</nav>
+
+<div class="container">
+  <h1>Théorie de la <span>complexité</span> : P vs NP</h1>
+
+  <!-- INTRODUCTION -->
+  <div class="card">
+    <p>La théorie de la complexité algorithmique, née dans les années 1960-1970 avec les travaux de <strong>Stephen Cook, Richard Karp et Leonid Levin</strong>, répond à une question fondamentale : <strong>parmi les problèmes décidables, lesquels peuvent être résolus efficacement ?</strong></p>
+    <p>Le problème du voyageur de commerce (TSP) est le prototype des problèmes <strong>NP-difficiles</strong>. Comprendre sa complexité, c'est comprendre les limites du calcul algorithmique.</p>
+  </div>
+
+  <!-- SECTION 1 : GRANDEUR NATURE -->
+  <h2>📏 1. La "grandeur" d'un problème</h2>
+  <div class="card">
+    <p>Avant de classer un problème, il faut définir sa <strong>taille d'entrée</strong> : le nombre de bits nécessaires pour le représenter. Pour le TSP :</p>
+    <div class="formula">
+      Taille(n) = n × log₂(n) + n² × log₂(max_distance)
+    </div>
+    <p>En pratique, on approxime souvent par <strong>n</strong> (le nombre de villes).</p>
+  </div>
+
+  <!-- SECTION 2 : CLASSE P -->
+  <h2>⚡ 2. La classe <span style="color:#00d4c8">P</span> (Polynomial Time)</h2>
+  <div class="card">
+    <p><strong>Définition :</strong> Un problème de décision appartient à la classe <strong class="badge-p">P</strong> s'il existe un algorithme déterministe qui le résout en temps polynomial O(nᵏ) pour une constante k.</p>
+    <div class="formula">
+      P = ⋃_{k≥1} DTIME(nᵏ)
+    </div>
+    <p><strong>Exemples de problèmes dans P :</strong></p>
+    <ul style="margin-left: 2rem; color: #8892a4; line-height: 1.8;">
+      <li>✅ Trier une liste (O(n log n))</li>
+      <li>✅ Plus court chemin dans un graphe (Dijkstra : O((V+E) log V))</li>
+      <li>✅ Test de primalité (AKS : O((log n)¹²))</li>
+      <li>✅ Connexité d'un graphe (BFS/DFS : O(V+E))</li>
+      <li>✅ Programmation linéaire (temps polynomial - Khachiyan, 1979)</li>
+    </ul>
+    <p>Les problèmes de la classe P sont considérés comme <strong>« traitables »</strong> en pratique.</p>
+  </div>
+
+  <!-- SECTION 3 : CLASSE NP -->
+  <h2>🔍 3. La classe <span style="color:#c9a84c">NP</span> (Non-deterministic Polynomial)</h2>
+  <div class="card">
+    <p><strong>Définition :</strong> Un problème de décision appartient à <strong class="badge-np">NP</strong> s'il existe un <strong>vérificateur polynomial</strong> : une solution candidate (certificat) peut être vérifiée en temps polynomial.</p>
+    <div class="formula">
+      x ∈ L ⇔ ∃ y, |y| = O(|x|ᵏ) et V(x,y) = 1
+    </div>
+    <p><strong>Intuition :</strong> Dans NP, <strong>trouver</strong> une solution peut être difficile, mais <strong>vérifier</strong> qu'une solution est correcte est facile.</p>
+    
+    <table class="table-classes">
+      <thead><tr><th>Problème</th><th>Question</th><th>Certificat (solution candidate)</th><th>Vérification</th></tr></thead>
+      <tbody>
+        <tr><td>TSP (décision)</td><td>Existe-t-il une tournée ≤ K ?</td><td>Une permutation des villes</td><td>O(n) : additionner n distances</td></tr>
+        <tr><td>SAT</td><td>La formule CNF est-elle satisfiable ?</td><td>Affectation des variables</td><td>O(m) : évaluer chaque clause</td></tr>
+        <tr><td>Sac à dos</td><td>Valeur ≥ V avec poids ≤ W ?</td><td>Sous-ensemble d'objets</td><td>O(n) : additionner poids et valeurs</td></tr>
+        <tr><td>Coloration de graphe</td><td>Le graphe est-il k-coloriable ?</td><td>Affectation des couleurs</td><td>O(m) : vérifier les arêtes</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- SECTION 4 : RELATION P ⊆ NP -->
+  <h2>🔗 4. Relation <span style="color:#00d4c8">P</span> ⊆ <span style="color:#c9a84c">NP</span></h2>
+  <div class="card">
+    <div class="formula">
+      P ⊆ NP
+    </div>
+    <p><strong>Preuve :</strong> Si un problème est dans P, il existe un algorithme polynomial pour le résoudre. Cet algorithme peut lui-même servir de vérificateur (il n'a même pas besoin du certificat). Donc le problème est aussi dans NP.</p>
+    <p>La question fondamentale — et ouverte depuis plus de 50 ans — est : <strong>P = NP ?</strong></p>
+  </div>
+
+  <!-- SECTION 5 : P vs NP - LE MYSTÈRE -->
+  <h2>❓ 5. La question <span style="color:#c9a84c">P vs NP</span></h2>
+  <div class="card">
+    <div class="formula" style="font-size: 1.2rem; text-align: center;">
+      P &nbsp;?=&nbsp; NP
+    </div>
+    <p>Tout problème dont la solution est vérifiable rapidement est-il aussi résoluble rapidement ?</p>
+    <p>🔹 <strong>La plupart des experts pensent que P ≠ NP</strong> (environ 90% des chercheurs).</p>
+    <p>🔹 C'est l'un des <strong>sept problèmes du prix du millénaire</strong> (1 million de dollars) du Clay Mathematics Institute.</p>
+    <p>🔹 <strong>Stephen Cook</strong> (1971) et <strong>Leonid Levin</strong> (1973) ont posé les bases de cette théorie.</p>
+    
+    <h3>Conséquences si P = NP :</h3>
+    <ul style="margin-left: 2rem; color: #8892a4; line-height: 1.8;">
+      <li>💥 Tous les problèmes NP-complets deviendraient résolubles en temps polynomial</li>
+      <li>🔓 La cryptographie à clé publique (RSA, ECC, ...) serait compromise</li>
+      <li>🤖 L'intelligence artificielle pourrait résoudre des problèmes d'optimisation massifs</li>
+      <li>📜 Des preuves mathématiques pourraient être générées automatiquement</li>
+    </ul>
+    
+    <h3>Conséquences si P ≠ NP (hypothèse dominante) :</h3>
+    <ul style="margin-left: 2rem; color: #8892a4; line-height: 1.8;">
+      <li>🔒 La cryptographie moderne reste sûre</li>
+      <li>📊 Les problèmes NP-complets restent intrinsèquement difficiles</li>
+      <li>🧮 Les heuristiques et métaheuristiques sont nécessaires pour les grandes instances</li>
+    </ul>
+  </div>
+
+  <!-- SECTION 6 : NP-COMPLET -->
+  <h2>⭐ 6. Les problèmes <span style="color:#ef4444">NP-Complets</span></h2>
+  <div class="card">
+    <p><strong>Définition :</strong> Un problème L est <strong class="badge-npc">NP-complet</strong> si :</p>
+    <ol style="margin-left: 2rem; color: #8892a4; line-height: 1.8;">
+      <li>L ∈ NP (vérification facile)</li>
+      <li>Pour tout problème A ∈ NP, A se réduit à L en temps polynomial (L est au moins aussi difficile que tout problème de NP)</li>
+    </ol>
+    <div class="formula">
+      SAT est NP-complet (Théorème de Cook-Levin, 1971)
+    </div>
+    <p><strong>Propriété fondamentale :</strong> Si on trouve un algorithme polynomial pour un seul problème NP-complet, alors <strong>P = NP</strong>.</p>
+    
+    <h3>Exemples célèbres de problèmes NP-complets :</h3>
+    <ul style="margin-left: 2rem; color: #8892a4; line-height: 1.8;">
+      <li>📐 SAT (Satisfiabilité booléenne) — le « père » de tous les NP-complets</li>
+      <li>🚚 TSP (décision) — le problème du voyageur de commerce</li>
+      <li>🎒 Sac à dos (Knapsack) — version décisionnelle</li>
+      <li>🎨 Coloration de graphe (k-coloriabilité)</li>
+      <li>🔍 Clique — existe-t-il une clique de taille k ?</li>
+      <li>📦 Vertex Cover — existe-t-il une couverture de taille k ?</li>
+      <li>🔢 Subset Sum — existe-t-il un sous-ensemble de somme S ?</li>
+    </ul>
+  </div>
+
+  <!-- SECTION 7 : NP-DIFFICILE -->
+  <h2>⚠️ 7. <span style="color:#ef4444">NP-Difficile</span> (NP-Hard)</h2>
+  <div class="card">
+    <p><strong>Définition :</strong> Un problème (d'optimisation) est <strong>NP-difficile</strong> s'il est « au moins aussi difficile » que tout problème de NP, mais ne doit pas nécessairement être dans NP.</p>
+    <p>Le TSP dans sa version <strong>optimisation</strong> (trouver la tournée la plus courte) est NP-difficile.</p>
+    <div class="formula">
+      TSP_optimisation ∉ NP (car ce n'est pas un problème de décision)<br>
+      TSP_décision ∈ NP-complet
+    </div>
+    <p>💡 <strong>Conséquence :</strong> Même vérifier qu'une tournée est <strong>optimale</strong> est difficile. On ne peut pas simplement dire « oui, c'est le meilleur tour » avec un certificat court.</p>
+  </div>
+
+  <!-- SECTION 8 : RÉDUCTIONS POLYNOMIALES -->
+  <h2>🔄 8. Réductions polynomiales</h2>
+  <div class="card">
+    <p><strong>Définition :</strong> Un problème A se réduit polynomialement à un problème B (noté A ≤<sub>p</sub> B) s'il existe une fonction f calculable en temps polynomial telle que :</p>
+    <div class="formula">
+      x ∈ A ⇔ f(x) ∈ B
+    </div>
+    <p>Les réductions sont l'outil fondamental pour prouver la NP-complétude. Pour montrer qu'un problème L est NP-complet :</p>
+    <ol style="margin-left: 2rem; color: #8892a4; line-height: 1.8;">
+      <li>Montrer que L ∈ NP</li>
+      <li>Réduire un problème NP-complet connu (ex: SAT) à L</li>
+    </ol>
+    <p><strong>Exemple :</strong> Réduction de HamiltonCycle vers TSP.</p>
+  </div>
+
+  <!-- SECTION 9 : HIÉRARCHIE DES CLASSES -->
+  <h2>🏛️ 9. Hiérarchie des classes de complexité</h2>
+  <div class="card">
+    <div class="formula" style="text-align: center;">
+      P ⊆ NP ⊆ PSPACE ⊆ EXPTIME
+    </div>
+    <p>On sait que :</p>
+    <ul style="margin-left: 2rem; color: #8892a4; line-height: 1.8;">
+      <li>P ⊂ EXPTIME (théorème de la hiérarchie temporelle)</li>
+      <li>P ⊆ NP ⊆ PSPACE</li>
+      <li>On ne sait pas si P = NP, ni si NP = PSPACE, ni si P = PSPACE</li>
+    </ul>
+    <div style="text-align: center; margin: 1.5rem 0;">
+      <div style="display: inline-block; background: #0a0f18; padding: 1rem 2rem; border-radius: 12px;">
+        <span style="color:#00d4c8">P</span> ⊆ <span style="color:#c9a84c">NP</span> ⊆ <span style="color:#f59e0b">PSPACE</span> ⊆ <span style="color:#ef4444">EXPTIME</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 10 : OÙ SE SITUE LE TSP ? -->
+  <h2>🎯 10. Où se situe le <span style="color:#c9a84c">TSP</span> ?</h2>
+  <div class="card">
+    <table class="table-classes">
+      <thead><tr><th>Version du problème</th><th>Classe de complexité</th></tr></thead>
+      <tbody>
+        <tr><td>TSP (décision) : existe-t-il une tournée ≤ K ?</td><td><span class="badge-npc">NP-complet</span></td></tr>
+        <tr><td>TSP (optimisation) : trouver la tournée minimale</td><td><span class="badge-npc">NP-difficile</span></td></tr>
+        <tr><td>TSP métrique (décision)</td><td><span class="badge-npc">NP-complet</span> aussi</td></tr>
+        <tr><td>TSP euclidien</td><td><span class="badge-npc">NP-complet</span> (même dans le plan)</td></tr>
+        <tr><td>TSP avec inégalité triangulaire + approximation Christofides</td><td><span class="badge-np">dans NP</span> (approximation 3/2)</td></tr>
+      </tbody>
+    </table>
+    <p><strong>Conclusion :</strong> Le TSP est l'un des problèmes les plus difficiles de NP. C'est pour cette raison que :</p>
+    <ul style="margin-left: 2rem; color: #8892a4; line-height: 1.8;">
+      <li>On utilise des <strong>méthodes exactes</strong> (Held-Karp, Branch & Bound) pour n ≤ 30-40</li>
+      <li>On utilise des <strong>heuristiques</strong> et <strong>métaheuristiques</strong> pour les grandes instances</li>
+      <li>On cherche des <strong>algorithmes d'approximation</strong> avec garantie de performance (Christofides : 3/2)</li>
+    </ul>
+  </div>
+
+  <!-- SECTION 11 : POURQUOI C'EST IMPORTANT -->
+  <h2>💡 11. Pourquoi c'est important pour votre PFE ?</h2>
+  <div class="card">
+    <p>Comprendre la complexité du TSP est <strong>fondamental</strong> pour :</p>
+    <ul style="margin-left: 2rem; color: #8892a4; line-height: 1.8;">
+      <li>✅ <strong>Justifier</strong> pourquoi on ne peut pas utiliser la force brute pour n > 15</li>
+      <li>✅ <strong>Choisir</strong> la bonne méthode de résolution selon la taille de l'instance</li>
+      <li>✅ <strong>Évaluer</strong> la qualité des heuristiques par rapport à l'optimum (bornes inférieures)</li>
+      <li>✅ <strong>Interpréter</strong> les résultats expérimentaux (temps CPU, gap à l'optimum)</li>
+      <li>✅ <strong>Communiquer</strong> scientifiquement : le TSP est le « pilier » de la NP-complétude</li>
+    </ul>
+  </div>
+
+  <!-- SECTION 12 : RÉFÉRENCES -->
+  <h2>📚 12. Références bibliographiques</h2>
+  <div class="card">
+    <ul style="margin-left: 2rem; color: #8892a4; line-height: 1.8;">
+      <li>Cook, S. (1971). "The complexity of theorem-proving procedures". STOC.</li>
+      <li>Karp, R. (1972). "Reducibility among combinatorial problems". Complexity of Computer Computations.</li>
+      <li>Garey, M. & Johnson, D. (1979). "Computers and Intractability: A Guide to NP-Completeness".</li>
+      <li>Arora, S. & Barak, B. (2009). "Computational Complexity: A Modern Approach".</li>
+      <li>Papadimitriou, C. (1994). "Computational Complexity".</li>
+    </ul>
+  </div>
+
+  <!-- BOUTONS DE NAVIGATION -->
+  <div class="btn-nav">
+    <a href="01-probleme.html" class="btn-prev">← Précédent : Problème</a>
+    <a href="03-algorithmes.html" class="btn-next">Suivant : Algorithmes →</a>
+  </div>
+</div>
+
+<footer>
+  <p>PFE — Iliass Errouifi & Soufiane Er-Rthimi | TSP 2025-2026 | Théorie de la complexité</p>
+  <div style="margin-top: 0.5rem;">
+    <a href="../index.html" style="color:#8892a4; text-decoration:none; margin:0 0.5rem;">Accueil</a>
+    <a href="01-probleme.html" style="color:#8892a4; text-decoration:none; margin:0 0.5rem;">Problème</a>
+    <a href="03-algorithmes.html" style="color:#8892a4; text-decoration:none; margin:0 0.5rem;">Algorithmes</a>
+    <a href="04-comparaison.html" style="color:#8892a4; text-decoration:none; margin:0 0.5rem;">Comparaison</a>
+    <a href="05-equipe.html" style="color:#8892a4; text-decoration:none; margin:0 0.5rem;">Équipe</a>
+  </div>
+</footer>
+
+</body>
+</html>
