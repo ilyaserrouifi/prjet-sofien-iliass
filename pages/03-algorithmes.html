@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TSP - Algorithmes | 10 méthodes | PFE 2025-2026</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;900&family=Raleway:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Raleway', sans-serif; background: #070b12; color: #e2e8f0; }
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #0d1420; }
+    ::-webkit-scrollbar-thumb { background: #c9a84c; border-radius: 10px; }
+
+    .navbar {
+      position: fixed; top: 0; width: 100%; padding: 1rem 3rem;
+      background: rgba(7,11,18,0.96); backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(201,168,76,0.2); z-index: 1000;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .logo { font-family: 'Cinzel', serif; font-size: 1.2rem; font-weight: 700; letter-spacing: 4px; color: #c9a84c; text-decoration: none; }
+    .logo span { color: #00d4c8; }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { color: #8892a4; text-decoration: none; font-size: 0.7rem; letter-spacing: 2px; text-transform: uppercase; transition: 0.3s; }
+    .nav-links a:hover { color: #c9a84c; }
+
+    .container { max-width: 1300px; margin: 0 auto; padding: 7rem 2rem 3rem; }
+    h1 { font-family: 'Cinzel', serif; font-size: 2rem; margin-bottom: 1rem; border-left: 4px solid #c9a84c; padding-left: 1.2rem; }
+    h1 span { color: #c9a84c; }
+    h2 { font-family: 'Cinzel', serif; font-size: 1.6rem; margin: 2rem 0 1rem; color: #c9a84c; border-bottom: 1px solid rgba(201,168,76,0.3); padding-bottom: 0.5rem; }
+    h3 { font-family: 'Cinzel', serif; font-size: 1.2rem; margin: 1rem 0 0.5rem; color: #00d4c8; }
+    .algo-grid { display: flex; flex-direction: column; gap: 2rem; }
+    .algo-card { background: rgba(13,20,32,0.6); border: 1px solid rgba(201,168,76,0.2); border-radius: 20px; overflow: hidden; transition: 0.3s; }
+    .algo-card:hover { border-color: #c9a84c; box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
+    .algo-header { background: linear-gradient(135deg, rgba(201,168,76,0.1), rgba(0,212,200,0.05)); padding: 1.2rem 2rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; border-bottom: 1px solid rgba(201,168,76,0.2); }
+    .algo-title { font-family: 'Cinzel', serif; font-size: 1.3rem; font-weight: 700; color: #c9a84c; }
+    .algo-badge { display: inline-block; padding: 0.3rem 1rem; border-radius: 30px; font-size: 0.7rem; letter-spacing: 1px; }
+    .badge-exact { background: rgba(201,168,76,0.15); color: #c9a84c; border: 1px solid rgba(201,168,76,0.3); }
+    .badge-heuristic { background: rgba(0,212,200,0.1); color: #00d4c8; border: 1px solid rgba(0,212,200,0.2); }
+    .badge-meta { background: rgba(139,92,246,0.15); color: #a78bfa; border: 1px solid rgba(139,92,246,0.3); }
+    .complexity { font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: #00d4c8; background: rgba(0,212,200,0.1); padding: 0.2rem 0.8rem; border-radius: 20px; }
+    .algo-body { padding: 1.5rem 2rem; }
+    .algo-desc { color: #8892a4; line-height: 1.7; margin-bottom: 1rem; }
+    .code-block { background: #0a0f18; border-left: 3px solid #c9a84c; border-radius: 8px; margin: 1rem 0; overflow-x: auto; }
+    .code-block pre { font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; padding: 1.2rem; color: #a7f3d0; line-height: 1.5; }
+    .btn-nav { display: flex; justify-content: space-between; margin-top: 3rem; gap: 1rem; }
+    .btn-prev, .btn-next { padding: 0.8rem 2rem; text-decoration: none; border-radius: 4px; font-size: 0.7rem; letter-spacing: 2px; text-transform: uppercase; transition: 0.3s; }
+    .btn-prev { border: 1px solid #8892a4; color: #8892a4; background: transparent; }
+    .btn-prev:hover { border-color: #c9a84c; color: #c9a84c; }
+    .btn-next { background: linear-gradient(135deg, #c9a84c, #7a5c1e); color: #070b12; font-weight: 700; }
+    .btn-next:hover { transform: translateX(3px); box-shadow: 0 5px 20px rgba(201,168,76,0.3); }
+    footer { text-align: center; padding: 2rem; border-top: 1px solid rgba(201,168,76,0.1); margin-top: 2rem; color: #8892a4; font-size: 0.7rem; }
+    @media (max-width: 768px) { .navbar { padding: 1rem; } .nav-links { display: none; } .container { padding: 6rem 1rem 2rem; } .algo-header { flex-direction: column; align-items: flex-start; } }
+    .note { background: rgba(201,168,76,0.05); border-left: 3px solid #c9a84c; padding: 1rem; margin: 1rem 0; font-size: 0.85rem; color: #8892a4; }
+  </style>
+</head>
+<body>
+
+<nav class="navbar">
+  <a href="../index.html" class="logo">TSP<span>·WORLD</span></a>
+  <ul class="nav-links">
+    <li><a href="01-probleme.html">Problème</a></li>
+    <li><a href="02-complexite.html">Complexité</a></li>
+    <li><a href="03-algorithmes.html">Algorithmes</a></li>
+    <li><a href="04-comparaison.html">Comparaison</a></li>
+    <li><a href="05-equipe.html">Équipe</a></li>
+  </ul>
+</nav>
+
+<div class="container">
+  <h1>Les <span>10 algorithmes</span> du TSP</h1>
+  <div class="note">
+    📌 <strong>Note :</strong> Chaque algorithme est implémenté en Python. Les codes sont prêts à être copiés et exécutés.
+  </div>
+
+  <div class="algo-grid">
+
+    <!-- 1. FORCE BRUTE -->
+    <div class="algo-card">
+      <div class="algo-header">
+        <div class="algo-title">1. Force Brute (Brute Force)</div>
+        <div><span class="algo-badge badge-exact">Exact</span> <span class="complexity">O(n!)</span></div>
+      </div>
+      <div class="algo-body">
+        <div class="algo-desc">
+          <strong>Principe :</strong> Énumérer toutes les permutations possibles des villes, calculer la longueur de chaque tournée, et garder la meilleure. C'est la méthode la plus simple mais aussi la plus lente.
+        </div>
+        <div class="code-block">
+          <pre>def tsp_bruteforce(dist, n):
+    from itertools import permutations
+    villes = list(range(n))
+    best_cost = float('inf')
+    best_path = []
+    for perm in permutations(villes):
+        cost = sum(dist[perm[i]][perm[i+1]] for i in range(n-1))
+        cost += dist[perm[-1]][perm[0]]
+        if cost < best_cost:
+            best_cost = cost
+            best_path = list(perm)
+    return best_path, best_cost</pre>
+        </div>
+        <div class="algo-desc">
+          ✅ <strong>Avantage :</strong> Garantie d'optimalité.<br>
+          ❌ <strong>Inconvénient :</strong> Complexité factorielle O(n!) — inutilisable pour n > 12.
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. HELD-KARP (PROGRAMMATION DYNAMIQUE) -->
+    <div class="algo-card">
+      <div class="algo-header">
+        <div class="algo-title">2. Held-Karp (Programmation Dynamique)</div>
+        <div><span class="algo-badge badge-exact">Exact</span> <span class="complexity">O(n²·2ⁿ)</span></div>
+      </div>
+      <div class="algo-body">
+        <div class="algo-desc">
+          <strong>Principe :</strong> Utiliser la programmation dynamique avec un masque de bits. Pour chaque sous-ensemble S de villes et chaque ville j ∈ S, on stocke le coût minimal d'un chemin partant de la ville 0, visitant toutes les villes de S et se terminant à j.
+        </div>
+        <div class="code-block">
+          <pre>def tsp_held_karp_with_path(dist, n):
+    dp = [[float('inf')] * n for _ in range(1 << n)]
+    parent = [[-1] * n for _ in range(1 << n)]
+    dp[1][0] = 0
+    for mask in range(1 << n):
+        for i in range(n):
+            if dp[mask][i] == float('inf'): continue
+            for j in range(n):
+                if not (mask >> j) & 1:
+                    nouveau_mask = mask | (1 << j)
+                    nouveau_cout = dp[mask][i] + dist[i][j]
+                    if nouveau_cout < dp[nouveau_mask][j]:
+                        dp[nouveau_mask][j] = nouveau_cout
+                        parent[nouveau_mask][j] = i
+    mask_complet = (1 << n) - 1
+    best_cost = float('inf')
+    last_city = -1
+    for i in range(n):
+        total = dp[mask_complet][i] + dist[i][0]
+        if total < best_cost:
+            best_cost = total
+            last_city = i
+    path = []
+    mask = mask_complet
+    city = last_city
+    while city != -1:
+        path.append(city)
+        prev_city = parent[mask][city]
+        mask = mask ^ (1 << city)
+        city = prev_city
+    path.reverse()
+    return path, best_cost</pre>
+        </div>
+        <div class="algo-desc">
+          ✅ <strong>Avantage :</strong> Optimal et bien meilleur que O(n!) (20 villes : 4×10⁸ vs 2×10¹⁸).<br>
+          ❌ <strong>Inconvénient :</strong> Mémoire O(n·2ⁿ) — limité à n≈25-30.
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. PLUS PROCHE VOISIN -->
+    <div class="algo-card">
+      <div class="algo-header">
+        <div class="algo-title">3. Plus Proche Voisin (Nearest Neighbor)</div>
+        <div><span class="algo-badge badge-heuristic">Heuristique</span> <span class="complexity">O(n²)</span></div>
+      </div>
+      <div class="algo-body">
+        <div class="algo-desc">
+          <strong>Principe :</strong> Partir d'une ville, puis à chaque étape, aller vers la ville non visitée la plus proche. Très simple et rapide.
+        </div>
+        <div class="code-block">
+          <pre>def tsp_nearest_neighbor(dist, start=0):
+    n = len(dist)
+    visited = [False] * n
+    path = [start]
+    visited[start] = True
+    current = start
+    for _ in range(n-1):
+        nxt = min((i for i in range(n) if not visited[i]), key=lambda i: dist[current][i])
+        path.append(nxt)
+        visited[nxt] = True
+        current = nxt
+    cost = sum(dist[path[i]][path[i+1]] for i in range(n-1)) + dist[path[-1]][start]
+    return path, cost</pre>
+        </div>
+        <div class="algo-desc">
+          ✅ <strong>Avantage :</strong> Très rapide O(n²).<br>
+          ❌ <strong>Inconvénient :</strong> Solution souvent 20-30% au-dessus de l'optimum.
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. INSERTION DU PLUS LOIN -->
+    <div class="algo-card">
+      <div class="algo-header">
+        <div class="algo-title">4. Insertion du Plus Loin (Farthest Insertion)</div>
+        <div><span class="algo-badge badge-heuristic">Heuristique</span> <span class="complexity">O(n²)</span></div>
+      </div>
+      <div class="algo-body">
+        <div class="algo-desc">
+          <strong>Principe :</strong> Commencer par 2 villes, puis insérer à chaque étape la ville la plus éloignée du cycle actuel, à la position qui minimise l'augmentation du coût.
+        </div>
+        <div class="code-block">
+          <pre>def tsp_farthest_insertion(dist):
+    n = len(dist)
+    cycle = [0]
+    remaining = set(range(1, n))
+    farthest = max(remaining, key=lambda x: dist[0][x])
+    cycle.append(farthest)
+    remaining.remove(farthest)
+    while remaining:
+        best_dist = -1
+        best_city = None
+        best_pos = None
+        for city in remaining:
+            min_insert_cost = float('inf')
+            insert_pos = 0
+            for i in range(len(cycle)):
+                a = cycle[i]
+                b = cycle[(i+1) % len(cycle)]
+                cost = dist[a][city] + dist[city][b] - dist[a][b]
+                if cost < min_insert_cost:
+                    min_insert_cost = cost
+                    insert_pos = i+1
+            if min_insert_cost > best_dist:
+                best_dist = min_insert_cost
+                best_city = city
+                best_pos = insert_pos
+        cycle.insert(best_pos, best_city)
+        remaining.remove(best_city)
+    cost = sum(dist[cycle[i]][cycle[(i+1) % n]] for i in range(n))
+    return cycle, cost</pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. 2-OPT -->
+    <div class="algo-card">
+      <div class="algo-header">
+        <div class="algo-title">5. 2-OPT (Amélioration locale)</div>
+        <div><span class="algo-badge badge-heuristic">Heuristique</span> <span class="complexity">O(n³)</span></div>
+      </div>
+      <div class="algo-body">
+        <div class="algo-desc">
+          <strong>Principe :</strong> Prendre un chemin existant, inverser un segment entre deux positions. Si l'inversion réduit la distance, on garde le nouveau chemin. Répéter jusqu'à stabilisation.
+        </div>
+        <div class="code-block">
+          <pre>def two_opt(route, dist):
+    improved = True
+    best = route
+    n = len(route)
+    def path_cost(r):
+        return sum(dist[r[i]][r[(i+1)%n]] for i in range(n))
+    best_cost = path_cost(best)
+    while improved:
+        improved = False
+        for i in range(1, n-1):
+            for j in range(i+1, n):
+                if j - i == 1: continue
+                new_route = best[:i] + best[i:j+1][::-1] + best[j+1:]
+                new_cost = path_cost(new_route)
+                if new_cost < best_cost:
+                    best = new_route
+                    best_cost = new_cost
+                    improved = True
+                    break
+            if improved: break
+        if not improved: break
+    return best, best_cost</pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6. CHRISTOFIDES -->
+    <div class="algo-card">
+      <div class="algo-header">
+        <div class="algo-title">6. Christofides (Approximation garantie)</div>
+        <div><span class="algo-badge badge-heuristic">Approché</span> <span class="complexity">O(n³)</span></div>
+      </div>
+      <div class="algo-body">
+        <div class="algo-desc">
+          <strong>Principe :</strong> Construire un arbre couvrant minimal (MST), trouver les sommets de degré impair, faire un couplage minimal entre eux, ajouter ces arêtes, construire un circuit eulérien, puis le court-circuiter.
+        </div>
+        <div class="code-block">
+          <pre>def tsp_christofides(dist):
+    n = len(dist)
+    # MST par Prim
+    mst = [[] for _ in range(n)]
+    in_mst = [False] * n
+    min_edge = [float('inf')] * n
+    parent = [-1] * n
+    min_edge[0] = 0
+    for _ in range(n):
+        u = min((i for i in range(n) if not in_mst[i]), key=lambda x: min_edge[x])
+        in_mst[u] = True
+        if parent[u] != -1:
+            mst[parent[u]].append(u)
+            mst[u].append(parent[u])
+        for v in range(n):
+            if not in_mst[v] and dist[u][v] < min_edge[v]:
+                min_edge[v] = dist[u][v]
+                parent[v] = u
+    # Sommets de degré impair
+    degree = [len(mst[i]) for i in range(n)]
+    odd = [i for i in range(n) if degree[i] % 2 == 1]
+    # Couplage glouton
+    matched = [False] * n
+    matching = []
+    for i in range(len(odd)):
+        if matched[odd[i]]: continue
+        best_j, best_d = -1, float('inf')
+        for j in range(i+1, len(odd)):
+            if not matched[odd[j]] and dist[odd[i]][odd[j]] < best_d:
+                best_d = dist[odd[i]][odd[j]]
+                best_j = odd[j]
+        if best_j != -1:
+            matching.append((odd[i], best_j))
+            matched[odd[i]] = matched[best_j] = True
+    for u, v in matching:
+        mst[u].append(v); mst[v].append(u)
+    # Circuit eulérien
+    stack, path = [0], []
+    while stack:
+        v = stack[-1]
+        if mst[v]:
+            u = mst[v].pop()
+            mst[u].remove(v)
+            stack.append(u)
+        else:
+            path.append(stack.pop())
+    # Shortcut
+    visited = [False] * n
+    tsp_path = []
+    for v in path:
+        if not visited[v]:
+            visited[v] = True
+            tsp_path.append(v)
+    cost = sum(dist[tsp_path[i]][tsp_path[(i+1)%n]] for i in range(n))
+    return tsp_path, cost</pre>
+        </div>
+        <div class="algo-desc">
+          ✅ <strong>Garantie :</strong> Coût ≤ 1.5 × optimum (pour TSP métrique).
+        </div>
+      </div>
+    </div>
+
+    <!-- 7. COLONIES DE FOURMIS (ACO) -->
+    <div class="algo-card">
+      <div class="algo-header">
+        <div class="algo-title">7. Colonies de Fourmis (Ant Colony Optimization)</div>
+        <div><span class="algo-badge badge-meta">Métaheuristique</span> <span class="complexity">O(iterations × ants × n²)</span></div>
+      </div>
+      <div class="algo-body">
+        <div class="algo-desc">
+          <strong>Principe :</strong> Inspiré du comportement des fourmis. Chaque fourmi construit une tournée en choisissant la prochaine ville selon la phéromone déposée et la proximité. On dépose plus de phéromone sur les meilleurs chemins.
+        </div>
+        <div class="code-block">
+          <pre>import random
+def tsp_aco(dist, n, ants=20, alpha=1, beta=3, rho=0.3, q0=0.9, iterations=200):
+    pheromone = [[1.0] * n for _ in range(n)]
+    best_path, best_cost = None, float('inf')
+    for _ in range(iterations):
+        paths, costs = [], []
+        for _ in range(ants):
+            path, visited = [0], [False]*n
+            visited[0] = True
+            for _ in range(n-1):
+                curr = path[-1]
+                candidates = [(nxt, pheromone[curr][nxt], 1.0/dist[curr][nxt]) 
+                              for nxt in range(n) if not visited[nxt]]
+                if random.random() < q0:
+                    nxt = max(candidates, key=lambda x: (x[1]**alpha)*(x[2]**beta))[0]
+                else:
+                    total = sum((tau**alpha)*(eta**beta) for _, tau, eta in candidates)
+                    r = random.random()
+                    cum = 0
+                    for nxt, tau, eta in candidates:
+                        cum += (tau**alpha)*(eta**beta)/total
+                        if r <= cum: break
+                path.append(nxt); visited[nxt] = True
+            cost = sum(dist[path[i]][path[i+1]] for i in range(n-1)) + dist[path[-1]][path[0]]
+            paths.append(path); costs.append(cost)
+            if cost < best_cost: best_cost, best_path = cost, path.copy()
+        for i in range(n):
+            for j in range(n): pheromone[i][j] *= (1-rho)
+        for path, cost in zip(paths, costs):
+            deposit = 1.0/cost
+            for i in range(n-1): pheromone[path[i]][path[i+1]] += deposit
+            pheromone[path[-1]][path[0]] += deposit
+    return best_path, best_cost</pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- 8. ALGORITHME GÉNÉTIQUE -->
+    <div class="algo-card">
+      <div class="algo-header">
+        <div class="algo-title">8. Algorithme Génétique (Genetic Algorithm)</div>
+        <div><span class="algo-badge badge-meta">Métaheuristique</span> <span class="complexity">O(generations × pop_size × n)</span></div>
+      </div>
+      <div class="algo-body">
+        <div class="algo-desc">
+          <strong>Principe :</strong> Population de solutions, sélection des meilleurs, croisement (crossover), mutation, et remplacement. Évolution inspirée de la biologie.
+        </div>
+        <div class="code-block">
+          <pre>import random
+def tsp_genetic(dist, n, pop_size=100, generations=500, mutation_rate=0.1):
+    def path_cost(route):
+        return sum(dist[route[i]][route[(i+1)%n]] for i in range(n))
+    def create(): r = list(range(n)); random.shuffle(r); return r
+    def crossover(p1, p2):
+        start, end = sorted(random.sample(range(n), 2))
+        child = [-1]*n
+        child[start:end] = p1[start:end]
+        pos = end
+        for g in p2:
+            if g not in child:
+                if pos >= n: pos = 0
+                child[pos] = g; pos += 1
+        return child
+    def mutate(r):
+        if random.random() < mutation_rate:
+            i, j = random.sample(range(n), 2)
+            r[i], r[j] = r[j], r[i]
+        return r
+    pop = [create() for _ in range(pop_size)]
+    for _ in range(generations):
+        pop.sort(key=path_cost)
+        new_pop = pop[:pop_size//2]
+        while len(new_pop) < pop_size:
+            p1 = random.choice(pop[:pop_size//4])
+            p2 = random.choice(pop[:pop_size//4])
+            child = mutate(crossover(p1, p2))
+            new_pop.append(child)
+        pop = new_pop
+    best = min(pop, key=path_cost)
+    return best, path_cost(best)</pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- 9. LIN-KERNIGHAN -->
+    <div class="algo-card">
+      <div class="algo-header">
+        <div class="algo-title">9. Lin-Kernighan (Local Search)</div>
+        <div><span class="algo-badge badge-meta">Métaheuristique</span> <span class="complexity">O(n²·iterations)</span></div>
+      </div>
+      <div class="algo-body">
+        <div class="algo-desc">
+          <strong>Principe :</strong> Version améliorée du 2-opt qui échange plusieurs paires d'arêtes à chaque étape pour une meilleure optimisation locale.
+        </div>
+        <div class="code-block">
+          <pre>def tsp_lin_kernighan(dist, route):
+    n = len(route)
+    def path_cost(r):
+        return sum(dist[r[i]][r[(i+1)%n]] for i in range(n))
+    improved = True
+    best_route = route.copy()
+    best_cost = path_cost(best_route)
+    while improved:
+        improved = False
+        for i in range(n):
+            for j in range(i+2, n):
+                if j == n-1 and i == 0: continue
+                new_route = best_route.copy()
+                new_route[i+1:j+1] = reversed(best_route[i+1:j+1])
+                new_cost = path_cost(new_route)
+                if new_cost < best_cost:
+                    best_route = new_route
+                    best_cost = new_cost
+                    improved = True
+                    break
+            if improved: break
+        if not improved: break
+    return best_route, best_cost</pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- 10. BRANCH & BOUND -->
+    <div class="algo-card">
+      <div class="algo-header">
+        <div class="algo-title">10. Branch & Bound (Séparation et Évaluation)</div>
+        <div><span class="algo-badge badge-exact">Exact</span> <span class="complexity">Exponentiel (mais élague)</span></div>
+      </div>
+      <div class="algo-body">
+        <div class="algo-desc">
+          <strong>Principe :</strong> Exploration intelligente de l'arbre de recherche. À chaque nœud, on calcule une borne inférieure. Si cette borne est ≥ meilleure solution connue, on élague la branche.
+        </div>
+        <div class="code-block">
+          <pre>def tsp_branch_bound_simple(dist, n):
+    best = [float('inf')]
+    best_route = [None]
+    def lower_bound(path, cost):
+        visited = [False]*n
+        for v in path: visited[v] = True
+        remaining = [i for i in range(n) if not visited[i]]
+        if not remaining:
+            return cost + dist[path[-1]][path[0]]
+        lb = cost + min(dist[path[-1]][i] for i in remaining) if remaining else 0
+        for v in remaining:
+            lb += min(dist[v][i] for i in range(n) if i != v)
+        return lb
+    def search(path, cost):
+        if len(path) == n:
+            total = cost + dist[path[-1]][path[0]]
+            if total < best[0]:
+                best[0] = total
+                best_route[0] = path.copy()
+            return
+        last = path[-1]
+        for nxt in range(n):
+            if nxt not in path:
+                new_cost = cost + dist[last][nxt]
+                if new_cost + lower_bound(path+[nxt], new_cost) < best[0]:
+                    search(path+[nxt], new_cost)
+    search([0], 0)
+    return best_route[0], best[0]</pre>
+        </div>
+        <div class="algo-desc">
+          ✅ <strong>Avantage :</strong> Peut résoudre des instances jusqu'à n≈35-40.<br>
+          ❌ <strong>Inconvénient :</strong> Pire cas exponentiel.
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- BOUTONS DE NAVIGATION -->
+  <div class="btn-nav">
+    <a href="02-complexite.html" class="btn-prev">← Précédent : Complexité</a>
+    <a href="04-comparaison.html" class="btn-next">Suivant : Comparaison →</a>
+  </div>
+</div>
+
+<footer>
+  <p>PFE — Iliass Errouifi & Soufiane Er-Rthimi | TSP 2025-2026 | 10 algorithmes implémentés en Python</p>
+  <div style="margin-top: 0.5rem;">
+    <a href="../index.html" style="color:#8892a4; text-decoration:none; margin:0 0.5rem;">Accueil</a>
+    <a href="01-probleme.html" style="color:#8892a4; text-decoration:none; margin:0 0.5rem;">Problème</a>
+    <a href="02-complexite.html" style="color:#8892a4; text-decoration:none; margin:0 0.5rem;">Complexité</a>
+    <a href="04-comparaison.html" style="color:#8892a4; text-decoration:none; margin:0 0.5rem;">Comparaison</a>
+    <a href="05-equipe.html" style="color:#8892a4; text-decoration:none; margin:0 0.5rem;">Équipe</a>
+  </div>
+</footer>
+
+</body>
+</html>
