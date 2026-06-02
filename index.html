@@ -6,385 +6,91 @@
   <title>TSP·WORLD | PFE 2025-2026 | Iliass & Soufiane</title>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;900&family=Raleway:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: 'Raleway', sans-serif;
-      background: #070b12;
-      color: #e2e8f0;
-      overflow-x: hidden;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Raleway', sans-serif; background: #070b12; color: #e2e8f0; overflow-x: hidden; }
+    html { scroll-behavior: smooth; }
     ::-webkit-scrollbar { width: 5px; }
     ::-webkit-scrollbar-track { background: #0d1420; }
     ::-webkit-scrollbar-thumb { background: #c9a84c; border-radius: 10px; }
 
-    /* ===== NAVBAR ===== */
     .navbar {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      padding: 1rem 3rem;
-      background: rgba(7, 11, 18, 0.96);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(201, 168, 76, 0.2);
-      z-index: 1000;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      position: fixed; top: 0; width: 100%; padding: 1rem 3rem;
+      background: rgba(7, 11, 18, 0.96); backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(201, 168, 76, 0.2); z-index: 1000;
+      display: flex; justify-content: space-between; align-items: center;
     }
-    .logo {
-      font-family: 'Cinzel', serif;
-      font-size: 1.2rem;
-      font-weight: 700;
-      letter-spacing: 4px;
-      color: #c9a84c;
-      text-decoration: none;
-      transition: 0.3s;
-    }
-    .logo:hover { opacity: 0.8; }
+    .logo { font-family: 'Cinzel', serif; font-size: 1.2rem; font-weight: 700; letter-spacing: 4px; color: #c9a84c; text-decoration: none; }
     .logo span { color: #00d4c8; }
-    .nav-links {
-      display: flex;
-      gap: 2rem;
-      list-style: none;
-    }
-    .nav-links a {
-      color: #8892a4;
-      text-decoration: none;
-      font-size: 0.7rem;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      transition: 0.3s;
-    }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { color: #8892a4; text-decoration: none; font-size: 0.7rem; letter-spacing: 2px; text-transform: uppercase; transition: 0.3s; }
     .nav-links a:hover { color: #c9a84c; }
 
-    /* ===== HERO ===== */
     .hero {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      padding: 8rem 2rem 4rem;
+      min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center;
+      text-align: center; padding: 8rem 2rem 4rem;
       background: radial-gradient(ellipse 80% 60% at 50% 40%, rgba(0,212,200,0.06) 0%, transparent 70%);
       position: relative;
     }
-    .hero-badge {
-      border: 1px solid rgba(201,168,76,0.3);
-      border-radius: 50px;
-      padding: 0.4rem 1.2rem;
-      font-size: 0.7rem;
-      letter-spacing: 3px;
-      color: #c9a84c;
-      margin-bottom: 2rem;
-      background: rgba(201,168,76,0.05);
-    }
-    .hero h1 {
-      font-family: 'Cinzel', serif;
-      font-size: clamp(2.5rem, 8vw, 5.5rem);
-      font-weight: 900;
-      line-height: 1.1;
-    }
+    .hero-badge { border: 1px solid rgba(201,168,76,0.3); border-radius: 50px; padding: 0.4rem 1.2rem; font-size: 0.7rem; letter-spacing: 3px; color: #c9a84c; margin-bottom: 2rem; background: rgba(201,168,76,0.05); }
+    .hero h1 { font-family: 'Cinzel', serif; font-size: clamp(2.5rem, 8vw, 5.5rem); font-weight: 900; line-height: 1.1; }
     .hero h1 .gold { color: #c9a84c; }
     .hero h1 .teal { color: #00d4c8; }
-    .hero-sub {
-      font-size: 1rem;
-      color: #8892a4;
-      max-width: 600px;
-      margin: 1.5rem auto;
-      letter-spacing: 0.5px;
-    }
-    .hero-buttons {
-      display: flex;
-      gap: 1rem;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-    .btn-primary {
-      padding: 0.8rem 2rem;
-      background: linear-gradient(135deg, #c9a84c, #7a5c1e);
-      border: none;
-      color: #070b12;
-      text-decoration: none;
-      font-weight: 700;
-      letter-spacing: 2px;
-      font-size: 0.7rem;
-      text-transform: uppercase;
-      border-radius: 4px;
-      transition: 0.3s;
-      display: inline-block;
-      cursor: pointer;
-    }
+    .hero-sub { font-size: 1rem; color: #8892a4; max-width: 600px; margin: 1.5rem auto; letter-spacing: 0.5px; }
+    .hero-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .btn-primary { padding: 0.8rem 2rem; background: linear-gradient(135deg, #c9a84c, #7a5c1e); border: none; color: #070b12; text-decoration: none; font-weight: 700; letter-spacing: 2px; font-size: 0.7rem; text-transform: uppercase; border-radius: 4px; transition: 0.3s; display: inline-block; }
     .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(201,168,76,0.3); }
-    .btn-outline {
-      padding: 0.8rem 2rem;
-      border: 1px solid #c9a84c;
-      background: transparent;
-      color: #c9a84c;
-      text-decoration: none;
-      letter-spacing: 2px;
-      font-size: 0.7rem;
-      text-transform: uppercase;
-      border-radius: 4px;
-      transition: 0.3s;
-      display: inline-block;
-      cursor: pointer;
-    }
+    .btn-outline { padding: 0.8rem 2rem; border: 1px solid #c9a84c; background: transparent; color: #c9a84c; text-decoration: none; letter-spacing: 2px; font-size: 0.7rem; text-transform: uppercase; border-radius: 4px; transition: 0.3s; display: inline-block; }
     .btn-outline:hover { background: rgba(201,168,76,0.1); }
-    .scroll-down {
-      position: absolute;
-      bottom: 2rem;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.5rem;
-    }
+    .scroll-down { position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 0.5rem; }
     .scroll-down span { font-size: 0.6rem; letter-spacing: 2px; color: #8892a4; }
-    .scroll-line {
-      width: 1px;
-      height: 40px;
-      background: linear-gradient(to bottom, #c9a84c, transparent);
-    }
+    .scroll-line { width: 1px; height: 40px; background: linear-gradient(to bottom, #c9a84c, transparent); }
 
-    /* ===== STATS BAR ===== */
-    .stats-bar {
-      display: flex;
-      justify-content: space-around;
-      flex-wrap: wrap;
-      background: #0d1420;
-      border-top: 1px solid rgba(201,168,76,0.1);
-      border-bottom: 1px solid rgba(201,168,76,0.1);
-      padding: 1.5rem 2rem;
-    }
-    .stat-item {
-      text-align: center;
-      font-size: 0.8rem;
-      color: #8892a4;
-      letter-spacing: 1px;
-    }
-    .stat-item strong {
-      font-family: 'Cinzel', serif;
-      font-size: 1.2rem;
-      color: #c9a84c;
-      display: block;
-      margin-bottom: 0.3rem;
-    }
+    .stats-bar { display: flex; justify-content: space-around; flex-wrap: wrap; background: #0d1420; border-top: 1px solid rgba(201,168,76,0.1); border-bottom: 1px solid rgba(201,168,76,0.1); padding: 1.5rem 2rem; }
+    .stat-item { text-align: center; font-size: 0.8rem; color: #8892a4; letter-spacing: 1px; }
+    .stat-item strong { font-family: 'Cinzel', serif; font-size: 1.2rem; color: #c9a84c; display: block; margin-bottom: 0.3rem; }
 
-    /* ===== SECTIONS ===== */
-    section {
-      padding: 80px 5%;
-    }
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-    .section-header {
-      text-align: center;
-      margin-bottom: 3rem;
-    }
-    .section-header h2 {
-      font-family: 'Cinzel', serif;
-      font-size: 2rem;
-      font-weight: 700;
-    }
+    section { padding: 80px 5%; }
+    .container { max-width: 1200px; margin: 0 auto; }
+    .section-header { text-align: center; margin-bottom: 3rem; }
+    .section-header h2 { font-family: 'Cinzel', serif; font-size: 2rem; font-weight: 700; }
     .section-header h2 span { color: #c9a84c; }
-    .section-line {
-      width: 60px;
-      height: 2px;
-      background: linear-gradient(90deg, #c9a84c, #00d4c8);
-      margin: 1rem auto 0;
-    }
+    .section-line { width: 60px; height: 2px; background: linear-gradient(90deg, #c9a84c, #00d4c8); margin: 1rem auto 0; }
 
-    /* ===== TSP DEFINITION ===== */
-    .tsp-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 3rem;
-      align-items: center;
-    }
-    .tsp-text p {
-      color: #8892a4;
-      line-height: 1.8;
-      margin-bottom: 1rem;
-    }
-    .tsp-card {
-      background: rgba(13,20,32,0.6);
-      border: 1px solid rgba(201,168,76,0.2);
-      border-radius: 16px;
-      padding: 1.5rem;
-    }
-    .tsp-card canvas {
-      width: 100%;
-      background: #0d1420;
-      border-radius: 12px;
-    }
+    .tsp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; }
+    .tsp-text p { color: #8892a4; line-height: 1.8; margin-bottom: 1rem; }
+    .tsp-card { background: rgba(13,20,32,0.6); border: 1px solid rgba(201,168,76,0.2); border-radius: 16px; padding: 1.5rem; }
+    .tsp-card canvas { width: 100%; background: #0d1420; border-radius: 12px; }
 
-    /* ===== TABLEAU EXPLOSION ===== */
-    .table-combinatoire {
-      width: 100%;
-      border-collapse: collapse;
-      background: #0d1420;
-      border-radius: 12px;
-      overflow: hidden;
-    }
-    .table-combinatoire th {
-      background: rgba(201,168,76,0.1);
-      padding: 1rem;
-      font-family: 'Cinzel', serif;
-      font-size: 0.7rem;
-      letter-spacing: 1px;
-      color: #c9a84c;
-    }
-    .table-combinatoire td {
-      padding: 0.8rem 1rem;
-      border-bottom: 1px solid rgba(201,168,76,0.1);
-      color: #8892a4;
-      text-align: center;
-    }
+    .table-combinatoire { width: 100%; border-collapse: collapse; background: #0d1420; border-radius: 12px; overflow: hidden; }
+    .table-combinatoire th { background: rgba(201,168,76,0.1); padding: 1rem; font-family: 'Cinzel', serif; font-size: 0.7rem; letter-spacing: 1px; color: #c9a84c; }
+    .table-combinatoire td { padding: 0.8rem 1rem; border-bottom: 1px solid rgba(201,168,76,0.1); color: #8892a4; text-align: center; }
     .table-combinatoire tr:hover td { color: #e2e8f0; }
 
-    /* ===== 3 COLONNES METHODES ===== */
-    .methodes-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 2rem;
-      margin-top: 2rem;
-    }
-    .methode-card {
-      background: rgba(13,20,32,0.5);
-      border: 1px solid rgba(201,168,76,0.15);
-      border-radius: 16px;
-      padding: 1.8rem;
-      transition: 0.3s;
-    }
+    .methodes-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 2rem; }
+    .methode-card { background: rgba(13,20,32,0.5); border: 1px solid rgba(201,168,76,0.15); border-radius: 16px; padding: 1.8rem; transition: 0.3s; }
     .methode-card:hover { border-color: #c9a84c; transform: translateY(-5px); background: rgba(13,20,32,0.8); }
-    .methode-card h3 {
-      font-family: 'Cinzel', serif;
-      font-size: 1.2rem;
-      margin-bottom: 1rem;
-      color: #c9a84c;
-    }
+    .methode-card h3 { font-family: 'Cinzel', serif; font-size: 1.2rem; margin-bottom: 1rem; color: #c9a84c; }
     .methode-card ul { list-style: none; }
-    .methode-card li {
-      padding: 0.4rem 0;
-      color: #8892a4;
-      font-size: 0.85rem;
-      border-bottom: 1px dashed rgba(201,168,76,0.1);
-    }
-    .complexity-badge {
-      display: inline-block;
-      font-size: 0.6rem;
-      background: rgba(0,212,200,0.1);
-      color: #00d4c8;
-      padding: 0.2rem 0.6rem;
-      border-radius: 20px;
-      margin-left: 0.5rem;
-    }
+    .methode-card li { padding: 0.4rem 0; color: #8892a4; font-size: 0.85rem; border-bottom: 1px dashed rgba(201,168,76,0.1); }
+    .complexity-badge { display: inline-block; font-size: 0.6rem; background: rgba(0,212,200,0.1); color: #00d4c8; padding: 0.2rem 0.6rem; border-radius: 20px; margin-left: 0.5rem; }
 
-    /* ===== TIMELINE ===== */
-    .timeline {
-      max-width: 700px;
-      margin: 0 auto;
-      position: relative;
-    }
-    .timeline::before {
-      content: '';
-      position: absolute;
-      left: 20px;
-      top: 0;
-      bottom: 0;
-      width: 2px;
-      background: linear-gradient(to bottom, #c9a84c, #00d4c8);
-    }
-    .timeline-node {
-      display: flex;
-      gap: 1.5rem;
-      margin-bottom: 2rem;
-      position: relative;
-    }
-    .timeline-num {
-      width: 40px;
-      height: 40px;
-      background: #c9a84c;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: 'Cinzel', serif;
-      font-weight: bold;
-      color: #070b12;
-      z-index: 2;
-    }
-    .timeline-content {
-      flex: 1;
-      background: rgba(13,20,32,0.6);
-      border: 1px solid rgba(201,168,76,0.15);
-      border-radius: 12px;
-      padding: 1rem 1.5rem;
-    }
+    .timeline { max-width: 700px; margin: 0 auto; position: relative; }
+    .timeline::before { content: ''; position: absolute; left: 20px; top: 0; bottom: 0; width: 2px; background: linear-gradient(to bottom, #c9a84c, #00d4c8); }
+    .timeline-node { display: flex; gap: 1.5rem; margin-bottom: 2rem; position: relative; }
+    .timeline-num { width: 40px; height: 40px; background: #c9a84c; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Cinzel', serif; font-weight: bold; color: #070b12; z-index: 2; }
+    .timeline-content { flex: 1; background: rgba(13,20,32,0.6); border: 1px solid rgba(201,168,76,0.15); border-radius: 12px; padding: 1rem 1.5rem; }
     .timeline-content h4 { color: #c9a84c; margin-bottom: 0.3rem; }
     .timeline-content p { color: #8892a4; font-size: 0.85rem; }
 
-    /* ===== EQUIPE PREVIEW ===== */
-    .team-preview {
-      display: flex;
-      justify-content: center;
-      gap: 3rem;
-      flex-wrap: wrap;
-      margin: 2rem 0;
-    }
-    .team-mini {
-      text-align: center;
-      background: rgba(13,20,32,0.6);
-      border: 1px solid rgba(201,168,76,0.2);
-      border-radius: 20px;
-      padding: 2rem;
-      width: 250px;
-      transition: 0.3s;
-    }
+    .team-preview { display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap; margin: 2rem 0; }
+    .team-mini { text-align: center; background: rgba(13,20,32,0.6); border: 1px solid rgba(201,168,76,0.2); border-radius: 20px; padding: 2rem; width: 250px; transition: 0.3s; }
     .team-mini:hover { border-color: #00d4c8; transform: translateY(-5px); }
-    .avatar {
-      width: 100px;
-      height: 100px;
-      background: linear-gradient(135deg, #c9a84c, #00d4c8);
-      border-radius: 50%;
-      margin: 0 auto 1rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: 'Cinzel', serif;
-      font-size: 1.8rem;
-      font-weight: bold;
-      color: #070b12;
-    }
+    .avatar { width: 100px; height: 100px; background: linear-gradient(135deg, #c9a84c, #00d4c8); border-radius: 50%; margin: 0 auto 1rem; display: flex; align-items: center; justify-content: center; font-family: 'Cinzel', serif; font-size: 1.8rem; font-weight: bold; color: #070b12; }
     .team-mini h4 { font-size: 1.1rem; margin-bottom: 0.2rem; }
     .team-mini p { color: #8892a4; font-size: 0.8rem; }
 
-    /* ===== FOOTER ===== */
-    footer {
-      text-align: center;
-      padding: 3rem;
-      border-top: 1px solid rgba(201,168,76,0.1);
-      background: #070b12;
-    }
-    .footer-logo {
-      font-family: 'Cinzel', serif;
-      font-size: 1.3rem;
-      color: #c9a84c;
-      margin-bottom: 0.5rem;
-    }
+    footer { text-align: center; padding: 3rem; border-top: 1px solid rgba(201,168,76,0.1); background: #070b12; }
+    .footer-logo { font-family: 'Cinzel', serif; font-size: 1.3rem; color: #c9a84c; margin-bottom: 0.5rem; }
     .footer-logo span { color: #00d4c8; }
     footer p { color: #8892a4; font-size: 0.7rem; letter-spacing: 1px; }
 
@@ -396,14 +102,12 @@
       .stats-bar { flex-direction: column; gap: 1rem; text-align: center; }
       section { padding: 50px 1.5rem; }
     }
-
     .reveal { opacity: 0; transform: translateY(30px); transition: 0.7s; }
     .reveal.visible { opacity: 1; transform: translateY(0); }
   </style>
 </head>
 <body>
 
-<!-- NAVBAR avec LOGO cliquable -->
 <nav class="navbar">
   <a href="index.html" class="logo">TSP<span>·WORLD</span></a>
   <ul class="nav-links">
@@ -415,25 +119,17 @@
   </ul>
 </nav>
 
-<!-- HERO -->
-<section class="hero" id="hero">
+<section class="hero">
   <div class="hero-badge">Projet de Fin d'Études · 2025–2026</div>
-  <h1>
-    <span class="gold">Traveling</span><br>
-    <span class="teal">Salesman Problem</span>
-  </h1>
+  <h1><span class="gold">Traveling</span><br><span class="teal">Salesman Problem</span></h1>
   <p class="hero-sub">10 algorithmes. De O(n!) à O(n²·2ⁿ). Une étude comparative complète.</p>
   <div class="hero-buttons">
     <a href="pages/03-algorithmes.html" class="btn-primary">Explorer</a>
     <a href="pages/05-equipe.html" class="btn-outline">Voir l'équipe</a>
   </div>
-  <div class="scroll-down">
-    <span>SCROLL</span>
-    <div class="scroll-line"></div>
-  </div>
+  <div class="scroll-down"><span>SCROLL</span><div class="scroll-line"></div></div>
 </section>
 
-<!-- STATS BAR -->
 <div class="stats-bar">
   <div class="stat-item"><strong>10</strong> Algorithmes</div>
   <div class="stat-item"><strong>NP-Difficile</strong> Classe</div>
@@ -442,13 +138,9 @@
   <div class="stat-item"><strong>TSPLIB</strong> Benchmarks</div>
 </div>
 
-<!-- SECTION : C'EST QUOI LE TSP -->
 <section id="probleme">
   <div class="container">
-    <div class="section-header">
-      <h2>C'est quoi le <span>TSP</span> ?</h2>
-      <div class="section-line"></div>
-    </div>
+    <div class="section-header"><h2>C'est quoi le <span>TSP</span> ?</h2><div class="section-line"></div></div>
     <div class="tsp-grid">
       <div class="tsp-text">
         <p><strong>Le problème du voyageur de commerce (TSP)</strong> est l'un des problèmes d'optimisation combinatoire les plus célèbres.</p>
@@ -457,24 +149,18 @@
         <a href="pages/01-probleme.html" style="color:#c9a84c; font-size:0.8rem;">En savoir plus →</a>
       </div>
       <div class="tsp-card">
-        <canvas id="tspCanvas" width="400" height="300" style="width:100%; height:auto; background:#0d1420; border-radius:12px;"></canvas>
+        <canvas id="tspCanvas" width="400" height="300" style="width:100%; background:#0d1420; border-radius:12px;"></canvas>
         <p style="font-size:0.7rem; text-align:center; margin-top:0.5rem; color:#8892a4;">Tournée optimale (6 villes) — lien doré</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- SECTION : EXPLOSION COMBINATOIRE -->
 <section id="complexite" style="background: #0d1420;">
   <div class="container">
-    <div class="section-header">
-      <h2>Pourquoi est-ce <span>si difficile</span> ?</h2>
-      <div class="section-line"></div>
-    </div>
+    <div class="section-header"><h2>Pourquoi est-ce <span>si difficile</span> ?</h2><div class="section-line"></div></div>
     <table class="table-combinatoire">
-      <thead>
-        <tr><th>Nombre de villes (n)</th><th>Nombre de tours possibles</th><th>Temps estimé (1 μs/tour)</th></tr>
-      </thead>
+      <thead><tr><th>Nombre de villes (n)</th><th>Nombre de tours possibles</th><th>Temps estimé (1 μs/tour)</th></tr></thead>
       <tbody>
         <tr><td>5</td><td>12</td><td>trivial</td></tr>
         <tr><td>10</td><td>181 440</td><td>facile</td></tr>
@@ -484,58 +170,25 @@
       </tbody>
     </table>
     <p style="text-align:center; margin-top:2rem; color:#8892a4; font-size:0.85rem;">(n-1)!/2 tours — une croissance exponentielle implacable.</p>
-    <div style="text-align:center; margin-top:1rem;">
-      <a href="pages/02-complexite.html" class="btn-outline">Explorer la complexité →</a>
-    </div>
+    <div style="text-align:center; margin-top:1rem;"><a href="pages/02-complexite.html" class="btn-outline">Explorer la complexité →</a></div>
   </div>
 </section>
 
-<!-- SECTION : 3 METHODES -->
 <section id="methodes">
   <div class="container">
-    <div class="section-header">
-      <h2>Les <span>méthodes</span> de résolution</h2>
-      <div class="section-line"></div>
-    </div>
+    <div class="section-header"><h2>Les <span>méthodes</span> de résolution</h2><div class="section-line"></div></div>
     <div class="methodes-grid">
-      <div class="methode-card">
-        <h3>📐 Méthodes Exactes</h3>
-        <ul>
-          <li>Force Brute <span class="complexity-badge">O(n!)</span></li>
-          <li>Held-Karp (DP) <span class="complexity-badge">O(n²·2ⁿ)</span></li>
-          <li>Branch & Bound <span class="complexity-badge">exponentiel</span></li>
-        </ul>
-      </div>
-      <div class="methode-card">
-        <h3>⚡ Heuristiques</h3>
-        <ul>
-          <li>Plus Proche Voisin <span class="complexity-badge">O(n²)</span></li>
-          <li>Insertion (Plus Loin) <span class="complexity-badge">O(n²)</span></li>
-          <li>2-opt / Christofides <span class="complexity-badge">O(n³)</span></li>
-        </ul>
-      </div>
-      <div class="methode-card">
-        <h3>🐜 Métaheuristiques</h3>
-        <ul>
-          <li>Colonies de Fourmis <span class="complexity-badge">ACO</span></li>
-          <li>Algorithme Génétique <span class="complexity-badge">GA</span></li>
-          <li>Lin-Kernighan <span class="complexity-badge">LK</span></li>
-        </ul>
-      </div>
+      <div class="methode-card"><h3>📐 Méthodes Exactes</h3><ul><li>Force Brute <span class="complexity-badge">O(n!)</span></li><li>Held-Karp (DP) <span class="complexity-badge">O(n²·2ⁿ)</span></li><li>Branch & Bound <span class="complexity-badge">exponentiel</span></li></ul></div>
+      <div class="methode-card"><h3>⚡ Heuristiques</h3><ul><li>Plus Proche Voisin <span class="complexity-badge">O(n²)</span></li><li>Insertion (Plus Loin) <span class="complexity-badge">O(n²)</span></li><li>2-opt / Christofides <span class="complexity-badge">O(n³)</span></li></ul></div>
+      <div class="methode-card"><h3>🐜 Métaheuristiques</h3><ul><li>Colonies de Fourmis <span class="complexity-badge">ACO</span></li><li>Algorithme Génétique <span class="complexity-badge">GA</span></li><li>Lin-Kernighan <span class="complexity-badge">LK</span></li></ul></div>
     </div>
-    <div style="text-align:center; margin-top:2rem;">
-      <a href="pages/03-algorithmes.html" class="btn-primary">Voir tous les algorithmes →</a>
-    </div>
+    <div style="text-align:center; margin-top:2rem;"><a href="pages/03-algorithmes.html" class="btn-primary">Voir tous les algorithmes →</a></div>
   </div>
 </section>
 
-<!-- TIMELINE ARCHITECTURE -->
 <section id="timeline" style="background:#0d1420;">
   <div class="container">
-    <div class="section-header">
-      <h2>Architecture du <span>mémoire</span></h2>
-      <div class="section-line"></div>
-    </div>
+    <div class="section-header"><h2>Architecture du <span>mémoire</span></h2><div class="section-line"></div></div>
     <div class="timeline">
       <div class="timeline-node"><div class="timeline-num">1</div><div class="timeline-content"><h4>Calculabilité</h4><p>Peut-on le calculer ? Machine de Turing, décidabilité</p></div></div>
       <div class="timeline-node"><div class="timeline-num">2</div><div class="timeline-content"><h4>Complexité</h4><p>P vs NP — TSP est NP-complet</p></div></div>
@@ -543,40 +196,21 @@
       <div class="timeline-node"><div class="timeline-num">4</div><div class="timeline-content"><h4>Held-Karp</h4><p>Programmation dynamique : O(n²·2ⁿ)</p></div></div>
       <div class="timeline-node"><div class="timeline-num">5</div><div class="timeline-content"><h4>Implémentation</h4><p>Python + TSPLIB + benchmarks</p></div></div>
     </div>
-    <div style="text-align:center; margin-top:2rem;">
-      <a href="pages/04-comparaison.html" class="btn-outline">Voir la comparaison →</a>
-    </div>
+    <div style="text-align:center; margin-top:2rem;"><a href="pages/04-comparaison.html" class="btn-outline">Voir la comparaison →</a></div>
   </div>
 </section>
 
-<!-- ÉQUIPE PREVIEW -->
 <section id="equipe">
   <div class="container">
-    <div class="section-header">
-      <h2>Notre <span>équipe</span></h2>
-      <div class="section-line"></div>
-    </div>
+    <div class="section-header"><h2>Notre <span>équipe</span></h2><div class="section-line"></div></div>
     <div class="team-preview">
-      <div class="team-mini">
-        <div class="avatar">IE</div>
-        <h4>Iliass Errouifi</h4>
-        <p>Étudiant en recherche opérationnelle</p>
-        <p style="font-size:0.7rem; margin-top:0.3rem;">Algorithmes exacts & complexité</p>
-      </div>
-      <div class="team-mini">
-        <div class="avatar">SR</div>
-        <h4>Soufiane Er-Rthimi</h4>
-        <p>Étudiant en optimisation combinatoire</p>
-        <p style="font-size:0.7rem; margin-top:0.3rem;">Métaheuristiques & implémentation</p>
-      </div>
+      <div class="team-mini"><div class="avatar">IE</div><h4>Iliass Errouifi</h4><p>Étudiant en recherche opérationnelle</p><p style="font-size:0.7rem;">Algorithmes exacts & complexité</p></div>
+      <div class="team-mini"><div class="avatar">SR</div><h4>Soufiane Er-Rthimi</h4><p>Étudiant en optimisation combinatoire</p><p style="font-size:0.7rem;">Métaheuristiques & implémentation</p></div>
     </div>
-    <div style="text-align:center;">
-      <a href="pages/05-equipe.html" class="btn-primary">Rencontrer l'équipe →</a>
-    </div>
+    <div style="text-align:center;"><a href="pages/05-equipe.html" class="btn-primary">Rencontrer l'équipe →</a></div>
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
   <div class="footer-logo">TSP<span>·WORLD</span></div>
   <p style="margin-bottom:0.5rem;">Projet de Fin d'Études · 2025–2026</p>
@@ -598,32 +232,24 @@
     canvas.width = width;
     canvas.height = 280;
     const points = [
-      {x: canvas.width*0.2, y: canvas.height*0.3},
-      {x: canvas.width*0.45, y: canvas.height*0.15},
-      {x: canvas.width*0.7, y: canvas.height*0.25},
-      {x: canvas.width*0.8, y: canvas.height*0.55},
-      {x: canvas.width*0.5, y: canvas.height*0.7},
-      {x: canvas.width*0.25, y: canvas.height*0.6}
+      {x: width*0.2, y: 280*0.3}, {x: width*0.45, y: 280*0.15},
+      {x: width*0.7, y: 280*0.25}, {x: width*0.8, y: 280*0.55},
+      {x: width*0.5, y: 280*0.7}, {x: width*0.25, y: 280*0.6}
     ];
     const tour = [0,1,2,3,4,5];
     ctx.clearRect(0,0,canvas.width,canvas.height);
-    ctx.strokeStyle = '#c9a84c';
-    ctx.lineWidth = 2;
+    ctx.strokeStyle = '#c9a84c'; ctx.lineWidth = 2;
     ctx.beginPath();
     for(let i=0;i<tour.length;i++) {
       let p1 = points[tour[i]];
       let p2 = points[tour[(i+1)%tour.length]];
-      ctx.moveTo(p1.x,p1.y);
-      ctx.lineTo(p2.x,p2.y);
+      ctx.moveTo(p1.x,p1.y); ctx.lineTo(p2.x,p2.y);
     }
     ctx.stroke();
     ctx.fillStyle = '#00d4c8';
     points.forEach(p => { ctx.beginPath(); ctx.arc(p.x,p.y,5,0,2*Math.PI); ctx.fill(); ctx.fillStyle='#c9a84c'; ctx.beginPath(); ctx.arc(p.x,p.y,2,0,2*Math.PI); ctx.fill(); ctx.fillStyle='#00d4c8'; });
   }
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
-  }, {threshold:0.1});
+  const observer = new IntersectionObserver((e) => e.forEach(e => e.isIntersecting && e.target.classList.add('visible')), {threshold:0.1});
   document.querySelectorAll('.tsp-grid,.methodes-grid,.timeline-node,.team-mini,.table-combinatoire').forEach(el => { el.classList.add('reveal'); observer.observe(el); });
 </script>
 </body>
