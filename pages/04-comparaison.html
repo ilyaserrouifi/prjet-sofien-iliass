@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TSP - Comparaison | 10 algorithmes | PFE 2025-2026</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;900&family=Raleway:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Raleway', sans-serif; background: #070b12; color: #e2e8f0; }
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #0d1420; }
+    ::-webkit-scrollbar-thumb { background: #c9a84c; border-radius: 10px; }
+
+    .navbar {
+      position: fixed; top: 0; width: 100%; padding: 1rem 3rem;
+      background: rgba(7,11,18,0.96); backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(201,168,76,0.2); z-index: 1000;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .logo { font-family: 'Cinzel', serif; font-size: 1.2rem; font-weight: 700; letter-spacing: 4px; color: #c9a84c; text-decoration: none; }
+    .logo span { color: #00d4c8; }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { color: #8892a4; text-decoration: none; font-size: 0.7rem; letter-spacing: 2px; text-transform: uppercase; transition: 0.3s; }
+    .nav-links a:hover { color: #c9a84c; }
+
+    .container { max-width: 1300px; margin: 0 auto; padding: 7rem 2rem 3rem; }
+    h1 { font-family: 'Cinzel', serif; font-size: 2rem; margin-bottom: 1rem; border-left: 4px solid #c9a84c; padding-left: 1.2rem; }
+    h1 span { color: #c9a84c; }
+    h2 { font-family: 'Cinzel', serif; font-size: 1.6rem; margin: 2rem 0 1rem; color: #c9a84c; border-bottom: 1px solid rgba(201,168,76,0.3); padding-bottom: 0.5rem; }
+    h3 { font-family: 'Cinzel', serif; font-size: 1.2rem; margin: 1rem 0 0.5rem; color: #00d4c8; }
+    .card { background: rgba(13,20,32,0.6); border: 1px solid rgba(201,168,76,0.2); border-radius: 16px; padding: 1.5rem; margin: 1rem 0; }
+    .table-comparaison { width: 100%; border-collapse: collapse; background: #0d1420; border-radius: 12px; overflow: hidden; margin: 1.5rem 0; }
+    .table-comparaison th { background: rgba(201,168,76,0.15); padding: 1rem; font-family: 'Cinzel', serif; font-size: 0.7rem; color: #c9a84c; text-align: center; }
+    .table-comparaison td { padding: 0.8rem 0.6rem; border-bottom: 1px solid rgba(201,168,76,0.1); color: #8892a4; text-align: center; font-size: 0.8rem; }
+    .table-comparaison tr:hover td { color: #e2e8f0; background: rgba(201,168,76,0.03); }
+    .badge-exact { background: rgba(201,168,76,0.15); color: #c9a84c; padding: 0.2rem 0.6rem; border-radius: 20px; font-size: 0.7rem; display: inline-block; }
+    .badge-heuristic { background: rgba(0,212,200,0.1); color: #00d4c8; padding: 0.2rem 0.6rem; border-radius: 20px; font-size: 0.7rem; display: inline-block; }
+    .badge-meta { background: rgba(139,92,246,0.15); color: #a78bfa; padding: 0.2rem 0.6rem; border-radius: 20px; font-size: 0.7rem; display: inline-block; }
+    .rating { font-size: 0.85rem; letter-spacing: 2px; }
+    .rating-star { color: #c9a84c; }
+    .btn-nav { display: flex; justify-content: space-between; margin-top: 3rem; gap: 1rem; }
+    .btn-prev, .btn-next { padding: 0.8rem 2rem; text-decoration: none; border-radius: 4px; font-size: 0.7rem; letter-spacing: 2px; text-transform: uppercase; transition: 0.3s; }
+    .btn-prev { border: 1px solid #8892a4; color: #8892a4; background: transparent; }
+    .btn-prev:hover { border-color: #c9a84c; color: #c9a84c; }
+    .btn-next { background: linear-gradient(135deg, #c9a84c, #7a5c1e); color: #070b12; font-weight: 700; }
+    .btn-next:hover { transform: translateX(3px); box-shadow: 0 5px 20px rgba(201,168,76,0.3); }
+    footer { text-align: center; padding: 2rem; border-top: 1px solid rgba(201,168,76,0.1); margin-top: 2rem; color: #8892a4; font-size: 0.7rem; }
+    .complexity-graph { background: #0a0f18; border-radius: 12px; padding: 1rem; margin: 1rem 0; }
+    .graph-bar { display: flex; align-items: center; margin: 0.5rem 0; }
+    .graph-label { width: 180px; font-size: 0.75rem; color: #c9a84c; }
+    .graph-bar-fill { height: 24px; background: linear-gradient(90deg, #c9a84c, #00d4c8); border-radius: 4px; display: flex; align-items: center; justify-content: flex-end; padding-right: 8px; font-size: 0.7rem; color: #070b12; font-weight: bold; }
+    @media (max-width: 768px) { .navbar { padding: 1rem; } .nav-links { display: none; } .container { padding: 6rem 1rem 2rem; } .table-comparaison { font-size: 0.6rem; } .graph-label { width: 120px; font-size: 0.6rem; } }
+    .note { background: rgba(201,168,76,0.05); border-left: 3px solid #c9a84c; padding: 1rem; margin: 1rem 0; font-size: 0.85rem; color: #8892a4; }
+    .recommendation { background: rgba(0,212,200,0.05); border-left: 3px solid #00d4c8; padding: 1rem; margin: 1rem 0; }
+  </style>
+</head>
+<body>
+
+<nav class="navbar">
+  <a href="../index.html" class="logo">TSP<span>·WORLD</span></a>
+  <ul class="nav-links">
+    <li><a href="01-probleme.html">Problème</a></li>
+    <li><a href="02-complexite.html">Complexité</a></li>
+    <li><a href="03-algorithmes.html">Algorithmes</a></li>
+    <li><a href="04-comparaison.html">Comparaison</a></li>
+    <li><a href="05-equipe.html">Équipe</a></li>
+  </ul>
+</nav>
+
+<div class="container">
+  <h1>Comparaison des <span>10 algorithmes</span> TSP</h1>
+  <div class="note">
+    📊 <strong>Analyse complète :</strong> Complexités, performances, qualité des solutions, et recommandations selon la taille de l'instance.
+  </div>
+
+  <!-- TABLEAU PRINCIPAL COMPARATIF -->
+  <h2>📋 Tableau comparatif global</h2>
+  <div style="overflow-x: auto;">
+    <table class="table-comparaison">
+      <thead>
+        <tr><th>Algorithme</th><th>Type</th><th>Complexité temps</th><th>Complexité mémoire</th><th>Optimalité</th><th>Qualité (gap)</th><th>n max pratique</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="badge-exact">Force Brute</td><td>Exact</td><td>O(n!)</td><td>O(n)</td><td>✓ 100%</td><td>0%</td><td>n ≤ 10</td></tr>
+        <tr><td class="badge-exact">Held-Karp</td><td>Exact (DP)</td><td>O(n²·2ⁿ)</td><td>O(n·2ⁿ)</td><td>✓ 100%</td><td>0%</td><td>n ≤ 25</td></tr>
+        <tr><td class="badge-heuristic">Plus Proche Voisin</td><td>Heuristique</td><td>O(n²)</td><td>O(n)</td><td>✗</td><td>≈ 25%</td><td>n > 10⁶</td></tr>
+        <tr><td class="badge-heuristic">Insertion Plus Loin</td><td>Heuristique</td><td>O(n²)</td><td>O(n)</td><td>✗</td><td>≈ 15%</td><td>n > 10⁶</td></tr>
+        <tr><td class="badge-heuristic">2-OPT</td><td>Amélioration</td><td>O(n³)</td><td>O(n)</td><td>✗ (local)</td><td>≈ 10%</td><td>n > 10⁶</td></tr>
+        <tr><td class="badge-heuristic">Christofides</td><td>Approximation</td><td>O(n³)</td><td>O(n²)</td><td>≤ 1.5×</td><td>≈ 10-15%</td><td>n > 10⁶</td></tr>
+        <tr><td class="badge-meta">Colonies Fourmis</td><td>Métaheuristique</td><td>O(I·A·n²)</td><td>O(n²)</td><td>✗</td><td>≈ 5%</td><td>n ≤ 5000</td></tr>
+        <tr><td class="badge-meta">Algo Génétique</td><td>Métaheuristique</td><td>O(G·P·n)</td><td>O(P·n)</td><td>✗</td><td>≈ 10%</td><td>n ≤ 5000</td></tr>
+        <tr><td class="badge-meta">Lin-Kernighan</td><td>Métaheuristique</td><td>O(n²·k)</td><td>O(n)</td><td>✗</td><td>≈ 2%</td><td>n > 10⁶</td></tr>
+        <tr><td class="badge-exact">Branch & Bound</td><td>Exact</td><td>exponentiel</td><td>O(n²)</td><td>✓ 100%</td><td>0%</td><td>n ≤ 40</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- GRAPHIQUE DES COMPLEXITÉS -->
+  <h2>📈 Comparaison des complexités (n=20)</h2>
+  <div class="complexity-graph">
+    <div class="graph-bar"><div class="graph-label">Force Brute O(n!)</div><div class="graph-bar-fill" style="width: 100%;">≈ 2.4 × 10¹⁸</div></div>
+    <div class="graph-bar"><div class="graph-label">Held-Karp O(n²·2ⁿ)</div><div class="graph-bar-fill" style="width: 0.000002%;">≈ 4.2 × 10⁸</div></div>
+    <div class="graph-bar"><div class="graph-label">Plus Proche Voisin O(n²)</div><div class="graph-bar-fill" style="width: 0.0000000001%;">400</div></div>
+    <div class="graph-bar"><div class="graph-label">Insertion O(n²)</div><div class="graph-bar-fill" style="width: 0.0000000001%;">400</div></div>
+    <div class="graph-bar"><div class="graph-label">2-OPT O(n³)</div><div class="graph-bar-fill" style="width: 0.0000000002%;">8 000</div></div>
+    <div class="graph-bar"><div class="graph-label">Christofides O(n³)</div><div class="graph-bar-fill" style="width: 0.0000000002%;">8 000</div></div>
+    <div class="graph-bar"><div class="graph-label">Lin-Kernighan O(n²·k)</div><div class="graph-bar-fill" style="width: 0.00000000015%;">≈ 1 000</div></div>
+  </div>
+  <div class="note" style="margin-top: -0.5rem;">
+    📐 <strong>Échelle logarithmique :</strong> La barre de Force Brute représente 100% (2.4×10¹⁸ opérations). Les autres algorithmes sont invisibles à cette échelle tant leur complexité est inférieure. Held-Karp est 5×10⁹ fois plus rapide que Force Brute pour n=20.
+  </div>
+
+  <!-- TABLEAU DES TEMPS D'EXÉCUTION -->
+  <h2>⏱️ Temps d'exécution estimé (1 μs/opération)</h2>
+  <div style="overflow-x: auto;">
+    <table class="table-comparaison">
+      <thead>
+        <tr><th>Algorithme</th><th>n=10</th><th>n=15</th><th>n=20</th><th>n=25</th><th>n=30</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="badge-exact">Force Brute</td><td>0.18 s</td><td>43 s</td><td>19 ans</td><td>10⁷ ans</td><td>10¹⁴ ans</td></tr>
+        <tr><td class="badge-exact">Held-Karp</td><td>0.01 s</td><td>0.5 s</td><td>10 s</td><td>5 min</td><td>2 h</td></tr>
+        <tr><td class="badge-heuristic">Plus Proche Voisin</td><td>0.0001 s</td><td>0.0002 s</td><td>0.0004 s</td><td>0.0006 s</td><td>0.0009 s</td></tr>
+        <tr><td class="badge-heuristic">Insertion</td><td>0.0001 s</td><td>0.0002 s</td><td>0.0004 s</td><td>0.0006 s</td><td>0.0009 s</td></tr>
+        <tr><td class="badge-meta">ACO (200 iters)</td><td>0.2 s</td><td>0.5 s</td><td>1.5 s</td><td>4 s</td><td>10 s</td></tr>
+        <tr><td class="badge-meta">Algo Génétique</td><td>0.1 s</td><td>0.3 s</td><td>0.8 s</td><td>2 s</td><td>5 s</td></tr>
+        <tr><td class="badge-exact">Branch & Bound</td><td>0.01 s</td><td>0.1 s</td><td>1 s</td><td>10 s</td><td>2 min</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- QUALITÉ DES SOLUTIONS -->
+  <h2>⭐ Qualité des solutions (gap par rapport à l'optimum)</h2>
+  <div style="overflow-x: auto;">
+    <table class="table-comparaison">
+      <thead>
+        <tr><th>Algorithme</th><th>TSP aléatoire</th><th>TSP euclidien</th><th>TSP métrique</th><th>Pire cas connu</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="badge-exact">Force Brute / Held-Karp</td><td>0% ★★★★★</td><td>0% ★★★★★</td><td>0% ★★★★★</td><td>0%</td></tr>
+        <tr><td class="badge-heuristic">Plus Proche Voisin</td><td>25-30% ★★</td><td>20-25% ★★</td><td>20-30% ★★</td><td>50%+</td></tr>
+        <tr><td class="badge-heuristic">Insertion Plus Loin</td><td>12-18% ★★★</td><td>10-15% ★★★</td><td>10-15% ★★★</td><td>30%</td></tr>
+        <tr><td class="badge-heuristic">2-OPT (sur PPV)</td><td>8-12% ★★★★</td><td>5-10% ★★★★</td><td>5-10% ★★★★</td><td>20%</td></tr>
+        <tr><td class="badge-heuristic">Christofides</td><td>10-15% ★★★</td><td>8-12% ★★★</td><td>≤ 50% (garanti)</td><td>50%</td></tr>
+        <tr><td class="badge-meta">Colonies Fourmis</td><td>3-8% ★★★★</td><td>2-5% ★★★★★</td><td>3-7% ★★★★</td><td>15%</td></tr>
+        <tr><td class="badge-meta">Algo Génétique</td><td>5-12% ★★★</td><td>4-8% ★★★★</td><td>5-10% ★★★★</td><td>20%</td></tr>
+        <tr><td class="badge-meta">Lin-Kernighan</td><td>1-3% ★★★★★</td><td>0.5-2% ★★★★★</td><td>1-2% ★★★★★</td><td>5%</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- TABLEAU DES AVANTAGES/INCONVÉNIENTS DÉTAILLÉ -->
+  <h2>⚖️ Comparaison détaillée Avantages / Inconvénients</h2>
+  
+  <div class="card">
+    <h3>🔹 Force Brute</h3>
+    <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+      <div style="flex:1; background: rgba(0,212,200,0.05); padding: 0.8rem; border-radius: 8px;"><strong style="color:#00d4c8;">✅ Avantages</strong><p style="font-size:0.8rem; margin-top:0.3rem;">Optimalité absolue<br>Très simple à implémenter</p></div>
+      <div style="flex:1; background: rgba(201,168,76,0.05); padding: 0.8rem; border-radius: 8px;"><strong style="color:#c9a84c;">❌ Inconvénients</strong><p style="font-size:0.8rem; margin-top:0.3rem;">Complexité O(n!) — inutilisable n>12<br>Explosion combinatoire</p></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>🔹 Held-Karp (Programmation Dynamique)</h3>
+    <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+      <div style="flex:1; background: rgba(0,212,200,0.05); padding: 0.8rem; border-radius: 8px;"><strong style="color:#00d4c8;">✅ Avantages</strong><p style="font-size:0.8rem; margin-top:0.3rem;">Optimalité garantie<br>O(n²·2ⁿ) bien meilleur que O(n!)<br>Possible jusqu'à n=25-30</p></div>
+      <div style="flex:1; background: rgba(201,168,76,0.05); padding: 0.8rem; border-radius: 8px;"><strong style="color:#c9a84c;">❌ Inconvénients</strong><p style="font-size:0.8rem; margin-top:0.3rem;">Mémoire O(n·2ⁿ) (32 Go pour n=30)<br>Pas applicable aux grandes instances</p></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>🔹 Plus Proche Voisin</h3>
+    <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+      <div style="flex:1; background: rgba(0,212,200,0.05); padding: 0.8rem; border-radius: 8px;"><strong style="color:#00d4c8;">✅ Avantages</strong><p style="font-size:0.8rem; margin-top:0.3rem;">Très rapide O(n²)<br>Extrêmement simple<br>Fonctionne pour n>10⁶</p></div>
+      <div style="flex:1; background: rgba(201,168,76,0.05); padding: 0.8rem; border-radius: 8px;"><strong style="color:#c9a84c;">❌ Inconvénients</strong><p style="font-size:0.8rem; margin-top:0.3rem;">Qualité médiocre (25-30% de l'optimum)<br>Dépend de la ville de départ</p></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>🔹 Insertion du Plus Loin</h3>
+    <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+      <div style="flex:1; background: rgba(0,212,200,0.05); padding: 0.8rem; border-radius: 8px;"><strong style="color:#00d4c8;">✅ Avantages</strong><p style="font-size:0.8rem; margin-top:0.3rem;">Meilleure heuristique constructive (≈15%)<br>O(n²) rapide<br>Pas de croisements</p></div>
+      <div style="flex:1; background: rgba(201,168,76,0.05); padding: 0.8rem; border-radius: 8px;"><strong style="color:#c9a84c;">❌ Inconvénients</strong><p style="font-size:0.8rem; margin-top:0.3rem;">Plus complexe à implémenter<br>Pas de garantie d'optimalité</p></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>🔹 2-OPT</h3>
+    <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+      <div style="flex:1; background: rgba(0,212,200,0.05); padding: 0.8rem; border-radius: 8px;"><strong style="color:#00d4c8;">✅ Avantages</strong><p style="font-size:0.8rem; margin-top:0.3rem;">Améliore toute solution initiale<br>Élimine les croisements<br>Simple à implémenter</p></div>
+      <div style="flex:1; background: rgba(201,168,76,0.05); padding: 0.8rem; border-radius: 8px;"><strong style="color:#c9a84c;">❌ Inconvénients</strong><p style="font-size:0.8rem; margin-top:0.3rem;">Peut rester bloqué en optimum local<br>O(n³) dans le pire cas</p></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>🔹 Christofides</h3>
+    <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+      <div style="flex:1; background: rgba(0,212,200,0.05); padding: 0.8rem; border-radius: 8px;"><strong style="color:#00d4c8;">✅ Avantages</strong><p style="font-size:0.8rem; margin-top:0.3rem;">Garantie de performance 1.5×<br>Fondement théorique solide<br>Polynomial O(n³)</p></div>
+      <div style="flex:1; background: rgba(201,168,76,0.05); padding: 0.8rem; border-radius: 8px;"><strong style="color:#c9a84c;">❌ Inconvénients</strong><p style="font-size:0.8rem; margin-top:0.3rem;">Nécessite inégalité triangulaire<br>Implémentation complexe</p></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>🔹 Colonies de Fourmis (ACO)</h3>
+    <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+      <div style="flex:1; background: rgba(0,212,200,0.05); padding: 0.8rem; border-radius: 8px;"><strong style="color:#00d4c8;">✅ Avantages</strong><p style="font-size:0.8rem; margin-top:0.3rem;">Très bonne qualité (≈5%)<br>Échappe aux optima locaux<br>Parallélisable</p></div>
+      <div style="flex:1; background: rgba(201,168,76,0.05); padding: 0.8rem; border-radius: 8px;"><strong style="color:#c9a84c;">❌ Inconvénients</strong><p style="font-size:0.8rem; margin-top:0.3rem;">Nombreux paramètres (α, β, ρ)<br>Temps de calcul significatif</p></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>🔹 Algorithme Génétique</h3>
+    <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+      <div style="flex:1; background: rgba(0,212,200,0.05); padding: 0.8rem; border-radius: 8px;"><strong style="color:#00d4c8;">✅ Avantages</strong><p style="font-size:0.8rem; margin-top:0.3rem;">Flexible et adaptable<br>Exploration large de l'espace<br>Parallélisable</p></div>
+      <div style="flex:1; background: rgba(201,168,76,0.05); padding: 0.8rem; border-radius: 8px;"><strong style="color:#c9a84c;">❌ Inconvénients</strong><p style="font-size:0.8rem; margin-top:0.3rem;">Convergence lente<br>Paramètres sensibles (taille pop, mutation)</p></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>🔹 Lin-Kernighan</h3>
+    <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+      <div style="flex:1; background: rgba(0,212,200,0.05); padding: 0.8rem; border-radius: 8px;"><strong style="color:#00d4c8;">✅ Avantages</strong><p style="font-size:0.8rem; margin-top:0.3rem;">Excellente qualité (≈2%)<br>Utilisé par Concorde<br>Rapide en pratique</p></div>
+      <div style="flex:1; background: rgba(201,168,76,0.05); padding: 0.8rem; border-radius: 8px;"><strong style="color:#c9a84c;">❌ Inconvénients</strong><p style="font-size:0.8rem; margin-top:0.3rem;">Implémentation complexe<br>Pas de garantie d'optimalité</p></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>🔹 Branch & Bound</h3>
+    <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+      <div style="flex:1; background: rgba(0,212,200,0.05); padding: 0.8rem; border-radius: 8px;"><strong style="color:#00d4c8;">✅ Avantages</strong><p style="font-size:0.8rem; margin-top:0.3rem;">Optimalité garantie<br>Élagage efficace<br>Peut résoudre n≈40</p></div>
+      <div style="flex:1; background: rgba(201,168,76,0.05); padding: 0.8rem; border-radius: 8px;"><strong style="color:#c9a84c;">❌ Inconvénients</strong><p style="font-size:0.8rem; margin-top:0.3rem;">Pire cas exponentiel<br>Performance dépend de la borne</p></div>
+    </div>
+  </div>
+
+  <!-- TABLEAU RÉCAPITULATIF DES MÉTRIQUES -->
+  <h2>📊 Métriques de performance détaillées</h2>
+  <div style="overflow-x: auto;">
+    <table class="table-comparaison">
+      <thead>
+        <tr><th>Métrique</th><th>Force Brute</th><th>Held-Karp</th><th>PPV</th><th>Insertion</th><th>2-OPT</th><th>Christo.</th><th>ACO</th><th>GA</th><th>LK</th><th>B&B</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Optimalité garantie</td><td>✓</td><td>✓</td><td>✗</td><td>✗</td><td>✗</td><td>✗</td><td>✗</td><td>✗</td><td>✗</td><td>✓</td></tr>
+        <tr><td>Temps polynomial</td><td>✗</td><td>✗</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td><td>✗</td><td>✗</td><td>✓</td><td>✗</td></tr>
+        <tr><td>Facilité implémentation</td><td>★★★★★</td><td>★★★</td><td>★★★★★</td><td>★★★</td><td>★★★★</td><td>★★</td><td>★★</td><td>★★</td><td>★</td><td>★★★</td></tr>
+        <tr><td>Qualité solution</td><td>★★★★★</td><td>★★★★★</td><td>★★</td><td>★★★</td><td>★★★★</td><td>★★★</td><td>★★★★★</td><td>★★★★</td><td>★★★★★</td><td>★★★★★</td></tr>
+        <tr><td>Passage à l'échelle</td><td>★</td><td>★</td><td>★★★★★</td><td>★★★★★</td><td>★★★★★</td><td>★★★★</td><td>★★★</td><td>★★★</td><td>★★★★★</td><td>★</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- RECOMMANDATIONS -->
+  <h2>🎯 Recommandations selon le contexte</h2>
+  
+  <div class="recommendation">
+    <h3>📌 <span style="color:#c9a84c;">Petites instances (n ≤ 15)</span></h3>
+    <p style="color:#8892a4;">→ <strong>Force Brute</strong> ou <strong>Held-Karp</strong> : optimalité garantie, temps négligeable.</p>
+  </div>
+
+  <div class="recommendation">
+    <h3>📌 <span style="color:#c9a84c;">Instances moyennes (15 < n ≤ 30)</span></h3>
+    <p style="color:#8892a4;">→ <strong>Held-Karp</strong> (optimal) ou <strong>Branch & Bound</strong> selon la mémoire disponible.<br>
+    → Si optimalité non requise : <strong>Lin-Kernighan</strong> ou <strong>Colonies de Fourmis</strong> (qualité ~2-5%).</p>
+  </div>
+
+  <div class="recommendation">
+    <h3>📌 <span style="color:#c9a84c;">Grandes instances (n > 100)</span></h3>
+    <p style="color:#8892a4;">→ <strong>Plus Proche Voisin</strong> pour une solution rapide.<br>
+    → <strong>2-OPT</strong> pour améliorer une solution existante.<br>
+    → <strong>Lin-Kernighan</strong> pour la meilleure qualité de solution.</p>
+  </div>
+
+  <div class="recommendation">
+    <h3>📌 <span style="color:#c9a84c;">Très grandes instances (n > 1000)</span></h3>
+    <p style="color:#8892a4;">→ <strong>Plus Proche Voisin</strong> (O(n²) rapide).<br>
+    → <strong>Algorithme Génétique</strong> ou <strong>ACO</strong> avec paramétrage adapté.<br>
+    → <strong>Lin-Kernighan</strong> si le temps de calcul le permet.</p>
+  </div>
+
+  <div class="recommendation">
+    <h3>📌 <span style="color:#c9a84c;">TSP métrique avec garantie théorique</span></h3>
+    <p style="color:#8892a4;">→ <strong>Christofides</strong> : garantie 1.5× l'optimum, solution en O(n³).</p>
+  </div>
+
+  <div class="recommendation">
+    <h3>📌 <span style="color:#c9a84c;">Comparaison scientifique / Benchmark</span></h3>
+    <p style="color:#8892a4;">→ Utiliser <strong>Held-Karp</strong> pour n≤20 (optimum de référence).<br>
+    → Pour n>20, comparer avec les résultats TSPLIB (<strong>Concorde</strong>).</p>
+  </div>
+
+  <!-- GRAPHIQUE QUALITÉ VS TEMPS -->
+  <h2>⚡ Compromis Qualité / Temps de calcul</h2>
+  <div class="complexity-graph">
+    <div class="graph-bar"><div class="graph-label">Force Brute</div><div class="graph-bar-fill" style="width: 100%; background: #c9a84c;">Qualité: ★★★★★ | Temps: ★</div></div>
+    <div class="graph-bar"><div class="graph-label">Held-Karp</div><div class="graph-bar-fill" style="width: 95%; background: #c9a84c;">Qualité: ★★★★★ | Temps: ★★</div></div>
+    <div class="graph-bar"><div class="graph-label">Lin-Kernighan</div><div class="graph-bar-fill" style="width: 60%; background: #00d4c8;">Qualité: ★★★★★ | Temps: ★★★★</div></div>
+    <div class="graph-bar"><div class="graph-label">Colonies Fourmis</div><div class="graph-bar-fill" style="width: 55%; background: #00d4c8;">Qualité: ★★★★ | Temps: ★★★</div></div>
+    <div class="graph-bar"><div class="graph-label">2-OPT</div><div class="graph-bar-fill" style="width: 40%; background: #00d4c8;">Qualité: ★★★★ | Temps: ★★★★</div></div>
+    <div class="graph-bar"><div class="graph-label">Christofides</div><div class="graph-bar-fill" style="width: 35%; background: #00d4c8;">Qualité: ★★★ | Temps: ★★★★</div></div>
+    <div class="graph-bar"><div class="graph-label">Insertion+PPV</div><div class="graph-bar-fill" style="width: 20%; background: #00d4c8;">Qualité: ★★ | Temps: ★★★★★</div></div>
+  </div>
+
+  <!-- CONCLUSION FINALE -->
+  <h2>🏁 Conclusion de la comparaison</h2>
+  <div class="card">
+    <p style="color: #8892a4; line-height: 1.8;">Le tableau ci-dessus montre clairement que <strong>aucun algorithme n'est universellement meilleur</strong>. Le choix dépend des contraintes spécifiques :</p>
+    <ul style="margin-left: 2rem; color: #8892a4; line-height: 1.8; margin-top: 0.5rem;">
+      <li>Si <strong>l'optimalité est impérative</strong> et n ≤ 25 → <strong>Held-Karp</strong></li>
+      <li>Si <strong>la rapidité est prioritaire</strong> sur la qualité → <strong>Plus Proche Voisin</strong></li>
+      <li>Si <strong>on veut un bon équilibre</strong> → <strong>Lin-Kernighan</strong> ou <strong>2-OPT</strong></li>
+      <li>Si <strong>on a besoin d'une garantie théorique</strong> (TSP métrique) → <strong>Christofides</strong></li>
+      <li>Si <strong>l'instance est très grande</strong> (n > 1000) → <strong>Algorithme Génétique</strong> ou <strong>ACO</strong></li>
+    </ul>
+    <p style="color: #c9a84c; margin-top: 1rem; font-style: italic;">💡 Dans le cadre de ce PFE, nous avons implémenté et testé ces 10 algorithmes sur les instances TSPLIB pour valider ces observations théoriques.</p>
+  </div>
+
+  <!-- BOUTONS DE NAVIGATION -->
+  <div class="btn-nav">
+    <a href="03-algorithmes.html" class="btn-prev">← Précédent : Algorithmes</a>
+    <a href="05-equipe.html" class="btn-next">Suivant : Équipe →</a>
+  </div>
+</div>
+
+<footer>
+  <p>PFE — Iliass Errouifi & Soufiane Er-Rthimi | TSP 2025-2026 | Comparaison complète des 10 algorithmes</p>
+  <div style="margin-top: 0.5rem;">
+    <a href="../index.html" style="color:#8892a4; text-decoration:none; margin:0 0.5rem;">Accueil</a>
+    <a href="01-probleme.html" style="color:#8892a4; text-decoration:none; margin:0 0.5rem;">Problème</a>
+    <a href="02-complexite.html" style="color:#8892a4; text-decoration:none; margin:0 0.5rem;">Complexité</a>
+    <a href="03-algorithmes.html" style="color:#8892a4; text-decoration:none; margin:0 0.5rem;">Algorithmes</a>
+    <a href="05-equipe.html" style="color:#8892a4; text-decoration:none; margin:0 0.5rem;">Équipe</a>
+  </div>
+</footer>
+
+</body>
+</html>
