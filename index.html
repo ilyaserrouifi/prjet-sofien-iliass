@@ -23,7 +23,6 @@
       scroll-behavior: smooth;
     }
 
-    /* ===== CUSTOM SCROLL ===== */
     ::-webkit-scrollbar { width: 5px; }
     ::-webkit-scrollbar-track { background: #0d1420; }
     ::-webkit-scrollbar-thumb { background: #c9a84c; border-radius: 10px; }
@@ -41,15 +40,17 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      transition: 0.3s;
     }
     .logo {
       font-family: 'Cinzel', serif;
-      font-size: 1.1rem;
+      font-size: 1.2rem;
       font-weight: 700;
       letter-spacing: 4px;
       color: #c9a84c;
+      text-decoration: none;
+      transition: 0.3s;
     }
+    .logo:hover { opacity: 0.8; }
     .logo span { color: #00d4c8; }
     .nav-links {
       display: flex;
@@ -121,6 +122,8 @@
       text-transform: uppercase;
       border-radius: 4px;
       transition: 0.3s;
+      display: inline-block;
+      cursor: pointer;
     }
     .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(201,168,76,0.3); }
     .btn-outline {
@@ -134,6 +137,8 @@
       text-transform: uppercase;
       border-radius: 4px;
       transition: 0.3s;
+      display: inline-block;
+      cursor: pointer;
     }
     .btn-outline:hover { background: rgba(201,168,76,0.1); }
     .scroll-down {
@@ -392,22 +397,21 @@
       section { padding: 50px 1.5rem; }
     }
 
-    /* Animations reveal */
     .reveal { opacity: 0; transform: translateY(30px); transition: 0.7s; }
     .reveal.visible { opacity: 1; transform: translateY(0); }
   </style>
 </head>
 <body>
 
-<!-- NAVBAR -->
+<!-- NAVBAR avec LOGO cliquable -->
 <nav class="navbar">
-  <div class="logo">TSP<span>·WORLD</span></div>
+  <a href="index.html" class="logo">TSP<span>·WORLD</span></a>
   <ul class="nav-links">
-    <li><a href="#probleme">Problème</a></li>
-    <li><a href="#complexite">Complexité</a></li>
-    <li><a href="#methodes">Algorithmes</a></li>
-    <li><a href="#timeline">Architecture</a></li>
-    <li><a href="#equipe">Équipe</a></li>
+    <li><a href="pages/01-probleme.html">Problème</a></li>
+    <li><a href="pages/02-complexite.html">Complexité</a></li>
+    <li><a href="pages/03-algorithmes.html">Algorithmes</a></li>
+    <li><a href="pages/04-comparaison.html">Comparaison</a></li>
+    <li><a href="pages/05-equipe.html">Équipe</a></li>
   </ul>
 </nav>
 
@@ -420,8 +424,8 @@
   </h1>
   <p class="hero-sub">10 algorithmes. De O(n!) à O(n²·2ⁿ). Une étude comparative complète.</p>
   <div class="hero-buttons">
-    <a href="#methodes" class="btn-primary">Explorer</a>
-    <a href="#equipe" class="btn-outline">Voir l'équipe</a>
+    <a href="pages/03-algorithmes.html" class="btn-primary">Explorer</a>
+    <a href="pages/05-equipe.html" class="btn-outline">Voir l'équipe</a>
   </div>
   <div class="scroll-down">
     <span>SCROLL</span>
@@ -450,7 +454,7 @@
         <p><strong>Le problème du voyageur de commerce (TSP)</strong> est l'un des problèmes d'optimisation combinatoire les plus célèbres.</p>
         <p>Étant donné <strong>n villes</strong> et les distances entre chaque paire, le but est de trouver <strong>le plus court circuit</strong> qui passe par chaque ville exactement une fois et revient au point de départ.</p>
         <p>Malgré sa simplicité d'énoncé, il est <strong>NP-difficile</strong> et sa résolution exacte devient impossible pour plus de 30-40 villes avec les méthodes classiques.</p>
-        <a href="#" style="color:#c9a84c; font-size:0.8rem;">En savoir plus →</a>
+        <a href="pages/01-probleme.html" style="color:#c9a84c; font-size:0.8rem;">En savoir plus →</a>
       </div>
       <div class="tsp-card">
         <canvas id="tspCanvas" width="400" height="300" style="width:100%; height:auto; background:#0d1420; border-radius:12px;"></canvas>
@@ -480,6 +484,9 @@
       </tbody>
     </table>
     <p style="text-align:center; margin-top:2rem; color:#8892a4; font-size:0.85rem;">(n-1)!/2 tours — une croissance exponentielle implacable.</p>
+    <div style="text-align:center; margin-top:1rem;">
+      <a href="pages/02-complexite.html" class="btn-outline">Explorer la complexité →</a>
+    </div>
   </div>
 </section>
 
@@ -517,7 +524,7 @@
       </div>
     </div>
     <div style="text-align:center; margin-top:2rem;">
-      <a href="#" class="btn-outline">Voir tous les algorithmes →</a>
+      <a href="pages/03-algorithmes.html" class="btn-primary">Voir tous les algorithmes →</a>
     </div>
   </div>
 </section>
@@ -535,6 +542,9 @@
       <div class="timeline-node"><div class="timeline-num">3</div><div class="timeline-content"><h4>Réductions NP</h4><p>Preuve de NP-complétude du TSP</p></div></div>
       <div class="timeline-node"><div class="timeline-num">4</div><div class="timeline-content"><h4>Held-Karp</h4><p>Programmation dynamique : O(n²·2ⁿ)</p></div></div>
       <div class="timeline-node"><div class="timeline-num">5</div><div class="timeline-content"><h4>Implémentation</h4><p>Python + TSPLIB + benchmarks</p></div></div>
+    </div>
+    <div style="text-align:center; margin-top:2rem;">
+      <a href="pages/04-comparaison.html" class="btn-outline">Voir la comparaison →</a>
     </div>
   </div>
 </section>
@@ -561,7 +571,7 @@
       </div>
     </div>
     <div style="text-align:center;">
-      <a href="#" class="btn-primary">Rencontrer l'équipe →</a>
+      <a href="pages/05-equipe.html" class="btn-primary">Rencontrer l'équipe →</a>
     </div>
   </div>
 </section>
@@ -571,10 +581,16 @@
   <div class="footer-logo">TSP<span>·WORLD</span></div>
   <p style="margin-bottom:0.5rem;">Projet de Fin d'Études · 2025–2026</p>
   <p>Iliass Errouifi & Soufiane Er-Rthimi — Tous droits réservés</p>
+  <div style="margin-top: 1rem;">
+    <a href="pages/01-probleme.html" style="color:#8892a4; text-decoration:none; margin:0 0.5rem; font-size:0.7rem;">Problème</a>
+    <a href="pages/02-complexite.html" style="color:#8892a4; text-decoration:none; margin:0 0.5rem; font-size:0.7rem;">Complexité</a>
+    <a href="pages/03-algorithmes.html" style="color:#8892a4; text-decoration:none; margin:0 0.5rem; font-size:0.7rem;">Algorithmes</a>
+    <a href="pages/04-comparaison.html" style="color:#8892a4; text-decoration:none; margin:0 0.5rem; font-size:0.7rem;">Comparaison</a>
+    <a href="pages/05-equipe.html" style="color:#8892a4; text-decoration:none; margin:0 0.5rem; font-size:0.7rem;">Équipe</a>
+  </div>
 </footer>
 
 <script>
-  // Petit canvas pour TSP (6 villes)
   const canvas = document.getElementById('tspCanvas');
   if(canvas) {
     const ctx = canvas.getContext('2d');
@@ -605,8 +621,6 @@
     points.forEach(p => { ctx.beginPath(); ctx.arc(p.x,p.y,5,0,2*Math.PI); ctx.fill(); ctx.fillStyle='#c9a84c'; ctx.beginPath(); ctx.arc(p.x,p.y,2,0,2*Math.PI); ctx.fill(); ctx.fillStyle='#00d4c8'; });
   }
 
-  // Reveal animation
-  const reveals = document.querySelectorAll('.reveal');
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
   }, {threshold:0.1});
