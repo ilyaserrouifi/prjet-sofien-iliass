@@ -25,6 +25,10 @@
     .nav-links a { color: #8892a4; text-decoration: none; font-size: 0.7rem; letter-spacing: 2px; text-transform: uppercase; transition: 0.3s; }
     .nav-links a:hover { color: #c9a84c; }
 
+    /* BOUTON APPLICATION NAVBAR */
+    .nav-links .app-link { color: #00d4c8; border: 1px solid rgba(0,212,200,0.3); padding: 0.3rem 0.8rem; border-radius: 30px; transition: 0.3s; }
+    .nav-links .app-link:hover { background: rgba(0,212,200,0.15); color: #00d4c8; }
+
     .hero {
       min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center;
       text-align: center; padding: 8rem 2rem 4rem;
@@ -41,6 +45,9 @@
     .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(201,168,76,0.3); }
     .btn-outline { padding: 0.8rem 2rem; border: 1px solid #c9a84c; background: transparent; color: #c9a84c; text-decoration: none; letter-spacing: 2px; font-size: 0.7rem; text-transform: uppercase; border-radius: 4px; transition: 0.3s; display: inline-block; cursor: pointer; }
     .btn-outline:hover { background: rgba(201,168,76,0.1); }
+    .btn-app { padding: 0.8rem 2rem; background: linear-gradient(135deg, #00d4c8, #0088aa); border: none; color: #070b12; text-decoration: none; font-weight: 700; letter-spacing: 2px; font-size: 0.7rem; text-transform: uppercase; border-radius: 4px; transition: 0.3s; display: inline-block; }
+    .btn-app:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(0,212,200,0.4); }
+
     .scroll-down { position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 0.5rem; }
     .scroll-down span { font-size: 0.6rem; letter-spacing: 2px; color: #8892a4; }
     .scroll-line { width: 1px; height: 40px; background: linear-gradient(to bottom, #c9a84c, transparent); }
@@ -115,6 +122,7 @@
     <li><a href="pages/03-algorithmes.html">Algorithmes</a></li>
     <li><a href="pages/04-comparaison.html">Comparaison</a></li>
     <li><a href="pages/05-equipe.html">Équipe</a></li>
+    <li><a href="tsp-world-pro.html" class="app-link">✨ APP</a></li>
   </ul>
 </nav>
 
@@ -125,6 +133,7 @@
   <div class="hero-buttons">
     <a href="pages/03-algorithmes.html" class="btn-primary">Explorer</a>
     <a href="pages/05-equipe.html" class="btn-outline">Voir l'équipe</a>
+    <a href="tsp-world-pro.html" class="btn-app">🚀 Application Finale</a>
   </div>
   <div class="scroll-down"><span>SCROLL</span><div class="scroll-line"></div></div>
 </section>
@@ -163,11 +172,11 @@
     <table class="table-combinatoire">
       <thead><tr><th>n</th><th>Nombre de tours</th><th>Temps estimé</th></tr></thead>
       <tbody>
-        <tr><td>5</td><td>12</td><td>trivial</td></tr>
-        <tr><td>10</td><td>181 440</td><td>facile</td></tr>
-        <tr><td>15</td><td>43 milliards</td><td>43 secondes</td></tr>
-        <tr><td>20</td><td>60 quadrillions</td><td style="color:#c9a84c;">≈ 19 ANS</td></tr>
-        <tr><td>30</td><td>4.4 × 10³⁰</td><td style="color:#c9a84c;">impossible</td></tr>
+        <tr><td>5<\/td><td>12<\/td><td>trivial<\/td></tr>
+        <tr><td>10<\/td><td>181 440<\/td><td>facile<\/td></tr>
+        <tr><td>15<\/td><td>43 milliards<\/td><td>43 secondes<\/td></tr>
+        <tr><td>20<\/td><td>60 quadrillions<\/td><td style="color:#c9a84c;">≈ 19 ANS<\/td></tr>
+        <tr><td>30<\/td><td>4.4 × 10³⁰<\/td><td style="color:#c9a84c;">impossible<\/td></tr>
       </tbody>
     </table>
     <p style="text-align:center; margin-top:2rem; color:#8892a4;">(n-1)!/2 tours — une croissance exponentielle implacable.</p>
@@ -225,6 +234,7 @@
     <a href="pages/03-algorithmes.html" style="color:#8892a4; text-decoration:none; margin:0 0.5rem; font-size:0.7rem;">Algorithmes</a>
     <a href="pages/04-comparaison.html" style="color:#8892a4; text-decoration:none; margin:0 0.5rem; font-size:0.7rem;">Comparaison</a>
     <a href="pages/05-equipe.html" style="color:#8892a4; text-decoration:none; margin:0 0.5rem; font-size:0.7rem;">Équipe</a>
+    <a href="tsp-world-pro.html" style="color:#00d4c8; text-decoration:none; margin:0 0.5rem; font-size:0.7rem;">✨ APP</a>
   </div>
 </footer>
 
