@@ -9,7 +9,7 @@
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: 'Raleway', sans-serif;
-      background: linear-gradient(135deg, #f0f4fc 0%, #eef2f8 100%);
+      background: linear-gradient(135deg, #f5f7fb 0%, #eef2f8 100%);
       color: #1a2a3a;
       overflow-x: hidden;
     }
@@ -38,7 +38,6 @@
     .nav-links { display: flex; gap: 2rem; list-style: none; }
     .nav-links a { color: #4a5568; text-decoration: none; font-size: 0.7rem; letter-spacing: 2px; text-transform: uppercase; transition: 0.3s; font-weight: 600; }
     .nav-links a:hover { color: #c9a84c; }
-    .nav-links .app-link { color: #0088aa; border: 1px solid rgba(0,136,170,0.3); padding: 0.3rem 0.8rem; border-radius: 30px; }
 
     /* Hero */
     .hero {
@@ -50,39 +49,31 @@
       position: relative;
     }
     .hero-content {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 4rem;
-      max-width: 1300px;
+      max-width: 1200px;
       margin: 0 auto;
-      align-items: center;
+      text-align: center;
       z-index: 2;
     }
-    .hero-text { text-align: left; }
     
-    /* Université - GRANDE TAILLE (kbiira bzaaf) */
-    .uni-large {
-      font-size: 1.1rem;
-      font-weight: 700;
-      color: #1a2a3a;
+    /* Université + École - les deux ensemble */
+    .uni-block {
       margin-bottom: 1.5rem;
-      background: linear-gradient(135deg, #c9a84c15, #0088aa10);
-      padding: 0.6rem 1rem;
-      border-radius: 12px;
-      border-left: 4px solid #c9a84c;
-      letter-spacing: 0.5px;
     }
-    .uni-large .uni-name {
+    .uni-block .university {
+      font-size: 1rem;
+      font-weight: 600;
       color: #c9a84c;
-      font-size: 1.2rem;
+      margin-bottom: 0.2rem;
     }
-    .uni-large .school-name {
+    .uni-block .school {
+      font-size: 0.9rem;
+      font-weight: 500;
       color: #0088aa;
-      font-size: 1.1rem;
     }
+    
     .hero-title-main {
       font-family: 'Cinzel', serif;
-      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      font-size: clamp(1.6rem, 4vw, 2.5rem);
       font-weight: 800;
       color: #1a2a3a;
       margin-bottom: 0.5rem;
@@ -90,10 +81,10 @@
     .hero-title-main .gold { color: #c9a84c; }
     .hero-title-second {
       font-family: 'Cinzel', serif;
-      font-size: clamp(1.5rem, 3.5vw, 2rem);
+      font-size: clamp(1.3rem, 3.5vw, 2rem);
       font-weight: 700;
       color: #0088aa;
-      margin-bottom: 1rem;
+      margin-bottom: 1.5rem;
       border-bottom: 2px solid rgba(0,136,170,0.15);
       display: inline-block;
       padding-bottom: 0.3rem;
@@ -106,17 +97,18 @@
       font-size: 0.65rem;
       letter-spacing: 2px;
       color: #c9a84c;
-      margin: 1rem 0 0.5rem 0;
+      margin: 1rem 0;
       display: inline-block;
       font-weight: 600;
     }
     .authors {
       background: linear-gradient(135deg, #f8fafc, #ffffff);
-      border-radius: 14px;
-      padding: 1rem 1.2rem;
-      margin: 0.8rem 0;
+      border-radius: 16px;
+      padding: 1.2rem;
+      margin: 1rem auto;
       border: 1px solid #e2e8f0;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+      max-width: 500px;
     }
     .authors p {
       margin: 0.3rem 0;
@@ -138,25 +130,25 @@
       font-weight: 700;
     }
     .uni-year {
-      margin-top: 0.6rem;
+      margin-top: 0.8rem;
       font-size: 0.7rem;
       color: #718096;
-      letter-spacing: 0.5px;
     }
     .hero-stats {
       display: flex;
-      gap: 1.5rem;
-      margin-top: 1.2rem;
+      justify-content: center;
+      gap: 2rem;
+      margin-top: 1.5rem;
       flex-wrap: wrap;
     }
     .stat-item { text-align: center; }
-    .stat-number { font-family: 'Cinzel', serif; font-size: 1.5rem; font-weight: 800; color: #c9a84c; }
-    .stat-label { font-size: 0.6rem; color: #718096; text-transform: uppercase; letter-spacing: 1px; font-weight: 600; }
+    .stat-number { font-family: 'Cinzel', serif; font-size: 1.6rem; font-weight: 800; color: #c9a84c; }
+    .stat-label { font-size: 0.65rem; color: #718096; text-transform: uppercase; letter-spacing: 1px; font-weight: 600; }
     .btn-launch {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 0.7rem 1.6rem;
+      padding: 0.8rem 2rem;
       background: linear-gradient(135deg, #c9a84c, #0088aa);
       border: none;
       border-radius: 50px;
@@ -167,82 +159,10 @@
       letter-spacing: 2px;
       text-decoration: none;
       transition: 0.3s;
-      margin-top: 1rem;
+      margin-top: 1.5rem;
       box-shadow: 0 4px 12px rgba(0,136,170,0.2);
     }
     .btn-launch:hover { transform: scale(1.02); box-shadow: 0 8px 20px rgba(0,136,170,0.3); }
-
-    /* Hero Images - GRANDE */
-    .hero-images { 
-      position: relative; 
-    }
-    .big-image-card {
-      background: white;
-      border: 1px solid #e2e8f0;
-      border-radius: 24px;
-      overflow: hidden;
-      transition: 0.3s;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.08);
-    }
-    .big-image-card:hover { 
-      border-color: #c9a84c; 
-      transform: translateY(-5px); 
-      box-shadow: 0 20px 35px rgba(0,0,0,0.12);
-    }
-    .big-placeholder {
-      width: 100%; 
-      height: 380px;
-      background: linear-gradient(135deg, #1a2a3a, #0d1a2e);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      overflow: hidden;
-    }
-    /* Texte sur l'image - grand et clair */
-    .image-main-text {
-      text-align: center;
-      padding: 1.5rem;
-    }
-    .image-main-text h2 {
-      font-family: 'Cinzel', serif;
-      font-size: 2.2rem;
-      font-weight: 800;
-      color: #c9a84c;
-      margin-bottom: 0.5rem;
-      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-    }
-    .image-main-text p {
-      font-size: 1rem;
-      color: rgba(255,255,255,0.9);
-      letter-spacing: 1px;
-    }
-    .image-tags {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 0.6rem;
-      margin-top: 1rem;
-    }
-    .image-tag {
-      background: rgba(201,168,76,0.2);
-      border: 1px solid rgba(201,168,76,0.5);
-      border-radius: 30px;
-      padding: 0.3rem 1rem;
-      font-size: 0.7rem;
-      color: #c9a84c;
-      font-weight: 600;
-    }
-    .big-caption { 
-      padding: 1rem; 
-      text-align: center; 
-      font-size: 0.75rem; 
-      color: #4a5568; 
-      font-weight: 600; 
-      border-top: 1px solid #e2e8f0; 
-      background: white; 
-    }
 
     /* Sections */
     .section { padding: 70px 5%; }
@@ -255,7 +175,7 @@
     /* Table des matières */
     .toc-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 1.5rem;
       max-width: 1200px;
       margin: 0 auto;
@@ -264,7 +184,7 @@
       background: white;
       border: 1px solid #e2e8f0;
       border-radius: 18px;
-      padding: 1.2rem;
+      padding: 1.2rem 1.5rem;
       transition: 0.3s;
       text-decoration: none;
       color: inherit;
@@ -272,9 +192,19 @@
       box-shadow: 0 2px 6px rgba(0,0,0,0.02);
     }
     .toc-card:hover { border-color: #c9a84c; transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
-    .toc-num { font-family: 'Cinzel', serif; font-size: 1.6rem; font-weight: 800; color: #c9a84c; opacity: 0.4; margin-bottom: 0.3rem; }
+    .toc-num { font-family: 'Cinzel', serif; font-size: 1.5rem; font-weight: 800; color: #c9a84c; opacity: 0.4; margin-bottom: 0.3rem; }
     .toc-card h3 { font-family: 'Cinzel', serif; font-size: 1rem; margin-bottom: 0.4rem; color: #1a2a3a; }
     .toc-card p { font-size: 0.7rem; color: #718096; line-height: 1.5; }
+    .app-badge {
+      display: inline-block;
+      background: linear-gradient(135deg, #c9a84c, #0088aa);
+      color: white;
+      font-size: 0.55rem;
+      padding: 0.2rem 0.7rem;
+      border-radius: 30px;
+      margin-top: 0.5rem;
+      font-weight: 600;
+    }
 
     /* Footer */
     footer {
@@ -289,16 +219,12 @@
 
     @media (max-width: 768px) {
       .navbar { padding: 1rem; }
-      .nav-links { display: none; }
-      .hero-content { grid-template-columns: 1fr; gap: 2rem; text-align: center; }
-      .hero-text { text-align: center; }
-      .hero-stats { justify-content: center; }
+      .nav-links { gap: 1rem; }
+      .nav-links a { font-size: 0.5rem; }
+      .hero { padding: 7rem 1rem 3rem; }
       .section { padding: 40px 1.2rem; }
-      .uni-large { font-size: 0.9rem; text-align: left; }
-      .uni-large .uni-name, .uni-large .school-name { font-size: 0.95rem; }
-      .big-placeholder { height: 280px; }
-      .image-main-text h2 { font-size: 1.3rem; }
-      .image-main-text p { font-size: 0.7rem; }
+      .authors { padding: 1rem; }
+      .authors p { font-size: 0.8rem; }
     }
   </style>
 </head>
@@ -314,67 +240,45 @@
     <li><a href="pages/03-calculabilite.html">Ch.3</a></li>
     <li><a href="pages/04-complexites.html">Ch.4</a></li>
     <li><a href="pages/05-tsp.html">Ch.5</a></li>
-    <li><a href="tsp-world-pro.html" class="app-link">✨ APP</a></li>
+    <li><a href="pages/06-programmation-dynamique.html">Ch.6</a></li>
+    <li><a href="pages/07-methodes-resolution.html">Ch.7</a></li>
   </ul>
 </nav>
 
 <!-- HERO SECTION -->
 <section class="hero" id="introduction">
   <div class="hero-content">
-    <div class="hero-text">
-      <!-- Université - GRANDE TAILLE (kbiira bzaaf) -->
-      <div class="uni-large">
-        <span class="uni-name">🏛️ Université Abdelmalek Essaâdi</span><br>
-        <span class="school-name">📚 École Normale Supérieure Tétouan</span>
-      </div>
-      
-      <div class="hero-title-main">Optimisation Combinatoire appliquée au</div>
-      <div class="hero-title-second">Problème du Voyageur de Commerce</div>
-      
-      <div class="pfe-badge">📖 PROJET DE FIN D'ÉTUDES</div>
-      <div class="authors">
-        <p><strong>👥 Réalisé par :</strong></p>
-        <p>ER-RTHIMI SOFIANE</p>
-        <p>ER ROUIFFI ILYAS</p>
-        <div class="supervisor"><strong>📌 Encadré par :</strong> <span>Pr. EL HICHAMI OTHMANE</span></div>
-      </div>
-      <div class="uni-year">🎓 Année universitaire 2025–2026 — Licence en Mathématiques</div>
-      
-      <div class="hero-stats">
-        <div class="stat-item"><div class="stat-number">7</div><div class="stat-label">Chapitres</div></div>
-        <div class="stat-item"><div class="stat-number">10+</div><div class="stat-label">Algorithmes</div></div>
-        <div class="stat-item"><div class="stat-number">NP-C</div><div class="stat-label">Classe</div></div>
-        <div class="stat-item"><div class="stat-number">ENS</div><div class="stat-label">Tétouan</div></div>
-      </div>
-      <a href="#plan" class="btn-launch">📖 Découvrir le plan →</a>
+    <div class="uni-block">
+      <div class="university">🏛️ Université Abdelmalek Essaâdi</div>
+      <div class="school">📚 École Normale Supérieure Tétouan</div>
     </div>
     
-    <!-- GRANDE IMAGE - PAS DE BADGE TSP WORLD -->
-    <div class="hero-images">
-      <div class="big-image-card">
-        <div class="big-placeholder">
-          <div class="image-main-text">
-            <h2>✈️ TSP WORLD PRO</h2>
-            <p>Optimisation Combinatoire · Algorithmes TSP</p>
-            <div class="image-tags">
-              <span class="image-tag">Programmation Dynamique</span>
-              <span class="image-tag">Held-Karp</span>
-              <span class="image-tag">Christofides</span>
-              <span class="image-tag">Plus Proche Voisin</span>
-              <span class="image-tag">2-OPT</span>
-              <span class="image-tag">Colonies de Fourmis</span>
-            </div>
-          </div>
-        </div>
-        <div class="big-caption">
-          📊 NP-Difficile | Résolution exacte et approchée | Application interactive
-        </div>
-      </div>
+    <div class="hero-title-main">Optimisation Combinatoire appliquée au</div>
+    <div class="hero-title-second">Problème du Voyageur de Commerce</div>
+    
+    <div class="pfe-badge">📖 PROJET DE FIN D'ÉTUDES</div>
+    
+    <div class="authors">
+      <p><strong>👥 Réalisé par :</strong></p>
+      <p>ER-RTHIMI SOFIANE</p>
+      <p>ER ROUIFFI ILYAS</p>
+      <div class="supervisor"><strong>📌 Encadré par :</strong> <span>Pr. EL HICHAMI OTHMANE</span></div>
     </div>
+    
+    <div class="uni-year">🎓 Année universitaire 2025–2026 — Licence en Mathématiques</div>
+    
+    <div class="hero-stats">
+      <div class="stat-item"><div class="stat-number">8</div><div class="stat-label">Chapitres</div></div>
+      <div class="stat-item"><div class="stat-number">10+</div><div class="stat-label">Algorithmes</div></div>
+      <div class="stat-item"><div class="stat-number">NP-C</div><div class="stat-label">Classe</div></div>
+      <div class="stat-item"><div class="stat-number">ENS</div><div class="stat-label">Tétouan</div></div>
+    </div>
+    
+    <a href="#plan" class="btn-launch">📖 Découvrir le plan →</a>
   </div>
 </section>
 
-<!-- SECTION PLAN DU MÉMOIRE -->
+<!-- SECTION PLAN DU MÉMOIRE (8 CHAPITRES) -->
 <section class="section section-bg" id="plan">
   <div class="section-header">
     <h2>Plan du <span>mémoire</span></h2>
@@ -416,6 +320,12 @@
       <h3>🎯 Méthodes de Résolution</h3>
       <p>Branch & Bound, Christofides, recuit simulé, recherche tabou, AG, colonies de fourmis.</p>
     </a>
+    <a href="tsp-world-pro.html" class="toc-card">
+      <div class="toc-num">08</div>
+      <h3>🚀 Application : TSP WORLD PRO</h3>
+      <p>Plateforme interactive de planification de tournées — Carte, GPS, QR Code, Algorithmes TSP.</p>
+      <div class="app-badge">✨ Application finale</div>
+    </a>
   </div>
 </section>
 
@@ -442,25 +352,19 @@
   </div>
 </section>
 
-<!-- BOUTON VERS APPLICATION -->
-<div style="text-align: center; padding: 1.5rem;">
-  <a href="tsp-world-pro.html" class="btn-launch" style="background: linear-gradient(135deg, #c9a84c, #0088aa);">
-    <span>🚀 Découvrir l'application TSP WORLD PRO</span>
-    <span>→</span>
-  </a>
-</div>
-
 <footer>
   <div class="footer-logo">TSP<span>·WORLD</span></div>
   <p>Projet de Fin d'Études — 2025-2026 — École Normale Supérieure de Tétouan</p>
   <p>Iliass Errouifi & Soufiane Er-Rthimi — Sous la direction de Monsieur Outman El Hichami</p>
   <div style="margin-top: 0.8rem;">
-    <a href="pages/01-introduction.html" style="color:#718096; text-decoration:none; margin:0 0.4rem; font-size:0.65rem;">Introduction</a>
-    <a href="pages/02-optimisation-combinatoire.html" style="color:#718096; text-decoration:none; margin:0 0.4rem; font-size:0.65rem;">Optimisation</a>
-    <a href="pages/03-calculabilite.html" style="color:#718096; text-decoration:none; margin:0 0.4rem; font-size:0.65rem;">Calculabilité</a>
-    <a href="pages/04-complexites.html" style="color:#718096; text-decoration:none; margin:0 0.4rem; font-size:0.65rem;">Complexité</a>
-    <a href="pages/05-tsp.html" style="color:#718096; text-decoration:none; margin:0 0.4rem; font-size:0.65rem;">TSP</a>
-    <a href="tsp-world-pro.html" style="color:#0088aa; text-decoration:none; margin:0 0.4rem; font-size:0.65rem;">Application</a>
+    <a href="pages/01-introduction.html" style="color:#718096; text-decoration:none; margin:0 0.4rem; font-size:0.65rem;">Ch.1</a>
+    <a href="pages/02-optimisation-combinatoire.html" style="color:#718096; text-decoration:none; margin:0 0.4rem; font-size:0.65rem;">Ch.2</a>
+    <a href="pages/03-calculabilite.html" style="color:#718096; text-decoration:none; margin:0 0.4rem; font-size:0.65rem;">Ch.3</a>
+    <a href="pages/04-complexites.html" style="color:#718096; text-decoration:none; margin:0 0.4rem; font-size:0.65rem;">Ch.4</a>
+    <a href="pages/05-tsp.html" style="color:#718096; text-decoration:none; margin:0 0.4rem; font-size:0.65rem;">Ch.5</a>
+    <a href="pages/06-programmation-dynamique.html" style="color:#718096; text-decoration:none; margin:0 0.4rem; font-size:0.65rem;">Ch.6</a>
+    <a href="pages/07-methodes-resolution.html" style="color:#718096; text-decoration:none; margin:0 0.4rem; font-size:0.65rem;">Ch.7</a>
+    <a href="tsp-world-pro.html" style="color:#c9a84c; text-decoration:none; margin:0 0.4rem; font-size:0.65rem;">App</a>
   </div>
 </footer>
 
