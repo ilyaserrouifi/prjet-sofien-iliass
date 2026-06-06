@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>PFE | Optimisation Combinatoire & TSP | Iliass & Soufiane</title>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;900&family=Raleway:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
@@ -201,6 +202,55 @@
       font-weight: 600;
     }
 
+    /* QR Section */
+    .qr-section {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+      margin: 2rem 0;
+      padding: 1rem;
+    }
+    .qr-card {
+      background: white;
+      border: 1px solid #e2e8f0;
+      border-radius: 20px;
+      padding: 1.5rem;
+      text-align: center;
+      width: 260px;
+      transition: 0.3s;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+    }
+    .qr-card:hover {
+      border-color: #c9a84c;
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+    }
+    .qr-card h4 {
+      font-family: 'Cinzel', serif;
+      font-size: 0.9rem;
+      margin-bottom: 0.5rem;
+      color: #1a2a3a;
+    }
+    .qr-card p {
+      font-size: 0.65rem;
+      color: #718096;
+      margin-top: 0.5rem;
+      word-break: break-all;
+    }
+    .qrcode-container {
+      display: flex;
+      justify-content: center;
+      margin: 0.5rem 0;
+    }
+    .qrcode-container canvas,
+    .qrcode-container img {
+      border-radius: 12px;
+      background: white;
+      padding: 4px;
+      border: 1px solid #e2e8f0;
+    }
+
     footer {
       text-align: center;
       padding: 2rem;
@@ -219,6 +269,8 @@
       .section { padding: 40px 1.2rem; }
       .authors { padding: 1rem; }
       .authors p { font-size: 0.8rem; }
+      .qr-section { gap: 1rem; }
+      .qr-card { width: 220px; padding: 1rem; }
     }
   </style>
 </head>
@@ -324,6 +376,28 @@
   </div>
 </section>
 
+<!-- QR CODES SECTION -->
+<section class="section">
+  <div class="section-header">
+    <h2>📱 Accès <span>rapide</span> par QR</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="qr-section">
+    <!-- QR pour la présentation -->
+    <div class="qr-card">
+      <h4>📖 Présentation du PFE</h4>
+      <div id="qrcode-presentation" class="qrcode-container"></div>
+      <p>https://prjet-sofien-iliass.vercel.app/</p>
+    </div>
+    <!-- QR pour l'application -->
+    <div class="qr-card">
+      <h4>🚀 Application TSP WORLD PRO</h4>
+      <div id="qrcode-app" class="qrcode-container"></div>
+      <p>https://ilyaserrouifi.github.io/tsp-world-pro-ilyas-errouifi/</p>
+    </div>
+  </div>
+</section>
+
 <!-- SECTION ÉQUIPE -->
 <section class="section">
   <div class="section-header">
@@ -363,5 +437,29 @@
   </div>
 </footer>
 
+<script>
+  // Génération des QR codes
+  function generateQR(elementId, text, size = 120) {
+    const element = document.getElementById(elementId);
+    if (element) {
+      element.innerHTML = '';
+      new QRCode(element, {
+        text: text,
+        width: size,
+        height: size,
+        colorDark: "#c9a84c",
+        colorLight: "#ffffff",
+        correctLevel: QRCode.CorrectLevel.H
+      });
+    }
+  }
+
+  // Attendre que la page soit chargée
+  document.addEventListener('DOMContentLoaded', function() {
+    generateQR('qrcode-presentation', 'https://prjet-sofien-iliass.vercel.app/', 140);
+    generateQR('qrcode-app', 'https://ilyaserrouifi.github.io/tsp-world-pro-ilyas-errouifi/', 140);
+  });
+</script>
+<script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
 </body>
 </html>
