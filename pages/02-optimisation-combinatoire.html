@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chapitre 2 | Optimisation Combinatoire | PFE 2025-2026</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;900&family=Raleway:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Raleway', sans-serif;
+      background: #f5f7fb;
+      color: #1a2a3a;
+      line-height: 1.6;
+    }
+    .navbar {
+      position: fixed; top: 0; width: 100%; padding: 1rem 3rem;
+      background: rgba(255, 255, 255, 0.96); backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.08); z-index: 1000;
+      display: flex; justify-content: space-between; align-items: center;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+    }
+    .logo { font-family: 'Cinzel', serif; font-size: 1.2rem; font-weight: 700; letter-spacing: 4px; color: #c9a84c; text-decoration: none; }
+    .logo span { color: #0088aa; }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { color: #4a5568; text-decoration: none; font-size: 0.7rem; letter-spacing: 2px; text-transform: uppercase; transition: 0.3s; font-weight: 600; }
+    .nav-links a:hover { color: #c9a84c; }
+    .container { max-width: 1000px; margin: 0 auto; padding: 100px 2rem 3rem; }
+    h1 { font-family: 'Cinzel', serif; font-size: 2rem; font-weight: 800; color: #1a2a3a; margin-bottom: 0.5rem; border-left: 4px solid #c9a84c; padding-left: 1rem; }
+    h1 span { color: #c9a84c; }
+    .chapitre-badge { display: inline-block; background: rgba(201,168,76,0.12); border: 1px solid rgba(201,168,76,0.3); border-radius: 50px; padding: 0.2rem 0.8rem; font-size: 0.6rem; letter-spacing: 2px; color: #c9a84c; margin: 0.5rem 0 1rem 1rem; font-weight: 600; }
+    h2 { font-family: 'Cinzel', serif; font-size: 1.3rem; font-weight: 700; color: #0088aa; margin: 1.5rem 0 1rem; border-bottom: 2px solid rgba(0,136,170,0.15); padding-bottom: 0.3rem; }
+    .card { background: white; border-radius: 16px; padding: 1.5rem; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(0,0,0,0.04); border: 1px solid #e2e8f0; }
+    .card p { color: #4a5568; margin-bottom: 0.8rem; font-size: 0.95rem; }
+    .formula { background: #eef2f8; border-left: 4px solid #c9a84c; padding: 0.8rem 1.2rem; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; color: #1a2a3a; margin: 0.8rem 0; }
+    .badge { display: inline-block; background: rgba(201,168,76,0.1); padding: 0.2rem 0.6rem; border-radius: 30px; font-size: 0.7rem; color: #c9a84c; margin-right: 0.5rem; }
+    .btn-nav { display: flex; justify-content: space-between; margin-top: 2rem; gap: 1rem; }
+    .btn-prev, .btn-next { padding: 0.7rem 1.5rem; text-decoration: none; border-radius: 50px; font-size: 0.7rem; letter-spacing: 2px; text-transform: uppercase; transition: 0.3s; }
+    .btn-prev { border: 1px solid #c9a84c; color: #c9a84c; background: transparent; }
+    .btn-prev:hover { background: rgba(201,168,76,0.1); }
+    .btn-next { background: linear-gradient(135deg, #c9a84c, #0088aa); color: white; border: none; }
+    .btn-next:hover { transform: translateX(3px); box-shadow: 0 5px 20px rgba(201,168,76,0.3); }
+    footer { text-align: center; padding: 2rem; border-top: 1px solid #e2e8f0; background: #ffffff; margin-top: 2rem; color: #718096; font-size: 0.7rem; }
+    @media (max-width: 768px) { .navbar { padding: 1rem; } .nav-links { display: none; } .container { padding: 80px 1rem 2rem; } h1 { font-size: 1.5rem; } }
+  </style>
+</head>
+<body>
+
+<nav class="navbar">
+  <a href="../index.html" class="logo">TSP<span>·WORLD</span></a>
+  <ul class="nav-links">
+    <li><a href="../index.html">Accueil</a></li>
+    <li><a href="01-introduction.html">Ch.1</a></li>
+    <li><a href="02-optimisation-combinatoire.html">Ch.2</a></li>
+    <li><a href="03-calculabilite.html">Ch.3</a></li>
+    <li><a href="04-complexites.html">Ch.4</a></li>
+    <li><a href="05-tsp.html">Ch.5</a></li>
+    <li><a href="06-programmation-dynamique.html">Ch.6</a></li>
+    <li><a href="07-methodes-resolution.html">Ch.7</a></li>
+  </ul>
+</nav>
+
+<div class="container">
+  <span class="chapitre-badge">CHAPITRE 2</span>
+  <h1>Optimisation <span>Combinatoire</span></h1>
+
+  <!-- CONTEXTE PROFESSIONNEL -->
+  <div class="card">
+    <p>L'<strong>optimisation combinatoire</strong> est une branche des mathématiques appliquées qui vise à déterminer la meilleure solution parmi un ensemble discret de configurations. Elle se distingue par la croissance exponentielle de l'espace de recherche, rendant l'énumération exhaustive impossible pour les grandes instances.</p>
+  </div>
+
+  <!-- FORMALISATION -->
+  <div class="card">
+    <h2>📐 Formalisation</h2>
+    <p>Un problème d'optimisation combinatoire s'écrit :</p>
+    <div class="formula">
+      Min f(x) &nbsp;&nbsp;&nbsp; avec &nbsp;&nbsp;&nbsp; x ∈ S ⊂ {0,1}<sup>n</sup>
+    </div>
+    <p>où <strong>S</strong> est l'ensemble des solutions réalisables et <strong>f : S → ℝ</strong> la fonction objectif. La cardinalité de S croît exponentiellement avec n.</p>
+  </div>
+
+  <!-- PROGRAMMATION MATHÉMATIQUE -->
+  <div class="card">
+    <h2>🧮 Programmation mathématique</h2>
+    <p><span class="badge">PLNE</span> <strong>Programmation linéaire en nombres entiers</strong> — cadre déterministe pour caractériser les solutions admissibles.</p>
+    <p><span class="badge">Stochastique</span> <strong>Programmation stochastique</strong> — intégration de l'incertitude via des scénarios probabilistes.</p>
+    <div class="formula">
+      (P) { min f(x) } &nbsp;&nbsp; gᵢ(x) ≤ 0 &nbsp;&nbsp; x ∈ ℝⁿ
+    </div>
+  </div>
+
+  <!-- CLASSIFICATION -->
+  <div class="card">
+    <h2>📊 Classification des méthodes</h2>
+    <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 0.5rem;">
+      <div style="flex: 1; background: #eef2f8; border-radius: 12px; padding: 1rem;">
+        <strong style="color: #0088aa;">🔬 Méthodes Exactes</strong>
+        <p style="font-size: 0.85rem; margin-top: 0.3rem;">Garantie d'optimalité · Temps exponentiel · Branch & Bound · Programmation dynamique</p>
+      </div>
+      <div style="flex: 1; background: #eef2f8; border-radius: 12px; padding: 1rem;">
+        <strong style="color: #c9a84c;">⚡ Méthodes Approchées</strong>
+        <p style="font-size: 0.85rem; margin-top: 0.3rem;">Solutions de qualité · Temps polynomial · Heuristiques · Métaheuristiques</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- DOMAINES -->
+  <div class="card">
+    <h2>🌍 Domaines d'application</h2>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0.5rem;">
+      <div><span class="badge">🚚</span> Transport & Logistique</div>
+      <div><span class="badge">🏭</span> Planification industrielle</div>
+      <div><span class="badge">📡</span> Télécommunications</div>
+      <div><span class="badge">💰</span> Économie & Finance</div>
+      <div><span class="badge">🧬</span> Bio-informatique</div>
+      <div><span class="badge">🤖</span> IA & Robotique</div>
+    </div>
+  </div>
+
+  <!-- CONCLUSION -->
+  <div class="card">
+    <h2>🎯 Enjeux et perspectives</h2>
+    <p>Le défi majeur de l'optimisation combinatoire réside dans l'<strong>explosion exponentielle</strong> de l'espace de recherche. La complémentarité entre méthodes exactes (optimalité) et approchées (efficacité) constitue la clé pour résoudre des problèmes complexes à grande échelle.</p>
+    <p>Ces concepts sont appliqués au <strong>Problème du Voyageur de Commerce (TSP)</strong>, étudié dans les chapitres suivants.</p>
+  </div>
+
+  <!-- BOUTONS -->
+  <div class="btn-nav">
+    <a href="01-introduction.html" class="btn-prev">← Chapitre 1</a>
+    <a href="03-calculabilite.html" class="btn-next">Chapitre 3 : Calculabilité →</a>
+  </div>
+</div>
+
+<footer>
+  <p>PFE — Iliass Errouifi & Soufiane Er-Rthimi — Optimisation Combinatoire & TSP</p>
+  <p>ENS Tétouan — Université Abdelmalek Essaâdi — 2025-2026</p>
+</footer>
+
+</body>
+</html>
