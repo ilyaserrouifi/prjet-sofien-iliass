@@ -6,6 +6,7 @@
   <title>Application | TSP WORLD PRO | PFE 2025-2026</title>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;900&family=Raleway:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&family=Syne:wght@700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
@@ -221,6 +222,55 @@
       line-height: 1.7;
     }
 
+    /* QR Section */
+    .qr-section {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+      margin: 2rem 0;
+      padding: 1rem;
+    }
+    .qr-card {
+      background: white;
+      border: 1px solid #e2e8f0;
+      border-radius: 20px;
+      padding: 1.5rem;
+      text-align: center;
+      width: 260px;
+      transition: 0.3s;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+    }
+    .qr-card:hover {
+      border-color: #c9a84c;
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+    }
+    .qr-card h4 {
+      font-family: 'Cinzel', serif;
+      font-size: 0.9rem;
+      margin-bottom: 0.5rem;
+      color: #1a2a3a;
+    }
+    .qr-card p {
+      font-size: 0.65rem;
+      color: #718096;
+      margin-top: 0.5rem;
+      word-break: break-all;
+    }
+    .qrcode-container {
+      display: flex;
+      justify-content: center;
+      margin: 0.5rem 0;
+    }
+    .qrcode-container canvas,
+    .qrcode-container img {
+      border-radius: 12px;
+      background: white;
+      padding: 4px;
+      border: 1px solid #e2e8f0;
+    }
+
     /* Tech Stack */
     .tech-stack {
       display: flex;
@@ -303,6 +353,8 @@
       .nav-links { gap: 1rem; }
       .features-grid { grid-template-columns: 1fr; }
       .section { padding: 50px 1.5rem; }
+      .qr-section { gap: 1rem; }
+      .qr-card { width: 220px; padding: 1rem; }
     }
   </style>
 </head>
@@ -439,8 +491,30 @@
   </div>
 </section>
 
-<!-- LIENS -->
+<!-- QR CODES SECTION -->
 <section class="section">
+  <div class="section-header">
+    <h2>📱 Accès <span>rapide</span> par QR</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="qr-section">
+    <!-- QR pour la présentation -->
+    <div class="qr-card">
+      <h4>📖 Présentation du PFE</h4>
+      <div id="qrcode-presentation" class="qrcode-container"></div>
+      <p>https://prjet-sofien-iliass.vercel.app/</p>
+    </div>
+    <!-- QR pour l'application -->
+    <div class="qr-card">
+      <h4>🚀 Application TSP WORLD PRO</h4>
+      <div id="qrcode-app" class="qrcode-container"></div>
+      <p>https://ilyaserrouifi.github.io/tsp-world-pro-ilyas-errouifi/</p>
+    </div>
+  </div>
+</section>
+
+<!-- LIENS -->
+<section class="section section-bg">
   <div class="section-header">
     <h2>🔗 Accès <span>rapide</span></h2>
     <div class="section-line"></div>
@@ -456,7 +530,7 @@
     <div style="background: white; border: 1px solid #e2e8f0; border-radius: 20px; padding: 1.2rem; text-align: center; min-width: 260px;">
       <i class="fab fa-github" style="font-size: 1.8rem; color: #c9a84c;"></i>
       <h3 style="margin: 0.5rem 0; font-size: 0.9rem;">📂 Code source</h3>
-      <a href="https://github.com/ilyaserrouifi/tsp-world-pro-ilyas-errouifi" target="_blank" style="color: #0088aa; font-size: 0.7rem;">
+      <a href="https://github.com/ilyaserrouifi/tsp-world-pro-ilyas-errouifi/" target="_blank" style="color: #0088aa; font-size: 0.7rem;">
         github.com/ilyaserrouifi/tsp-world-pro-ilyas-errouifi
       </a>
     </div>
@@ -494,5 +568,27 @@
   </div>
 </footer>
 
+<script>
+  // Génération des QR codes
+  function generateQR(elementId, text, size = 120) {
+    const element = document.getElementById(elementId);
+    if (element) {
+      element.innerHTML = '';
+      new QRCode(element, {
+        text: text,
+        width: size,
+        height: size,
+        colorDark: "#c9a84c",
+        colorLight: "#ffffff",
+        correctLevel: QRCode.CorrectLevel.H
+      });
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    generateQR('qrcode-presentation', 'https://prjet-sofien-iliass.vercel.app/', 140);
+    generateQR('qrcode-app', 'https://ilyaserrouifi.github.io/tsp-world-pro-ilyas-errouifi/', 140);
+  });
+</script>
 </body>
 </html>
