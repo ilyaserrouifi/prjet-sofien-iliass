@@ -42,7 +42,6 @@
     .graph-schema { background: #eef2f8; border-radius: 16px; padding: 1rem; text-align: center; margin: 1rem 0; border: 1px solid #c9a84c; }
     .graph-nodes { display: inline-flex; flex-wrap: wrap; justify-content: center; gap: 1rem; margin: 0.5rem 0; }
     .graph-node { background: #1a2a3a; color: white; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; position: relative; }
-    .graph-edge { font-size: 0.7rem; color: #c9a84c; margin: 0 0.2rem; }
     .btn-nav { display: flex; justify-content: space-between; margin-top: 2rem; gap: 1rem; }
     .btn-prev, .btn-next { padding: 0.7rem 1.5rem; text-decoration: none; border-radius: 50px; font-size: 0.7rem; letter-spacing: 2px; text-transform: uppercase; transition: 0.3s; }
     .btn-prev { border: 1px solid #c9a84c; color: #c9a84c; background: transparent; }
@@ -56,16 +55,17 @@
 <body>
 
 <nav class="navbar">
-  <a href="../index.html" class="logo">TSP<span>·WORLD</span></a>
+  <a href="../index.html" class="logo">PFE<span>·ENS</span></a>
   <ul class="nav-links">
     <li><a href="../index.html">Accueil</a></li>
-    <li><a href="01-introduction.html">Ch.1</a></li>
+    <li><a href="01-introduction.html">Introduction</a></li>
     <li><a href="02-optimisation-combinatoire.html">Ch.2</a></li>
     <li><a href="03-calculabilite.html">Ch.3</a></li>
     <li><a href="04-complexites.html">Ch.4</a></li>
     <li><a href="05-tsp.html">Ch.5</a></li>
     <li><a href="06-programmation-dynamique.html">Ch.6</a></li>
     <li><a href="07-methodes-resolution.html">Ch.7</a></li>
+    <li><a href="../tsp-world-pro.html">Application</a></li>
   </ul>
 </nav>
 
@@ -190,14 +190,14 @@
     <table class="table-classes">
       <thead><tr><th>n</th><th>Nombre de tours (n−1)!/2</th><th>Ordre de grandeur</th></tr></thead>
       <tbody>
-        <tr><td>5</td><td>12</td><td>Trivial</td> </tr>
-        <tr><td class="badge">10</td> <td>181 440</td> <td>Facile</td> </tr>
-        <tr><td class="badge">15</td> <td>≈ 4,36 × 10¹⁰</td> <td>Difficile</td> </tr>
-        <tr><td class="badge">20</td> <td>≈ 6,08 × 10¹⁶</td> <td>Impraticable</td> </tr>
-        <tr><td class="badge">25</td> <td>≈ 3,10 × 10²³</td> <td>Astronomique</td> </tr>
-        <tr><td class="badge">30</td> <td>≈ 4,42 × 10³⁰</td> <td>Impossible</td> </tr>
+        <tr><td>5</td><td class="badge">12</td><td>Trivial</td></tr>
+        <tr><td class="badge">10</td><td class="badge">181 440</td><td>Facile</td></tr>
+        <tr><td class="badge">15</td><td class="badge">≈ 4,36 × 10¹⁰</td><td>Difficile</td></tr>
+        <tr><td class="badge">20</td><td class="badge">≈ 6,08 × 10¹⁶</td><td>Impraticable</td></tr>
+        <tr><td class="badge">25</td><td class="badge">≈ 3,10 × 10²³</td><td>Astronomique</td></tr>
+        <tr><td class="badge">30</td><td class="badge">≈ 4,42 × 10³⁰</td><td>Impossible</td></tr>
       </tbody>
-     </table>
+    </table>
     <div class="graph-schema">
       <p style="font-weight: 700;">📊 Même un ordinateur capable d'évaluer <strong>1 milliard de tours par seconde</strong> mettrait :</p>
       <p style="color: #c9a84c; font-weight: 700;">• plus de 19 ans pour n=20</p>
@@ -236,14 +236,14 @@
     <table class="table-classes">
       <thead><tr><th>Variante</th><th>Définition et propriétés</th><th>Applications</th></tr></thead>
       <tbody>
-        <tr><td class="badge">TSP Symétrique (sTSP)</td> <td>Matrice des distances symétrique : w(i,j)=w(j,i). Nombre de tournées : (n−1)!/2</td> <td>Transport routier (route bidirectionnelle)</td> </tr>
-        <tr><td class="badge">TSP Asymétrique (aTSP)</td> <td>Matrice des distances asymétrique : w(i,j)≠w(j,i)</td> <td>Réseaux routiers avec sens unique, ordonnancement</td> </tr>
-        <tr><td class="badge">TSP Métrique</td> <td>Satisfait l'inégalité triangulaire</td> <td>Distances géographiques (vol d'oiseau, temps de trajet)</td> </tr>
-        <tr><td class="badge">TSP Euclidien</td> <td>Villes dans ℝ², distance euclidienne</td> <td>Conception de circuits imprimés (VLSI)</td> </tr>
-        <tr><td class="badge">TSP avec fenêtres de temps (TSPTW)</td> <td>Chaque ville i dans un intervalle [aᵢ, bᵢ]</td> <td>Livraisons express, tournées de réparation</td> </tr>
-        <tr><td class="badge">Multi-TSP (mTSP)</td> <td>Plusieurs voyageurs partent d'un même dépôt</td> <td>Flotte de véhicules, ramassage scolaire</td> </tr>
+        <tr><td class="badge">TSP Symétrique (sTSP)</td><td>Matrice des distances symétrique : w(i,j)=w(j,i). Nombre de tournées : (n−1)!/2</td><td>Transport routier (route bidirectionnelle)</td></tr>
+        <tr><td class="badge">TSP Asymétrique (aTSP)</td><td>Matrice des distances asymétrique : w(i,j)≠w(j,i)</td><td>Réseaux routiers avec sens unique, ordonnancement</td></tr>
+        <tr><td class="badge">TSP Métrique</td><td>Satisfait l'inégalité triangulaire</td><td>Distances géographiques (vol d'oiseau, temps de trajet)</td></tr>
+        <tr><td class="badge">TSP Euclidien</td><td>Villes dans ℝ², distance euclidienne</td><td>Conception de circuits imprimés (VLSI)</td></tr>
+        <tr><td class="badge">TSP avec fenêtres de temps (TSPTW)</td><td>Chaque ville i dans un intervalle [aᵢ, bᵢ]</td><td>Livraisons express, tournées de réparation</td></tr>
+        <tr><td class="badge">Multi-TSP (mTSP)</td><td>Plusieurs voyageurs partent d'un même dépôt</td><td>Flotte de véhicules, ramassage scolaire</td></tr>
       </tbody>
-     </table>
+    </table>
   </div>
 
   <!-- CONCLUSION -->
