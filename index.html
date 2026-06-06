@@ -3,113 +3,303 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TSP·WORLD | PFE 2025-2026 | Iliass & Soufiane</title>
+  <title>PFE | Optimisation Combinatoire & TSP | Iliass & Soufiane</title>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;900&family=Raleway:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Raleway', sans-serif; background: #070b12; color: #e2e8f0; overflow-x: hidden; }
+    body {
+      font-family: 'Raleway', sans-serif;
+      background: linear-gradient(135deg, #f0f4fc 0%, #eef2f8 100%);
+      color: #1a2a3a;
+      overflow-x: hidden;
+    }
     html { scroll-behavior: smooth; }
     ::-webkit-scrollbar { width: 5px; }
-    ::-webkit-scrollbar-track { background: #0d1420; }
+    ::-webkit-scrollbar-track { background: #e0e5ec; }
     ::-webkit-scrollbar-thumb { background: #c9a84c; border-radius: 10px; }
 
+    /* Navbar */
     .navbar {
       position: fixed; top: 0; width: 100%; padding: 1rem 3rem;
-      background: rgba(7, 11, 18, 0.96); backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(201, 168, 76, 0.2); z-index: 1000;
+      background: rgba(255, 255, 255, 0.96); backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.06); z-index: 1000;
       display: flex; justify-content: space-between; align-items: center;
+      box-shadow: 0 2px 20px rgba(0,0,0,0.02);
     }
-    .logo { font-family: 'Cinzel', serif; font-size: 1.2rem; font-weight: 700; letter-spacing: 4px; color: #c9a84c; text-decoration: none; }
-    .logo span { color: #00d4c8; }
+    .logo { 
+      font-family: 'Cinzel', serif; 
+      font-size: 1.2rem; 
+      font-weight: 700; 
+      letter-spacing: 4px; 
+      color: #c9a84c; 
+      text-decoration: none; 
+    }
+    .logo span { color: #0088aa; }
     .nav-links { display: flex; gap: 2rem; list-style: none; }
-    .nav-links a { color: #8892a4; text-decoration: none; font-size: 0.7rem; letter-spacing: 2px; text-transform: uppercase; transition: 0.3s; }
+    .nav-links a { color: #4a5568; text-decoration: none; font-size: 0.7rem; letter-spacing: 2px; text-transform: uppercase; transition: 0.3s; font-weight: 600; }
     .nav-links a:hover { color: #c9a84c; }
+    .nav-links .app-link { color: #0088aa; border: 1px solid rgba(0,136,170,0.3); padding: 0.3rem 0.8rem; border-radius: 30px; }
 
-    /* BOUTON APPLICATION NAVBAR */
-    .nav-links .app-link { color: #00d4c8; border: 1px solid rgba(0,212,200,0.3); padding: 0.3rem 0.8rem; border-radius: 30px; transition: 0.3s; }
-    .nav-links .app-link:hover { background: rgba(0,212,200,0.15); color: #00d4c8; }
-
+    /* Hero */
     .hero {
-      min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center;
-      text-align: center; padding: 8rem 2rem 4rem;
-      background: radial-gradient(ellipse 80% 60% at 50% 40%, rgba(0,212,200,0.06) 0%, transparent 70%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 8rem 2rem 4rem;
       position: relative;
     }
-    .hero-badge { border: 1px solid rgba(201,168,76,0.3); border-radius: 50px; padding: 0.4rem 1.2rem; font-size: 0.7rem; letter-spacing: 3px; color: #c9a84c; margin-bottom: 2rem; background: rgba(201,168,76,0.05); }
-    .hero h1 { font-family: 'Cinzel', serif; font-size: clamp(2.5rem, 8vw, 5.5rem); font-weight: 900; line-height: 1.1; }
-    .hero h1 .gold { color: #c9a84c; }
-    .hero h1 .teal { color: #00d4c8; }
-    .hero-sub { font-size: 1rem; color: #8892a4; max-width: 600px; margin: 1.5rem auto; }
-    .hero-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
-    .btn-primary { padding: 0.8rem 2rem; background: linear-gradient(135deg, #c9a84c, #7a5c1e); border: none; color: #070b12; text-decoration: none; font-weight: 700; letter-spacing: 2px; font-size: 0.7rem; text-transform: uppercase; border-radius: 4px; transition: 0.3s; display: inline-block; }
-    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(201,168,76,0.3); }
-    .btn-outline { padding: 0.8rem 2rem; border: 1px solid #c9a84c; background: transparent; color: #c9a84c; text-decoration: none; letter-spacing: 2px; font-size: 0.7rem; text-transform: uppercase; border-radius: 4px; transition: 0.3s; display: inline-block; cursor: pointer; }
-    .btn-outline:hover { background: rgba(201,168,76,0.1); }
-    .btn-app { padding: 0.8rem 2rem; background: linear-gradient(135deg, #00d4c8, #0088aa); border: none; color: #070b12; text-decoration: none; font-weight: 700; letter-spacing: 2px; font-size: 0.7rem; text-transform: uppercase; border-radius: 4px; transition: 0.3s; display: inline-block; }
-    .btn-app:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(0,212,200,0.4); }
+    .hero-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      max-width: 1300px;
+      margin: 0 auto;
+      align-items: center;
+      z-index: 2;
+    }
+    .hero-text { text-align: left; }
+    
+    /* Université - GRANDE TAILLE (kbiira bzaaf) */
+    .uni-large {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #1a2a3a;
+      margin-bottom: 1.5rem;
+      background: linear-gradient(135deg, #c9a84c15, #0088aa10);
+      padding: 0.6rem 1rem;
+      border-radius: 12px;
+      border-left: 4px solid #c9a84c;
+      letter-spacing: 0.5px;
+    }
+    .uni-large .uni-name {
+      color: #c9a84c;
+      font-size: 1.2rem;
+    }
+    .uni-large .school-name {
+      color: #0088aa;
+      font-size: 1.1rem;
+    }
+    .hero-title-main {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      font-weight: 800;
+      color: #1a2a3a;
+      margin-bottom: 0.5rem;
+    }
+    .hero-title-main .gold { color: #c9a84c; }
+    .hero-title-second {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(1.5rem, 3.5vw, 2rem);
+      font-weight: 700;
+      color: #0088aa;
+      margin-bottom: 1rem;
+      border-bottom: 2px solid rgba(0,136,170,0.15);
+      display: inline-block;
+      padding-bottom: 0.3rem;
+    }
+    .pfe-badge {
+      background: rgba(201,168,76,0.12);
+      border: 1px solid rgba(201,168,76,0.3);
+      border-radius: 50px;
+      padding: 0.3rem 1rem;
+      font-size: 0.65rem;
+      letter-spacing: 2px;
+      color: #c9a84c;
+      margin: 1rem 0 0.5rem 0;
+      display: inline-block;
+      font-weight: 600;
+    }
+    .authors {
+      background: linear-gradient(135deg, #f8fafc, #ffffff);
+      border-radius: 14px;
+      padding: 1rem 1.2rem;
+      margin: 0.8rem 0;
+      border: 1px solid #e2e8f0;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+    }
+    .authors p {
+      margin: 0.3rem 0;
+      font-size: 0.9rem;
+    }
+    .authors strong {
+      color: #c9a84c;
+      font-weight: 700;
+    }
+    .supervisor {
+      color: #4a5568;
+      font-size: 0.8rem;
+      margin-top: 0.4rem;
+      padding-top: 0.4rem;
+      border-top: 1px dashed #e2e8f0;
+    }
+    .supervisor span {
+      color: #0088aa;
+      font-weight: 700;
+    }
+    .uni-year {
+      margin-top: 0.6rem;
+      font-size: 0.7rem;
+      color: #718096;
+      letter-spacing: 0.5px;
+    }
+    .hero-stats {
+      display: flex;
+      gap: 1.5rem;
+      margin-top: 1.2rem;
+      flex-wrap: wrap;
+    }
+    .stat-item { text-align: center; }
+    .stat-number { font-family: 'Cinzel', serif; font-size: 1.5rem; font-weight: 800; color: #c9a84c; }
+    .stat-label { font-size: 0.6rem; color: #718096; text-transform: uppercase; letter-spacing: 1px; font-weight: 600; }
+    .btn-launch {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 0.7rem 1.6rem;
+      background: linear-gradient(135deg, #c9a84c, #0088aa);
+      border: none;
+      border-radius: 50px;
+      color: white;
+      font-family: 'Cinzel', serif;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-decoration: none;
+      transition: 0.3s;
+      margin-top: 1rem;
+      box-shadow: 0 4px 12px rgba(0,136,170,0.2);
+    }
+    .btn-launch:hover { transform: scale(1.02); box-shadow: 0 8px 20px rgba(0,136,170,0.3); }
 
-    .scroll-down { position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 0.5rem; }
-    .scroll-down span { font-size: 0.6rem; letter-spacing: 2px; color: #8892a4; }
-    .scroll-line { width: 1px; height: 40px; background: linear-gradient(to bottom, #c9a84c, transparent); }
+    /* Hero Images - GRANDE */
+    .hero-images { 
+      position: relative; 
+    }
+    .big-image-card {
+      background: white;
+      border: 1px solid #e2e8f0;
+      border-radius: 24px;
+      overflow: hidden;
+      transition: 0.3s;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+    }
+    .big-image-card:hover { 
+      border-color: #c9a84c; 
+      transform: translateY(-5px); 
+      box-shadow: 0 20px 35px rgba(0,0,0,0.12);
+    }
+    .big-placeholder {
+      width: 100%; 
+      height: 380px;
+      background: linear-gradient(135deg, #1a2a3a, #0d1a2e);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+    /* Texte sur l'image - grand et clair */
+    .image-main-text {
+      text-align: center;
+      padding: 1.5rem;
+    }
+    .image-main-text h2 {
+      font-family: 'Cinzel', serif;
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: #c9a84c;
+      margin-bottom: 0.5rem;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    }
+    .image-main-text p {
+      font-size: 1rem;
+      color: rgba(255,255,255,0.9);
+      letter-spacing: 1px;
+    }
+    .image-tags {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.6rem;
+      margin-top: 1rem;
+    }
+    .image-tag {
+      background: rgba(201,168,76,0.2);
+      border: 1px solid rgba(201,168,76,0.5);
+      border-radius: 30px;
+      padding: 0.3rem 1rem;
+      font-size: 0.7rem;
+      color: #c9a84c;
+      font-weight: 600;
+    }
+    .big-caption { 
+      padding: 1rem; 
+      text-align: center; 
+      font-size: 0.75rem; 
+      color: #4a5568; 
+      font-weight: 600; 
+      border-top: 1px solid #e2e8f0; 
+      background: white; 
+    }
 
-    .stats-bar { display: flex; justify-content: space-around; flex-wrap: wrap; background: #0d1420; border-top: 1px solid rgba(201,168,76,0.1); border-bottom: 1px solid rgba(201,168,76,0.1); padding: 1.5rem 2rem; }
-    .stat-item { text-align: center; font-size: 0.8rem; color: #8892a4; }
-    .stat-item strong { font-family: 'Cinzel', serif; font-size: 1.2rem; color: #c9a84c; display: block; margin-bottom: 0.3rem; }
-
-    section { padding: 80px 5%; }
-    .container { max-width: 1200px; margin: 0 auto; }
-    .section-header { text-align: center; margin-bottom: 3rem; }
-    .section-header h2 { font-family: 'Cinzel', serif; font-size: 2rem; font-weight: 700; }
+    /* Sections */
+    .section { padding: 70px 5%; }
+    .section-header { text-align: center; margin-bottom: 2.5rem; }
+    .section-header h2 { font-family: 'Cinzel', serif; font-size: 1.8rem; font-weight: 700; color: #1a2a3a; }
     .section-header h2 span { color: #c9a84c; }
-    .section-line { width: 60px; height: 2px; background: linear-gradient(90deg, #c9a84c, #00d4c8); margin: 1rem auto 0; }
+    .section-line { width: 50px; height: 2px; background: linear-gradient(90deg, #c9a84c, #0088aa); margin: 0.8rem auto 0; }
+    .section-bg { background: #ffffff; border-top: 1px solid #e2e8f0; border-bottom: 1px solid #e2e8f0; }
 
-    .tsp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; }
-    .tsp-text p { color: #8892a4; line-height: 1.8; margin-bottom: 1rem; }
-    .tsp-card { background: rgba(13,20,32,0.6); border: 1px solid rgba(201,168,76,0.2); border-radius: 16px; padding: 1.5rem; }
-    .tsp-card canvas { width: 100%; background: #0d1420; border-radius: 12px; }
+    /* Table des matières */
+    .toc-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .toc-card {
+      background: white;
+      border: 1px solid #e2e8f0;
+      border-radius: 18px;
+      padding: 1.2rem;
+      transition: 0.3s;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+    }
+    .toc-card:hover { border-color: #c9a84c; transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
+    .toc-num { font-family: 'Cinzel', serif; font-size: 1.6rem; font-weight: 800; color: #c9a84c; opacity: 0.4; margin-bottom: 0.3rem; }
+    .toc-card h3 { font-family: 'Cinzel', serif; font-size: 1rem; margin-bottom: 0.4rem; color: #1a2a3a; }
+    .toc-card p { font-size: 0.7rem; color: #718096; line-height: 1.5; }
 
-    .table-combinatoire { width: 100%; border-collapse: collapse; background: #0d1420; border-radius: 12px; overflow: hidden; }
-    .table-combinatoire th { background: rgba(201,168,76,0.1); padding: 1rem; font-family: 'Cinzel', serif; font-size: 0.7rem; color: #c9a84c; }
-    .table-combinatoire td { padding: 0.8rem 1rem; border-bottom: 1px solid rgba(201,168,76,0.1); color: #8892a4; text-align: center; }
-
-    .methodes-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 2rem; }
-    .methode-card { background: rgba(13,20,32,0.5); border: 1px solid rgba(201,168,76,0.15); border-radius: 16px; padding: 1.8rem; transition: 0.3s; }
-    .methode-card:hover { border-color: #c9a84c; transform: translateY(-5px); background: rgba(13,20,32,0.8); }
-    .methode-card h3 { font-family: 'Cinzel', serif; font-size: 1.2rem; margin-bottom: 1rem; color: #c9a84c; }
-    .methode-card ul { list-style: none; }
-    .methode-card li { padding: 0.4rem 0; color: #8892a4; font-size: 0.85rem; border-bottom: 1px dashed rgba(201,168,76,0.1); }
-    .complexity-badge { display: inline-block; font-size: 0.6rem; background: rgba(0,212,200,0.1); color: #00d4c8; padding: 0.2rem 0.6rem; border-radius: 20px; margin-left: 0.5rem; }
-
-    .timeline { max-width: 700px; margin: 0 auto; position: relative; }
-    .timeline::before { content: ''; position: absolute; left: 20px; top: 0; bottom: 0; width: 2px; background: linear-gradient(to bottom, #c9a84c, #00d4c8); }
-    .timeline-node { display: flex; gap: 1.5rem; margin-bottom: 2rem; position: relative; }
-    .timeline-num { width: 40px; height: 40px; background: #c9a84c; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Cinzel', serif; font-weight: bold; color: #070b12; z-index: 2; }
-    .timeline-content { flex: 1; background: rgba(13,20,32,0.6); border: 1px solid rgba(201,168,76,0.15); border-radius: 12px; padding: 1rem 1.5rem; }
-    .timeline-content h4 { color: #c9a84c; margin-bottom: 0.3rem; }
-    .timeline-content p { color: #8892a4; font-size: 0.85rem; }
-
-    .team-preview { display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap; margin: 2rem 0; }
-    .team-mini { text-align: center; background: rgba(13,20,32,0.6); border: 1px solid rgba(201,168,76,0.2); border-radius: 20px; padding: 2rem; width: 250px; transition: 0.3s; }
-    .team-mini:hover { border-color: #00d4c8; transform: translateY(-5px); }
-    .avatar { width: 100px; height: 100px; background: linear-gradient(135deg, #c9a84c, #00d4c8); border-radius: 50%; margin: 0 auto 1rem; display: flex; align-items: center; justify-content: center; font-family: 'Cinzel', serif; font-size: 1.8rem; font-weight: bold; color: #070b12; }
-    .team-mini h4 { font-size: 1.1rem; margin-bottom: 0.2rem; }
-    .team-mini p { color: #8892a4; font-size: 0.8rem; }
-
-    footer { text-align: center; padding: 3rem; border-top: 1px solid rgba(201,168,76,0.1); background: #070b12; }
-    .footer-logo { font-family: 'Cinzel', serif; font-size: 1.3rem; color: #c9a84c; margin-bottom: 0.5rem; }
-    .footer-logo span { color: #00d4c8; }
-    footer p { color: #8892a4; font-size: 0.7rem; }
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      border-top: 1px solid #e2e8f0;
+      background: #ffffff;
+    }
+    .footer-logo { font-family: 'Cinzel', serif; font-size: 1rem; color: #c9a84c; margin-bottom: 0.3rem; }
+    .footer-logo span { color: #0088aa; }
+    footer p { color: #718096; font-size: 0.65rem; }
 
     @media (max-width: 768px) {
       .navbar { padding: 1rem; }
       .nav-links { display: none; }
-      .tsp-grid { grid-template-columns: 1fr; }
-      .methodes-grid { grid-template-columns: 1fr; }
-      .stats-bar { flex-direction: column; gap: 1rem; text-align: center; }
-      section { padding: 50px 1.5rem; }
+      .hero-content { grid-template-columns: 1fr; gap: 2rem; text-align: center; }
+      .hero-text { text-align: center; }
+      .hero-stats { justify-content: center; }
+      .section { padding: 40px 1.2rem; }
+      .uni-large { font-size: 0.9rem; text-align: left; }
+      .uni-large .uni-name, .uni-large .school-name { font-size: 0.95rem; }
+      .big-placeholder { height: 280px; }
+      .image-main-text h2 { font-size: 1.3rem; }
+      .image-main-text p { font-size: 0.7rem; }
     }
-    .reveal { opacity: 0; transform: translateY(30px); transition: 0.7s; }
-    .reveal.visible { opacity: 1; transform: translateY(0); }
   </style>
 </head>
 <body>
@@ -117,154 +307,162 @@
 <nav class="navbar">
   <a href="index.html" class="logo">TSP<span>·WORLD</span></a>
   <ul class="nav-links">
-    <li><a href="pages/01-probleme.html">Problème</a></li>
-    <li><a href="pages/02-complexite.html">Complexité</a></li>
-    <li><a href="pages/03-algorithmes.html">Algorithmes</a></li>
-    <li><a href="pages/04-comparaison.html">Comparaison</a></li>
-    <li><a href="pages/05-equipe.html">Équipe</a></li>
+    <li><a href="#introduction">Accueil</a></li>
+    <li><a href="#plan">Plan</a></li>
+    <li><a href="pages/01-introduction.html">Ch.1</a></li>
+    <li><a href="pages/02-optimisation-combinatoire.html">Ch.2</a></li>
+    <li><a href="pages/03-calculabilite.html">Ch.3</a></li>
+    <li><a href="pages/04-complexites.html">Ch.4</a></li>
+    <li><a href="pages/05-tsp.html">Ch.5</a></li>
     <li><a href="tsp-world-pro.html" class="app-link">✨ APP</a></li>
   </ul>
 </nav>
 
-<section class="hero">
-  <div class="hero-badge">Projet de Fin d'Études · 2025–2026</div>
-  <h1><span class="gold">Traveling</span><br><span class="teal">Salesman Problem</span></h1>
-  <p class="hero-sub">10 algorithmes. De O(n!) à O(n²·2ⁿ). Une étude comparative complète.</p>
-  <div class="hero-buttons">
-    <a href="pages/03-algorithmes.html" class="btn-primary">Explorer</a>
-    <a href="pages/05-equipe.html" class="btn-outline">Voir l'équipe</a>
-    <a href="tsp-world-pro.html" class="btn-app">🚀 Application Finale</a>
+<!-- HERO SECTION -->
+<section class="hero" id="introduction">
+  <div class="hero-content">
+    <div class="hero-text">
+      <!-- Université - GRANDE TAILLE (kbiira bzaaf) -->
+      <div class="uni-large">
+        <span class="uni-name">🏛️ Université Abdelmalek Essaâdi</span><br>
+        <span class="school-name">📚 École Normale Supérieure Tétouan</span>
+      </div>
+      
+      <div class="hero-title-main">Optimisation Combinatoire appliquée au</div>
+      <div class="hero-title-second">Problème du Voyageur de Commerce</div>
+      
+      <div class="pfe-badge">📖 PROJET DE FIN D'ÉTUDES</div>
+      <div class="authors">
+        <p><strong>👥 Réalisé par :</strong></p>
+        <p>ER-RTHIMI SOFIANE</p>
+        <p>ER ROUIFFI ILYAS</p>
+        <div class="supervisor"><strong>📌 Encadré par :</strong> <span>Pr. EL HICHAMI OTHMANE</span></div>
+      </div>
+      <div class="uni-year">🎓 Année universitaire 2025–2026 — Licence en Mathématiques</div>
+      
+      <div class="hero-stats">
+        <div class="stat-item"><div class="stat-number">7</div><div class="stat-label">Chapitres</div></div>
+        <div class="stat-item"><div class="stat-number">10+</div><div class="stat-label">Algorithmes</div></div>
+        <div class="stat-item"><div class="stat-number">NP-C</div><div class="stat-label">Classe</div></div>
+        <div class="stat-item"><div class="stat-number">ENS</div><div class="stat-label">Tétouan</div></div>
+      </div>
+      <a href="#plan" class="btn-launch">📖 Découvrir le plan →</a>
+    </div>
+    
+    <!-- GRANDE IMAGE - PAS DE BADGE TSP WORLD -->
+    <div class="hero-images">
+      <div class="big-image-card">
+        <div class="big-placeholder">
+          <div class="image-main-text">
+            <h2>✈️ TSP WORLD PRO</h2>
+            <p>Optimisation Combinatoire · Algorithmes TSP</p>
+            <div class="image-tags">
+              <span class="image-tag">Programmation Dynamique</span>
+              <span class="image-tag">Held-Karp</span>
+              <span class="image-tag">Christofides</span>
+              <span class="image-tag">Plus Proche Voisin</span>
+              <span class="image-tag">2-OPT</span>
+              <span class="image-tag">Colonies de Fourmis</span>
+            </div>
+          </div>
+        </div>
+        <div class="big-caption">
+          📊 NP-Difficile | Résolution exacte et approchée | Application interactive
+        </div>
+      </div>
+    </div>
   </div>
-  <div class="scroll-down"><span>SCROLL</span><div class="scroll-line"></div></div>
 </section>
 
-<div class="stats-bar">
-  <div class="stat-item"><strong>10</strong> Algorithmes</div>
-  <div class="stat-item"><strong>NP-Difficile</strong> Classe</div>
-  <div class="stat-item"><strong>O(n!) → O(n²·2ⁿ)</strong> Complexité</div>
-  <div class="stat-item"><strong>Python</strong> Implémentation</div>
-  <div class="stat-item"><strong>TSPLIB</strong> Benchmarks</div>
+<!-- SECTION PLAN DU MÉMOIRE -->
+<section class="section section-bg" id="plan">
+  <div class="section-header">
+    <h2>Plan du <span>mémoire</span></h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="toc-grid">
+    <a href="pages/01-introduction.html" class="toc-card">
+      <div class="toc-num">01</div>
+      <h3>📖 Introduction Générale</h3>
+      <p>Contexte, problématique, objectifs et structure du mémoire.</p>
+    </a>
+    <a href="pages/02-optimisation-combinatoire.html" class="toc-card">
+      <div class="toc-num">02</div>
+      <h3>📐 Optimisation Combinatoire</h3>
+      <p>Définitions, programmation linéaire, stochastique et classification des méthodes.</p>
+    </a>
+    <a href="pages/03-calculabilite.html" class="toc-card">
+      <div class="toc-num">03</div>
+      <h3>⚙️ Calculabilité & Décidabilité</h3>
+      <p>Machines de Turing, thèse de Church-Turing, problème de l'arrêt.</p>
+    </a>
+    <a href="pages/04-complexites.html" class="toc-card">
+      <div class="toc-num">04</div>
+      <h3>🔬 Complexité : P, NP, NP-Complet</h3>
+      <p>Classes de complexité, réduction polynomiale, conjecture P vs NP.</p>
+    </a>
+    <a href="pages/05-tsp.html" class="toc-card">
+      <div class="toc-num">05</div>
+      <h3>🚚 Problème du Voyageur de Commerce</h3>
+      <p>Définition, variantes, explosion combinatoire, applications.</p>
+    </a>
+    <a href="pages/06-programmation-dynamique.html" class="toc-card">
+      <div class="toc-num">06</div>
+      <h3>⚡ Programmation Dynamique</h3>
+      <p>Principe de Bellman, algorithme de Held-Karp, complexité O(n²·2ⁿ).</p>
+    </a>
+    <a href="pages/07-methodes-resolution.html" class="toc-card">
+      <div class="toc-num">07</div>
+      <h3>🎯 Méthodes de Résolution</h3>
+      <p>Branch & Bound, Christofides, recuit simulé, recherche tabou, AG, colonies de fourmis.</p>
+    </a>
+  </div>
+</section>
+
+<!-- SECTION ÉQUIPE -->
+<section class="section">
+  <div class="section-header">
+    <h2>Notre <span>équipe</span></h2>
+    <div class="section-line"></div>
+  </div>
+  <div style="display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; max-width: 700px; margin: 0 auto;">
+    <div style="text-align: center; background: white; border: 1px solid #e2e8f0; border-radius: 18px; padding: 1.2rem; width: 200px;">
+      <div style="width: 70px; height: 70px; background: linear-gradient(135deg, #c9a84c, #0088aa); border-radius: 50%; margin: 0 auto 0.6rem; display: flex; align-items: center; justify-content: center; font-size: 1.6rem; font-weight: bold; color: white;">IE</div>
+      <h3 style="font-size: 0.9rem; color: #1a2a3a;">Iliass Errouifi</h3>
+      <p style="font-size: 0.65rem; color: #718096;">Algorithmes · Développement · Application</p>
+    </div>
+    <div style="text-align: center; background: white; border: 1px solid #e2e8f0; border-radius: 18px; padding: 1.2rem; width: 200px;">
+      <div style="width: 70px; height: 70px; background: linear-gradient(135deg, #c9a84c, #0088aa); border-radius: 50%; margin: 0 auto 0.6rem; display: flex; align-items: center; justify-content: center; font-size: 1.6rem; font-weight: bold; color: white;">SR</div>
+      <h3 style="font-size: 0.9rem; color: #1a2a3a;">Soufiane Er-Rthimi</h3>
+      <p style="font-size: 0.65rem; color: #718096;">Optimisation · RO · Documentation</p>
+    </div>
+  </div>
+  <div style="text-align: center; margin-top: 1.5rem;">
+    <p style="color: #718096; font-size: 0.75rem;">Encadré par <strong style="color: #c9a84c;">Monsieur Outman El Hichami</strong> — ENS Tétouan</p>
+  </div>
+</section>
+
+<!-- BOUTON VERS APPLICATION -->
+<div style="text-align: center; padding: 1.5rem;">
+  <a href="tsp-world-pro.html" class="btn-launch" style="background: linear-gradient(135deg, #c9a84c, #0088aa);">
+    <span>🚀 Découvrir l'application TSP WORLD PRO</span>
+    <span>→</span>
+  </a>
 </div>
-
-<!-- SECTION 01: PROBLÈME -->
-<section id="probleme">
-  <div class="container">
-    <div class="section-header"><h2>C'est quoi le <span>TSP</span> ?</h2><div class="section-line"></div></div>
-    <div class="tsp-grid">
-      <div class="tsp-text">
-        <p><strong>Le problème du voyageur de commerce (TSP)</strong> est l'un des problèmes d'optimisation combinatoire les plus célèbres.</p>
-        <p>Étant donné <strong>n villes</strong> et les distances entre chaque paire, le but est de trouver <strong>le plus court circuit</strong> qui passe par chaque ville exactement une fois et revient au point de départ.</p>
-        <p>Malgré sa simplicité d'énoncé, il est <strong>NP-difficile</strong> et sa résolution exacte devient impossible pour plus de 30-40 villes.</p>
-        <a href="pages/01-probleme.html" class="btn-outline" style="margin-top:1rem; display:inline-block;">📖 En savoir plus →</a>
-      </div>
-      <div class="tsp-card">
-        <canvas id="tspCanvas" width="400" height="300" style="width:100%; background:#0d1420; border-radius:12px;"></canvas>
-        <p style="font-size:0.7rem; text-align:center; margin-top:0.5rem; color:#8892a4;">Tournée optimale (6 villes)</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- SECTION 02: COMPLEXITÉ -->
-<section id="complexite" style="background: #0d1420;">
-  <div class="container">
-    <div class="section-header"><h2>Pourquoi est-ce <span>si difficile</span> ?</h2><div class="section-line"></div></div>
-    <table class="table-combinatoire">
-      <thead><tr><th>n</th><th>Nombre de tours</th><th>Temps estimé</th></tr></thead>
-      <tbody>
-        <tr><td>5<\/td><td>12<\/td><td>trivial<\/td></tr>
-        <tr><td>10<\/td><td>181 440<\/td><td>facile<\/td></tr>
-        <tr><td>15<\/td><td>43 milliards<\/td><td>43 secondes<\/td></tr>
-        <tr><td>20<\/td><td>60 quadrillions<\/td><td style="color:#c9a84c;">≈ 19 ANS<\/td></tr>
-        <tr><td>30<\/td><td>4.4 × 10³⁰<\/td><td style="color:#c9a84c;">impossible<\/td></tr>
-      </tbody>
-    </table>
-    <p style="text-align:center; margin-top:2rem; color:#8892a4;">(n-1)!/2 tours — une croissance exponentielle implacable.</p>
-    <div style="text-align:center; margin-top:1rem;"><a href="pages/02-complexite.html" class="btn-outline">📊 Explorer la complexité →</a></div>
-  </div>
-</section>
-
-<!-- SECTION 03: ALGORITHMES -->
-<section id="methodes">
-  <div class="container">
-    <div class="section-header"><h2>Les <span>méthodes</span> de résolution</h2><div class="section-line"></div></div>
-    <div class="methodes-grid">
-      <div class="methode-card"><h3>📐 Méthodes Exactes</h3><ul><li>Force Brute <span class="complexity-badge">O(n!)</span></li><li>Held-Karp <span class="complexity-badge">O(n²·2ⁿ)</span></li><li>Branch & Bound</li></ul></div>
-      <div class="methode-card"><h3>⚡ Heuristiques</h3><ul><li>Plus Proche Voisin <span class="complexity-badge">O(n²)</span></li><li>Insertion <span class="complexity-badge">O(n²)</span></li><li>Christofides <span class="complexity-badge">O(n³)</span></li></ul></div>
-      <div class="methode-card"><h3>🐜 Métaheuristiques</h3><ul><li>Colonies de Fourmis</li><li>Algorithme Génétique</li><li>Lin-Kernighan</li></ul></div>
-    </div>
-    <div style="text-align:center; margin-top:2rem;"><a href="pages/03-algorithmes.html" class="btn-primary">🔬 Voir tous les algorithmes →</a></div>
-  </div>
-</section>
-
-<!-- SECTION 04: COMPARAISON + TIMELINE -->
-<section id="timeline" style="background:#0d1420;">
-  <div class="container">
-    <div class="section-header"><h2>Architecture du <span>mémoire</span></h2><div class="section-line"></div></div>
-    <div class="timeline">
-      <div class="timeline-node"><div class="timeline-num">1</div><div class="timeline-content"><h4>Calculabilité</h4><p>Machine de Turing, décidabilité</p></div></div>
-      <div class="timeline-node"><div class="timeline-num">2</div><div class="timeline-content"><h4>Complexité</h4><p>P vs NP — TSP est NP-complet</p></div></div>
-      <div class="timeline-node"><div class="timeline-num">3</div><div class="timeline-content"><h4>Réductions NP</h4><p>Preuve de NP-complétude</p></div></div>
-      <div class="timeline-node"><div class="timeline-num">4</div><div class="timeline-content"><h4>Held-Karp</h4><p>Programmation dynamique</p></div></div>
-      <div class="timeline-node"><div class="timeline-num">5</div><div class="timeline-content"><h4>Implémentation</h4><p>Python + TSPLIB</p></div></div>
-    </div>
-    <div style="text-align:center; margin-top:2rem;"><a href="pages/04-comparaison.html" class="btn-outline">📈 Voir la comparaison →</a></div>
-  </div>
-</section>
-
-<!-- SECTION 05: ÉQUIPE -->
-<section id="equipe">
-  <div class="container">
-    <div class="section-header"><h2>Notre <span>équipe</span></h2><div class="section-line"></div></div>
-    <div class="team-preview">
-      <div class="team-mini"><div class="avatar">IE</div><h4>Iliass Errouifi</h4><p>Algorithmes exacts & complexité</p></div>
-      <div class="team-mini"><div class="avatar">SR</div><h4>Soufiane Er-Rthimi</h4><p>Métaheuristiques & implémentation</p></div>
-    </div>
-    <div style="text-align:center;"><a href="pages/05-equipe.html" class="btn-primary">👥 Rencontrer l'équipe →</a></div>
-  </div>
-</section>
 
 <footer>
   <div class="footer-logo">TSP<span>·WORLD</span></div>
-  <p>Projet de Fin d'Études · 2025–2026</p>
-  <p>Iliass Errouifi & Soufiane Er-Rthimi</p>
-  <div style="margin-top: 1rem;">
-    <a href="pages/01-probleme.html" style="color:#8892a4; text-decoration:none; margin:0 0.5rem; font-size:0.7rem;">Problème</a>
-    <a href="pages/02-complexite.html" style="color:#8892a4; text-decoration:none; margin:0 0.5rem; font-size:0.7rem;">Complexité</a>
-    <a href="pages/03-algorithmes.html" style="color:#8892a4; text-decoration:none; margin:0 0.5rem; font-size:0.7rem;">Algorithmes</a>
-    <a href="pages/04-comparaison.html" style="color:#8892a4; text-decoration:none; margin:0 0.5rem; font-size:0.7rem;">Comparaison</a>
-    <a href="pages/05-equipe.html" style="color:#8892a4; text-decoration:none; margin:0 0.5rem; font-size:0.7rem;">Équipe</a>
-    <a href="tsp-world-pro.html" style="color:#00d4c8; text-decoration:none; margin:0 0.5rem; font-size:0.7rem;">✨ APP</a>
+  <p>Projet de Fin d'Études — 2025-2026 — École Normale Supérieure de Tétouan</p>
+  <p>Iliass Errouifi & Soufiane Er-Rthimi — Sous la direction de Monsieur Outman El Hichami</p>
+  <div style="margin-top: 0.8rem;">
+    <a href="pages/01-introduction.html" style="color:#718096; text-decoration:none; margin:0 0.4rem; font-size:0.65rem;">Introduction</a>
+    <a href="pages/02-optimisation-combinatoire.html" style="color:#718096; text-decoration:none; margin:0 0.4rem; font-size:0.65rem;">Optimisation</a>
+    <a href="pages/03-calculabilite.html" style="color:#718096; text-decoration:none; margin:0 0.4rem; font-size:0.65rem;">Calculabilité</a>
+    <a href="pages/04-complexites.html" style="color:#718096; text-decoration:none; margin:0 0.4rem; font-size:0.65rem;">Complexité</a>
+    <a href="pages/05-tsp.html" style="color:#718096; text-decoration:none; margin:0 0.4rem; font-size:0.65rem;">TSP</a>
+    <a href="tsp-world-pro.html" style="color:#0088aa; text-decoration:none; margin:0 0.4rem; font-size:0.65rem;">Application</a>
   </div>
 </footer>
 
-<script>
-  const canvas = document.getElementById('tspCanvas');
-  if(canvas) {
-    const ctx = canvas.getContext('2d');
-    const width = canvas.clientWidth;
-    canvas.width = width;
-    canvas.height = 280;
-    const points = [
-      {x: width*0.2, y: 280*0.3}, {x: width*0.45, y: 280*0.15},
-      {x: width*0.7, y: 280*0.25}, {x: width*0.8, y: 280*0.55},
-      {x: width*0.5, y: 280*0.7}, {x: width*0.25, y: 280*0.6}
-    ];
-    const tour = [0,1,2,3,4,5];
-    ctx.clearRect(0,0,canvas.width,canvas.height);
-    ctx.strokeStyle = '#c9a84c'; ctx.lineWidth = 2;
-    ctx.beginPath();
-    for(let i=0;i<tour.length;i++) {
-      let p1 = points[tour[i]];
-      let p2 = points[tour[(i+1)%tour.length]];
-      ctx.moveTo(p1.x,p1.y); ctx.lineTo(p2.x,p2.y);
-    }
-    ctx.stroke();
-    ctx.fillStyle = '#00d4c8';
-    points.forEach(p => { ctx.beginPath(); ctx.arc(p.x,p.y,5,0,2*Math.PI); ctx.fill(); ctx.fillStyle='#c9a84c'; ctx.beginPath(); ctx.arc(p.x,p.y,2,0,2*Math.PI); ctx.fill(); ctx.fillStyle='#00d4c8'; });
-  }
-  const observer = new IntersectionObserver((e) => e.forEach(e => e.isIntersecting && e.target.classList.add('visible')), {threshold:0.1});
-  document.querySelectorAll('.tsp-grid,.methodes-grid,.timeline-node,.team-mini,.table-combinatoire').forEach(el => { el.classList.add('reveal'); observer.observe(el); });
-</script>
 </body>
 </html>
