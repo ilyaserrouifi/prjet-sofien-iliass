@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chapitre 5 | TSP : Problème du Voyageur de Commerce | PFE 2025-2026</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;900&family=Raleway:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Raleway', sans-serif;
+      background: #f5f7fb;
+      color: #1a2a3a;
+      line-height: 1.6;
+    }
+    .navbar {
+      position: fixed; top: 0; width: 100%; padding: 1rem 3rem;
+      background: rgba(255, 255, 255, 0.96); backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.08); z-index: 1000;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .logo { font-family: 'Cinzel', serif; font-size: 1.2rem; font-weight: 700; letter-spacing: 4px; color: #c9a84c; text-decoration: none; }
+    .logo span { color: #0088aa; }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { color: #4a5568; text-decoration: none; font-size: 0.7rem; letter-spacing: 2px; text-transform: uppercase; transition: 0.3s; font-weight: 600; }
+    .nav-links a:hover { color: #c9a84c; }
+    .container { max-width: 1000px; margin: 0 auto; padding: 100px 2rem 3rem; }
+    h1 { font-family: 'Cinzel', serif; font-size: 2rem; font-weight: 800; color: #1a2a3a; margin-bottom: 0.5rem; border-left: 4px solid #c9a84c; padding-left: 1rem; }
+    h1 span { color: #c9a84c; }
+    .chapitre-badge { display: inline-block; background: rgba(201,168,76,0.12); border: 1px solid rgba(201,168,76,0.3); border-radius: 50px; padding: 0.2rem 0.8rem; font-size: 0.6rem; letter-spacing: 2px; color: #c9a84c; margin: 0.5rem 0 1rem 1rem; font-weight: 600; }
+    h2 { font-family: 'Cinzel', serif; font-size: 1.3rem; font-weight: 700; color: #0088aa; margin: 1.5rem 0 1rem; border-bottom: 2px solid rgba(0,136,170,0.15); padding-bottom: 0.3rem; }
+    h3 { font-family: 'Cinzel', serif; font-size: 1rem; font-weight: 600; color: #c9a84c; margin: 1rem 0 0.5rem; }
+    .card { background: white; border-radius: 16px; padding: 1.5rem; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(0,0,0,0.04); border: 1px solid #e2e8f0; }
+    .card p { color: #4a5568; margin-bottom: 0.8rem; font-size: 0.95rem; line-height: 1.7; }
+    .definition { background: linear-gradient(135deg, #f8fafc, #ffffff); border-left: 4px solid #c9a84c; padding: 1rem 1.2rem; margin: 1rem 0; border-radius: 0 12px 12px 0; }
+    .formula { background: #eef2f8; border-left: 4px solid #0088aa; padding: 0.8rem 1.2rem; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; color: #1a2a3a; margin: 0.8rem 0; overflow-x: auto; }
+    .table-classes { width: 100%; border-collapse: collapse; background: #eef2f8; border-radius: 12px; overflow: hidden; margin: 1rem 0; }
+    .table-classes th { background: rgba(201,168,76,0.15); padding: 0.8rem; font-family: 'Cinzel', serif; font-size: 0.7rem; color: #c9a84c; text-align: left; }
+    .table-classes td { padding: 0.6rem 0.8rem; border-bottom: 1px solid rgba(0,0,0,0.05); color: #4a5568; font-size: 0.85rem; }
+    .badge { display: inline-block; background: rgba(201,168,76,0.1); padding: 0.2rem 0.6rem; border-radius: 30px; font-size: 0.7rem; color: #c9a84c; margin-right: 0.5rem; }
+    .badge-np { background: rgba(239,68,68,0.1); color: #dc2626; }
+    .graph-schema { background: #eef2f8; border-radius: 16px; padding: 1rem; text-align: center; margin: 1rem 0; border: 1px solid #c9a84c; }
+    .graph-nodes { display: inline-flex; flex-wrap: wrap; justify-content: center; gap: 1rem; margin: 0.5rem 0; }
+    .graph-node { background: #1a2a3a; color: white; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; position: relative; }
+    .graph-edge { font-size: 0.7rem; color: #c9a84c; margin: 0 0.2rem; }
+    .btn-nav { display: flex; justify-content: space-between; margin-top: 2rem; gap: 1rem; }
+    .btn-prev, .btn-next { padding: 0.7rem 1.5rem; text-decoration: none; border-radius: 50px; font-size: 0.7rem; letter-spacing: 2px; text-transform: uppercase; transition: 0.3s; }
+    .btn-prev { border: 1px solid #c9a84c; color: #c9a84c; background: transparent; }
+    .btn-prev:hover { background: rgba(201,168,76,0.1); }
+    .btn-next { background: linear-gradient(135deg, #c9a84c, #0088aa); color: white; border: none; }
+    .btn-next:hover { transform: translateX(3px); box-shadow: 0 5px 20px rgba(201,168,76,0.3); }
+    footer { text-align: center; padding: 2rem; border-top: 1px solid #e2e8f0; background: #ffffff; margin-top: 2rem; color: #718096; font-size: 0.7rem; }
+    @media (max-width: 768px) { .navbar { padding: 1rem; } .nav-links { display: none; } .container { padding: 80px 1rem 2rem; } h1 { font-size: 1.5rem; } }
+  </style>
+</head>
+<body>
+
+<nav class="navbar">
+  <a href="../index.html" class="logo">TSP<span>·WORLD</span></a>
+  <ul class="nav-links">
+    <li><a href="../index.html">Accueil</a></li>
+    <li><a href="01-introduction.html">Ch.1</a></li>
+    <li><a href="02-optimisation-combinatoire.html">Ch.2</a></li>
+    <li><a href="03-calculabilite.html">Ch.3</a></li>
+    <li><a href="04-complexites.html">Ch.4</a></li>
+    <li><a href="05-tsp.html">Ch.5</a></li>
+    <li><a href="06-programmation-dynamique.html">Ch.6</a></li>
+    <li><a href="07-methodes-resolution.html">Ch.7</a></li>
+  </ul>
+</nav>
+
+<div class="container">
+  <span class="chapitre-badge">CHAPITRE 5</span>
+  <h1>Le Problème du <span>Voyageur de Commerce</span></h1>
+  <h1 style="font-size: 1.3rem; border-left: none; margin-top: -0.3rem;">(Traveling Salesman Problem - TSP)</h1>
+
+  <!-- INTRODUCTION -->
+  <div class="card">
+    <p>Le nom TSP vient de la situation fictive d'un représentant de commerce qui devrait faire une tournée en passant par un certain nombre de villes. On sait que le coût en argent et en temps d'un voyage peut devenir prohibitif si l'on ne prévoit pas un trajet optimal à l'avance. En langage mathématique, ce problème consiste à trouver un <strong>chemin ou un cycle hamiltonien de poids minimum</strong> dans un graphe où les sommets sont des clients et les arêtes les routes les joignant. Ce problème fait partie d'une famille des problèmes d'optimisation combinatoire et occupe la communauté de la <strong>Recherche Opérationnelle</strong>.</p>
+  </div>
+
+  <!-- DÉFINITION -->
+  <h2>📌 Définition</h2>
+  <div class="card">
+    <p>Le problème du TSP n'est pas seulement un problème difficile à résoudre d'un point de vue théorique (<strong class="badge-np">NP-difficile</strong>), mais aussi d'un point de vue pratique. Les techniques de résolution du TSP s'avèrent être très coûteuses en termes de calculs.</p>
+    <p>L'optimisation combinatoire est une branche fondamentale des mathématiques appliquées et de l'informatique et de la recherche opérationnelle. Elle s'intéresse à la recherche d'une solution optimale parmi un ensemble fini, mais souvent extrêmement grand, de solutions possibles.</p>
+    <div class="definition">
+      <strong>📌 Énoncé du TSP :</strong><br>
+      « Étant donné n villes et les distances entre chaque paire, trouver le plus court circuit passant par chaque ville exactement une fois et revenant au point de départ. »<br>
+      « Dans quel ordre doit-il organiser son voyage pour que la distance totale parcourue soit minimale ? »
+    </div>
+    <p>Malgré la simplicité de son énoncé, ce problème est <strong>NP-difficile</strong>, ce qui signifie qu'il n'existe pas d'algorithme connu capable de le résoudre en temps polynomial pour toutes les instances.</p>
+    <div class="definition">
+      <strong>📌 Définition formelle :</strong><br>
+      Soit un ensemble de n villes V = {v₁, v₂, …, v<sub>n</sub>} et une fonction de distance d : V × V → ℝ⁺. Le TSP consiste à trouver un cycle hamiltonien (tournée passant exactement une fois par chaque ville et revenant au départ) de coût total minimal :
+      <div class="formula">
+        L(π) = d(v<sub>π(n)</sub>, v<sub>π(1)</sub>) + Σ<sub>k=1</sub><sup>n-1</sup> d(v<sub>π(k)</sub>, v<sub>π(k+1)</sub>)
+      </div>
+      <p>où π est une permutation de {1, …, n} à optimiser.</p>
+    </div>
+  </div>
+
+  <!-- SCHÉMA : INSTANCE COMPLÈTE ET TOURNÉE OPTIMALE -->
+  <h2>📊 Schéma : Instance complète et tournée optimale</h2>
+  <div class="graph-schema">
+    <p style="font-weight: 700; margin-bottom: 0.5rem;">(a) Instance complète (graphe pondéré)</p>
+    <div class="graph-nodes">
+      <div class="graph-node">A</div>
+      <div class="graph-node">B</div>
+      <div class="graph-node">C</div>
+      <div class="graph-node">D</div>
+      <div class="graph-node">E</div>
+    </div>
+    <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; margin: 0.5rem 0;">
+      <span style="font-size: 0.7rem;">A-B:12</span> <span style="font-size: 0.7rem;">A-C:9</span> <span style="font-size: 0.7rem;">A-D:14</span> <span style="font-size: 0.7rem;">A-E:7</span>
+      <span style="font-size: 0.7rem;">B-C:8</span> <span style="font-size: 0.7rem;">B-D:11</span> <span style="font-size: 0.7rem;">B-E:13</span>
+      <span style="font-size: 0.7rem;">C-D:6</span> <span style="font-size: 0.7rem;">C-E:15</span> <span style="font-size: 0.7rem;">D-E:9</span>
+    </div>
+    <p style="font-weight: 700; margin: 1rem 0 0.5rem;">(b) Tournée optimale : L = 42</p>
+    <div class="graph-nodes">
+      <div class="graph-node" style="background: #c9a84c;">A</div>
+      <span style="font-size: 1rem;">→</span>
+      <div class="graph-node">B</div>
+      <span style="font-size: 1rem;">→</span>
+      <div class="graph-node">C</div>
+      <span style="font-size: 1rem;">→</span>
+      <div class="graph-node">D</div>
+      <span style="font-size: 1rem;">→</span>
+      <div class="graph-node">E</div>
+      <span style="font-size: 1rem;">→</span>
+      <div class="graph-node" style="background: #c9a84c;">A</div>
+    </div>
+    <p style="font-size: 0.7rem; color: #718096; margin-top: 0.5rem;">Tournée A → B → C → D → E → A (coût total 42)</p>
+  </div>
+
+  <!-- VARIANTES DU TSP -->
+  <h2>🔄 Variantes du TSP</h2>
+  <div class="card">
+    <ul style="margin-left: 1.5rem; color: #4a5568;">
+      <li><strong>TSP symétrique :</strong> d(i,j) = d(j,i) pour tout i,j. Nombre de tournées : (n−1)!/2.</li>
+      <li><strong>TSP asymétrique :</strong> d(i,j) ≠ d(j,i) en général (ex: routes à sens unique).</li>
+      <li><strong>TSP métrique :</strong> satisfait l'inégalité triangulaire d(i,k) ≤ d(i,j) + d(j,k).</li>
+      <li><strong>TSP euclidien :</strong> les villes sont dans ℝ², distances euclidiennes.</li>
+    </ul>
+  </div>
+
+  <!-- FORMULATION COMME PROBLÈME DE GRAPHE -->
+  <h2>📐 Formulation comme problème de graphe</h2>
+  <div class="card">
+    <div class="definition">
+      <strong>📌 Définition : Graphe complet pondéré</strong><br>
+      Soit n ∈ ℕ* le nombre de villes. On définit un graphe complet pondéré G = (V, E, w) où :
+      <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+        <li>V = {v₁, v₂, …, v<sub>n</sub>} est l'ensemble des sommets (villes)</li>
+        <li>E = {(v<sub>i</sub>, v<sub>j</sub>) | i ≠ j} est l'ensemble des arêtes (routes)</li>
+        <li>w : E → ℝ⁺ est la fonction de poids (distances ou coûts)</li>
+      </ul>
+    </div>
+    <div class="definition">
+      <strong>📌 Définition : Cycle Hamiltonien</strong><br>
+      Un cycle hamiltonien (ou tournée) dans G est un cycle qui passe exactement une fois par chaque sommet de V et revient au sommet de départ. Formellement, c'est une permutation π : {1, …, n} → {1, …, n} bijective.
+    </div>
+    
+    <!-- SCHÉMA CYCLE HAMILTONIEN -->
+    <div class="graph-schema">
+      <p style="font-weight: 700;">Cycle Hamiltonien</p>
+      <div class="graph-nodes">
+        <div class="graph-node">A</div>
+        <span style="font-size: 1rem;">→</span>
+        <div class="graph-node">B</div>
+        <span style="font-size: 1rem;">→</span>
+        <div class="graph-node">C</div>
+        <span style="font-size: 1rem;">→</span>
+        <div class="graph-node">D</div>
+        <span style="font-size: 1rem;">→</span>
+        <div class="graph-node">E</div>
+        <span style="font-size: 1rem;">→</span>
+        <div class="graph-node">A</div>
+      </div>
+      <p style="font-size: 0.7rem; color: #718096;">π = (A, B, C, D, E) — un cycle passant par tous les sommets</p>
+    </div>
+  </div>
+
+  <!-- COMPLEXITÉ DU TSP - EXPLOSION COMBINATOIRE -->
+  <h2>⚠️ Complexité du TSP : Explosion combinatoire</h2>
+  <div class="card">
+    <p>Derrière cette question intuitive se cache un problème fondamental, qui sert aujourd'hui de référence pour évaluer la performance des algorithmes d'optimisation, de banc d'essai pour les métaheuristiques, et de modèle théorique pour comprendre les limites du calcul algorithmique. Le TSP est le prototype des problèmes dits <strong>NP-difficiles</strong>, signifiant qu'il n'existe aucun algorithme connu capable de trouver la solution optimale en un temps raisonnable (polynomial) pour de grandes instances.</p>
+    <p>Cette simplicité est trompeuse. Le nombre de tours possibles est <strong>(n−1)!/2</strong> pour un TSP symétrique, ce qui explose exponentiellement :</p>
+    
+    <table class="table-classes">
+      <thead><tr><th>n</th><th>Nombre de tours (n−1)!/2</th><th>Ordre de grandeur</th></tr></thead>
+      <tbody>
+        <tr><td>5</td><td>12</td><td>Trivial</td> </tr>
+        <tr><td class="badge">10</td> <td>181 440</td> <td>Facile</td> </tr>
+        <tr><td class="badge">15</td> <td>≈ 4,36 × 10¹⁰</td> <td>Difficile</td> </tr>
+        <tr><td class="badge">20</td> <td>≈ 6,08 × 10¹⁶</td> <td>Impraticable</td> </tr>
+        <tr><td class="badge">25</td> <td>≈ 3,10 × 10²³</td> <td>Astronomique</td> </tr>
+        <tr><td class="badge">30</td> <td>≈ 4,42 × 10³⁰</td> <td>Impossible</td> </tr>
+      </tbody>
+     </table>
+    <div class="graph-schema">
+      <p style="font-weight: 700;">📊 Même un ordinateur capable d'évaluer <strong>1 milliard de tours par seconde</strong> mettrait :</p>
+      <p style="color: #c9a84c; font-weight: 700;">• plus de 19 ans pour n=20</p>
+      <p style="color: #c9a84c; font-weight: 700;">• plus de 10¹⁴ années pour n=30</p>
+    </div>
+  </div>
+
+  <!-- INTÉRÊT DU TSP -->
+  <h2>💡 Intérêt du TSP</h2>
+  
+  <h3>📍 Intérêt pratique</h3>
+  <div class="card">
+    <p>Loin d'être un simple exercice académique, le TSP et ses variantes modélisent une multitude de problèmes concrets dans des secteurs stratégiques :</p>
+    <ul style="margin-left: 1.5rem; color: #4a5568;">
+      <li><strong>Logistique et transport :</strong> Optimisation des tournées de livraison, collecte des déchets, transport scolaire</li>
+      <li><strong>Industrie manufacturière :</strong> Planification des déplacements d'une tête de perçage pour circuits imprimés, optimisation des mouvements d'un bras robotique</li>
+      <li><strong>Bio-informatique :</strong> Séquençage de l'ADN, reconstitution d'un génome à partir de fragments</li>
+      <li><strong>Télécommunications :</strong> Routage de données, planification de réseaux</li>
+      <li><strong>Astronomie :</strong> Planification des observations d'un télescope pour minimiser les temps morts</li>
+    </ul>
+  </div>
+
+  <h3>📚 Intérêt théorique</h3>
+  <div class="card">
+    <p>Le TSP est un terrain de jeu privilégié pour l'informatique théorique :</p>
+    <ul style="margin-left: 1.5rem; color: #4a5568;">
+      <li>Il a motivé le développement de techniques algorithmiques majeures : <strong>programmation dynamique (Held-Karp)</strong>, méthodes de séparation et évaluation (<strong>Branch-and-Bound, Branch-and-Cut</strong>), algorithmes d'approximation (<strong>Christofides</strong>).</li>
+      <li>Il sert de problème de référence pour la théorie de la <strong>NP-complétude</strong>. Prouver que le TSP est NP-difficile a été une étape cruciale pour comprendre la hiérarchie des problèmes.</li>
+      <li>Il est le <strong>"pilier"</strong> sur lequel viennent s'adosser d'innombrables autres problèmes d'optimisation.</li>
+    </ul>
+  </div>
+
+  <!-- VARIANTES DÉTAILLÉES -->
+  <h2>📊 Tableau des variantes du TSP</h2>
+  <div class="card">
+    <table class="table-classes">
+      <thead><tr><th>Variante</th><th>Définition et propriétés</th><th>Applications</th></tr></thead>
+      <tbody>
+        <tr><td class="badge">TSP Symétrique (sTSP)</td> <td>Matrice des distances symétrique : w(i,j)=w(j,i). Nombre de tournées : (n−1)!/2</td> <td>Transport routier (route bidirectionnelle)</td> </tr>
+        <tr><td class="badge">TSP Asymétrique (aTSP)</td> <td>Matrice des distances asymétrique : w(i,j)≠w(j,i)</td> <td>Réseaux routiers avec sens unique, ordonnancement</td> </tr>
+        <tr><td class="badge">TSP Métrique</td> <td>Satisfait l'inégalité triangulaire</td> <td>Distances géographiques (vol d'oiseau, temps de trajet)</td> </tr>
+        <tr><td class="badge">TSP Euclidien</td> <td>Villes dans ℝ², distance euclidienne</td> <td>Conception de circuits imprimés (VLSI)</td> </tr>
+        <tr><td class="badge">TSP avec fenêtres de temps (TSPTW)</td> <td>Chaque ville i dans un intervalle [aᵢ, bᵢ]</td> <td>Livraisons express, tournées de réparation</td> </tr>
+        <tr><td class="badge">Multi-TSP (mTSP)</td> <td>Plusieurs voyageurs partent d'un même dépôt</td> <td>Flotte de véhicules, ramassage scolaire</td> </tr>
+      </tbody>
+     </table>
+  </div>
+
+  <!-- CONCLUSION -->
+  <h2>📝 Conclusion du chapitre</h2>
+  <div class="card">
+    <p>En conclusion, ce chapitre nous a permis d'approfondir l'étude du <strong>Problème du Voyageur de Commerce (TSP)</strong>, pierre angulaire de l'optimisation combinatoire. Derrière la simplicité apparente de son énoncé mathématique — trouver le cycle hamiltonien de coût minimal traversant un ensemble de sommets — se cache un problème à la complexité algorithmique redoutable.</p>
+    <p>Comme nous l'avons mis en évidence à travers l'analyse de l'explosion combinatoire, la croissance exponentielle de l'espace de recherche <strong>((n−1)!/2)</strong> pour la variante symétrique classe le TSP parmi les problèmes <strong>NP-difficiles</strong>, excluant toute approche par énumération exhaustive dès que la taille des instances dépasse quelques dizaines de villes.</p>
+    <p>L'étude des différentes variantes (symétrique, asymétrique, métrique ou euclidienne) a démontré la grande flexibilité de ce modèle pour s'adapter aux exigences concrètes des systèmes réels. Qu'il s'agisse d'applications pratiques cruciales dans la logistique, l'industrie manufacturière ou les télécommunications, ou de son intérêt théorique majeur comme banc d'essai pour l'informatique fondamentale, le TSP reste le <strong>modèle de référence incontesté</strong> pour valider l'efficacité des structures algorithmiques.</p>
+    <p>L'analyse structurelle étant désormais posée, la question centrale réside dans notre capacité à contourner cette barrière de complexité pour extraire des solutions optimales. C'est précisément l'objet du <strong>Chapitre 6</strong>, qui sera entièrement consacré à l'exploration des <strong>méthodes de résolution</strong> — programmation dynamique, algorithmes d'approximation, métaheuristiques — avant de détailler l'implémentation de notre approche exacte de prédilection : l'algorithme de <strong>Branch and Cut</strong>.</p>
+  </div>
+
+  <!-- BOUTONS DE NAVIGATION -->
+  <div class="btn-nav">
+    <a href="04-complexites.html" class="btn-prev">← Chapitre 4</a>
+    <a href="06-programmation-dynamique.html" class="btn-next">Chapitre 6 : Programmation Dynamique →</a>
+  </div>
+</div>
+
+<footer>
+  <p>PFE — Iliass Errouifi & Soufiane Er-Rthimi — Optimisation Combinatoire & TSP</p>
+  <p>ENS Tétouan — Université Abdelmalek Essaâdi — 2025-2026</p>
+</footer>
+
+</body>
+</html>
