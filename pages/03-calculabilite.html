@@ -51,16 +51,17 @@
 <body>
 
 <nav class="navbar">
-  <a href="../index.html" class="logo">TSP<span>·WORLD</span></a>
+  <a href="../index.html" class="logo">PFE<span>·ENS</span></a>
   <ul class="nav-links">
     <li><a href="../index.html">Accueil</a></li>
-    <li><a href="01-introduction.html">Ch.1</a></li>
+    <li><a href="01-introduction.html">Introduction</a></li>
     <li><a href="02-optimisation-combinatoire.html">Ch.2</a></li>
     <li><a href="03-calculabilite.html">Ch.3</a></li>
     <li><a href="04-complexites.html">Ch.4</a></li>
     <li><a href="05-tsp.html">Ch.5</a></li>
     <li><a href="06-programmation-dynamique.html">Ch.6</a></li>
     <li><a href="07-methodes-resolution.html">Ch.7</a></li>
+    <li><a href="../tsp-world-pro.html">Application</a></li>
   </ul>
 </nav>
 
@@ -90,14 +91,14 @@
     <p>Avant Turing, la notion d'"algorithme" ou de "procédure effective" était intuitive mais floue. Turing a proposé en 1936 un modèle mathématique simple mais extrêmement puissant : la <strong>Machine de Turing (MT)</strong>. Ce modèle est devenu la référence pour définir ce qui est calculable.</p>
     <div class="definition">
       <strong>📌 Définition : Machine de Turing</strong><br>
-      Une machine de Turing (MT) est un septuplet M = (Q, Σ, Γ, δ, q₀, q_acc, q_rej) où :<br>
-      — Q est un ensemble fini d'états<br>
-      — Σ est l'alphabet d'entrée fini<br>
-      — Γ ⊇ Σ ∪ {⊔} est l'alphabet du ruban<br>
-      — δ : Q × Γ → Q × Γ × {L,R} est la fonction de transition<br>
-      — q₀ ∈ Q est l'état initial<br>
-      — q_acc ∈ Q est l'état d'acceptation<br>
-      — q_rej ∈ Q est l'état de rejet
+      Une machine de Turing (MT) est un septuplet M = (Q, Σ, Γ, δ, q₀, q<sub>acc</sub>, q<sub>rej</sub>) où :<br>
+      — <strong>Q</strong> est un ensemble fini d'états<br>
+      — <strong>Σ</strong> est l'alphabet d'entrée fini<br>
+      — <strong>Γ</strong> ⊇ Σ ∪ {⊔} est l'alphabet du ruban<br>
+      — <strong>δ : Q × Γ → Q × Γ × {L,R}</strong> est la fonction de transition<br>
+      — <strong>q₀ ∈ Q</strong> est l'état initial<br>
+      — <strong>q<sub>acc</sub> ∈ Q</strong> est l'état d'acceptation<br>
+      — <strong>q<sub>rej</sub> ∈ Q</strong> est l'état de rejet
     </div>
     <p><strong>Composants :</strong> Un ruban infini, une tête de lecture/écriture, un contrôleur d'état.</p>
     <p><strong>Fonctionnement :</strong> Initialisation → lecture du symbole → écriture → déplacement → changement d'état → arrêt (acceptation ou rejet). La machine peut aussi boucler indéfiniment.</p>
@@ -107,7 +108,7 @@
   <h3>📖 Exemple : Reconnaissance du langage {0ⁿ1ⁿ | n ≥ 0}</h3>
   <div class="card">
     <p>Machine simple qui reconnaît les chaînes de la forme 0ⁿ1ⁿ (autant de 0 que de 1) :</p>
-    <p><strong>États :</strong> q₀ (début), q₁ (cherche 1), q₂ (retour arrière), q_acc, q_rej.<br>
+    <p><strong>États :</strong> q₀ (début), q₁ (cherche 1), q₂ (retour arrière), q<sub>acc</sub>, q<sub>rej</sub>.<br>
     <strong>Transition :</strong> remplacer le premier 0 par X, puis trouver le premier 1, le remplacer par Y, revenir en arrière, et répéter.<br>
     <strong>Résultat :</strong> Cette machine s'arrête toujours et accepte exactement les mots 0ⁿ1ⁿ. Ce langage est <strong>décidable</strong>.</p>
   </div>
@@ -118,12 +119,12 @@
     <table class="table-classes">
       <thead><tr><th>Variante</th><th>Description</th></tr></thead>
       <tbody>
-        <tr><td>MT à plusieurs rubans</td><td>Plusieurs rubans indépendants. N'augmente pas la puissance de calcul.</td></tr>
-        <tr><td>MT non-déterministe (MTND)</td><td>Plusieurs transitions possibles. Équivalente aux MT déterministes.</td></tr>
-        <tr><td>MT universelle</td><td>Simule n'importe quelle MT. Ancêtre théorique des ordinateurs programmables.</td></tr>
-        <tr><td>Machine RAM</td><td>Modèle avec registres. Équivalent aux MT.</td></tr>
-        <tr><td>λ-calcul (Church)</td><td>Fondement des langages fonctionnels. Équivalent aux MT.</td></tr>
-        <tr><td>Fonctions récursives générales (Kleene)</td><td>Modèle basé sur des fonctions de base. Équivalent aux MT.</td></tr>
+        <tr><td class="badge">MT à plusieurs rubans</td><td>Plusieurs rubans indépendants. N'augmente pas la puissance de calcul.</td></tr>
+        <tr><td class="badge">MT non-déterministe (MTND)</td><td>Plusieurs transitions possibles. Équivalente aux MT déterministes.</td></tr>
+        <tr><td class="badge">MT universelle</td><td>Simule n'importe quelle MT. Ancêtre théorique des ordinateurs programmables.</td></tr>
+        <tr><td class="badge">Machine RAM</td><td>Modèle avec registres. Équivalent aux MT.</td></tr>
+        <tr><td class="badge">λ-calcul (Church)</td><td>Fondement des langages fonctionnels. Équivalent aux MT.</td></tr>
+        <tr><td class="badge">Fonctions récursives générales (Kleene)</td><td>Modèle basé sur des fonctions de base. Équivalent aux MT.</td></tr>
       </tbody>
     </table>
   </div>
@@ -175,12 +176,12 @@
     <table class="table-classes">
       <thead><tr><th>Problème</th><th>Description</th></tr></thead>
       <tbody>
-        <tr><td>Arrêt</td><td>La MT M s'arrête-t-elle sur w ?</td></tr>
-        <tr><td>Arrêt sur vide</td><td>M s'arrête-t-elle sur ε ?</td></tr>
-        <tr><td>Équivalence</td><td>M₁ et M₂ reconnaissent-elles le même langage ?</td></tr>
-        <tr><td>10e problème de Hilbert</td><td>Équation diophantienne : solution entière ?</td></tr>
-        <tr><td>Correspondance de Post</td><td>Concaténation de paires de blocs ?</td></tr>
-        <tr><td>Propriété non triviale (Rice)</td><td>Toute propriété non triviale d'un programme est indécidable.</td></tr>
+        <tr><td class="badge">Arrêt</td><td>La MT M s'arrête-t-elle sur w ?</td></tr>
+        <tr><td class="badge">Arrêt sur vide</td><td>M s'arrête-t-elle sur ε ?</td></tr>
+        <tr><td class="badge">Équivalence</td><td>M₁ et M₂ reconnaissent-elles le même langage ?</td></tr>
+        <tr><td class="badge">10e problème de Hilbert</td><td>Équation diophantienne : solution entière ?</td></tr>
+        <tr><td class="badge">Correspondance de Post</td><td>Concaténation de paires de blocs ?</td></tr>
+        <tr><td class="badge">Propriété non triviale (Rice)</td><td>Toute propriété non triviale d'un programme est indécidable.</td></tr>
       </tbody>
     </table>
   </div>
@@ -191,15 +192,15 @@
     <table class="table-classes">
       <thead><tr><th>Problème</th><th>Calculable</th><th>Décidable</th><th>Classe</th></tr></thead>
       <tbody>
-        <tr><td>Addition de deux nombres</td><td>✅ Oui</td><td>✅ Oui</td><td>P</td></tr>
-        <tr><td>Tri d'une liste</td><td>✅ Oui</td><td>✅ Oui</td><td>P</td></tr>
-        <tr><td>Plus court chemin</td><td>✅ Oui</td><td>✅ Oui</td><td>P</td></tr>
-        <tr><td>SAT</td><td>✅ Oui</td><td>✅ Oui</td><td>NP-complet</td></tr>
-        <tr><td>TSP (décision)</td><td>✅ Oui</td><td>✅ Oui</td><td>NP-complet</td></tr>
-        <tr><td>Problème de l'arrêt</td><td>❌ Non</td><td>❌ Non</td><td>Indécidable</td></tr>
-        <tr><td>Équivalence de programmes</td><td>❌ Non</td><td>❌ Non</td><td>Indécidable</td></tr>
-        <tr><td>10e problème de Hilbert</td><td>❌ Non</td><td>❌ Non</td><td>Indécidable</td></tr>
-        <tr><td>Propriété non triviale (Rice)</td><td>❌ Non</td><td>❌ Non</td><td>Indécidable</td></tr>
+        <tr><td class="badge">Addition de deux nombres</td><td>✅ Oui</td><td>✅ Oui</td><td>P</td></tr>
+        <tr><td class="badge">Tri d'une liste</td><td>✅ Oui</td><td>✅ Oui</td><td>P</td></tr>
+        <tr><td class="badge">Plus court chemin</td><td>✅ Oui</td><td>✅ Oui</td><td>P</td></tr>
+        <tr><td class="badge">SAT</td><td>✅ Oui</td><td>✅ Oui</td><td>NP-complet</td></tr>
+        <tr><td class="badge">TSP (décision)</td><td>✅ Oui</td><td>✅ Oui</td><td>NP-complet</td></tr>
+        <tr><td class="badge">Problème de l'arrêt</td><td>❌ Non</td><td>❌ Non</td><td>Indécidable</td></tr>
+        <tr><td class="badge">Équivalence de programmes</td><td>❌ Non</td><td>❌ Non</td><td>Indécidable</td></tr>
+        <tr><td class="badge">10e problème de Hilbert</td><td>❌ Non</td><td>❌ Non</td><td>Indécidable</td></tr>
+        <tr><td class="badge">Propriété non triviale (Rice)</td><td>❌ Non</td><td>❌ Non</td><td>Indécidable</td></tr>
       </tbody>
     </table>
   </div>
