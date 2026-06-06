@@ -18,7 +18,6 @@
     ::-webkit-scrollbar-track { background: #e0e5ec; }
     ::-webkit-scrollbar-thumb { background: #c9a84c; border-radius: 10px; }
 
-    /* Navbar */
     .navbar {
       position: fixed; top: 0; width: 100%; padding: 1rem 3rem;
       background: rgba(255, 255, 255, 0.96); backdrop-filter: blur(12px);
@@ -35,12 +34,10 @@
       text-decoration: none; 
     }
     .logo span { color: #0088aa; }
-    /* PAS DE "TSP WORLD" DANS LE LOGO - juste le symbole ou rien */
     .nav-links { display: flex; gap: 2rem; list-style: none; }
     .nav-links a { color: #4a5568; text-decoration: none; font-size: 0.7rem; letter-spacing: 2px; text-transform: uppercase; transition: 0.3s; font-weight: 600; }
     .nav-links a:hover { color: #c9a84c; }
 
-    /* Hero */
     .hero {
       min-height: 100vh;
       display: flex;
@@ -164,7 +161,6 @@
     }
     .btn-launch:hover { transform: scale(1.02); box-shadow: 0 8px 20px rgba(0,136,170,0.3); }
 
-    /* Sections */
     .section { padding: 70px 5%; }
     .section-header { text-align: center; margin-bottom: 2.5rem; }
     .section-header h2 { font-family: 'Cinzel', serif; font-size: 1.8rem; font-weight: 700; color: #1a2a3a; }
@@ -172,7 +168,6 @@
     .section-line { width: 50px; height: 2px; background: linear-gradient(90deg, #c9a84c, #0088aa); margin: 0.8rem auto 0; }
     .section-bg { background: #ffffff; border-top: 1px solid #e2e8f0; border-bottom: 1px solid #e2e8f0; }
 
-    /* Table des matières - 6 chapitres */
     .toc-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -206,7 +201,6 @@
       font-weight: 600;
     }
 
-    /* Footer */
     footer {
       text-align: center;
       padding: 2rem;
@@ -236,12 +230,12 @@
     <li><a href="#introduction">Accueil</a></li>
     <li><a href="#plan">Plan</a></li>
     <li><a href="pages/01-introduction.html">Introduction</a></li>
-    <li><a href="pages/02-optimisation-combinatoire.html">Ch.2</a></li>
-    <li><a href="pages/03-calculabilite.html">Ch.3</a></li>
-    <li><a href="pages/04-complexites.html">Ch.4</a></li>
-    <li><a href="pages/05-tsp.html">Ch.5</a></li>
-    <li><a href="pages/06-programmation-dynamique.html">Ch.6</a></li>
-    <li><a href="pages/07-methodes-resolution.html">Ch.7</a></li>
+    <li><a href="pages/02-optimisation-combinatoire.html">Ch.1</a></li>
+    <li><a href="pages/03-calculabilite.html">Ch.2</a></li>
+    <li><a href="pages/04-complexites.html">Ch.3</a></li>
+    <li><a href="pages/05-tsp.html">Ch.4</a></li>
+    <li><a href="pages/06-programmation-dynamique.html">Ch.5</a></li>
+    <li><a href="pages/07-methodes-resolution.html">Ch.6</a></li>
     <li><a href="tsp-world-pro.html">Application</a></li>
   </ul>
 </nav>
@@ -269,7 +263,7 @@
     <div class="uni-year">🎓 Année universitaire 2025–2026 — Licence en Mathématiques</div>
     
     <div class="hero-stats">
-      <div class="stat-item"><div class="stat-number">7</div><div class="stat-label">Chapitres</div></div>
+      <div class="stat-item"><div class="stat-number">6</div><div class="stat-label">Chapitres</div></div>
       <div class="stat-item"><div class="stat-number">10+</div><div class="stat-label">Algorithmes</div></div>
       <div class="stat-item"><div class="stat-number">NP-C</div><div class="stat-label">Classe</div></div>
       <div class="stat-item"><div class="stat-number">ENS</div><div class="stat-label">Tétouan</div></div>
@@ -279,18 +273,17 @@
   </div>
 </section>
 
-<!-- SECTION PLAN DU MÉMOIRE (7 chapitres: Introduction + Ch.2 à Ch.7 + Application) -->
+<!-- SECTION PLAN DU MÉMOIRE -->
 <section class="section section-bg" id="plan">
   <div class="section-header">
     <h2>Plan du <span>mémoire</span></h2>
     <div class="section-line"></div>
   </div>
   <div class="toc-grid">
-    <!-- Introduction (pas numérotée comme chapitre séparé) -->
     <a href="pages/01-introduction.html" class="toc-card">
       <div class="toc-num">📖</div>
       <h3>Introduction Générale</h3>
-      <p>Contexte, problématique, objectifs et structure du mémoire.</p>
+      <p>Contexte, historique, présentation du TSP.</p>
     </a>
     <a href="pages/02-optimisation-combinatoire.html" class="toc-card">
       <div class="toc-num">01</div>
