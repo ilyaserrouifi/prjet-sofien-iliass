@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chapitre 7 | Méthodes de Résolution | PFE 2025-2026</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;900&family=Raleway:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Raleway', sans-serif;
+      background: #f5f7fb;
+      color: #1a2a3a;
+      line-height: 1.6;
+    }
+    .navbar {
+      position: fixed; top: 0; width: 100%; padding: 1rem 3rem;
+      background: rgba(255, 255, 255, 0.96); backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.08); z-index: 1000;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .logo { font-family: 'Cinzel', serif; font-size: 1.2rem; font-weight: 700; letter-spacing: 4px; color: #c9a84c; text-decoration: none; }
+    .logo span { color: #0088aa; }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { color: #4a5568; text-decoration: none; font-size: 0.7rem; letter-spacing: 2px; text-transform: uppercase; transition: 0.3s; font-weight: 600; }
+    .nav-links a:hover { color: #c9a84c; }
+    .container { max-width: 1000px; margin: 0 auto; padding: 100px 2rem 3rem; }
+    h1 { font-family: 'Cinzel', serif; font-size: 2rem; font-weight: 800; color: #1a2a3a; margin-bottom: 0.5rem; border-left: 4px solid #c9a84c; padding-left: 1rem; }
+    h1 span { color: #c9a84c; }
+    .chapitre-badge { display: inline-block; background: rgba(201,168,76,0.12); border: 1px solid rgba(201,168,76,0.3); border-radius: 50px; padding: 0.2rem 0.8rem; font-size: 0.6rem; letter-spacing: 2px; color: #c9a84c; margin: 0.5rem 0 1rem 1rem; font-weight: 600; }
+    h2 { font-family: 'Cinzel', serif; font-size: 1.3rem; font-weight: 700; color: #0088aa; margin: 1.5rem 0 1rem; border-bottom: 2px solid rgba(0,136,170,0.15); padding-bottom: 0.3rem; }
+    h3 { font-family: 'Cinzel', serif; font-size: 1rem; font-weight: 600; color: #c9a84c; margin: 1rem 0 0.5rem; }
+    .card { background: white; border-radius: 16px; padding: 1.5rem; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(0,0,0,0.04); border: 1px solid #e2e8f0; }
+    .card p { color: #4a5568; margin-bottom: 0.8rem; font-size: 0.95rem; line-height: 1.7; }
+    .definition { background: linear-gradient(135deg, #f8fafc, #ffffff); border-left: 4px solid #c9a84c; padding: 1rem 1.2rem; margin: 1rem 0; border-radius: 0 12px 12px 0; }
+    .schema { background: #eef2f8; border-radius: 16px; padding: 1rem; text-align: center; margin: 1rem 0; border: 1px solid #c9a84c; }
+    .schema-title { font-weight: 700; margin-bottom: 0.5rem; color: #c9a84c; }
+    .btn-nav { display: flex; justify-content: space-between; margin-top: 2rem; gap: 1rem; }
+    .btn-prev, .btn-next { padding: 0.7rem 1.5rem; text-decoration: none; border-radius: 50px; font-size: 0.7rem; letter-spacing: 2px; text-transform: uppercase; transition: 0.3s; }
+    .btn-prev { border: 1px solid #c9a84c; color: #c9a84c; background: transparent; }
+    .btn-prev:hover { background: rgba(201,168,76,0.1); }
+    .btn-next { background: linear-gradient(135deg, #c9a84c, #0088aa); color: white; border: none; }
+    .btn-next:hover { transform: translateX(3px); box-shadow: 0 5px 20px rgba(201,168,76,0.3); }
+    footer { text-align: center; padding: 2rem; border-top: 1px solid #e2e8f0; background: #ffffff; margin-top: 2rem; color: #718096; font-size: 0.7rem; }
+    .badge { display: inline-block; background: rgba(201,168,76,0.1); padding: 0.2rem 0.6rem; border-radius: 30px; font-size: 0.7rem; color: #c9a84c; margin-right: 0.5rem; }
+    .flow-chart { display: flex; flex-direction: column; align-items: center; gap: 0.5rem; margin: 1rem 0; }
+    .flow-box { background: white; border: 1px solid #c9a84c; border-radius: 8px; padding: 0.5rem 1rem; width: 80%; max-width: 300px; text-align: center; }
+    .flow-arrow { font-size: 1.2rem; color: #0088aa; }
+    @media (max-width: 768px) { .navbar { padding: 1rem; } .nav-links { display: none; } .container { padding: 80px 1rem 2rem; } h1 { font-size: 1.5rem; } }
+  </style>
+</head>
+<body>
+
+<nav class="navbar">
+  <a href="../index.html" class="logo">TSP<span>·WORLD</span></a>
+  <ul class="nav-links">
+    <li><a href="../index.html">Accueil</a></li>
+    <li><a href="01-introduction.html">Ch.1</a></li>
+    <li><a href="02-optimisation-combinatoire.html">Ch.2</a></li>
+    <li><a href="03-calculabilite.html">Ch.3</a></li>
+    <li><a href="04-complexites.html">Ch.4</a></li>
+    <li><a href="05-tsp.html">Ch.5</a></li>
+    <li><a href="06-programmation-dynamique.html">Ch.6</a></li>
+    <li><a href="07-methodes-resolution.html">Ch.7</a></li>
+  </ul>
+</nav>
+
+<div class="container">
+  <span class="chapitre-badge">CHAPITRE 7</span>
+  <h1>Les Méthodes de <span>résolution</span></h1>
+  <h1 style="font-size: 1.3rem; border-left: none; margin-top: -0.3rem;">du problème de Voyageur de Commerce</h1>
+
+  <!-- INTRODUCTION -->
+  <div class="card">
+    <p>Les méthodes de résolution du problème de Voyageur de Commerce Asymétrique sont généralement scindées en deux catégories : les <strong>méthodes exactes</strong> et les <strong>méthodes approchées</strong> (heuristiques et métaheuristiques).</p>
+    <p>Les méthodes exactes ont souvent des durées de calcul qui augmentent exponentiellement avec la taille des problèmes. Les méthodes approchées sont conçues pour produire des solutions admissibles de bonne qualité avec un temps de résolution raisonnable, mais pas nécessairement optimales.</p>
+    <p>Les méthodes exactes et les méthodes approchées sont <strong>complémentaires</strong> : un faible écart entre bornes inférieures et supérieures signifie que l'optimum est proche, alors qu'un écart nul prouve l'optimalité.</p>
+  </div>
+
+  <!-- CLASSIFICATION -->
+  <h2>📊 Classification des méthodes</h2>
+  <div class="schema">
+    <p class="schema-title">Méthodes d'Optimisation Combinatoire</p>
+    <div style="display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap;">
+      <div style="background: white; border-radius: 12px; padding: 0.8rem; min-width: 150px;">
+        <strong style="color: #0088aa;">🔬 Méthodes Exactes</strong>
+        <div style="font-size: 0.8rem;">Branch & Bound</div>
+        <div style="font-size: 0.8rem;">Programmation Dynamique</div>
+        <div style="font-size: 0.8rem;">Plans Coupant</div>
+      </div>
+      <div style="background: white; border-radius: 12px; padding: 0.8rem; min-width: 150px;">
+        <strong style="color: #c9a84c;">⚡ Méthodes Approchées</strong>
+        <div style="font-size: 0.8rem;">Heuristiques</div>
+        <div style="font-size: 0.8rem;">Métaheuristiques</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MÉTHODES EXACTES -->
+  <h2>🔵 Méthodes exactes</h2>
+  <div class="card">
+    <p>Le principe essentiel d'une méthode exacte consiste à énumérer, souvent de manière implicite, l'ensemble des solutions de l'espace de recherche. Les algorithmes exacts les plus réussis appartiennent à quatre grandes classes :</p>
+    <ul style="margin-left: 1.5rem; color: #4a5568;">
+      <li>La programmation dynamique</li>
+      <li>La programmation par contraintes</li>
+      <li>Les méthodes d'énumération implicite (Branch and Bound)</li>
+      <li>Les méthodes de plans coupant</li>
+    </ul>
+  </div>
+
+  <!-- MÉTHODES APPROCHÉES -->
+  <h2>🟡 Méthodes approchées</h2>
+  <div class="card">
+    <p><strong>Heuristique :</strong> Le mot heuristique vient du grec « Eurisko » qui signifie « je trouve ». Une heuristique est un algorithme qui fournit rapidement une solution réalisable, pas nécessairement optimale.</p>
+    <p><strong>Métaheuristique :</strong> Dérivé de « méta » (au-delà) et « heuristique ». Ce sont des méthodes génériques pouvant optimiser une large gamme de problèmes différents.</p>
+  </div>
+
+  <!-- MÉTAHEURISTIQUES -->
+  <h2>🧠 Métaheuristiques</h2>
+  <div class="card">
+    <p>Contrairement aux méthodes exactes, les métaheuristiques permettent de s'attaquer aux instances de grande taille en fournissant des solutions satisfaisantes dans un délai raisonnable. Il n'y a aucune garantie de trouver des solutions optimales globales.</p>
+    <p><strong>Domaines d'application :</strong> conception technique, VLSI, télécommunications, robotique, apprentissage automatique, bioinformatique, traitement du signal, logistique, transport...</p>
+  </div>
+
+  <!-- CONCEPTS FONDAMENTAUX -->
+  <h2>🎯 Concepts fondamentaux des métaheuristiques</h2>
+  <div class="card">
+    <p><strong>Diversification :</strong> Capacité de parcourir aisément l'espace de recherche pour obtenir des solutions très différentes. Exploration large de l'espace.</p>
+    <div class="schema">
+      <p style="font-size: 0.8rem;">🔍 Processus de diversification d'une solution → exploration de zones variées</p>
+    </div>
+    <p><strong>Intensification :</strong> Vise à forcer une solution donnée à tendre vers l'optimum local de la zone à laquelle elle est attachée. Exploitation de l'information accumulée.</p>
+    <div class="schema">
+      <p style="font-size: 0.8rem;">⚡ Processus d'intensification de plusieurs solutions → convergence vers l'optimum local</p>
+    </div>
+  </div>
+
+  <!-- CLASSIFICATION DES MÉTAHEURISTIQUES -->
+  <h2>📋 Classification des métaheuristiques</h2>
+  <div class="schema">
+    <p class="schema-title">Classification des métaheuristiques</p>
+    <div style="display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap;">
+      <div style="background: white; border-radius: 12px; padding: 0.8rem;">
+        <strong style="color: #c9a84c;">🔹 Solution unique</strong>
+        <div style="font-size: 0.75rem;">Recuit simulé</div>
+        <div style="font-size: 0.75rem;">Recherche tabou</div>
+        <div style="font-size: 0.75rem;">Recherche locale</div>
+      </div>
+      <div style="background: white; border-radius: 12px; padding: 0.8rem;">
+        <strong style="color: #0088aa;">🔸 Population</strong>
+        <div style="font-size: 0.75rem;">Algorithmes génétiques</div>
+        <div style="font-size: 0.75rem;">Colonies de fourmis</div>
+        <div style="font-size: 0.75rem;">Essaim de particules</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MÉTAHEURISTIQUES À SOLUTION UNIQUE -->
+  <h2>🔹 Métaheuristiques à solution unique</h2>
+  <div class="card">
+    <p>Les méthodes itératives à solution unique sont basées sur un algorithme de recherche de voisinage qui commence avec une solution initiale, puis l'améliore pas à pas.</p>
+    <div class="schema">
+      <p class="schema-title">Principe des métaheuristiques à solution unique</p>
+      <div style="display: flex; justify-content: center; align-items: center; gap: 1rem; flex-wrap: wrap;">
+        <div style="background: white; border-radius: 8px; padding: 0.3rem 0.6rem;">Générer les candidates</div>
+        <span>→</span>
+        <div style="background: white; border-radius: 8px; padding: 0.3rem 0.6rem;">Solutions candidate</div>
+        <span>→</span>
+        <div style="background: white; border-radius: 8px; padding: 0.3rem 0.6rem;">Mémoire</div>
+        <span>→</span>
+        <div style="background: white; border-radius: 8px; padding: 0.3rem 0.6rem;">Sélectionner une solution</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RECHERCHE LOCALE -->
+  <h3>📍 Recherche locale</h3>
+  <div class="card">
+    <p>La recherche locale itérative améliore le principe de recherche locale multi-départ. Une recherche par descente est appliquée sur une solution initiale pour générer une meilleure solution, puis on perturbe et on répète.</p>
+    <div class="schema">
+      <p class="schema-title">Recherche locale</p>
+      <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
+        <div>Point initial → Voisinage → Point final</div>
+      </div>
+      <p style="font-size: 0.75rem; margin-top: 0.5rem;">Minimum local : ∀ x ∈ V(x) on a f(x*) ≤ f(x)</p>
+      <p style="font-size: 0.75rem;">Minimum global : minimum local de coût minimum</p>
+    </div>
+  </div>
+
+  <!-- RECUIT SIMULÉ -->
+  <h3>🔥 Recuit simulé (Simulated Annealing)</h3>
+  <div class="card">
+    <p>Le recuit simulé est une technique d'optimisation de type Monte-Carlo généralisé où on introduit un paramètre de température. Inspiré du recuit des métaux en métallurgie : un métal refroidi trop vite présente des défauts (optimum local), refroidi lentement il atteint une structure ordonnée (optimum global).</p>
+    
+    <div class="schema">
+      <p class="schema-title">Organigramme de l'algorithme du recuit simulé</p>
+      <div class="flow-chart">
+        <div class="flow-box">Configuration initiale<br>Température initiale T</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-box">Modification élémentaire<br>Variation d'énergie ΔE</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-box">Règle d'acceptation de Metropolis<br>Si ΔE ≤ 0 → accepté<br>Si ΔE > 0 → accepté avec probabilité e<sup>-ΔE/T</sup></div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-box">Équilibre thermodynamique ?</div>
+        <div class="flow-arrow">↓ Oui</div>
+        <div class="flow-box">Système figé ?<br>↓ Non → Diminution lente de T<br>↓ Oui → Stop</div>
+      </div>
+    </div>
+
+    <p><strong>Avantages :</strong> peut traiter des systèmes arbitraires, converge vers l'optimum global, facile à mettre en œuvre.</p>
+    <p><strong>Inconvénients :</strong> nombre important de paramètres (température initiale, taux de décroissance), réglage empirique, temps de calcul excessif.</p>
+  </div>
+
+  <!-- RECHERCHE TABOU -->
+  <h3>🚫 Recherche tabou (Tabu Search)</h3>
+  <div class="card">
+    <p>La recherche tabou a été introduite par F. Glover. À chaque itération, le voisinage de la solution courante est examiné et la meilleure solution non interdite est sélectionnée, même si elle est moins bonne. Cela permet d'échapper aux optima locaux.</p>
+    
+    <div class="schema">
+      <p class="schema-title">Structure générale de la méthode recherche tabou</p>
+      <div class="flow-chart">
+        <div class="flow-box">Initialisation : solution initiale s₀<br>Liste tabou vide</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-box">Choisir une solution s dans le voisinage de s* qui ne soit pas tabou</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-box">Si f(s) < f(s*) alors s* = s</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-box">Mettre à jour la liste tabou</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-box">Condition d'arrêt atteinte ?<br>↓ Non → retour<br>↓ Oui → Stop</div>
+      </div>
+    </div>
+
+    <p><strong>Avantages :</strong> grande efficacité, fonctionnement simple à comprendre.</p>
+    <p><strong>Inconvénients :</strong> paramètres peu intuitifs, demande en ressources importante, aucune démonstration de convergence.</p>
+  </div>
+
+  <!-- MÉTAHEURISTIQUES À POPULATION -->
+  <h2>👥 Métaheuristiques à population</h2>
+  <div class="card">
+    <p>Dans cette classe, les métaheuristiques utilisent une population de solutions. L'intérêt est d'utiliser la population comme facteur de diversité. Les méthodes améliorent, au fur et à mesure des itérations, une population de solutions.</p>
+    
+    <div class="schema">
+      <p class="schema-title">Principe des métaheuristiques à population</p>
+      <div style="display: flex; justify-content: center; align-items: center; gap: 1rem; flex-wrap: wrap;">
+        <div style="background: white; border-radius: 8px; padding: 0.3rem 0.6rem;">Générer la population</div>
+        <span>→</span>
+        <div style="background: white; border-radius: 8px; padding: 0.3rem 0.6rem;">Mémoire</div>
+        <span>→</span>
+        <div style="background: white; border-radius: 8px; padding: 0.3rem 0.6rem;">Remplacer la population</div>
+        <span>→</span>
+        <div style="background: white; border-radius: 8px; padding: 0.3rem 0.6rem;">Itération</div>
+      </div>
+    </div>
+
+    <h3>🧬 Algorithmes génétiques</h3>
+    <p>Introduits par J.H. Holland (années 1970). S'appuient sur des techniques dérivées de la génétique et de l'évolution naturelle : croisements, mutations, sélection. Appliqués en économie, finance, optimisation, théorie des jeux.</p>
+
+    <h3>🐜 Colonies de fourmis</h3>
+    <p>Principalement utilisé pour produire des solutions quasi-optimales pour le TSP. S'inspire du comportement des fourmis cherchant de la nourriture et déposant des phéromones.</p>
+
+    <h3>🐝 Essaim de particules (PSO)</h3>
+    <p>Introduit par Kennedy et Eberhart (1995). Inspiré des essaims d'insectes, bancs de poissons ou nuées d'oiseaux. Les individus (particules) se déplacent dans l'espace de recherche en échangeant des informations.</p>
+  </div>
+
+  <!-- CONCLUSION -->
+  <h2>📝 Conclusion du chapitre</h2>
+  <div class="card">
+    <p>À travers ce chapitre, nous avons abordé les définitions essentielles à la compréhension du travail du point de vue optimisation. Nous avons vu qu'un grand nombre de méthodes d'optimisation existe pour résoudre un problème combinatoire :</p>
+    <ul style="margin-left: 1.5rem; color: #4a5568;">
+      <li><strong>Méthodes exactes</strong> — optimalité garantie, temps exponentiel (Branch & Bound, programmation dynamique)</li>
+      <li><strong>Méthodes approchées</strong> — solutions de qualité, temps polynomial</li>
+      <li><strong>Heuristiques</strong> — spécifiques à un problème</li>
+      <li><strong>Métaheuristiques</strong> — méthodes génériques (recuit simulé, recherche tabou, algorithmes génétiques, colonies de fourmis, essaim de particules)</li>
+    </ul>
+    <p>Nous avons présenté en détail deux techniques largement utilisées : le <strong>recuit simulé</strong> et la <strong>recherche tabou</strong>, avec leurs définitions, algorithmes, domaines d'application, avantages et inconvénients.</p>
+  </div>
+
+  <!-- BOUTONS DE NAVIGATION -->
+  <div class="btn-nav">
+    <a href="06-programmation-dynamique.html" class="btn-prev">← Chapitre 6</a>
+    <a href="../index.html" class="btn-next">Accueil →</a>
+  </div>
+</div>
+
+<footer>
+  <p>PFE — Iliass Errouifi & Soufiane Er-Rthimi — Optimisation Combinatoire & TSP</p>
+  <p>ENS Tétouan — Université Abdelmalek Essaâdi — 2025-2026</p>
+</footer>
+
+</body>
+</html>
