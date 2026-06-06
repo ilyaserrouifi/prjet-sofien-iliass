@@ -35,6 +35,7 @@
       text-decoration: none; 
     }
     .logo span { color: #0088aa; }
+    /* PAS DE "TSP WORLD" DANS LE LOGO - juste le symbole ou rien */
     .nav-links { display: flex; gap: 2rem; list-style: none; }
     .nav-links a { color: #4a5568; text-decoration: none; font-size: 0.7rem; letter-spacing: 2px; text-transform: uppercase; transition: 0.3s; font-weight: 600; }
     .nav-links a:hover { color: #c9a84c; }
@@ -55,7 +56,6 @@
       z-index: 2;
     }
     
-    /* Université + École - les deux ensemble */
     .uni-block {
       margin-bottom: 1.5rem;
     }
@@ -172,12 +172,12 @@
     .section-line { width: 50px; height: 2px; background: linear-gradient(90deg, #c9a84c, #0088aa); margin: 0.8rem auto 0; }
     .section-bg { background: #ffffff; border-top: 1px solid #e2e8f0; border-bottom: 1px solid #e2e8f0; }
 
-    /* Table des matières */
+    /* Table des matières - 6 chapitres */
     .toc-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 1.5rem;
-      max-width: 1200px;
+      max-width: 1000px;
       margin: 0 auto;
     }
     .toc-card {
@@ -231,17 +231,18 @@
 <body>
 
 <nav class="navbar">
-  <a href="index.html" class="logo">TSP<span>·WORLD</span></a>
+  <a href="index.html" class="logo">PFE<span>·ENS</span></a>
   <ul class="nav-links">
     <li><a href="#introduction">Accueil</a></li>
     <li><a href="#plan">Plan</a></li>
-    <li><a href="pages/01-introduction.html">Ch.1</a></li>
+    <li><a href="pages/01-introduction.html">Introduction</a></li>
     <li><a href="pages/02-optimisation-combinatoire.html">Ch.2</a></li>
     <li><a href="pages/03-calculabilite.html">Ch.3</a></li>
     <li><a href="pages/04-complexites.html">Ch.4</a></li>
     <li><a href="pages/05-tsp.html">Ch.5</a></li>
     <li><a href="pages/06-programmation-dynamique.html">Ch.6</a></li>
     <li><a href="pages/07-methodes-resolution.html">Ch.7</a></li>
+    <li><a href="tsp-world-pro.html">Application</a></li>
   </ul>
 </nav>
 
@@ -268,7 +269,7 @@
     <div class="uni-year">🎓 Année universitaire 2025–2026 — Licence en Mathématiques</div>
     
     <div class="hero-stats">
-      <div class="stat-item"><div class="stat-number">8</div><div class="stat-label">Chapitres</div></div>
+      <div class="stat-item"><div class="stat-number">7</div><div class="stat-label">Chapitres</div></div>
       <div class="stat-item"><div class="stat-number">10+</div><div class="stat-label">Algorithmes</div></div>
       <div class="stat-item"><div class="stat-number">NP-C</div><div class="stat-label">Classe</div></div>
       <div class="stat-item"><div class="stat-number">ENS</div><div class="stat-label">Tétouan</div></div>
@@ -278,51 +279,52 @@
   </div>
 </section>
 
-<!-- SECTION PLAN DU MÉMOIRE (8 CHAPITRES) -->
+<!-- SECTION PLAN DU MÉMOIRE (7 chapitres: Introduction + Ch.2 à Ch.7 + Application) -->
 <section class="section section-bg" id="plan">
   <div class="section-header">
     <h2>Plan du <span>mémoire</span></h2>
     <div class="section-line"></div>
   </div>
   <div class="toc-grid">
+    <!-- Introduction (pas numérotée comme chapitre séparé) -->
     <a href="pages/01-introduction.html" class="toc-card">
-      <div class="toc-num">01</div>
-      <h3>📖 Introduction Générale</h3>
+      <div class="toc-num">📖</div>
+      <h3>Introduction Générale</h3>
       <p>Contexte, problématique, objectifs et structure du mémoire.</p>
     </a>
     <a href="pages/02-optimisation-combinatoire.html" class="toc-card">
-      <div class="toc-num">02</div>
+      <div class="toc-num">01</div>
       <h3>📐 Optimisation Combinatoire</h3>
       <p>Définitions, programmation linéaire, stochastique et classification des méthodes.</p>
     </a>
     <a href="pages/03-calculabilite.html" class="toc-card">
-      <div class="toc-num">03</div>
+      <div class="toc-num">02</div>
       <h3>⚙️ Calculabilité & Décidabilité</h3>
       <p>Machines de Turing, thèse de Church-Turing, problème de l'arrêt.</p>
     </a>
     <a href="pages/04-complexites.html" class="toc-card">
-      <div class="toc-num">04</div>
+      <div class="toc-num">03</div>
       <h3>🔬 Complexité : P, NP, NP-Complet</h3>
       <p>Classes de complexité, réduction polynomiale, conjecture P vs NP.</p>
     </a>
     <a href="pages/05-tsp.html" class="toc-card">
-      <div class="toc-num">05</div>
+      <div class="toc-num">04</div>
       <h3>🚚 Problème du Voyageur de Commerce</h3>
       <p>Définition, variantes, explosion combinatoire, applications.</p>
     </a>
     <a href="pages/06-programmation-dynamique.html" class="toc-card">
-      <div class="toc-num">06</div>
+      <div class="toc-num">05</div>
       <h3>⚡ Programmation Dynamique</h3>
       <p>Principe de Bellman, algorithme de Held-Karp, complexité O(n²·2ⁿ).</p>
     </a>
     <a href="pages/07-methodes-resolution.html" class="toc-card">
-      <div class="toc-num">07</div>
+      <div class="toc-num">06</div>
       <h3>🎯 Méthodes de Résolution</h3>
       <p>Branch & Bound, Christofides, recuit simulé, recherche tabou, AG, colonies de fourmis.</p>
     </a>
     <a href="tsp-world-pro.html" class="toc-card">
-      <div class="toc-num">08</div>
-      <h3>🚀 Application : TSP WORLD PRO</h3>
+      <div class="toc-num">🚀</div>
+      <h3>Application : TSP WORLD PRO</h3>
       <p>Plateforme interactive de planification de tournées — Carte, GPS, QR Code, Algorithmes TSP.</p>
       <div class="app-badge">✨ Application finale</div>
     </a>
@@ -353,18 +355,18 @@
 </section>
 
 <footer>
-  <div class="footer-logo">TSP<span>·WORLD</span></div>
+  <div class="footer-logo">ENS<span>·Tétouan</span></div>
   <p>Projet de Fin d'Études — 2025-2026 — École Normale Supérieure de Tétouan</p>
   <p>Iliass Errouifi & Soufiane Er-Rthimi — Sous la direction de Monsieur Outman El Hichami</p>
   <div style="margin-top: 0.8rem;">
-    <a href="pages/01-introduction.html" style="color:#718096; text-decoration:none; margin:0 0.4rem; font-size:0.65rem;">Ch.1</a>
-    <a href="pages/02-optimisation-combinatoire.html" style="color:#718096; text-decoration:none; margin:0 0.4rem; font-size:0.65rem;">Ch.2</a>
-    <a href="pages/03-calculabilite.html" style="color:#718096; text-decoration:none; margin:0 0.4rem; font-size:0.65rem;">Ch.3</a>
-    <a href="pages/04-complexites.html" style="color:#718096; text-decoration:none; margin:0 0.4rem; font-size:0.65rem;">Ch.4</a>
-    <a href="pages/05-tsp.html" style="color:#718096; text-decoration:none; margin:0 0.4rem; font-size:0.65rem;">Ch.5</a>
-    <a href="pages/06-programmation-dynamique.html" style="color:#718096; text-decoration:none; margin:0 0.4rem; font-size:0.65rem;">Ch.6</a>
-    <a href="pages/07-methodes-resolution.html" style="color:#718096; text-decoration:none; margin:0 0.4rem; font-size:0.65rem;">Ch.7</a>
-    <a href="tsp-world-pro.html" style="color:#c9a84c; text-decoration:none; margin:0 0.4rem; font-size:0.65rem;">App</a>
+    <a href="pages/01-introduction.html" style="color:#718096; text-decoration:none; margin:0 0.4rem; font-size:0.65rem;">Introduction</a>
+    <a href="pages/02-optimisation-combinatoire.html" style="color:#718096; text-decoration:none; margin:0 0.4rem; font-size:0.65rem;">Ch.1</a>
+    <a href="pages/03-calculabilite.html" style="color:#718096; text-decoration:none; margin:0 0.4rem; font-size:0.65rem;">Ch.2</a>
+    <a href="pages/04-complexites.html" style="color:#718096; text-decoration:none; margin:0 0.4rem; font-size:0.65rem;">Ch.3</a>
+    <a href="pages/05-tsp.html" style="color:#718096; text-decoration:none; margin:0 0.4rem; font-size:0.65rem;">Ch.4</a>
+    <a href="pages/06-programmation-dynamique.html" style="color:#718096; text-decoration:none; margin:0 0.4rem; font-size:0.65rem;">Ch.5</a>
+    <a href="pages/07-methodes-resolution.html" style="color:#718096; text-decoration:none; margin:0 0.4rem; font-size:0.65rem;">Ch.6</a>
+    <a href="tsp-world-pro.html" style="color:#c9a84c; text-decoration:none; margin:0 0.4rem; font-size:0.65rem;">Application</a>
   </div>
 </footer>
 
