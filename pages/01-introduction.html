@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chapitre 1 | Introduction | Optimisation Combinatoire & TSP</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;900&family=Raleway:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Raleway', sans-serif;
+      background: #f5f7fb;
+      color: #1a2a3a;
+      line-height: 1.6;
+    }
+    .navbar {
+      position: fixed; top: 0; width: 100%; padding: 1rem 3rem;
+      background: rgba(255, 255, 255, 0.96); backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.08); z-index: 1000;
+      display: flex; justify-content: space-between; align-items: center;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+    }
+    .logo { font-family: 'Cinzel', serif; font-size: 1.2rem; font-weight: 700; letter-spacing: 4px; color: #c9a84c; text-decoration: none; }
+    .logo span { color: #0088aa; }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { color: #4a5568; text-decoration: none; font-size: 0.7rem; letter-spacing: 2px; text-transform: uppercase; transition: 0.3s; font-weight: 600; }
+    .nav-links a:hover { color: #c9a84c; }
+    .container { max-width: 1000px; margin: 0 auto; padding: 100px 2rem 3rem; }
+    h1 { font-family: 'Cinzel', serif; font-size: 2rem; font-weight: 800; color: #1a2a3a; margin-bottom: 0.5rem; border-left: 4px solid #c9a84c; padding-left: 1rem; }
+    h1 span { color: #c9a84c; }
+    .chapitre-badge { display: inline-block; background: rgba(201,168,76,0.12); border: 1px solid rgba(201,168,76,0.3); border-radius: 50px; padding: 0.2rem 0.8rem; font-size: 0.6rem; letter-spacing: 2px; color: #c9a84c; margin: 0.5rem 0 1rem 1rem; font-weight: 600; }
+    .intro-text { background: white; border-radius: 16px; padding: 2rem; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(0,0,0,0.04); border: 1px solid #e2e8f0; }
+    .intro-text p { color: #4a5568; margin-bottom: 1rem; font-size: 1rem; line-height: 1.7; }
+    .plan-section { margin: 2rem 0; }
+    .plan-title { font-family: 'Cinzel', serif; font-size: 1.3rem; font-weight: 700; color: #0088aa; margin: 1.5rem 0 1rem; border-bottom: 2px solid rgba(0,136,170,0.15); padding-bottom: 0.3rem; }
+    .ch-list { list-style: none; margin: 1rem 0; }
+    .ch-list li { background: white; border: 1px solid #e2e8f0; border-radius: 12px; padding: 1rem 1.2rem; margin-bottom: 0.8rem; transition: 0.3s; }
+    .ch-list li:hover { border-color: #c9a84c; transform: translateX(5px); }
+    .ch-num { font-family: 'Cinzel', serif; font-weight: 700; color: #c9a84c; margin-right: 0.8rem; }
+    .ch-title { font-weight: 600; color: #1a2a3a; }
+    .ch-desc { font-size: 0.8rem; color: #718096; margin-top: 0.3rem; }
+    .btn-nav { display: flex; justify-content: space-between; margin-top: 3rem; gap: 1rem; }
+    .btn-prev, .btn-next { padding: 0.7rem 1.5rem; text-decoration: none; border-radius: 50px; font-size: 0.7rem; letter-spacing: 2px; text-transform: uppercase; transition: 0.3s; }
+    .btn-prev { border: 1px solid #c9a84c; color: #c9a84c; background: transparent; }
+    .btn-prev:hover { background: rgba(201,168,76,0.1); }
+    .btn-next { background: linear-gradient(135deg, #c9a84c, #0088aa); color: white; border: none; }
+    .btn-next:hover { transform: translateX(3px); box-shadow: 0 5px 20px rgba(201,168,76,0.3); }
+    footer { text-align: center; padding: 2rem; border-top: 1px solid #e2e8f0; background: #ffffff; margin-top: 2rem; color: #718096; font-size: 0.7rem; }
+    @media (max-width: 768px) { .navbar { padding: 1rem; } .nav-links { display: none; } .container { padding: 80px 1rem 2rem; } h1 { font-size: 1.5rem; } }
+  </style>
+</head>
+<body>
+
+<nav class="navbar">
+  <a href="../index.html" class="logo">TSP<span>·WORLD</span></a>
+  <ul class="nav-links">
+    <li><a href="../index.html">Accueil</a></li>
+    <li><a href="01-introduction.html">Ch.1</a></li>
+    <li><a href="02-optimisation-combinatoire.html">Ch.2</a></li>
+    <li><a href="03-calculabilite.html">Ch.3</a></li>
+    <li><a href="04-complexites.html">Ch.4</a></li>
+    <li><a href="05-tsp.html">Ch.5</a></li>
+    <li><a href="06-programmation-dynamique.html">Ch.6</a></li>
+    <li><a href="07-methodes-resolution.html">Ch.7</a></li>
+  </ul>
+</nav>
+
+<div class="container">
+  <span class="chapitre-badge">CHAPITRE 1</span>
+  <h1>Introduction <span>Générale</span></h1>
+
+  <!-- TEXTE D'INTRODUCTION (100% FIDÈLE) -->
+  <div class="intro-text">
+    <p>Depuis les travaux pionniers de George Dantzig sur la programmation linéaire dans les années 1940, l'optimisation combinatoire s'est imposée comme une branche essentielle des mathématiques appliquées et de l'informatique théorique. Ce domaine se consacre à la recherche d'une solution optimale au sein d'un ensemble discret et fini de configurations. Sa pertinence est aujourd'hui universelle, intervenant dans un large spectre d'applications réelles : en mathématiques financières (gestion de portefeuilles d'actions), pour la navigation de véhicules autonomes (traitement en temps réel des données capteurs), dans le secteur médical (imagerie diagnostique), ou encore dans le domaine de l'énergie (optimisation de la localisation de parcs éoliens selon les conditions climatiques). Elle est également omniprésente en informatique (ordonnancement de processus, indexation de bases de données), en traitement d'images (alignement de clichés satellites), dans l'industrie (planification de la production) et dans la théorie des jeux.</p>
+
+    <p>Au cœur de l'optimisation combinatoire, le Problème du Voyageur de Commerce (TSP - Traveling Salesman Problem) occupe une place emblématique. Véritable pierre angulaire de la discipline, sa première formulation mathématique rigoureuse a été introduite par Dantzig, Fulkerson et Johnson en 1954, déclinée sous ses formes symétrique et asymétrique. Depuis, la communauté scientifique n'a cessé d'en repousser les limites.</p>
+  </div>
+
+  <!-- PLAN DES CHAPITRES -->
+  <div class="plan-section">
+    <div class="plan-title">📖 Plan du mémoire</div>
+    <ul class="ch-list">
+      <li><span class="ch-num">Chapitre 1</span> <span class="ch-title">Introduction Générale</span><div class="ch-desc">Contexte, historique, présentation du TSP.</div></li>
+      <li><span class="ch-num">Chapitre 2</span> <span class="ch-title">Optimisation Combinatoire</span><div class="ch-desc">Définitions, programmation linéaire en nombres entiers (PLNE), programmation stochastique, classification des méthodes.</div></li>
+      <li><span class="ch-num">Chapitre 3</span> <span class="ch-title">Calculabilité & Décidabilité</span><div class="ch-desc">Machines de Turing, thèse de Church-Turing, problème de l'arrêt, frontière décidable/indécidable.</div></li>
+      <li><span class="ch-num">Chapitre 4</span> <span class="ch-title">Complexité : P, NP, NP-Complet, NP-Difficile</span><div class="ch-desc">Classes de complexité, réduction polynomiale, conjecture P vs NP, preuve de NP-complétude du TSP.</div></li>
+      <li><span class="ch-num">Chapitre 5</span> <span class="ch-title">Problème du Voyageur de Commerce (TSP)</span><div class="ch-desc">Définition, variantes (symétrique, asymétrique, métrique, euclidien, TSPTW, mTSP), explosion combinatoire, applications.</div></li>
+      <li><span class="ch-num">Chapitre 6</span> <span class="ch-title">Programmation Dynamique</span><div class="ch-desc">Principe de Bellman, algorithme de Held-Karp (O(n²·2ⁿ)), comparaison avec la force brute.</div></li>
+      <li><span class="ch-num">Chapitre 7</span> <span class="ch-title">Méthodes de Résolution</span><div class="ch-desc">Branch & Bound, Branch & Cut, Christofides, recuit simulé, recherche tabou, algorithmes génétiques, colonies de fourmis.</div></li>
+    </ul>
+  </div>
+
+  <!-- BOUTONS DE NAVIGATION -->
+  <div class="btn-nav">
+    <a href="../index.html" class="btn-prev">← Accueil</a>
+    <a href="02-optimisation-combinatoire.html" class="btn-next">Chapitre 2 : Optimisation Combinatoire →</a>
+  </div>
+</div>
+
+<footer>
+  <p>PFE — Iliass Errouifi & Soufiane Er-Rthimi — Optimisation Combinatoire appliquée au TSP</p>
+  <p>École Normale Supérieure Tétouan — Université Abdelmalek Essaâdi — 2025-2026</p>
+</footer>
+
+</body>
+</html>
