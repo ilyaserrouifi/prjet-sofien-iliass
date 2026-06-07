@@ -356,13 +356,33 @@
       .qr-section { gap: 1rem; }
       .qr-card { width: 220px; padding: 1rem; }
     }
+
+    /* Harmonisation globale : navigation claire, texte lisible et boutons animés */
+    .navbar { gap: clamp(0.8rem, 2vw, 2rem); padding: 0.85rem clamp(0.85rem, 2.5vw, 2.6rem); }
+    .logo { flex: 0 0 auto; white-space: nowrap; letter-spacing: 3px; }
+    .nav-links { flex: 1; justify-content: flex-end; align-items: center; gap: clamp(0.45rem, 1.15vw, 1.35rem); flex-wrap: wrap; }
+    .nav-links a { display: inline-flex; align-items: center; min-height: 2rem; color: #18263a; font-size: clamp(0.55rem, 0.72vw, 0.68rem); line-height: 1.35; letter-spacing: 1.8px; font-weight: 800; padding: 0.2rem 0; }
+    .nav-links a:hover { color: #0088aa; transform: translateY(-1px); }
+    .nav-links .app-link { color: #0088aa; border: 1px solid rgba(0,136,170,0.35); padding: 0.3rem 0.8rem; border-radius: 999px; background: rgba(0,136,170,0.06); }
+    .nav-links .app-link:hover { background: linear-gradient(135deg, #c9a84c, #0088aa); color: #ffffff; box-shadow: 0 8px 20px rgba(0,136,170,0.22); }
+    p, li, .card p, .intro-text p, .description-long p, .table-classes td { color: #24364a; font-weight: 500; }
+    .card, .intro-text, .toc-card, .feature-card, .qr-card { box-shadow: 0 10px 28px rgba(26,42,58,0.06); }
+    .definition { background: linear-gradient(135deg, #ffffff 0%, #f3f8fb 100%); border-left: 6px solid #0088aa; color: #1a2a3a; box-shadow: 0 8px 22px rgba(0,136,170,0.08); }
+    .definition strong { color: #0088aa; }
+    .btn-prev, .btn-next, .btn-launch, .btn-large { font-weight: 800; position: relative; overflow: hidden; }
+    .btn-prev:hover, .btn-next:hover, .btn-launch:hover, .btn-large:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 12px 26px rgba(0,136,170,0.22); }
+    .btn-next::after, .btn-launch::after, .btn-large::after { content: ''; position: absolute; inset: 0; background: linear-gradient(120deg, transparent, rgba(255,255,255,0.3), transparent); transform: translateX(-120%); transition: transform 0.55s ease; }
+    .btn-next:hover::after, .btn-launch:hover::after, .btn-large:hover::after { transform: translateX(120%); }
+    @media (max-width: 1100px) { .nav-links { gap: 0.45rem 0.85rem; } .nav-links a { letter-spacing: 1.2px; } }
+
+    @media (max-width: 768px) { .nav-links { display: none; } }
   </style>
 </head>
 <body>
 
 <nav class="navbar">
-  <a href="index.html" class="logo">PFE<span>·ENS</span></a>
-  <ul class="nav-links">
+  <a href="index.html" class="logo" aria-label="Accueil PFE ENS">PFE<span>·ENS</span></a>
+  <ul class="nav-links" aria-label="Navigation principale">
     <li><a href="index.html">Accueil</a></li>
     <li><a href="pages/01-introduction.html">Introduction</a></li>
     <li><a href="pages/02-optimisation-combinatoire.html">Optimisation Combinatoire</a></li>
@@ -371,7 +391,7 @@
     <li><a href="pages/05-tsp.html">TSP</a></li>
     <li><a href="pages/06-programmation-dynamique.html">Programmation Dynamique</a></li>
     <li><a href="pages/07-methodes-resolution.html">Méthodes de Résolution</a></li>
-    <li><a href="tsp-world-pro.html" class="app-link">✨ Application</a></li>
+    <li><a href="tsp-world-pro.html" class="app-link">✨ App</a></li>
   </ul>
 </nav>
 
@@ -523,14 +543,14 @@
     <div style="background: white; border: 1px solid #e2e8f0; border-radius: 20px; padding: 1.2rem; text-align: center; min-width: 260px;">
       <i class="fas fa-globe" style="font-size: 1.8rem; color: #c9a84c;"></i>
       <h3 style="margin: 0.5rem 0; font-size: 0.9rem;">🌍 Application en ligne</h3>
-      <a href="https://ilyaserrouifi.github.io/tsp-world-pro-ilyas-errouifi/" target="_blank" style="color: #0088aa; font-size: 0.7rem;">
+      <a href="https://ilyaserrouifi.github.io/tsp-world-pro-ilyas-errouifi/" target="_blank" rel="noopener noreferrer" style="color: #0088aa; font-size: 0.7rem;">
         ilyaserrouifi.github.io/tsp-world-pro-ilyas-errouifi
       </a>
     </div>
     <div style="background: white; border: 1px solid #e2e8f0; border-radius: 20px; padding: 1.2rem; text-align: center; min-width: 260px;">
       <i class="fab fa-github" style="font-size: 1.8rem; color: #c9a84c;"></i>
       <h3 style="margin: 0.5rem 0; font-size: 0.9rem;">📂 Code source</h3>
-      <a href="https://github.com/ilyaserrouifi/tsp-world-pro-ilyas-errouifi/" target="_blank" style="color: #0088aa; font-size: 0.7rem;">
+      <a href="https://github.com/ilyaserrouifi/tsp-world-pro-ilyas-errouifi/" target="_blank" rel="noopener noreferrer" style="color: #0088aa; font-size: 0.7rem;">
         github.com/ilyaserrouifi/tsp-world-pro-ilyas-errouifi
       </a>
     </div>
@@ -541,7 +561,7 @@
 <div id="launch" class="launch-banner">
   <h3>🚀 Prêt à optimiser vos tournées ?</h3>
   <p>Accédez à l'application complète — Carte, GPS, TSP, QR Code</p>
-  <a href="https://ilyaserrouifi.github.io/tsp-world-pro-ilyas-errouifi/" target="_blank" class="btn-large">
+  <a href="https://ilyaserrouifi.github.io/tsp-world-pro-ilyas-errouifi/" target="_blank" rel="noopener noreferrer" class="btn-large">
     <span>🌍 Lancer TSP WORLD PRO</span> <span>→</span>
   </a>
 </div>
@@ -563,8 +583,8 @@
   <p>PFE 2025-2026 — Iliass Errouifi & Soufiane Er-Rthimi</p>
   <div style="margin-top: 0.8rem;">
     <a href="index.html" style="color:#718096; text-decoration:none; margin:0 0.4rem;">Accueil</a>
-    <a href="https://github.com/ilyaserrouifi/tsp-world-pro-ilyas-errouifi/" target="_blank" style="color:#718096; text-decoration:none; margin:0 0.4rem;">GitHub</a>
-    <a href="https://ilyaserrouifi.github.io/tsp-world-pro-ilyas-errouifi/" target="_blank" style="color:#718096; text-decoration:none; margin:0 0.4rem;">Application</a>
+    <a href="https://github.com/ilyaserrouifi/tsp-world-pro-ilyas-errouifi/" target="_blank" rel="noopener noreferrer" style="color:#718096; text-decoration:none; margin:0 0.4rem;">GitHub</a>
+    <a href="https://ilyaserrouifi.github.io/tsp-world-pro-ilyas-errouifi/" target="_blank" rel="noopener noreferrer" style="color:#718096; text-decoration:none; margin:0 0.4rem;">Application</a>
   </div>
 </footer>
 

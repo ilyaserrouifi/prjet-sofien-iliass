@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Chapitre 1 | Introduction | Optimisation Combinatoire & TSP</title>
+  <title>Introduction | Optimisation Combinatoire & TSP</title>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;900&family=Raleway:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -47,27 +47,47 @@
     .btn-next:hover { transform: translateX(3px); box-shadow: 0 5px 20px rgba(201,168,76,0.3); }
     footer { text-align: center; padding: 2rem; border-top: 1px solid #e2e8f0; background: #ffffff; margin-top: 2rem; color: #718096; font-size: 0.7rem; }
     @media (max-width: 768px) { .navbar { padding: 1rem; } .nav-links { display: none; } .container { padding: 80px 1rem 2rem; } h1 { font-size: 1.5rem; } }
+
+    /* Harmonisation globale : navigation claire, texte lisible et boutons animés */
+    .navbar { gap: clamp(0.8rem, 2vw, 2rem); padding: 0.85rem clamp(0.85rem, 2.5vw, 2.6rem); }
+    .logo { flex: 0 0 auto; white-space: nowrap; letter-spacing: 3px; }
+    .nav-links { flex: 1; justify-content: flex-end; align-items: center; gap: clamp(0.45rem, 1.15vw, 1.35rem); flex-wrap: wrap; }
+    .nav-links a { display: inline-flex; align-items: center; min-height: 2rem; color: #18263a; font-size: clamp(0.55rem, 0.72vw, 0.68rem); line-height: 1.35; letter-spacing: 1.8px; font-weight: 800; padding: 0.2rem 0; }
+    .nav-links a:hover { color: #0088aa; transform: translateY(-1px); }
+    .nav-links .app-link { color: #0088aa; border: 1px solid rgba(0,136,170,0.35); padding: 0.3rem 0.8rem; border-radius: 999px; background: rgba(0,136,170,0.06); }
+    .nav-links .app-link:hover { background: linear-gradient(135deg, #c9a84c, #0088aa); color: #ffffff; box-shadow: 0 8px 20px rgba(0,136,170,0.22); }
+    p, li, .card p, .intro-text p, .description-long p, .table-classes td { color: #24364a; font-weight: 500; }
+    .card, .intro-text, .toc-card, .feature-card, .qr-card { box-shadow: 0 10px 28px rgba(26,42,58,0.06); }
+    .definition { background: linear-gradient(135deg, #ffffff 0%, #f3f8fb 100%); border-left: 6px solid #0088aa; color: #1a2a3a; box-shadow: 0 8px 22px rgba(0,136,170,0.08); }
+    .definition strong { color: #0088aa; }
+    .btn-prev, .btn-next, .btn-launch, .btn-large { font-weight: 800; position: relative; overflow: hidden; }
+    .btn-prev:hover, .btn-next:hover, .btn-launch:hover, .btn-large:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 12px 26px rgba(0,136,170,0.22); }
+    .btn-next::after, .btn-launch::after, .btn-large::after { content: ''; position: absolute; inset: 0; background: linear-gradient(120deg, transparent, rgba(255,255,255,0.3), transparent); transform: translateX(-120%); transition: transform 0.55s ease; }
+    .btn-next:hover::after, .btn-launch:hover::after, .btn-large:hover::after { transform: translateX(120%); }
+    @media (max-width: 1100px) { .nav-links { gap: 0.45rem 0.85rem; } .nav-links a { letter-spacing: 1.2px; } }
+
+    @media (max-width: 768px) { .nav-links { display: none; } }
   </style>
 </head>
 <body>
 
 <nav class="navbar">
-  <a href="../index.html" class="logo">PFE<span>·ENS</span></a>
-  <ul class="nav-links">
+  <a href="../index.html" class="logo" aria-label="Accueil PFE ENS">PFE<span>·ENS</span></a>
+  <ul class="nav-links" aria-label="Navigation principale">
     <li><a href="../index.html">Accueil</a></li>
     <li><a href="01-introduction.html">Introduction</a></li>
-    <li><a href="02-optimisation-combinatoire.html">Ch.2</a></li>
-    <li><a href="03-calculabilite.html">Ch.3</a></li>
-    <li><a href="04-complexites.html">Ch.4</a></li>
-    <li><a href="05-tsp.html">Ch.5</a></li>
-    <li><a href="06-programmation-dynamique.html">Ch.6</a></li>
-    <li><a href="07-methodes-resolution.html">Ch.7</a></li>
-    <li><a href="../tsp-world-pro.html">Application</a></li>
+    <li><a href="02-optimisation-combinatoire.html">Optimisation Combinatoire</a></li>
+    <li><a href="03-calculabilite.html">Calculabilité</a></li>
+    <li><a href="04-complexites.html">Complexité</a></li>
+    <li><a href="05-tsp.html">TSP</a></li>
+    <li><a href="06-programmation-dynamique.html">Programmation Dynamique</a></li>
+    <li><a href="07-methodes-resolution.html">Méthodes de Résolution</a></li>
+    <li><a href="../tsp-world-pro.html" class="app-link">✨ App</a></li>
   </ul>
 </nav>
 
 <div class="container">
-  <span class="chapitre-badge">CHAPITRE 1</span>
+  <span class="chapitre-badge">INTRODUCTION GÉNÉRALE</span>
   <h1>Introduction <span>Générale</span></h1>
 
   <!-- TEXTE D'INTRODUCTION -->
@@ -81,20 +101,20 @@
   <div class="plan-section">
     <div class="plan-title">📖 Plan du mémoire</div>
     <ul class="ch-list">
-      <li><span class="ch-num">Chapitre 1</span> <span class="ch-title">Introduction Générale</span><div class="ch-desc">Contexte, historique, présentation du TSP.</div></li>
-      <li><span class="ch-num">Chapitre 2</span> <span class="ch-title">Optimisation Combinatoire</span><div class="ch-desc">Définitions, programmation linéaire en nombres entiers (PLNE), programmation stochastique, classification des méthodes.</div></li>
-      <li><span class="ch-num">Chapitre 3</span> <span class="ch-title">Calculabilité & Décidabilité</span><div class="ch-desc">Machines de Turing, thèse de Church-Turing, problème de l'arrêt, frontière décidable/indécidable.</div></li>
-      <li><span class="ch-num">Chapitre 4</span> <span class="ch-title">Complexité : P, NP, NP-Complet, NP-Difficile</span><div class="ch-desc">Classes de complexité, réduction polynomiale, conjecture P vs NP, preuve de NP-complétude du TSP.</div></li>
-      <li><span class="ch-num">Chapitre 5</span> <span class="ch-title">Problème du Voyageur de Commerce (TSP)</span><div class="ch-desc">Définition, variantes (symétrique, asymétrique, métrique, euclidien, TSPTW, mTSP), explosion combinatoire, applications.</div></li>
-      <li><span class="ch-num">Chapitre 6</span> <span class="ch-title">Programmation Dynamique</span><div class="ch-desc">Principe de Bellman, algorithme de Held-Karp (O(n²·2ⁿ)), comparaison avec la force brute.</div></li>
-      <li><span class="ch-num">Chapitre 7</span> <span class="ch-title">Méthodes de Résolution</span><div class="ch-desc">Branch & Bound, Branch & Cut, Christofides, recuit simulé, recherche tabou, algorithmes génétiques, colonies de fourmis.</div></li>
+      <li><span class="ch-num">Introduction</span> <span class="ch-title">Introduction Générale</span><div class="ch-desc">Contexte, historique, présentation du TSP.</div></li>
+      <li><span class="ch-num">Chapitre 1</span> <span class="ch-title">Optimisation Combinatoire</span><div class="ch-desc">Définitions, programmation linéaire en nombres entiers (PLNE), programmation stochastique, classification des méthodes.</div></li>
+      <li><span class="ch-num">Chapitre 2</span> <span class="ch-title">Calculabilité & Décidabilité</span><div class="ch-desc">Machines de Turing, thèse de Church-Turing, problème de l'arrêt, frontière décidable/indécidable.</div></li>
+      <li><span class="ch-num">Chapitre 3</span> <span class="ch-title">Complexité : P, NP, NP-Complet, NP-Difficile</span><div class="ch-desc">Classes de complexité, réduction polynomiale, conjecture P vs NP, preuve de NP-complétude du TSP.</div></li>
+      <li><span class="ch-num">Chapitre 4</span> <span class="ch-title">Problème du Voyageur de Commerce (TSP)</span><div class="ch-desc">Définition, variantes (symétrique, asymétrique, métrique, euclidien, TSPTW, mTSP), explosion combinatoire, applications.</div></li>
+      <li><span class="ch-num">Chapitre 5</span> <span class="ch-title">Programmation Dynamique</span><div class="ch-desc">Principe de Bellman, algorithme de Held-Karp (O(n²·2ⁿ)), comparaison avec la force brute.</div></li>
+      <li><span class="ch-num">Chapitre 6</span> <span class="ch-title">Méthodes de Résolution</span><div class="ch-desc">Branch & Bound, Branch & Cut, Christofides, recuit simulé, recherche tabou, algorithmes génétiques, colonies de fourmis.</div></li>
     </ul>
   </div>
 
   <!-- BOUTONS DE NAVIGATION -->
   <div class="btn-nav">
     <a href="../index.html" class="btn-prev">← Accueil</a>
-    <a href="02-optimisation-combinatoire.html" class="btn-next">Chapitre 2 : Optimisation Combinatoire →</a>
+    <a href="02-optimisation-combinatoire.html" class="btn-next">Chapitre 1 : Optimisation Combinatoire →</a>
   </div>
 </div>
 
