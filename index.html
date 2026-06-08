@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PFE | Optimisation Combinatoire & TSP | Iliass & Soufiane</title>
+  <title>PFE | Optimisation Combinatoire & TSP | Iliass & Soufiene</title>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;900&family=Raleway:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
   <style>
@@ -292,12 +292,47 @@
     @media (max-width: 1100px) { .nav-links { gap: 0.45rem 0.85rem; } .nav-links a { letter-spacing: 1.2px; } }
 
     @media (max-width: 768px) { .nav-links { display: none; } }
+
+    /* Finition professionnelle : logo, lecture noire et navigation premium */
+    :root { --ink:#06101f; --ink-soft:#152238; --muted-ink:#26364f; --gold:#c9a84c; --teal:#0088aa; --line:#d8e0ea; }
+    body { color: var(--ink); text-rendering: optimizeLegibility; -webkit-font-smoothing: antialiased; }
+    .navbar { min-height: 72px; background: rgba(255,255,255,0.985); box-shadow: 0 14px 35px rgba(6,16,31,0.07); border-bottom: 1px solid rgba(6,16,31,0.08); }
+    .logo { display: inline-flex; align-items: center; gap: 0.65rem; color: var(--ink) !important; text-decoration: none; }
+    .logo-mark { width: 36px; height: 36px; border-radius: 12px; display: inline-grid; place-items: center; background: linear-gradient(135deg, var(--gold), var(--teal)); color: #fff !important; font-family: 'Cinzel', serif; font-weight: 900; letter-spacing: 0; box-shadow: 0 10px 24px rgba(0,136,170,0.20); }
+    .logo-word { color: var(--gold) !important; font-family: 'Cinzel', serif; font-weight: 900; letter-spacing: 3px; }
+    .logo-word span { color: var(--teal) !important; }
+    .nav-links { gap: clamp(0.35rem, 0.8vw, 1rem); }
+    .nav-links a { color: var(--ink) !important; font-size: clamp(0.50rem, 0.62vw, 0.62rem); font-weight: 900; letter-spacing: 1.45px; padding: 0.42rem 0.18rem; border-bottom: 2px solid transparent; }
+    .nav-links a:hover { color: var(--teal) !important; border-bottom-color: var(--gold); }
+    .nav-links .app-link, .nav-links .team-link { border: 1px solid rgba(0,136,170,0.35); border-bottom-width: 1px; padding: 0.42rem 0.72rem; border-radius: 999px; background: rgba(0,136,170,0.055); }
+    .nav-links .team-link { color: var(--gold) !important; background: rgba(201,168,76,0.08); border-color: rgba(201,168,76,0.36); }
+    .nav-links .app-link:hover, .nav-links .team-link:hover { color: #fff !important; background: linear-gradient(135deg, var(--gold), var(--teal)); border-color: transparent; }
+    h1, h2, h3, h4, .hero-title-main, .hero-text h1 { color: var(--ink) !important; }
+    p, li, td, .feature-card p, .toc-card p, .qr-card p, .description-long p, .intro-text p, .card p { color: var(--ink-soft) !important; font-weight: 600; line-height: 1.82; }
+    strong { color: var(--ink) !important; }
+    .section-header h2 span, .gold, .footer-logo, .footer-logo span, .toc-num, .stat-number { filter: saturate(1.08); }
+    .toc-card, .card, .intro-text, .feature-card, .qr-card, .description-long, .authors, .stat-big-card, .arch-item { border-color: var(--line) !important; box-shadow: 0 18px 42px rgba(6,16,31,0.075) !important; }
+    .toc-card:hover, .feature-card:hover, .qr-card:hover, .card:hover { transform: translateY(-6px); box-shadow: 0 24px 55px rgba(6,16,31,0.11) !important; }
+    .definition, .formula, .complexity-box, .highlight-box { color: var(--ink) !important; border-color: var(--teal) !important; box-shadow: 0 14px 32px rgba(0,136,170,0.10) !important; }
+    .btn-launch, .btn-large, .btn-next, .btn-prev, .btn-team { letter-spacing: 1.5px; }
+    .btn-team { display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; margin-top: 1.2rem; padding: 0.85rem 1.55rem; border-radius: 999px; background: linear-gradient(135deg, var(--ink), var(--teal)); color: #fff !important; text-decoration: none; font-family: 'Cinzel', serif; font-weight: 800; font-size: 0.78rem; box-shadow: 0 14px 28px rgba(6,16,31,0.16); transition: 0.28s ease; }
+    .btn-team:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 20px 40px rgba(0,136,170,0.22); }
+    .team-preview-grid, .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.35rem; max-width: 980px; margin: 0 auto; }
+    .team-card { background: #fff; border: 1px solid var(--line); border-radius: 26px; padding: 1.5rem; box-shadow: 0 18px 42px rgba(6,16,31,0.075); position: relative; overflow: hidden; }
+    .team-card::before { content:''; position:absolute; inset:0 0 auto 0; height:5px; background:linear-gradient(90deg,var(--gold),var(--teal)); }
+    .team-avatar { width: 78px; height: 78px; border-radius: 24px; display:grid; place-items:center; margin-bottom: 1rem; color:#fff; background: linear-gradient(135deg,var(--gold),var(--teal)); font-family:'Cinzel',serif; font-size:1.45rem; font-weight:900; box-shadow: 0 14px 30px rgba(0,136,170,0.18); }
+    .team-role { color: var(--teal) !important; font-size: 0.72rem; font-weight: 900; text-transform: uppercase; letter-spacing: 1.4px; margin: 0.2rem 0 0.7rem; }
+    .team-card ul { margin-left: 1rem; margin-top: 0.8rem; }
+    .team-card li { margin: 0.35rem 0; }
+    @media (max-width: 1180px) { .navbar { align-items:flex-start; } .nav-links { padding-top:0.2rem; } }
+    @media (max-width: 768px) { .navbar { min-height:64px; align-items:center; } .logo-mark { width:32px; height:32px; } }
+
   </style>
 </head>
 <body>
 
 <nav class="navbar">
-  <a href="index.html" class="logo" aria-label="Accueil PFE ENS">PFE<span>·ENS</span></a>
+  <a href="index.html" class="logo" aria-label="Accueil PFE ENS"><span class="logo-mark">∑</span><span class="logo-word">PFE<span>·ENS</span></span></a>
   <ul class="nav-links" aria-label="Navigation principale">
     <li><a href="index.html">Accueil</a></li>
     <li><a href="pages/01-introduction.html">Introduction</a></li>
@@ -307,6 +342,7 @@
     <li><a href="pages/05-tsp.html">TSP</a></li>
     <li><a href="pages/06-programmation-dynamique.html">Programmation Dynamique</a></li>
     <li><a href="pages/07-methodes-resolution.html">Méthodes de Résolution</a></li>
+    <li><a href="pages/08-equipe.html" class="team-link">👥 Équipe</a></li>
     <li><a href="tsp-world-pro.html" class="app-link">✨ App</a></li>
   </ul>
 </nav>
@@ -326,7 +362,7 @@
     
     <div class="authors">
       <p><strong>👥 Réalisé par :</strong></p>
-      <p>ER-RTHIMI SOFIANE</p>
+      <p>ER-RTHIMI SOUFIENE</p>
       <p>ER ROUIFFI ILYAS</p>
       <div class="supervisor"><strong>📌 Encadré par :</strong> <span>Pr. EL HICHAMI OTHMANE</span></div>
     </div>
@@ -386,6 +422,11 @@
       <h3>🎯 Méthodes de Résolution</h3>
       <p>Branch & Bound, Christofides, recuit simulé, recherche tabou, AG, colonies de fourmis.</p>
     </a>
+    <a href="pages/08-equipe.html" class="toc-card">
+      <div class="toc-num">👥</div>
+      <h3>Équipe du projet</h3>
+      <p>Présentation de Soufiene Er-Rthimi et Iliass Errouifi, leurs rôles, compétences et responsabilités dans le PFE.</p>
+    </a>
     <a href="tsp-world-pro.html" class="toc-card">
       <div class="toc-num">🚀</div>
       <h3>Application : TSP WORLD PRO</h3>
@@ -418,32 +459,45 @@
 </section>
 
 <!-- SECTION ÉQUIPE -->
-<section class="section">
+<section class="section" id="equipe">
   <div class="section-header">
-    <h2>Notre <span>équipe</span></h2>
+    <h2>👥 Notre <span>équipe</span></h2>
     <div class="section-line"></div>
   </div>
-  <div style="display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; max-width: 700px; margin: 0 auto;">
-    <div style="text-align: center; background: white; border: 1px solid #e2e8f0; border-radius: 18px; padding: 1.2rem; width: 200px;">
-      <div style="width: 70px; height: 70px; background: linear-gradient(135deg, #c9a84c, #0088aa); border-radius: 50%; margin: 0 auto 0.6rem; display: flex; align-items: center; justify-content: center; font-size: 1.6rem; font-weight: bold; color: white;">IE</div>
-      <h3 style="font-size: 0.9rem; color: #1a2a3a;">Iliass Errouifi</h3>
-      <p style="font-size: 0.65rem; color: #718096;">Algorithmes · Développement · Application</p>
-    </div>
-    <div style="text-align: center; background: white; border: 1px solid #e2e8f0; border-radius: 18px; padding: 1.2rem; width: 200px;">
-      <div style="width: 70px; height: 70px; background: linear-gradient(135deg, #c9a84c, #0088aa); border-radius: 50%; margin: 0 auto 0.6rem; display: flex; align-items: center; justify-content: center; font-size: 1.6rem; font-weight: bold; color: white;">SR</div>
-      <h3 style="font-size: 0.9rem; color: #1a2a3a;">Soufiane Er-Rthimi</h3>
-      <p style="font-size: 0.65rem; color: #718096;">Optimisation · RO · Documentation</p>
-    </div>
+  <div class="team-preview-grid">
+    <article class="team-card">
+      <div class="team-avatar">SE</div>
+      <h3>Soufiene Er-Rthimi</h3>
+      <p class="team-role">Mathématicien · Étudiant ENS</p>
+      <p>Étudiant en 3ème année Mathématiques à l’École Normale Supérieure de Tétouan, Soufiene apporte la vision théorique du projet : optimisation combinatoire, recherche opérationnelle et formalisation mathématique du TSP.</p>
+      <ul>
+        <li>Modélisation mathématique du problème du voyageur de commerce.</li>
+        <li>Analyse des méthodes exactes, approchées et métaheuristiques.</li>
+        <li>Rédaction scientifique et cohérence du mémoire.</li>
+      </ul>
+    </article>
+    <article class="team-card">
+      <div class="team-avatar">IE</div>
+      <h3>Iliass Errouifi</h3>
+      <p class="team-role">Software Engineer · Étudiant ENS</p>
+      <p>Programmeur professionnel orienté software engineering et étudiant en 3ème année Mathématiques, Iliass transforme la théorie en application interactive avec cartes, algorithmes TSP, QR Code et interface web moderne.</p>
+      <ul>
+        <li>Conception et développement de l’application TSP WORLD PRO.</li>
+        <li>Implémentation des algorithmes et intégration des APIs.</li>
+        <li>Design web, expérience utilisateur et déploiement.</li>
+      </ul>
+    </article>
   </div>
-  <div style="text-align: center; margin-top: 1.5rem;">
-    <p style="color: #718096; font-size: 0.75rem;">Encadré par <strong style="color: #c9a84c;">Monsieur Outman El Hichami</strong> — ENS Tétouan</p>
+  <div style="text-align:center; margin-top:1.6rem;">
+    <p style="font-size:0.82rem;">Encadré par <strong>Monsieur Outman El Hichami</strong> — ENS Tétouan</p>
+    <a href="pages/08-equipe.html" class="btn-team">Voir la page équipe →</a>
   </div>
 </section>
 
 <footer>
   <div class="footer-logo">ENS<span>·Tétouan</span></div>
   <p>Projet de Fin d'Études — 2025-2026 — École Normale Supérieure de Tétouan</p>
-  <p>Iliass Errouifi & Soufiane Er-Rthimi — Sous la direction de Monsieur Outman El Hichami</p>
+  <p>Iliass Errouifi & Soufiene Er-Rthimi — Sous la direction de Monsieur Outman El Hichami</p>
   <div style="margin-top: 0.8rem;">
     <a href="pages/01-introduction.html" style="color:#718096; text-decoration:none; margin:0 0.4rem; font-size:0.65rem;">Introduction</a>
     <a href="pages/02-optimisation-combinatoire.html" style="color:#718096; text-decoration:none; margin:0 0.4rem; font-size:0.65rem;">Optimisation</a>
@@ -452,6 +506,7 @@
     <a href="pages/05-tsp.html" style="color:#718096; text-decoration:none; margin:0 0.4rem; font-size:0.65rem;">TSP</a>
     <a href="pages/06-programmation-dynamique.html" style="color:#718096; text-decoration:none; margin:0 0.4rem; font-size:0.65rem;">Programmation dynamique</a>
     <a href="pages/07-methodes-resolution.html" style="color:#718096; text-decoration:none; margin:0 0.4rem; font-size:0.65rem;">Méthodes</a>
+    <a href="pages/08-equipe.html" style="color:#718096; text-decoration:none; margin:0 0.4rem; font-size:0.65rem;">Équipe</a>
     <a href="tsp-world-pro.html" style="color:#c9a84c; text-decoration:none; margin:0 0.4rem; font-size:0.65rem;">✨ App</a>
   </div>
 </footer>
