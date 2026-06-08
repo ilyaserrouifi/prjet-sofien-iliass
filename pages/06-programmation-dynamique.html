@@ -3,23 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Introduction | Optimisation Combinatoire & TSP</title>
+  <title>Chapitre 5 | Programmation Dynamique | PFE 2025-2026</title>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;900&family=Raleway:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      font-family: 'Raleway', sans-serif;
-      background: #f5f7fb;
-      color: #1a2a3a;
-      line-height: 1.6;
-    }
-    .navbar {
-      position: fixed; top: 0; width: 100%; padding: 1rem 3rem;
-      background: rgba(255, 255, 255, 0.96); backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(0, 0, 0, 0.08); z-index: 1000;
-      display: flex; justify-content: space-between; align-items: center;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.03);
-    }
+    body { font-family: 'Raleway', sans-serif; background: #f5f7fb; color: #1a2a3a; line-height: 1.6; }
+    .navbar { position: fixed; top: 0; width: 100%; padding: 1rem 3rem; background: rgba(255, 255, 255, 0.96); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(0, 0, 0, 0.08); z-index: 1000; display: flex; justify-content: space-between; align-items: center; }
     .logo { font-family: 'Cinzel', serif; font-size: 1.2rem; font-weight: 700; letter-spacing: 4px; color: #c9a84c; text-decoration: none; }
     .logo span { color: #0088aa; }
     .nav-links { display: flex; gap: 2rem; list-style: none; }
@@ -28,23 +17,25 @@
     .container { max-width: 1000px; margin: 0 auto; padding: 100px 2rem 3rem; }
     h1 { font-family: 'Cinzel', serif; font-size: 2rem; font-weight: 800; color: #1a2a3a; margin-bottom: 0.5rem; border-left: 4px solid #c9a84c; padding-left: 1rem; }
     h1 span { color: #c9a84c; }
+    h2 { font-family: 'Cinzel', serif; font-size: 1.3rem; font-weight: 700; color: #0088aa; margin: 1.5rem 0 1rem; border-bottom: 2px solid rgba(0,136,170,0.15); padding-bottom: 0.3rem; }
+    h3 { font-family: 'Cinzel', serif; font-size: 1rem; font-weight: 700; color: #c9a84c; margin: 1rem 0 0.5rem; }
     .chapitre-badge { display: inline-block; background: rgba(201,168,76,0.12); border: 1px solid rgba(201,168,76,0.3); border-radius: 50px; padding: 0.2rem 0.8rem; font-size: 0.6rem; letter-spacing: 2px; color: #c9a84c; margin: 0.5rem 0 1rem 1rem; font-weight: 600; }
-    .intro-text { background: white; border-radius: 16px; padding: 2rem; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(0,0,0,0.04); border: 1px solid #e2e8f0; }
-    .intro-text p { color: #4a5568; margin-bottom: 1rem; font-size: 1rem; line-height: 1.7; }
-    .plan-section { margin: 2rem 0; }
-    .plan-title { font-family: 'Cinzel', serif; font-size: 1.3rem; font-weight: 700; color: #0088aa; margin: 1.5rem 0 1rem; border-bottom: 2px solid rgba(0,136,170,0.15); padding-bottom: 0.3rem; }
-    .ch-list { list-style: none; margin: 1rem 0; }
-    .ch-list li { background: white; border: 1px solid #e2e8f0; border-radius: 12px; padding: 1rem 1.2rem; margin-bottom: 0.8rem; transition: 0.3s; }
-    .ch-list li:hover { border-color: #c9a84c; transform: translateX(5px); }
-    .ch-num { font-family: 'Cinzel', serif; font-weight: 700; color: #c9a84c; margin-right: 0.8rem; }
-    .ch-title { font-weight: 600; color: #1a2a3a; }
-    .ch-desc { font-size: 0.8rem; color: #718096; margin-top: 0.3rem; }
-    .btn-nav { display: flex; justify-content: space-between; margin-top: 3rem; gap: 1rem; }
+    .card { background: white; border-radius: 16px; padding: 1.5rem; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(0,0,0,0.04); border: 1px solid #e2e8f0; }
+    .card p { color: #4a5568; margin-bottom: 0.8rem; font-size: 0.95rem; line-height: 1.7; }
+    .definition { background: linear-gradient(135deg, #f8fafc, #ffffff); border-left: 4px solid #c9a84c; padding: 1rem 1.2rem; margin: 1rem 0; border-radius: 0 12px 12px 0; }
+    .formula { background: #eef2f8; border-left: 4px solid #0088aa; padding: 0.8rem 1.2rem; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; color: #1a2a3a; margin: 0.8rem 0; overflow-x: auto; }
+    .schema { background: #eef2f8; border-radius: 16px; padding: 1rem; text-align: center; margin: 1rem 0; border: 1px solid #c9a84c; }
+    .schema-title { font-weight: 700; margin-bottom: 0.5rem; color: #c9a84c; }
+    .table-classes { width: 100%; border-collapse: collapse; background: #eef2f8; border-radius: 12px; overflow: hidden; margin: 1rem 0; }
+    .table-classes th { background: rgba(201,168,76,0.15); padding: 0.8rem; font-family: 'Cinzel', serif; font-size: 0.7rem; color: #9a7a1f; text-align: left; }
+    .table-classes td { padding: 0.7rem 0.8rem; border-bottom: 1px solid rgba(0,0,0,0.05); color: #4a5568; font-size: 0.85rem; }
+    .flow-chart { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 0.8rem; margin: 1rem 0; }
+    .flow-box { background: white; border: 1px solid rgba(0,136,170,0.25); border-radius: 12px; padding: 0.8rem; text-align: center; font-size: 0.85rem; }
+    .btn-nav { display: flex; justify-content: space-between; margin-top: 2rem; gap: 1rem; }
     .btn-prev, .btn-next { padding: 0.7rem 1.5rem; text-decoration: none; border-radius: 50px; font-size: 0.7rem; letter-spacing: 2px; text-transform: uppercase; transition: 0.3s; }
     .btn-prev { border: 1px solid #c9a84c; color: #c9a84c; background: transparent; }
     .btn-prev:hover { background: rgba(201,168,76,0.1); }
     .btn-next { background: linear-gradient(135deg, #c9a84c, #0088aa); color: white; border: none; }
-    .btn-next:hover { transform: translateX(3px); box-shadow: 0 5px 20px rgba(201,168,76,0.3); }
     footer { text-align: center; padding: 2rem; border-top: 1px solid #e2e8f0; background: #ffffff; margin-top: 2rem; color: #718096; font-size: 0.7rem; }
     @media (max-width: 768px) { .navbar { padding: 1rem; } .nav-links { display: none; } .container { padding: 80px 1rem 2rem; } h1 { font-size: 1.5rem; } }
 
@@ -123,40 +114,83 @@
 </nav>
 
 <div class="container">
-  <span class="chapitre-badge">INTRODUCTION GÉNÉRALE</span>
-  <h1>Introduction <span>Générale</span></h1>
+  <span class="chapitre-badge">CHAPITRE 5</span>
+  <h1>Programmation <span>Dynamique</span></h1>
 
-  <!-- TEXTE D'INTRODUCTION -->
-  <div class="intro-text">
-    <p>Depuis les travaux pionniers de George Dantzig sur la programmation linéaire dans les années 1940, l'optimisation combinatoire s'est imposée comme une branche essentielle des mathématiques appliquées et de l'informatique théorique. Ce domaine se consacre à la recherche d'une solution optimale au sein d'un ensemble discret et fini de configurations. Sa pertinence est aujourd'hui universelle, intervenant dans un large spectre d'applications réelles : en mathématiques financières (gestion de portefeuilles d'actions), pour la navigation de véhicules autonomes (traitement en temps réel des données capteurs), dans le secteur médical (imagerie diagnostique), ou encore dans le domaine de l'énergie (optimisation de la localisation de parcs éoliens selon les conditions climatiques). Elle est également omniprésente en informatique (ordonnancement de processus, indexation de bases de données), en traitement d'images (alignement de clichés satellites), dans l'industrie (planification de la production) et dans la théorie des jeux.</p>
-
-    <p>Au cœur de l'optimisation combinatoire, le Problème du Voyageur de Commerce (TSP - Traveling Salesman Problem) occupe une place emblématique. Véritable pierre angulaire de la discipline, sa première formulation mathématique rigoureuse a été introduite par Dantzig, Fulkerson et Johnson en 1954, déclinée sous ses formes symétrique et asymétrique. Depuis, la communauté scientifique n'a cessé d'en repousser les limites.</p>
+  <div class="card">
+    <p>La programmation dynamique est une méthode exacte qui transforme un problème difficile en une suite de sous-problèmes mémorisés. Pour le TSP, elle ne rend pas le problème polynomial, mais elle réduit fortement le coût par rapport à l'énumération naïve de toutes les tournées.</p>
+    <div class="definition">
+      <strong>Idée centrale :</strong> au lieu de recalculer plusieurs fois le même chemin partiel, on garde en mémoire la meilleure distance pour atteindre une ville donnée après avoir visité un ensemble précis de villes.
+    </div>
   </div>
 
-  <!-- PLAN DES CHAPITRES -->
-  <div class="plan-section">
-    <div class="plan-title">📖 Plan du mémoire</div>
-    <ul class="ch-list">
-      <li><span class="ch-num">Introduction</span> <span class="ch-title">Introduction Générale</span><div class="ch-desc">Contexte, historique, présentation du TSP.</div></li>
-      <li><span class="ch-num">Chapitre 1</span> <span class="ch-title">Optimisation Combinatoire</span><div class="ch-desc">Définitions, programmation linéaire en nombres entiers (PLNE), programmation stochastique, classification des méthodes.</div></li>
-      <li><span class="ch-num">Chapitre 2</span> <span class="ch-title">Calculabilité & Décidabilité</span><div class="ch-desc">Machines de Turing, thèse de Church-Turing, problème de l'arrêt, frontière décidable/indécidable.</div></li>
-      <li><span class="ch-num">Chapitre 3</span> <span class="ch-title">Complexité : P, NP, NP-Complet, NP-Difficile</span><div class="ch-desc">Classes de complexité, réduction polynomiale, conjecture P vs NP, preuve de NP-complétude du TSP.</div></li>
-      <li><span class="ch-num">Chapitre 4</span> <span class="ch-title">Problème du Voyageur de Commerce (TSP)</span><div class="ch-desc">Définition, variantes (symétrique, asymétrique, métrique, euclidien, TSPTW, mTSP), explosion combinatoire, applications.</div></li>
-      <li><span class="ch-num">Chapitre 5</span> <span class="ch-title">Programmation Dynamique</span><div class="ch-desc">Principe de Bellman, algorithme de Held-Karp (O(n²·2ⁿ)), comparaison avec la force brute.</div></li>
-      <li><span class="ch-num">Chapitre 6</span> <span class="ch-title">Méthodes de Résolution</span><div class="ch-desc">Branch & Bound, Branch & Cut, Christofides, recuit simulé, recherche tabou, algorithmes génétiques, colonies de fourmis.</div></li>
-    </ul>
+  <h2>🧠 Principe d'optimalité de Bellman</h2>
+  <div class="card">
+    <p>Le principe d'optimalité affirme qu'une solution optimale est composée de sous-solutions optimales. Autrement dit, si une tournée optimale arrive à une ville <strong>j</strong> après avoir visité un ensemble <strong>S</strong>, alors le chemin utilisé avant d'arriver à <strong>j</strong> doit lui aussi être optimal pour ce sous-problème.</p>
+    <div class="formula">Optimal = meilleur choix courant + solution optimale du sous-problème restant</div>
   </div>
 
-  <!-- BOUTONS DE NAVIGATION -->
+  <h2>⚖️ Force brute vs Programmation dynamique</h2>
+  <div class="card">
+    <table class="table-classes">
+      <thead><tr><th>Méthode</th><th>Principe</th><th>Complexité</th><th>Utilisation</th></tr></thead>
+      <tbody>
+        <tr><td>Force brute</td><td>Tester toutes les permutations</td><td>O(n!)</td><td>Très petites instances</td></tr>
+        <tr><td>Held-Karp</td><td>Mémoriser les sous-tournées optimales</td><td>O(n² · 2ⁿ)</td><td>Instances petites/moyennes</td></tr>
+        <tr><td>Heuristiques</td><td>Construire une bonne solution rapidement</td><td>Souvent polynomial</td><td>Grandes instances</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>📐 Algorithme de Held-Karp</h2>
+  <div class="card">
+    <p>L'algorithme de Held-Karp est l'application classique de la programmation dynamique au TSP. On fixe une ville de départ, puis on calcule progressivement le meilleur coût pour atteindre chaque ville après avoir visité certains sous-ensembles.</p>
+    <div class="definition">
+      <strong>État DP :</strong> DP[S][j] représente le coût minimal d'un chemin qui part de la ville 0, visite exactement les villes de l'ensemble S, et termine dans la ville j.
+    </div>
+    <div class="formula">DP[S][j] = min<sub>i ∈ S, i ≠ j</sub> ( DP[S \ {j}][i] + d(i,j) )</div>
+    <div class="formula">Réponse finale = min<sub>j ≠ 0</sub> ( DP[Toutes les villes][j] + d(j,0) )</div>
+  </div>
+
+  <h2>🔄 Étapes de résolution</h2>
+  <div class="schema">
+    <p class="schema-title">Pipeline Held-Karp</p>
+    <div class="flow-chart">
+      <div class="flow-box">1. Fixer la ville de départ</div>
+      <div class="flow-box">2. Initialiser les sous-ensembles</div>
+      <div class="flow-box">3. Remplir la table DP</div>
+      <div class="flow-box">4. Fermer la tournée</div>
+      <div class="flow-box">5. Reconstruire le meilleur chemin</div>
+    </div>
+  </div>
+
+  <h2>💻 Pseudo-code simplifié</h2>
+  <div class="card">
+    <div class="formula">
+      pour chaque ville j ≠ 0 : DP[{0,j}][j] = d(0,j)<br>
+      pour chaque taille k de 3 à n :<br>
+      &nbsp;&nbsp;pour chaque ensemble S contenant 0 et |S| = k :<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;pour chaque j dans S, j ≠ 0 :<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DP[S][j] = min(DP[S-{j}][i] + d(i,j))<br>
+      retourner min(DP[V][j] + d(j,0))
+    </div>
+  </div>
+
+  <h2>📝 Conclusion du chapitre</h2>
+  <div class="card">
+    <p>La programmation dynamique apporte une méthode exacte plus intelligente que la force brute. Elle reste exponentielle, donc limitée pour les grandes instances, mais elle constitue une base théorique essentielle pour comprendre les compromis entre optimalité garantie et temps de calcul.</p>
+    <p>Le chapitre suivant élargit cette vision avec les méthodes de résolution exactes, approchées et métaheuristiques utilisées pour traiter des instances plus grandes du TSP.</p>
+  </div>
+
   <div class="btn-nav">
-    <a href="../index.html" class="btn-prev">← Accueil</a>
-    <a href="02-optimisation-combinatoire.html" class="btn-next">Chapitre 1 : Optimisation Combinatoire →</a>
+    <a href="05-tsp.html" class="btn-prev">← Chapitre 4 : TSP</a>
+    <a href="07-methodes-resolution.html" class="btn-next">Chapitre 6 : Méthodes de Résolution →</a>
   </div>
 </div>
 
 <footer>
-  <p>PFE — Iliass Errouifi & Soufiene Er-Rthimi — Optimisation Combinatoire appliquée au TSP</p>
-  <p>École Normale Supérieure Tétouan — Université Abdelmalek Essaâdi — 2025-2026</p>
+  <p>PFE — Iliass Errouifi & Soufiene Er-Rthimi — Optimisation Combinatoire & TSP</p>
+  <p>ENS Tétouan — Université Abdelmalek Essaâdi — 2025-2026</p>
 </footer>
 
 </body>

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Chapitre 2 | Optimisation Combinatoire | PFE 2025-2026</title>
+  <title>Chapitre 1 | Optimisation Combinatoire | PFE 2025-2026</title>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;900&family=Raleway:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -48,22 +48,78 @@
     .btn-next:hover { transform: translateX(3px); box-shadow: 0 5px 20px rgba(201,168,76,0.3); }
     footer { text-align: center; padding: 2rem; border-top: 1px solid #e2e8f0; background: #ffffff; margin-top: 2rem; color: #718096; font-size: 0.7rem; }
     @media (max-width: 768px) { .navbar { padding: 1rem; } .nav-links { display: none; } .container { padding: 80px 1rem 2rem; } h1 { font-size: 1.5rem; } }
+
+    /* Harmonisation globale : navigation claire, texte lisible et boutons animés */
+    .navbar { gap: clamp(0.8rem, 2vw, 2rem); padding: 0.85rem clamp(0.85rem, 2.5vw, 2.6rem); }
+    .logo { flex: 0 0 auto; white-space: nowrap; letter-spacing: 3px; }
+    .nav-links { flex: 1; justify-content: flex-end; align-items: center; gap: clamp(0.45rem, 1.15vw, 1.35rem); flex-wrap: wrap; }
+    .nav-links a { display: inline-flex; align-items: center; min-height: 2rem; color: #18263a; font-size: clamp(0.55rem, 0.72vw, 0.68rem); line-height: 1.35; letter-spacing: 1.8px; font-weight: 800; padding: 0.2rem 0; }
+    .nav-links a:hover { color: #0088aa; transform: translateY(-1px); }
+    .nav-links .app-link { color: #0088aa; border: 1px solid rgba(0,136,170,0.35); padding: 0.3rem 0.8rem; border-radius: 999px; background: rgba(0,136,170,0.06); }
+    .nav-links .app-link:hover { background: linear-gradient(135deg, #c9a84c, #0088aa); color: #ffffff; box-shadow: 0 8px 20px rgba(0,136,170,0.22); }
+    p, li, .card p, .intro-text p, .description-long p, .table-classes td { color: #24364a; font-weight: 500; }
+    .card, .intro-text, .toc-card, .feature-card, .qr-card { box-shadow: 0 10px 28px rgba(26,42,58,0.06); }
+    .definition { background: linear-gradient(135deg, #ffffff 0%, #f3f8fb 100%); border-left: 6px solid #0088aa; color: #1a2a3a; box-shadow: 0 8px 22px rgba(0,136,170,0.08); }
+    .definition strong { color: #0088aa; }
+    .btn-prev, .btn-next, .btn-launch, .btn-large { font-weight: 800; position: relative; overflow: hidden; }
+    .btn-prev:hover, .btn-next:hover, .btn-launch:hover, .btn-large:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 12px 26px rgba(0,136,170,0.22); }
+    .btn-next::after, .btn-launch::after, .btn-large::after { content: ''; position: absolute; inset: 0; background: linear-gradient(120deg, transparent, rgba(255,255,255,0.3), transparent); transform: translateX(-120%); transition: transform 0.55s ease; }
+    .btn-next:hover::after, .btn-launch:hover::after, .btn-large:hover::after { transform: translateX(120%); }
+    @media (max-width: 1100px) { .nav-links { gap: 0.45rem 0.85rem; } .nav-links a { letter-spacing: 1.2px; } }
+
+    @media (max-width: 768px) { .nav-links { display: none; } }
+
+    /* Finition professionnelle : logo, lecture noire et navigation premium */
+    :root { --ink:#06101f; --ink-soft:#152238; --muted-ink:#26364f; --gold:#c9a84c; --teal:#0088aa; --line:#d8e0ea; }
+    body { color: var(--ink); text-rendering: optimizeLegibility; -webkit-font-smoothing: antialiased; }
+    .navbar { min-height: 72px; background: rgba(255,255,255,0.985); box-shadow: 0 14px 35px rgba(6,16,31,0.07); border-bottom: 1px solid rgba(6,16,31,0.08); }
+    .logo { display: inline-flex; align-items: center; gap: 0.65rem; color: var(--ink) !important; text-decoration: none; }
+    .logo-mark { width: 36px; height: 36px; border-radius: 12px; display: inline-grid; place-items: center; background: linear-gradient(135deg, var(--gold), var(--teal)); color: #fff !important; font-family: 'Cinzel', serif; font-weight: 900; letter-spacing: 0; box-shadow: 0 10px 24px rgba(0,136,170,0.20); }
+    .logo-word { color: var(--gold) !important; font-family: 'Cinzel', serif; font-weight: 900; letter-spacing: 3px; }
+    .logo-word span { color: var(--teal) !important; }
+    .nav-links { gap: clamp(0.35rem, 0.8vw, 1rem); }
+    .nav-links a { color: var(--ink) !important; font-size: clamp(0.50rem, 0.62vw, 0.62rem); font-weight: 900; letter-spacing: 1.45px; padding: 0.42rem 0.18rem; border-bottom: 2px solid transparent; }
+    .nav-links a:hover { color: var(--teal) !important; border-bottom-color: var(--gold); }
+    .nav-links .app-link, .nav-links .team-link { border: 1px solid rgba(0,136,170,0.35); border-bottom-width: 1px; padding: 0.42rem 0.72rem; border-radius: 999px; background: rgba(0,136,170,0.055); }
+    .nav-links .team-link { color: var(--gold) !important; background: rgba(201,168,76,0.08); border-color: rgba(201,168,76,0.36); }
+    .nav-links .app-link:hover, .nav-links .team-link:hover { color: #fff !important; background: linear-gradient(135deg, var(--gold), var(--teal)); border-color: transparent; }
+    h1, h2, h3, h4, .hero-title-main, .hero-text h1 { color: var(--ink) !important; }
+    p, li, td, .feature-card p, .toc-card p, .qr-card p, .description-long p, .intro-text p, .card p { color: var(--ink-soft) !important; font-weight: 600; line-height: 1.82; }
+    strong { color: var(--ink) !important; }
+    .section-header h2 span, .gold, .footer-logo, .footer-logo span, .toc-num, .stat-number { filter: saturate(1.08); }
+    .toc-card, .card, .intro-text, .feature-card, .qr-card, .description-long, .authors, .stat-big-card, .arch-item { border-color: var(--line) !important; box-shadow: 0 18px 42px rgba(6,16,31,0.075) !important; }
+    .toc-card:hover, .feature-card:hover, .qr-card:hover, .card:hover { transform: translateY(-6px); box-shadow: 0 24px 55px rgba(6,16,31,0.11) !important; }
+    .definition, .formula, .complexity-box, .highlight-box { color: var(--ink) !important; border-color: var(--teal) !important; box-shadow: 0 14px 32px rgba(0,136,170,0.10) !important; }
+    .btn-launch, .btn-large, .btn-next, .btn-prev, .btn-team { letter-spacing: 1.5px; }
+    .btn-team { display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; margin-top: 1.2rem; padding: 0.85rem 1.55rem; border-radius: 999px; background: linear-gradient(135deg, var(--ink), var(--teal)); color: #fff !important; text-decoration: none; font-family: 'Cinzel', serif; font-weight: 800; font-size: 0.78rem; box-shadow: 0 14px 28px rgba(6,16,31,0.16); transition: 0.28s ease; }
+    .btn-team:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 20px 40px rgba(0,136,170,0.22); }
+    .team-preview-grid, .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.35rem; max-width: 980px; margin: 0 auto; }
+    .team-card { background: #fff; border: 1px solid var(--line); border-radius: 26px; padding: 1.5rem; box-shadow: 0 18px 42px rgba(6,16,31,0.075); position: relative; overflow: hidden; }
+    .team-card::before { content:''; position:absolute; inset:0 0 auto 0; height:5px; background:linear-gradient(90deg,var(--gold),var(--teal)); }
+    .team-avatar { width: 78px; height: 78px; border-radius: 24px; display:grid; place-items:center; margin-bottom: 1rem; color:#fff; background: linear-gradient(135deg,var(--gold),var(--teal)); font-family:'Cinzel',serif; font-size:1.45rem; font-weight:900; box-shadow: 0 14px 30px rgba(0,136,170,0.18); }
+    .team-role { color: var(--teal) !important; font-size: 0.72rem; font-weight: 900; text-transform: uppercase; letter-spacing: 1.4px; margin: 0.2rem 0 0.7rem; }
+    .team-card ul { margin-left: 1rem; margin-top: 0.8rem; }
+    .team-card li { margin: 0.35rem 0; }
+    @media (max-width: 1180px) { .navbar { align-items:flex-start; } .nav-links { padding-top:0.2rem; } }
+    @media (max-width: 768px) { .navbar { min-height:64px; align-items:center; } .logo-mark { width:32px; height:32px; } }
+
   </style>
 </head>
 <body>
 
 <nav class="navbar">
-  <a href="../index.html" class="logo">PFE<span>·ENS</span></a>
-  <ul class="nav-links">
+  <a href="../index.html" class="logo" aria-label="Accueil PFE ENS"><span class="logo-mark">∑</span><span class="logo-word">PFE<span>·ENS</span></span></a>
+  <ul class="nav-links" aria-label="Navigation principale">
     <li><a href="../index.html">Accueil</a></li>
     <li><a href="01-introduction.html">Introduction</a></li>
-    <li><a href="02-optimisation-combinatoire.html">Ch.1</a></li>
-    <li><a href="03-calculabilite.html">Ch.2</a></li>
-    <li><a href="04-complexites.html">Ch.3</a></li>
-    <li><a href="05-tsp.html">Ch.4</a></li>
-    <li><a href="06-programmation-dynamique.html">Ch.5</a></li>
-    <li><a href="07-methodes-resolution.html">Ch.6</a></li>
-    <li><a href="../tsp-world-pro.html">Application</a></li>
+    <li><a href="02-optimisation-combinatoire.html">Optimisation Combinatoire</a></li>
+    <li><a href="03-calculabilite.html">Calculabilité</a></li>
+    <li><a href="04-complexites.html">Complexité</a></li>
+    <li><a href="05-tsp.html">TSP</a></li>
+    <li><a href="06-programmation-dynamique.html">Programmation Dynamique</a></li>
+    <li><a href="07-methodes-resolution.html">Méthodes de Résolution</a></li>
+    <li><a href="08-equipe.html" class="team-link">👥 Équipe</a></li>
+    <li><a href="../tsp-world-pro.html" class="app-link">✨ App</a></li>
   </ul>
 </nav>
 
@@ -152,7 +208,7 @@
         <div class="methodes-grid">
           <div class="methode-card">
             <strong style="color: #0088aa;">🔬 Méthodes Exactes</strong>
-            <p style="font-size: 0.8rem; margin-top: 0.3rem;">Branch & Bound<br>Programmation Dynamique<br>Held-karp<br>Bellmen<br>Christofides</p>
+            <p style="font-size: 0.8rem; margin-top: 0.3rem;">Branch & Bound<br>Programmation Dynamique<br>Held-Karp<br>Bellman<br>Christofides</p>
           </div>
           <div class="methode-card">
             <strong style="color: #c9a84c;">⚡ Méthodes Approchées</strong>
@@ -199,18 +255,18 @@
     <p>En conclusion, ce chapitre a permis d'établir les fondements mathématiques et structurels indispensables à l'étude de l'optimisation combinatoire et de l'aide à la décision. En formalisant la recherche d'un optimum global sur un ensemble discret et fini S ⊂ {0,1}<sup>n</sup>, nous avons mis en évidence le défi majeur de cette discipline : l'explosion exponentielle de l'espace de recherche qui rend toute énumération exhaustive impraticable à grande échelle.</p>
     <p>À travers l'étude de la programmation mathématique, nous avons analysé la complémentarité de deux paradigmes essentiels : d'une part, la <strong>programmation linéaire en nombres entiers (PLNE)</strong>, qui offre un cadre déterministe rigoureux pour caractériser géométriquement les solutions admissibles ; d'autre part, la <strong>programmation stochastique</strong>, qui introduit la modélisation de l'incertitude et des scénarios probabilistes pour garantir des décisions robustes en moyenne ou en espérance mathématique.</p>
     <p>Face à la complexité de ces problèmes, la classification des méthodes de résolution a souligné le compromis permanent entre le temps de calcul exponentiel des méthodes exactes (comme le Branch & Bound) et l'efficacité des approches polyédrales. L'impact stratégique de ces outils dans des secteurs clés tels que la logistique, l'industrie ou la finance démontre la nécessité de confronter ces théories à des modèles de référence.</p>
-    <p>C'est précisément dans cette dynamique que s'inscrit la suite de notre manuscrit. Afin d'appliquer ces concepts de programmation en nombres entiers, d'approche polyédrale et de gestion de l'incertitude, le <strong>Chapitre 2</strong> sera entièrement dédié à l'étude structurelle et algorithmique du problème-phare de la discipline : le <strong>Problème du Voyageur de Commerce (TSP)</strong>.</p>
+    <p>C'est précisément dans cette dynamique que s'inscrit la suite de notre manuscrit. Afin d'appliquer ces concepts de programmation en nombres entiers, d'approche polyédrale et de gestion de l'incertitude, le <strong>Chapitre 2</strong> sera dédié à l'étude structurelle et algorithmique du problème-phare de la discipline : le <strong>Problème du Voyageur de Commerce (TSP)</strong>.</p>
   </div>
 
   <!-- BOUTONS -->
   <div class="btn-nav">
     <a href="01-introduction.html" class="btn-prev">← Chapitre 1</a>
-    <a href="03-calculabilite.html" class="btn-next">Chapitre 3 : Calculabilité →</a>
+    <a href="03-calculabilite.html" class="btn-next">Chapitre 2 : Calculabilité →</a>
   </div>
 </div>
 
 <footer>
-  <p>PFE — Iliass Errouifi & Soufiane Er-Rthimi — Optimisation Combinatoire & TSP</p>
+  <p>PFE — Iliass Errouifi & Soufiene Er-Rthimi — Optimisation Combinatoire & TSP</p>
   <p>ENS Tétouan — Université Abdelmalek Essaâdi — 2025-2026</p>
 </footer>
 
