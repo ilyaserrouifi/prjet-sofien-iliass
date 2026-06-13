@@ -1,100 +1,1184 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Présentation PowerPoint | Optimisation Combinatoire & TSP</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;900&family=Raleway:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Raleway', sans-serif; background: radial-gradient(circle at top left, #ffffff 0, #eef5f8 36%, #dce7ef 100%); color: #1a2a3a; min-height: 100vh; overflow: hidden; }
-    .deck-header { position: fixed; top: 0; left: 0; right: 0; height: 64px; padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; background: rgba(255,255,255,0.9); backdrop-filter: blur(14px); border-bottom: 1px solid #e2e8f0; z-index: 20; }
-    .brand { font-family: 'Cinzel', serif; font-weight: 800; letter-spacing: 4px; color: #c9a84c; text-decoration: none; }
-    .brand span { color: #0088aa; }
-    .header-actions { display: flex; gap: .7rem; align-items: center; }
-    .mini-btn { border: 1px solid #d9e2ec; color: #4a5568; background: #fff; border-radius: 999px; padding: .45rem .85rem; font-size: .72rem; text-decoration: none; font-weight: 700; cursor: pointer; }
-    .mini-btn:hover { border-color: #c9a84c; color: #0088aa; }
-    .progress { position: fixed; top: 64px; left: 0; height: 4px; background: linear-gradient(90deg, #c9a84c, #0088aa); width: 0%; z-index: 22; transition: width .25s ease; }
-    .deck { height: 100vh; padding-top: 68px; position: relative; }
-    .slide { display: none; height: calc(100vh - 68px); padding: 2.4rem 5vw 7rem; align-items: center; justify-content: center; }
-    .slide.active { display: flex; animation: fadeIn .35s ease; }
-    @keyframes fadeIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
-    .slide-card { width: min(1180px, 100%); max-height: 100%; overflow: auto; background: rgba(255,255,255,.94); border: 1px solid #dbe5ee; border-radius: 30px; box-shadow: 0 28px 90px rgba(26,42,58,.12); padding: clamp(1.4rem, 3vw, 3rem); position: relative; }
-    .slide-kicker { display: inline-flex; gap: .5rem; align-items: center; background: rgba(201,168,76,.12); color: #b08b24; border: 1px solid rgba(201,168,76,.28); border-radius: 999px; padding: .35rem .9rem; font-weight: 800; letter-spacing: 2px; font-size: .7rem; text-transform: uppercase; margin-bottom: 1rem; }
-    h1, h2 { font-family: 'Cinzel', serif; color: #1a2a3a; line-height: 1.15; }
-    h1 { font-size: clamp(2rem, 5vw, 4.2rem); margin-bottom: 1rem; }
-    h2 { font-size: clamp(1.6rem, 3.3vw, 3rem); margin-bottom: 1.2rem; }
-    .gold { color: #c9a84c; } .teal { color: #0088aa; }
-    p { color: #4a5568; font-size: clamp(.95rem, 1.35vw, 1.18rem); line-height: 1.75; margin-bottom: .8rem; }
-    ul { margin-left: 1.2rem; display: grid; gap: .65rem; }
-    li { color: #344054; font-size: clamp(.93rem, 1.2vw, 1.08rem); line-height: 1.55; }
-    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 1rem; margin-top: 1rem; }
-    .tile { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 18px; padding: 1rem; }
-    .tile strong { display: block; color: #0088aa; margin-bottom: .35rem; }
-    .formula { font-family: 'JetBrains Mono', monospace; background: #102033; color: #e6f7ff; border-radius: 18px; padding: 1rem; margin: 1rem 0; overflow:auto; }
-    .controls { position: fixed; left: 50%; bottom: 1.4rem; transform: translateX(-50%); display: flex; align-items: center; gap: 1rem; background: rgba(255,255,255,.92); border: 1px solid #dbe5ee; box-shadow: 0 15px 35px rgba(26,42,58,.12); border-radius: 999px; padding: .65rem .8rem; z-index: 30; }
-    .nav-btn { min-width: 128px; border: none; border-radius: 999px; padding: .8rem 1.15rem; font-weight: 900; letter-spacing: 1px; cursor: pointer; color: white; background: linear-gradient(135deg, #c9a84c, #0088aa); }
-    .nav-btn:disabled { opacity: .35; cursor: not-allowed; }
-    .counter { min-width: 86px; text-align: center; font-family: 'JetBrains Mono', monospace; font-size: .85rem; color: #4a5568; }
-    .footer-note { margin-top: 1rem; font-size: .78rem; color: #718096; }
-    @media (max-width: 760px) { body { overflow: auto; } .deck-header { padding: 0 1rem; } .slide { padding: 1rem 1rem 7rem; } .header-actions .hide-mobile { display:none; } .controls { width: calc(100% - 1rem); gap: .35rem; } .nav-btn { min-width: auto; flex: 1; padding: .75rem .6rem; } }
-    @media print { body { overflow: visible; background: #fff; } .deck-header, .controls, .progress { display:none; } .deck { height:auto; padding:0; } .slide, .slide.active { display:flex; height:100vh; page-break-after: always; padding: 1.5cm; } .slide-card { box-shadow:none; border:1px solid #ddd; max-height:none; } }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Présentation Premium | Optimisation Combinatoire & TSP</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Raleway:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+    *{box-sizing:border-box;margin:0;padding:0} html,body{height:100%} body{font-family:Raleway,system-ui,sans-serif;color:#f8fafc;background:#07111f;overflow:hidden} body:before{content:"";position:fixed;inset:0;background:radial-gradient(circle at 15% 10%,rgba(201,168,76,.34),transparent 28%),radial-gradient(circle at 86% 18%,rgba(0,136,170,.34),transparent 32%),linear-gradient(135deg,#07111f 0%,#102033 48%,#05070d 100%);z-index:-2} body:after{content:"";position:fixed;inset:0;background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);background-size:48px 48px;mask-image:radial-gradient(circle at center,#000 0%,transparent 75%);z-index:-1}.topbar{position:fixed;top:0;left:0;right:0;height:72px;display:flex;align-items:center;justify-content:space-between;padding:0 30px;background:rgba(7,17,31,.68);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,.12);z-index:50}.brand{font-family:Cinzel,serif;letter-spacing:4px;text-transform:uppercase;color:#fff;text-decoration:none;font-weight:900}.brand span{color:#d4af37}.top-actions{display:flex;gap:10px;align-items:center}.pill{border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.08);color:#fff;border-radius:999px;padding:10px 15px;text-decoration:none;font-weight:800;font-size:12px;cursor:pointer}.pill.gold{background:linear-gradient(135deg,#d4af37,#0088aa);border:0}.progress-track{position:fixed;top:72px;left:0;right:0;height:4px;background:rgba(255,255,255,.08);z-index:51}.progress{height:100%;width:0;background:linear-gradient(90deg,#d4af37,#00b7d6);box-shadow:0 0 26px rgba(0,183,214,.5);transition:.35s}.stage{height:100vh;padding:92px 104px 74px;perspective:1400px}.slide{height:100%;display:none;align-items:center;justify-content:center}.slide.active{display:flex;animation:premiumIn .45s cubic-bezier(.2,.8,.2,1)}@keyframes premiumIn{from{opacity:0;transform:translateY(18px) scale(.985) rotateX(3deg)}to{opacity:1;transform:none}}.card{width:min(1240px,100%);min-height:min(680px,calc(100vh - 180px));max-height:calc(100vh - 180px);overflow:auto;position:relative;padding:54px 62px;border-radius:36px;background:linear-gradient(145deg,rgba(255,255,255,.98),rgba(245,248,252,.93));color:#122033;border:1px solid rgba(255,255,255,.75);box-shadow:0 38px 100px rgba(0,0,0,.42),inset 0 1px 0 rgba(255,255,255,.9)}.card:before{content:"";position:absolute;left:0;top:46px;width:7px;height:78px;background:linear-gradient(#d4af37,#0088aa);border-radius:0 9px 9px 0}.kicker{display:inline-flex;align-items:center;gap:10px;padding:8px 14px;border-radius:999px;background:rgba(0,136,170,.09);color:#007894;border:1px solid rgba(0,136,170,.16);font-size:12px;font-weight:900;letter-spacing:2px;text-transform:uppercase;margin-bottom:22px}.kicker:before{content:"◆";color:#d4af37}h1,h2{font-family:Cinzel,serif;font-weight:900;line-height:1.05;letter-spacing:-.02em}h1{font-size:clamp(42px,6vw,82px);max-width:980px}h2{font-size:clamp(32px,4vw,62px);margin-bottom:28px}.gold{color:#c9a84c}.teal{color:#0088aa}.body{font-size:clamp(21px,2.2vw,32px);line-height:1.72;color:#243750;max-width:1060px}.body p{margin-bottom:18px}.body ul{list-style:none;display:grid;gap:17px}.body li{position:relative;padding:18px 20px 18px 58px;border:1px solid #dde7f0;background:#fff;border-radius:18px;box-shadow:0 8px 24px rgba(18,32,51,.06)}.body li:before{content:"›";position:absolute;left:20px;top:13px;color:#d4af37;font-size:36px;font-weight:900}.cover-grid{display:grid;grid-template-columns:1.3fr .7fr;gap:34px;align-items:end}.metric{display:grid;gap:16px}.metric div{padding:22px;border-radius:24px;background:#0f2238;color:#fff;border:1px solid rgba(255,255,255,.12)}.metric strong{display:block;color:#d4af37;font-size:32px;font-family:Cinzel,serif}.nav-arrow{position:fixed;top:50%;transform:translateY(-50%);width:72px;height:72px;border-radius:50%;border:1px solid rgba(255,255,255,.24);background:rgba(255,255,255,.12);color:#fff;font-size:34px;font-weight:900;cursor:pointer;z-index:60;backdrop-filter:blur(14px);box-shadow:0 18px 48px rgba(0,0,0,.26);transition:.25s}.nav-arrow:hover{background:linear-gradient(135deg,#d4af37,#0088aa);transform:translateY(-50%) scale(1.08)}.nav-arrow:disabled{opacity:.25;cursor:not-allowed;transform:translateY(-50%)}.nav-left{left:24px}.nav-right{right:24px}.bottom{position:fixed;left:50%;bottom:18px;transform:translateX(-50%);display:flex;align-items:center;gap:16px;padding:12px 18px;border-radius:999px;background:rgba(7,17,31,.7);border:1px solid rgba(255,255,255,.15);backdrop-filter:blur(18px);z-index:61}.counter{font-family:JetBrains Mono,monospace;color:#fff;font-size:14px}.dots{display:flex;gap:6px;max-width:220px;overflow:hidden}.dot{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.28)}.dot.active{background:#d4af37;width:22px;border-radius:999px}.hint{color:#b8c4d4;font-size:12px}.chapter .card{background:linear-gradient(135deg,#102033,#07111f);color:#fff;border-color:rgba(255,255,255,.18)}.chapter h2,.chapter .body{color:#fff}.chapter .kicker{background:rgba(212,175,55,.14);color:#f7d77a;border-color:rgba(212,175,55,.28)}@media(max-width:820px){.topbar{padding:0 14px}.top-actions .hide-sm{display:none}.stage{padding:86px 18px 92px}.card{padding:34px 28px;border-radius:26px;min-height:calc(100vh - 190px);max-height:calc(100vh - 190px)}.nav-arrow{top:auto;bottom:16px;width:58px;height:58px}.nav-left{left:14px}.nav-right{right:14px}.bottom{bottom:18px}.hint,.dots{display:none}.body{font-size:20px}.cover-grid{grid-template-columns:1fr}}@media print{body{background:white;overflow:visible}.topbar,.progress-track,.nav-arrow,.bottom{display:none}.stage{height:auto;padding:0}.slide,.slide.active{display:flex;height:100vh;page-break-after:always;padding:24px}.card{box-shadow:none;max-height:none}.chapter .card{color:#122033;background:white}.chapter h2,.chapter .body{color:#122033}}
+</style>
 </head>
 <body>
-  <header class="deck-header">
-    <a href="index.html" class="brand">PFE<span>·ENS</span></a>
-    <div class="header-actions">
-      <a class="mini-btn hide-mobile" href="index.html">Accueil</a>
-      <a class="mini-btn hide-mobile" href="tsp-world-pro.html">Application TSP</a>
-      <button class="mini-btn" onclick="window.print()">Exporter PDF</button>
-    </div>
-  </header>
-  <div class="progress" id="progress"></div>
-  <main class="deck" id="deck">
-    <section class="slide active"><div class="slide-card"><span class="slide-kicker">Projet de fin d'études</span><h1>Optimisation <span class="gold">Combinatoire</span><br>& <span class="teal">Problème du Voyageur de Commerce</span></h1><p>Présentation complète sous forme de slides, navigable comme PowerPoint avec les boutons Suivant/Précédent, les flèches du clavier et l'export PDF.</p><div class="grid"><div class="tile"><strong>Réalisé par</strong>Iliass Errouifi & Soufiane Er-Rthimi</div><div class="tile"><strong>Établissement</strong>École Normale Supérieure Tétouan</div><div class="tile"><strong>Année</strong>2025-2026</div></div></div></section>
-    <section class="slide"><div class="slide-card"><span class="slide-kicker">Plan</span><h2>Structure du projet</h2><div class="grid"><div class="tile"><strong>01 Introduction</strong>Contexte, historique et rôle central du TSP.</div><div class="tile"><strong>02 Optimisation combinatoire</strong>Modèles, PLNE, stochastique et domaines d'application.</div><div class="tile"><strong>03 Calculabilité</strong>Machines de Turing, décidabilité et problème de l'arrêt.</div><div class="tile"><strong>04 Complexité</strong>P, NP, NP-complet, NP-difficile et P vs NP.</div><div class="tile"><strong>05 TSP</strong>Définition, variantes, graphe et explosion combinatoire.</div><div class="tile"><strong>06 Programmation dynamique</strong>Principe de Bellman et algorithme de Held-Karp.</div><div class="tile"><strong>07 Méthodes</strong>Exactes, approchées et métaheuristiques.</div><div class="tile"><strong>08 Application</strong>Démonstrateur TSP World Pro.</div></div></div></section>
-    <section class="slide"><div class="slide-card"><span class="slide-kicker">Chapitre 1</span><h2>Introduction générale</h2><p>L'optimisation combinatoire cherche une meilleure solution dans un ensemble discret de configurations. Elle intervient dans la finance, l'industrie, la santé, la navigation, l'énergie, l'informatique et la théorie des jeux.</p><ul><li>George Dantzig a marqué le développement de la programmation linéaire.</li><li>Le TSP est un problème emblématique formulé rigoureusement par Dantzig, Fulkerson et Johnson en 1954.</li><li>Le projet relie théorie mathématique, complexité algorithmique et application interactive.</li></ul></div></section>
-    <section class="slide"><div class="slide-card"><span class="slide-kicker">Chapitre 2</span><h2>Optimisation combinatoire</h2><p>Un problème d'optimisation combinatoire se formule avec un ensemble de solutions admissibles et une fonction objectif à minimiser ou maximiser.</p><div class="formula">Optimiser f(x) sous contraintes x ∈ S, où S est fini/discret.</div><div class="grid"><div class="tile"><strong>PLNE</strong>Variables entières/binaires pour modéliser choix, affectations et tournées.</div><div class="tile"><strong>Stochastique</strong>Décision sous incertitude lorsque les données varient.</div><div class="tile"><strong>Méthodes</strong>Exactes, approchées, heuristiques et métaheuristiques.</div></div></div></section>
-    <section class="slide"><div class="slide-card"><span class="slide-kicker">Chapitre 3</span><h2>Calculabilité & décidabilité</h2><ul><li>La calculabilité étudie ce qui peut être résolu par un algorithme.</li><li>La machine de Turing fournit un modèle abstrait universel de calcul.</li><li>La décidabilité indique si un problème admet toujours une réponse algorithmique en temps fini.</li><li>Le problème de l'arrêt montre qu'il existe des limites fondamentales au calcul automatique.</li></ul></div></section>
-    <section class="slide"><div class="slide-card"><span class="slide-kicker">Chapitre 4</span><h2>Complexité algorithmique</h2><div class="grid"><div class="tile"><strong>P</strong>Problèmes résolubles en temps polynomial.</div><div class="tile"><strong>NP</strong>Solutions vérifiables en temps polynomial.</div><div class="tile"><strong>NP-complet</strong>Problèmes dans NP aussi difficiles que tous les problèmes de NP.</div><div class="tile"><strong>NP-difficile</strong>Au moins aussi difficiles que NP, pas forcément dans NP.</div></div><p class="footer-note">Le TSP d'optimisation est NP-difficile ; sa version décisionnelle est NP-complète.</p></div></section>
-    <section class="slide"><div class="slide-card"><span class="slide-kicker">Chapitre 5</span><h2>Problème du Voyageur de Commerce</h2><p>Objectif : visiter chaque ville exactement une fois, revenir au point de départ et minimiser la distance totale.</p><div class="formula">Minimiser Σ d(i,j) · x(i,j) avec une tournée hamiltonienne valide.</div><ul><li>Variantes : symétrique, asymétrique, métrique, euclidien, avec fenêtres de temps et multi-voyageurs.</li><li>Explosion combinatoire : le nombre de tournées augmente factoriellement.</li><li>Applications : logistique, robotique, circuits électroniques, planification et transport.</li></ul></div></section>
-    <section class="slide"><div class="slide-card"><span class="slide-kicker">Chapitre 6</span><h2>Programmation dynamique</h2><p>La programmation dynamique décompose un problème en sous-problèmes mémorisés. Pour le TSP, Held-Karp utilise des états basés sur un ensemble de villes visitées et la dernière ville atteinte.</p><div class="formula">DP[S][j] = min(DP[S - {j}][i] + d(i,j))</div><div class="grid"><div class="tile"><strong>Avantage</strong>Évite de recalculer les mêmes sous-chemins.</div><div class="tile"><strong>Complexité</strong>O(n² · 2ⁿ), meilleure que la force brute mais encore exponentielle.</div></div></div></section>
-    <section class="slide"><div class="slide-card"><span class="slide-kicker">Chapitre 7</span><h2>Méthodes de résolution</h2><div class="grid"><div class="tile"><strong>Exactes</strong>Branch & Bound, Branch & Cut : optimalité garantie, coût élevé.</div><div class="tile"><strong>Approchées</strong>Christofides et heuristiques constructives : compromis qualité/temps.</div><div class="tile"><strong>Métaheuristiques</strong>Recuit simulé, recherche tabou, algorithmes génétiques, colonies de fourmis.</div></div><p>Le choix dépend de la taille de l'instance, du temps disponible et du besoin d'optimalité.</p></div></section>
-    <section class="slide"><div class="slide-card"><span class="slide-kicker">Application</span><h2>TSP World Pro</h2><p>L'application complète le mémoire par une démonstration interactive : choix de villes, visualisation de graphe, calcul de tournées et comparaison des méthodes.</p><div class="grid"><div class="tile"><strong>Pédagogie</strong>Transformer les notions abstraites en parcours visibles.</div><div class="tile"><strong>Démonstration</strong>Montrer l'impact du nombre de villes sur la difficulté.</div><div class="tile"><strong>Accès</strong><a href="tsp-world-pro.html">Ouvrir l'application TSP World Pro</a></div></div></div></section>
-    <section class="slide"><div class="slide-card"><span class="slide-kicker">Conclusion</span><h2>Bilan général</h2><ul><li>L'optimisation combinatoire fournit un cadre puissant pour modéliser des décisions complexes.</li><li>Le TSP illustre clairement la différence entre formulation simple et résolution difficile.</li><li>Les concepts de calculabilité et complexité expliquent pourquoi les heuristiques sont indispensables en pratique.</li><li>La présentation et l'application permettent une soutenance fluide, interactive et exportable en PDF.</li></ul><p class="footer-note">Fin de la présentation — utilisez Imprimer / Exporter PDF pour créer un support type PowerPoint.</p></div></section>
-  </main>
-  <nav class="controls" aria-label="Navigation des slides">
-    <button class="nav-btn" id="prevBtn">← Précédent</button>
-    <span class="counter" id="counter">1 / 10</span>
-    <button class="nav-btn" id="nextBtn">Suivant →</button>
-  </nav>
-  <script>
-    const slides = Array.from(document.querySelectorAll('.slide'));
-    const prevBtn = document.getElementById('prevBtn');
-    const nextBtn = document.getElementById('nextBtn');
-    const counter = document.getElementById('counter');
-    const progress = document.getElementById('progress');
-    let current = Number(new URLSearchParams(location.search).get('slide')) - 1 || 0;
-    current = Math.max(0, Math.min(current, slides.length - 1));
-    function showSlide(index) {
-      current = Math.max(0, Math.min(index, slides.length - 1));
-      slides.forEach((slide, i) => slide.classList.toggle('active', i === current));
-      counter.textContent = `${current + 1} / ${slides.length}`;
-      prevBtn.disabled = current === 0;
-      nextBtn.disabled = current === slides.length - 1;
-      progress.style.width = `${((current + 1) / slides.length) * 100}%`;
-      history.replaceState(null, '', `?slide=${current + 1}`);
-    }
-    prevBtn.addEventListener('click', () => showSlide(current - 1));
-    nextBtn.addEventListener('click', () => showSlide(current + 1));
-    document.addEventListener('keydown', (event) => {
-      if (['ArrowRight', 'PageDown', ' '].includes(event.key)) showSlide(current + 1);
-      if (['ArrowLeft', 'PageUp'].includes(event.key)) showSlide(current - 1);
-      if (event.key === 'Home') showSlide(0);
-      if (event.key === 'End') showSlide(slides.length - 1);
-    });
-    showSlide(current);
-  </script>
+<header class="topbar"><a class="brand" href="index.html">PFE<span>·Premium</span></a><div class="top-actions"><a class="pill hide-sm" href="index.html">Accueil</a><a class="pill hide-sm" href="tsp-world-pro.html">Application</a><button class="pill gold" onclick="window.print()">Exporter PDF</button></div></header>
+<div class="progress-track"><div class="progress" id="progress"></div></div>
+<button class="nav-arrow nav-left" id="prevBtn" aria-label="Slide précédente">‹</button><button class="nav-arrow nav-right" id="nextBtn" aria-label="Slide suivante">›</button>
+<main class="stage" id="stage"></main>
+<footer class="bottom"><span class="counter" id="counter"></span><div class="dots" id="dots"></div><span class="hint">Utilise les touches ← → comme PowerPoint</span></footer>
+<script id="slide-data" type="application/json">
+[
+  {
+    "kind": "cover",
+    "chapter": "PFE 2025-2026",
+    "title": "Optimisation Combinatoire appliquée au Problème du Voyageur de Commerce",
+    "body": [
+      "Présentation moderne type PowerPoint : chaque idée importante du mémoire devient une slide claire, premium et facile à présenter."
+    ],
+    "meta": "Iliass Errouifi & Soufiane Er-Rthimi · ENS Tétouan"
+  },
+  {
+    "kind": "agenda",
+    "chapter": "Plan",
+    "title": "Roadmap de la soutenance",
+    "body": [
+      "01. Introduction générale",
+      "02. Optimisation combinatoire",
+      "03. Calculabilité & décidabilité",
+      "04. Complexité algorithmique",
+      "05. Problème du Voyageur de Commerce",
+      "06. Programmation dynamique",
+      "07. Méthodes de résolution",
+      "08. Application TSP World Pro"
+    ]
+  },
+  {
+    "kind": "chapter",
+    "chapter": "Chapitre 01",
+    "title": "Introduction générale",
+    "body": [
+      "Ouverture du introduction générale"
+    ]
+  },
+  {
+    "kind": "paragraph",
+    "chapter": "Chapitre 01",
+    "title": "Introduction générale",
+    "body": [
+      "Depuis les travaux pionniers de George Dantzig sur la programmation linéaire dans les années 1940, l'optimisation combinatoire s'est imposée comme une branche essentielle des mathématiques appliquées et de l'informatique théorique. Ce domaine se consacre à la recherche d'une solution optimale au sein d'un ensemble discret et fini de configurations. Sa pertinence est aujourd'hui universelle, intervenant dans un large spectre d'applications réelles : en mathématiques financières (gestion de portefeuilles d'actions), pour la navigation de véhicules autonomes (traitement en temps réel des données capteurs), dans le secteur médical (imagerie diagnostique), ou encore dans le domaine de l'énergie (optimisation de la localisation de parcs éoliens selon les conditions climatiques). Elle est également omniprésente en informatique (ordonnancement de processus, indexation de bases de données), en traitement d'images (alignement de clichés satellites), dans l'industrie (planification de la production) et dans la théorie des jeux."
+    ]
+  },
+  {
+    "kind": "paragraph",
+    "chapter": "Chapitre 01",
+    "title": "Introduction générale",
+    "body": [
+      "Au cœur de l'optimisation combinatoire, le Problème du Voyageur de Commerce (TSP - Traveling Salesman Problem) occupe une place emblématique. Véritable pierre angulaire de la discipline, sa première formulation mathématique rigoureuse a été introduite par Dantzig, Fulkerson et Johnson en 1954, déclinée sous ses formes symétrique et asymétrique. Depuis, la communauté scientifique n'a cessé d'en repousser les limites."
+    ]
+  },
+  {
+    "kind": "list",
+    "chapter": "Chapitre 01",
+    "title": "Introduction générale",
+    "body": [
+      "Chapitre 1 Introduction GénéraleContexte, historique, présentation du TSP.",
+      "Chapitre 2 Optimisation CombinatoireDéfinitions, programmation linéaire en nombres entiers (PLNE), programmation stochastique, classification des méthodes.",
+      "Chapitre 3 Calculabilité & DécidabilitéMachines de Turing, thèse de Church-Turing, problème de l'arrêt, frontière décidable/indécidable.",
+      "Chapitre 4 Complexité : P, NP, NP-Complet, NP-DifficileClasses de complexité, réduction polynomiale, conjecture P vs NP, preuve de NP-complétude du TSP.",
+      "Chapitre 5 Problème du Voyageur de Commerce (TSP)Définition, variantes (symétrique, asymétrique, métrique, euclidien, TSPTW, mTSP), explosion combinatoire, applications."
+    ]
+  },
+  {
+    "kind": "list",
+    "chapter": "Chapitre 01",
+    "title": "Introduction générale",
+    "body": [
+      "Chapitre 6 Programmation DynamiquePrincipe de Bellman, algorithme de Held-Karp (O(n²·2ⁿ)), comparaison avec la force brute.",
+      "Chapitre 7 Méthodes de RésolutionBranch & Bound, Branch & Cut, Christofides, recuit simulé, recherche tabou, algorithmes génétiques, colonies de fourmis."
+    ]
+  },
+  {
+    "kind": "chapter",
+    "chapter": "Chapitre 02",
+    "title": "Optimisation combinatoire",
+    "body": [
+      "Ouverture du optimisation combinatoire"
+    ]
+  },
+  {
+    "kind": "paragraph",
+    "chapter": "Chapitre 02",
+    "title": "Optimisation combinatoire",
+    "body": [
+      "L'optimisation mathématique est la science de la détermination du meilleur choix parmi un ensemble de solutions réalisables. Elle est définie par la recherche d'un extremum d'une fonction numérique appelée fonction objectif."
+    ]
+  },
+  {
+    "kind": "paragraph",
+    "chapter": "Chapitre 02",
+    "title": "Optimisation combinatoire",
+    "body": [
+      "Les problèmes d'optimisation combinatoire constituent une classe de problèmes qui cherche à trouver la solution optimale parmi un ensemble fini de choix. Or, pour la plupart des problèmes de cette classe, la taille de l'espace de recherche croît de manière exponentielle avec la taille du problème en entrée, et la recherche d'une solution optimale exacte est généralement infaisable sur le plan informatique."
+    ]
+  },
+  {
+    "kind": "paragraph",
+    "chapter": "Chapitre 02",
+    "title": "📐 Formalisation mathématique",
+    "body": [
+      "Formellement, un problème d'optimisation combinatoire se définit comme suit :"
+    ]
+  },
+  {
+    "kind": "paragraph",
+    "chapter": "Chapitre 02",
+    "title": "📐 Formalisation mathématique",
+    "body": [
+      "où S ⊂ {0,1}n est l'ensemble des solutions réalisables et f : S → ℝ est la fonction objectif. Bien que S soit fini, sa cardinalité croît de manière exponentielle avec la dimension n, rendant toute énumération exhaustive impraticable dès que n dépasse quelques dizaines."
+    ]
+  },
+  {
+    "kind": "paragraph",
+    "chapter": "Chapitre 02",
+    "title": "📐 Formalisation mathématique",
+    "body": [
+      "Son objet est la recherche d'une solution optimale au sein d'un ensemble discret et fini, mais souvent exponentiellement grand, de configurations possibles."
+    ]
+  },
+  {
+    "kind": "paragraph",
+    "chapter": "Chapitre 02",
+    "title": "🔢 La programmation linéaire en nombre entier",
+    "body": [
+      "On dit qu'un programme mathématique est présenté sous forme d'un programme linéaire (noté : PL) lorsque sa fonction-objectif et ses contraintes sont linéaires. Un problème de programmation linéaire consiste à minimiser (ou à maximiser) une fonction linéaire sous certaines contraintes linéaires."
+    ]
+  },
+  {
+    "kind": "paragraph",
+    "chapter": "Chapitre 02",
+    "title": "🔢 La programmation linéaire en nombre entier",
+    "body": [
+      "Ainsi, une forme d'un programme linéaire dans le cas d'une minimisation, est la suivante :"
+    ]
+  },
+  {
+    "kind": "paragraph",
+    "chapter": "Chapitre 02",
+    "title": "🔢 La programmation linéaire en nombre entier",
+    "body": [
+      "Où les fonctions f et gᵢ sont des fonctions linéaires avec des variables x₁, x₂, …, xN. La fonction f est appelée fonction-objectif ou fonction-économique et les conditions posées représentent les contraintes du problème (P).. Le coût d'une solution est la valeur de la fonction objectif f. Une solution optimale du problème (P) est la solution qui minimise f(x) parmi l'ensemble de toutes les solutions admissibles. Dans ce cas, on parle d'un optimum global."
+    ]
+  },
+  {
+    "kind": "paragraph",
+    "chapter": "Chapitre 02",
+    "title": "🎲 La Programmation stochastique",
+    "body": [
+      "La notion d'incertitude dans la programmation mathématique est apparue pour la première fois dans les années 50 avec les travaux de Bellman, Vela et al., John R. Birge, et elle a rencontré depuis un développement rapide. L'incertitude dans les problèmes d'optimisation touche notamment les coûts de production, les prix des marchés, les pénalités en cas de violations des contrats, aussi bien que la demande de clients, les délais de livraison, les temps de traitement, la disponibilité des machines et d'autres coefficients technologiques."
+    ]
+  },
+  {
+    "kind": "paragraph",
+    "chapter": "Chapitre 02",
+    "title": "🎲 La Programmation stochastique",
+    "body": [
+      "Il se peut que l'on connaisse partiellement certains aspects du phénomène à travers soit des scénarios, soit un historique, soit une loi de probabilité, soit des variables aléatoires (par exemple espérance mathématique, variance). Des scénarios peuvent être créés à partir des historiques (comme par exemple les ventes des dernières années, les températures de la dernière décennie, la mortalité d'une certaine population)."
+    ]
+  },
+  {
+    "kind": "paragraph",
+    "chapter": "Chapitre 02",
+    "title": "🎲 La Programmation stochastique",
+    "body": [
+      "Si la loi de probabilité de la variable aléatoire est connue de façon analytique, on peut soit créer des méthodes analytiques qui tiennent compte de cette loi de probabilité, soit générer un ensemble de scénarios suivant cette loi."
+    ]
+  },
+  {
+    "kind": "paragraph",
+    "chapter": "Chapitre 02",
+    "title": "🎲 La Programmation stochastique",
+    "body": [
+      "Le but que l'on se fixe dans un problème d'optimisation est de prendre la meilleure décision vis à vis des situations qui comportent de l'incertitude. Le regard vers l'incertitude reste subjectif et varie d'un décideur à l'autre. On peut par exemple souhaiter que, dans l'espace de tout évènement possible, la solution adoptée soit telle que son coût soit minimal en moyenne."
+    ]
+  },
+  {
+    "kind": "paragraph",
+    "chapter": "Chapitre 02",
+    "title": "⚙️ Le problème d'optimisation combinatoire",
+    "body": [
+      "L'une des difficultés majeures est que la décision peut dépendre d'une multitude de paramètres, ce qui rend délicat la vérification et validation d'un choix parmi plusieurs possibilités admissibles. Les mathématiques de l'optimisation et de la décision concernent des mathématiques appliquées dans les domaines tels que :"
+    ]
+  },
+  {
+    "kind": "list",
+    "chapter": "Chapitre 02",
+    "title": "⚙️ Le problème d'optimisation combinatoire",
+    "body": [
+      "l'analyse non linéaire;",
+      "la recherche opérationnelle;",
+      "la théorie des graphes (algorithmique et algébrique);",
+      "les modélisations mathématiques en économie, finance et sciences sociales;",
+      "la minimisation d'énergie dans des espaces fonctionnels;"
+    ]
+  },
+  {
+    "kind": "list",
+    "chapter": "Chapitre 02",
+    "title": "⚙️ Le problème d'optimisation combinatoire",
+    "body": [
+      "les mathématiques discrètes;",
+      "la conception et le dimensionnement de réseaux;",
+      "la programmation mathématique (continue, discrète et stochastique)."
+    ]
+  },
+  {
+    "kind": "paragraph",
+    "chapter": "Chapitre 02",
+    "title": "📊 Classification des méthodes d'optimisation combinatoire",
+    "body": [
+      "La résolution d'un problème d'optimisation combinatoire est réalisée à l'aide des méthodes illustrées dans la figure suivante :"
+    ]
+  },
+  {
+    "kind": "paragraph",
+    "chapter": "Chapitre 02",
+    "title": "📊 Classification des méthodes d'optimisation combinatoire",
+    "body": [
+      "Méthodes d'Optimisation Combinatoire"
+    ]
+  },
+  {
+    "kind": "paragraph",
+    "chapter": "Chapitre 02",
+    "title": "📊 Classification des méthodes d'optimisation combinatoire",
+    "body": [
+      "Branch & BoundProgrammation DynamiqueHeld-karpBellmenChristofides"
+    ]
+  },
+  {
+    "kind": "paragraph",
+    "chapter": "Chapitre 02",
+    "title": "📊 Classification des méthodes d'optimisation combinatoire",
+    "body": [
+      "Heuristiques spécifiquesMétaheuristiques"
+    ]
+  },
+  {
+    "kind": "paragraph",
+    "chapter": "Chapitre 02",
+    "title": "🌍 Domaines d'Application de l'Aide à la Décision",
+    "body": [
+      "L'optimisation combinatoire est un levier de performance dans plusieurs secteurs stratégiques :"
+    ]
+  },
+  {
+    "kind": "paragraph",
+    "chapter": "Chapitre 02",
+    "title": "🌍 Domaines d'Application de l'Aide à la Décision",
+    "body": [
+      "Les mathématiques de l'optimisation et de la décision concernent des mathématiques appliquées dans des domaines tels que :"
+    ]
+  },
+  {
+    "kind": "list",
+    "chapter": "Chapitre 02",
+    "title": "🌍 Domaines d'Application de l'Aide à la Décision",
+    "body": [
+      "l'analyse non linéaire;",
+      "la recherche opérationnelle;",
+      "la théorie des graphes (algorithmique et algébrique);",
+      "les modélisations mathématiques en économie, finance et sciences sociales;",
+      "la conception et le dimensionnement de réseaux;"
+    ]
+  },
+  {
+    "kind": "list",
+    "chapter": "Chapitre 02",
+    "title": "🌍 Domaines d'Application de l'Aide à la Décision",
+    "body": [
+      "la programmation mathématique (continue, discrète et stochastique)."
+    ]
+  },
+  {
+    "kind": "paragraph",
+    "chapter": "Chapitre 02",
+    "title": "📝 Conclusion",
+    "body": [
+      "En conclusion, ce chapitre a permis d'établir les fondements mathématiques et structurels indispensables à l'étude de l'optimisation combinatoire et de l'aide à la décision. En formalisant la recherche d'un optimum global sur un ensemble discret et fini S ⊂ {0,1}n, nous avons mis en évidence le défi majeur de cette discipline : l'explosion exponentielle de l'espace de recherche qui rend toute énumération exhaustive impraticable à grande échelle."
+    ]
+  },
+  {
+    "kind": "paragraph",
+    "chapter": "Chapitre 02",
+    "title": "📝 Conclusion",
+    "body": [
+      "À travers l'étude de la programmation mathématique, nous avons analysé la complémentarité de deux paradigmes essentiels : d'une part, la programmation linéaire en nombres entiers (PLNE), qui offre un cadre déterministe rigoureux pour caractériser géométriquement les solutions admissibles ; d'autre part, la programmation stochastique, qui introduit la modélisation de l'incertitude et des scénarios probabilistes pour garantir des décisions robustes en moyenne ou en espérance mathématique."
+    ]
+  },
+  {
+    "kind": "paragraph",
+    "chapter": "Chapitre 02",
+    "title": "📝 Conclusion",
+    "body": [
+      "Face à la complexité de ces problèmes, la classification des méthodes de résolution a souligné le compromis permanent entre le temps de calcul exponentiel des méthodes exactes (comme le Branch & Bound) et l'efficacité des approches polyédrales. L'impact stratégique de ces outils dans des secteurs clés tels que la logistique, l'industrie ou la finance démontre la nécessité de confronter ces théories à des modèles de référence."
+    ]
+  },
+  {
+    "kind": "paragraph",
+    "chapter": "Chapitre 02",
+    "title": "📝 Conclusion",
+    "body": [
+      "C'est précisément dans cette dynamique que s'inscrit la suite de notre manuscrit. Afin d'appliquer ces concepts de programmation en nombres entiers, d'approche polyédrale et de gestion de l'incertitude, le Chapitre 2 sera entièrement dédié à l'étude structurelle et algorithmique du problème-phare de la discipline : le Problème du Voyageur de Commerce (TSP)."
+    ]
+  },
+  {
+    "kind": "chapter",
+    "chapter": "Chapitre 03",
+    "title": "Calculabilité & décidabilité",
+    "body": [
+      "Ouverture du calculabilité & décidabilité"
+    ]
+  },
+  {
+    "kind": "paragraph",
+    "chapter": "Chapitre 03",
+    "title": "Calculabilité & décidabilité",
+    "body": [
+      "La théorie de la calculabilité est née dans les années 1930 avec les travaux d'Alan Turing, Alonzo Church et Kurt Gödel. Elle répond à une question fondamentale : quels problèmes peuvent être résolus par un algorithme ? Avant de chercher à résoudre efficacement le problème du voyageur de commerce, il faut d'abord savoir s'il est possible de le résoudre tout court."
+    ]
+  },
+  {
+    "kind": "paragraph",
+    "chapter": "Chapitre 03",
+    "title": "Calculabilité & décidabilité",
+    "body": [
+      "Le problème du voyageur de commerce est décidable car l'ensemble des tours est fini : on peut toujours énumérer tous les tours et choisir le meilleur. Mais cette énumération est inutilisable en pratique pour des instances de taille modeste. La théorie de la calculabilité ne dit rien sur l'efficacité. C'est pourquoi nous avons besoin du chapitre suivant sur la théorie de la complexité."
+    ]
+  },
+  {
+    "kind": "paragraph",
+    "chapter": "Chapitre 03",
+    "title": "📌 La calculabilité",
+    "body": [
+      "La théorie de la calculabilité, née dans les années 1930 des travaux fondateurs d'Alan Turing, Alonzo Church et Kurt Gödel, constitue le premier pilier de notre étude. Elle répond à une question fondamentale : quels problèmes peuvent être résolus par un algorithme ?"
+    ]
+  },
+  {
+    "kind": "paragraph",
+    "chapter": "Chapitre 03",
+    "title": "⚙️ Machine de Turing",
+    "body": [
+      "Avant Turing, la notion d'\"algorithme\" ou de \"procédure effective\" était intuitive mais floue. Turing a proposé en 1936 un modèle mathématique simple mais extrêmement puissant : la Machine de Turing (MT). Ce modèle est devenu la référence pour définir ce qui est calculable."
+    ]
+  },
+  {
+    "kind": "paragraph",
+    "chapter": "Chapitre 03",
+    "title": "⚙️ Machine de Turing",
+    "body": [
+      "Composants : Un ruban infini, une tête de lecture/écriture, un contrôleur d'état."
+    ]
+  },
+  {
+    "kind": "paragraph",
+    "chapter": "Chapitre 03",
+    "title": "⚙️ Machine de Turing",
+    "body": [
+      "Fonctionnement : Initialisation → lecture du symbole → écriture → déplacement → changement d'état → arrêt (acceptation ou rejet). La machine peut aussi boucler indéfiniment."
+    ]
+  },
+  {
+    "kind": "paragraph",
+    "chapter": "Chapitre 03",
+    "title": "⚙️ Machine de Turing",
+    "body": [
+      "Machine simple qui reconnaît les chaînes de la forme 0ⁿ1ⁿ (autant de 0 que de 1) :"
+    ]
+  },
+  {
+    "kind": "paragraph",
+    "chapter": "Chapitre 03",
+    "title": "⚙️ Machine de Turing",
+    "body": [
+      "États : q₀ (début), q₁ (cherche 1), q₂ (retour arrière), qacc, qrej. Transition : remplacer le premier 0 par X, puis trouver le premier 1, le remplacer par Y, revenir en arrière, et répéter. Résultat : Cette machine s'arrête toujours et accepte exactement les mots 0ⁿ1ⁿ. Ce langage est décidable."
+    ]
+  },
+  {
+    "kind": "paragraph",
+    "chapter": "Chapitre 03",
+    "title": "📜 Thèse de Church-Turing",
+    "body": [
+      "Remarque : La thèse de Church-Turing n'est pas un théorème (elle ne peut pas être prouvée formellement car elle implique la notion intuitive non formalisée d'\"algorithme effectif\"). Mais elle est universellement acceptée par la communauté scientifique depuis près d'un siècle. Aucun contre-exemple n'a jamais été trouvé."
+    ]
+  },
+  {
+    "kind": "paragraph",
+    "chapter": "Chapitre 03",
+    "title": "⛔ Problème de l'arrêt (Halting Problem)",
+    "body": [
+      "Preuve par diagonalisation : Supposons qu'il existe une MT H décidant HALT. Construisons D qui, sur l'entrée ⟨M⟩ : (1) exécute H sur ⟨M,⟨M⟩⟩, (2) si H accepte, D boucle, (3) si H rejette, D accepte. Appliquons D à ⟨D⟩ : si D s'arrête alors H accepte, donc D boucle (contradiction). Si D boucle alors H rejette, donc D s'arrête (contradiction). Donc H n'existe pas."
+    ]
+  },
+  {
+    "kind": "paragraph",
+    "chapter": "Chapitre 03",
+    "title": "📝 Conclusion du chapitre",
+    "body": [
+      "La calculabilité établit une frontière claire entre ce qui peut être automatisé par un algorithme et ce qui ne le peut pas. Les machines de Turing offrent un modèle rigoureux et universel pour étudier cette frontière. Toute fonction calculable par un ordinateur réel l'est par une machine de Turing, et inversement."
+    ]
+  },
+  {
+    "kind": "paragraph",
+    "chapter": "Chapitre 03",
+    "title": "📝 Conclusion du chapitre",
+    "body": [
+      "Nous avons vu qu'un problème est décidable s'il existe une machine de Turing qui s'arrête toujours avec la bonne réponse. Le problème de l'arrêt est indécidable, ce qui signifie qu'aucun programme ne peut déterminer si un autre programme s'arrête. C'est un résultat fondamental qui montre les limites de ce que le calcul peut accomplir."
+    ]
+  },
+  {
+    "kind": "paragraph",
+    "chapter": "Chapitre 03",
+    "title": "📝 Conclusion du chapitre",
+    "body": [
+      "Pour le problème du voyageur de commerce, cette théorie nous rassure : le problème est bien décidable. En effet, il n'y a qu'un nombre fini de tours possibles, donc un algorithme naïf qui les énumère tous finira par trouver le meilleur tour. Cependant, ce résultat théorique est insatisfaisant en pratique. Pour un nombre de villes modeste, l'énumération exhaustive est déjà hors de portée des ordinateurs les plus puissants."
+    ]
+  },
+  {
+    "kind": "paragraph",
+    "chapter": "Chapitre 03",
+    "title": "📝 Conclusion du chapitre",
+    "body": [
+      "Ainsi, la décidabilité ne dit rien sur l'efficacité. Il faut maintenant s'intéresser non plus à la question de savoir si un problème est résoluble, mais à la question de savoir à quel prix il est résoluble. C'est l'objet de la théorie de la complexité, qui fait l'objet du chapitre suivant. Nous y verrons que le TSP est non seulement décidable, mais qu'il fait partie des problèmes les plus difficiles de la classe NP."
+    ]
+  },
+  {
+    "kind": "chapter",
+    "chapter": "Chapitre 04",
+    "title": "Complexité algorithmique",
+    "body": [
+      "Ouverture du complexité algorithmique"
+    ]
+  },
+  {
+    "kind": "paragraph",
+    "chapter": "Chapitre 04",
+    "title": "Complexité algorithmique",
+    "body": [
+      "Le problème du voyageur de commerce est décidable, mais le temps nécessaire pour l'énumération exhaustive croît extrêmement vite avec le nombre de villes. La théorie de la complexité, née dans les années 1960 et 1970 avec les travaux de Cook, Karp et Levin, répond à la question suivante : parmi les problèmes décidables, lesquels peuvent être résolus efficacement ?"
+    ]
+  },
+  {
+    "kind": "paragraph",
+    "chapter": "Chapitre 04",
+    "title": "Complexité algorithmique",
+    "body": [
+      "La théorie de la complexité complète la calculabilité en répondant à la question : parmi les problèmes résolubles, lesquels peuvent l'être efficacement ? La notion d'efficacité est capturée par la notion de temps polynomial."
+    ]
+  },
+  {
+    "kind": "list",
+    "chapter": "Chapitre 04",
+    "title": "📈 Notations asymptotiques",
+    "body": [
+      "f(n) = Ω(g(n)) : borne inférieure asymptotique",
+      "f(n) = Θ(g(n)) : borne exacte asymptotique",
+      "f(n) = o(g(n)) : f croît strictement moins vite que g"
+    ]
+  },
+  {
+    "kind": "paragraph",
+    "chapter": "Chapitre 04",
+    "title": "🔵 Classe P (Polynomial Time)",
+    "body": [
+      "Robustesse : La classe P est robuste par rapport au modèle de calcul. Les problèmes de P sont considérés comme traitables. Même pour n = 10⁶ éléments, un algorithme en O(n²) effectue 10¹² opérations, calculable en quelques minutes."
+    ]
+  },
+  {
+    "kind": "paragraph",
+    "chapter": "Chapitre 04",
+    "title": "🔵 Classe P (Polynomial Time)",
+    "body": [
+      "Exemples dans P : Tri (O(n log n)), plus court chemin (Dijkstra), couplage biparti (O(n³)), test de primalité AKS, connexité, programmation linéaire."
+    ]
+  },
+  {
+    "kind": "paragraph",
+    "chapter": "Chapitre 04",
+    "title": "🟡 Classe NP (Nondeterministic Polynomial)",
+    "body": [
+      "Intuition : Dans NP, il peut être difficile de trouver une solution, mais facile de vérifier qu'une solution candidate est correcte."
+    ]
+  },
+  {
+    "kind": "paragraph",
+    "chapter": "Chapitre 04",
+    "title": "🟡 Classe NP (Nondeterministic Polynomial)",
+    "body": [
+      "Exemples : Sudoku (vérifier une grille ⇒ O(n²), résoudre ⇒ difficile). TSP décisionnel (vérifier une tournée ≤ K ⇒ O(n))."
+    ]
+  },
+  {
+    "kind": "paragraph",
+    "chapter": "Chapitre 04",
+    "title": "🔗 P ⊆ NP",
+    "body": [
+      "Preuve : Si L ∈ P, il existe un algorithme polynomial A qui décide L. A est lui-même un vérificateur polynomial. Donc L ∈ NP."
+    ]
+  },
+  {
+    "kind": "paragraph",
+    "chapter": "Chapitre 04",
+    "title": "🔗 P ⊆ NP",
+    "body": [
+      "Résultat fondamental : La question P = NP ? est ouverte."
+    ]
+  },
+  {
+    "kind": "paragraph",
+    "chapter": "Chapitre 04",
+    "title": "❓ La conjecture P vs NP",
+    "body": [
+      "Tout problème dont la solution est vérifiable rapidement est-il aussi résoluble rapidement ? La quasi-totalité des experts pensent que P ≠ NP, mais aucune preuve n'existe. Ce problème est l'un des sept problèmes du prix du millénaire (1 million de dollars)."
+    ]
+  },
+  {
+    "kind": "list",
+    "chapter": "Chapitre 04",
+    "title": "❓ La conjecture P vs NP",
+    "body": [
+      "Tous les problèmes NP-complets deviendraient résolubles efficacement",
+      "La cryptographie à clé publique (RSA, ECC) serait compromise",
+      "L'IA pourrait résoudre des problèmes d'optimisation massifs en temps polynomial",
+      "Des preuves mathématiques pourraient être générées automatiquement",
+      "Les problèmes NP-complets restent intrinsèquement difficiles"
+    ]
+  },
+  {
+    "kind": "list",
+    "chapter": "Chapitre 04",
+    "title": "❓ La conjecture P vs NP",
+    "body": [
+      "La cryptographie moderne reste fondée sur des bases solides",
+      "On continuera à utiliser des heuristiques pour les grandes instances"
+    ]
+  },
+  {
+    "kind": "paragraph",
+    "chapter": "Chapitre 04",
+    "title": "📊 Diagramme des classes de complexité",
+    "body": [
+      "Diagramme des classes sous hypothèse P ≠ NP"
+    ]
+  },
+  {
+    "kind": "paragraph",
+    "chapter": "Chapitre 04",
+    "title": "⚠️ Problèmes NP-difficiles (NP-Hard)",
+    "body": [
+      "Exemple : La version optimisation du TSP (trouver la tournée la plus courte) est NP-difficile. La vérification qu'une tournée est optimale est aussi difficile."
+    ]
+  },
+  {
+    "kind": "paragraph",
+    "chapter": "Chapitre 04",
+    "title": "📝 Conclusion du chapitre",
+    "body": [
+      "La théorie de la complexité fournit un cadre rigoureux pour classer les problèmes selon leur difficulté intrinsèque. La classe P regroupe les problèmes traitables. La classe NP élargit aux problèmes dont la vérification est rapide. Les NP-complets sont les plus difficiles de NP. La conjecture P ≠ NP, si vraie, justifie l'usage des heuristiques et fonde mathématiquement toute la cryptographie moderne."
+    ]
+  },
+  {
+    "kind": "paragraph",
+    "chapter": "Chapitre 04",
+    "title": "📝 Conclusion du chapitre",
+    "body": [
+      "Nous avons vu que le problème du voyageur de commerce, dans sa version décisionnelle, est NP-complet. Cela signifie qu'il fait partie des problèmes les plus difficiles de la classe NP. Si quelqu'un trouvait un algorithme polynomial pour le TSP, alors tous les problèmes de NP deviendraient polynomiaux et l'on aurait P = NP. C'est une conséquence spectaculaire."
+    ]
+  },
+  {
+    "kind": "paragraph",
+    "chapter": "Chapitre 04",
+    "title": "📝 Conclusion du chapitre",
+    "body": [
+      "La question de savoir si P est égal à NP reste ouverte depuis plus de cinquante ans. C'est l'un des sept problèmes du millénaire pour lesquels l'institut Clay a promis un prix d'un million de dollars. La majorité des chercheurs pense que P est différent de NP, ce qui impliquerait qu'aucun algorithme polynomial n'existe pour le TSP."
+    ]
+  },
+  {
+    "kind": "paragraph",
+    "chapter": "Chapitre 04",
+    "title": "📝 Conclusion du chapitre",
+    "body": [
+      "Cependant, l'impossibilité probable d'un algorithme polynomial ne signifie pas que le TSP est insoluble. Des algorithmes exacts exponentiels mais bien plus efficaces que la force brute existent. C'est le cas de l'algorithme de programmation dynamique de Held et Karp, que nous étudierons au chapitre suivant."
+    ]
+  },
+  {
+    "kind": "chapter",
+    "chapter": "Chapitre 05",
+    "title": "Problème du Voyageur de Commerce",
+    "body": [
+      "Ouverture du problème du voyageur de commerce"
+    ]
+  },
+  {
+    "kind": "paragraph",
+    "chapter": "Chapitre 05",
+    "title": "Problème du Voyageur de Commerce",
+    "body": [
+      "Le nom TSP vient de la situation fictive d'un représentant de commerce qui devrait faire une tournée en passant par un certain nombre de villes. On sait que le coût en argent et en temps d'un voyage peut devenir prohibitif si l'on ne prévoit pas un trajet optimal à l'avance. En langage mathématique, ce problème consiste à trouver un chemin ou un cycle hamiltonien de poids minimum dans un graphe où les sommets sont des clients et les arêtes les routes les joignant. Ce problème fait partie d'une famille des problèmes d'optimisation combinatoire et occupe la communauté de la Recherche Opérationnelle."
+    ]
+  },
+  {
+    "kind": "paragraph",
+    "chapter": "Chapitre 05",
+    "title": "📌 Définition",
+    "body": [
+      "Le problème du TSP n'est pas seulement un problème difficile à résoudre d'un point de vue théorique (NP-difficile), mais aussi d'un point de vue pratique. Les techniques de résolution du TSP s'avèrent être très coûteuses en termes de calculs."
+    ]
+  },
+  {
+    "kind": "paragraph",
+    "chapter": "Chapitre 05",
+    "title": "📌 Définition",
+    "body": [
+      "L'optimisation combinatoire est une branche fondamentale des mathématiques appliquées et de l'informatique et de la recherche opérationnelle. Elle s'intéresse à la recherche d'une solution optimale parmi un ensemble fini, mais souvent extrêmement grand, de solutions possibles."
+    ]
+  },
+  {
+    "kind": "paragraph",
+    "chapter": "Chapitre 05",
+    "title": "📌 Définition",
+    "body": [
+      "Malgré la simplicité de son énoncé, ce problème est NP-difficile, ce qui signifie qu'il n'existe pas d'algorithme connu capable de le résoudre en temps polynomial pour toutes les instances."
+    ]
+  },
+  {
+    "kind": "paragraph",
+    "chapter": "Chapitre 05",
+    "title": "📌 Définition",
+    "body": [
+      "où π est une permutation de {1, …, n} à optimiser."
+    ]
+  },
+  {
+    "kind": "paragraph",
+    "chapter": "Chapitre 05",
+    "title": "📊 Schéma : Instance complète et tournée optimale",
+    "body": [
+      "(a) Instance complète (graphe pondéré)"
+    ]
+  },
+  {
+    "kind": "paragraph",
+    "chapter": "Chapitre 05",
+    "title": "📊 Schéma : Instance complète et tournée optimale",
+    "body": [
+      "Tournée A → B → C → D → E → A (coût total 42)"
+    ]
+  },
+  {
+    "kind": "list",
+    "chapter": "Chapitre 05",
+    "title": "🔄 Variantes du TSP",
+    "body": [
+      "TSP symétrique : d(i,j) = d(j,i) pour tout i,j. Nombre de tournées : (n−1)!/2.",
+      "TSP asymétrique : d(i,j) ≠ d(j,i) en général (ex: routes à sens unique).",
+      "TSP métrique : satisfait l'inégalité triangulaire d(i,k) ≤ d(i,j) + d(j,k).",
+      "TSP euclidien : les villes sont dans ℝ², distances euclidiennes."
+    ]
+  },
+  {
+    "kind": "paragraph",
+    "chapter": "Chapitre 05",
+    "title": "📐 Formulation comme problème de graphe",
+    "body": [
+      "π = (A, B, C, D, E) — un cycle passant par tous les sommets"
+    ]
+  },
+  {
+    "kind": "list",
+    "chapter": "Chapitre 05",
+    "title": "📐 Formulation comme problème de graphe",
+    "body": [
+      "V = {v₁, v₂, …, vn} est l'ensemble des sommets (villes)",
+      "E = {(vi, vj) | i ≠ j} est l'ensemble des arêtes (routes)",
+      "w : E → ℝ⁺ est la fonction de poids (distances ou coûts)"
+    ]
+  },
+  {
+    "kind": "paragraph",
+    "chapter": "Chapitre 05",
+    "title": "⚠️ Complexité du TSP : Explosion combinatoire",
+    "body": [
+      "Derrière cette question intuitive se cache un problème fondamental, qui sert aujourd'hui de référence pour évaluer la performance des algorithmes d'optimisation, de banc d'essai pour les métaheuristiques, et de modèle théorique pour comprendre les limites du calcul algorithmique. Le TSP est le prototype des problèmes dits NP-difficiles, signifiant qu'il n'existe aucun algorithme connu capable de trouver la solution optimale en un temps raisonnable (polynomial) pour de grandes instances."
+    ]
+  },
+  {
+    "kind": "paragraph",
+    "chapter": "Chapitre 05",
+    "title": "⚠️ Complexité du TSP : Explosion combinatoire",
+    "body": [
+      "Cette simplicité est trompeuse. Le nombre de tours possibles est (n−1)!/2 pour un TSP symétrique, ce qui explose exponentiellement :"
+    ]
+  },
+  {
+    "kind": "paragraph",
+    "chapter": "Chapitre 05",
+    "title": "⚠️ Complexité du TSP : Explosion combinatoire",
+    "body": [
+      "📊 Même un ordinateur capable d'évaluer 1 milliard de tours par seconde mettrait :"
+    ]
+  },
+  {
+    "kind": "paragraph",
+    "chapter": "Chapitre 05",
+    "title": "💡 Intérêt du TSP",
+    "body": [
+      "Loin d'être un simple exercice académique, le TSP et ses variantes modélisent une multitude de problèmes concrets dans des secteurs stratégiques :"
+    ]
+  },
+  {
+    "kind": "list",
+    "chapter": "Chapitre 05",
+    "title": "💡 Intérêt du TSP",
+    "body": [
+      "Logistique et transport : Optimisation des tournées de livraison, collecte des déchets, transport scolaire",
+      "Industrie manufacturière : Planification des déplacements d'une tête de perçage pour circuits imprimés, optimisation des mouvements d'un bras robotique",
+      "Bio-informatique : Séquençage de l'ADN, reconstitution d'un génome à partir de fragments",
+      "Télécommunications : Routage de données, planification de réseaux",
+      "Astronomie : Planification des observations d'un télescope pour minimiser les temps morts"
+    ]
+  },
+  {
+    "kind": "paragraph",
+    "chapter": "Chapitre 05",
+    "title": "💡 Intérêt du TSP",
+    "body": [
+      "Le TSP est un terrain de jeu privilégié pour l'informatique théorique :"
+    ]
+  },
+  {
+    "kind": "list",
+    "chapter": "Chapitre 05",
+    "title": "💡 Intérêt du TSP",
+    "body": [
+      "Il a motivé le développement de techniques algorithmiques majeures : programmation dynamique (Held-Karp), méthodes de séparation et évaluation (Branch-and-Bound, Branch-and-Cut), algorithmes d'approximation (Christofides).",
+      "Il sert de problème de référence pour la théorie de la NP-complétude. Prouver que le TSP est NP-difficile a été une étape cruciale pour comprendre la hiérarchie des problèmes.",
+      "Il est le \"pilier\" sur lequel viennent s'adosser d'innombrables autres problèmes d'optimisation."
+    ]
+  },
+  {
+    "kind": "paragraph",
+    "chapter": "Chapitre 05",
+    "title": "📝 Conclusion du chapitre",
+    "body": [
+      "En conclusion, ce chapitre nous a permis d'approfondir l'étude du Problème du Voyageur de Commerce (TSP), pierre angulaire de l'optimisation combinatoire. Derrière la simplicité apparente de son énoncé mathématique — trouver le cycle hamiltonien de coût minimal traversant un ensemble de sommets — se cache un problème à la complexité algorithmique redoutable."
+    ]
+  },
+  {
+    "kind": "paragraph",
+    "chapter": "Chapitre 05",
+    "title": "📝 Conclusion du chapitre",
+    "body": [
+      "Comme nous l'avons mis en évidence à travers l'analyse de l'explosion combinatoire, la croissance exponentielle de l'espace de recherche ((n−1)!/2) pour la variante symétrique classe le TSP parmi les problèmes NP-difficiles, excluant toute approche par énumération exhaustive dès que la taille des instances dépasse quelques dizaines de villes."
+    ]
+  },
+  {
+    "kind": "paragraph",
+    "chapter": "Chapitre 05",
+    "title": "📝 Conclusion du chapitre",
+    "body": [
+      "L'étude des différentes variantes (symétrique, asymétrique, métrique ou euclidienne) a démontré la grande flexibilité de ce modèle pour s'adapter aux exigences concrètes des systèmes réels. Qu'il s'agisse d'applications pratiques cruciales dans la logistique, l'industrie manufacturière ou les télécommunications, ou de son intérêt théorique majeur comme banc d'essai pour l'informatique fondamentale, le TSP reste le modèle de référence incontesté pour valider l'efficacité des structures algorithmiques."
+    ]
+  },
+  {
+    "kind": "paragraph",
+    "chapter": "Chapitre 05",
+    "title": "📝 Conclusion du chapitre",
+    "body": [
+      "L'analyse structurelle étant désormais posée, la question centrale réside dans notre capacité à contourner cette barrière de complexité pour extraire des solutions optimales. C'est précisément l'objet du Chapitre 6, qui sera entièrement consacré à l'exploration des méthodes de résolution — programmation dynamique, algorithmes d'approximation, métaheuristiques — avant de détailler l'implémentation de notre approche exacte de prédilection : l'algorithme de Branch and Cut."
+    ]
+  },
+  {
+    "kind": "chapter",
+    "chapter": "Chapitre 06",
+    "title": "Programmation dynamique",
+    "body": [
+      "Ouverture du programmation dynamique"
+    ]
+  },
+  {
+    "kind": "paragraph",
+    "chapter": "Chapitre 06",
+    "title": "Programmation dynamique",
+    "body": [
+      "La programmation dynamique est une méthode algorithmique qui résout un problème complexe en le décomposant en sous-problèmes plus simples, puis en mémorisant leurs résultats afin d'éviter les recalculs."
+    ]
+  },
+  {
+    "kind": "paragraph",
+    "chapter": "Chapitre 06",
+    "title": "Programmation dynamique",
+    "body": [
+      "Elle repose sur le principe d'optimalité de Bellman : une solution optimale contient des sous-solutions elles-mêmes optimales."
+    ]
+  },
+  {
+    "kind": "list",
+    "chapter": "Chapitre 06",
+    "title": "⚙️ Principe général",
+    "body": [
+      "Identifier des sous-problèmes qui se répètent.",
+      "Définir un état qui décrit exactement l'information nécessaire.",
+      "Écrire une relation de récurrence.",
+      "Stocker les résultats dans une table de mémoïsation."
+    ]
+  },
+  {
+    "kind": "paragraph",
+    "chapter": "Chapitre 06",
+    "title": "🚚 Application au TSP : Held-Karp",
+    "body": [
+      "L'algorithme de Held-Karp représente un état par un ensemble de villes déjà visitées S et par la dernière ville j. Il calcule le plus court chemin partant de la ville initiale, visitant exactement les villes de S, et terminant en j."
+    ]
+  },
+  {
+    "kind": "paragraph",
+    "chapter": "Chapitre 06",
+    "title": "🚚 Application au TSP : Held-Karp",
+    "body": [
+      "Après avoir rempli la table, on ajoute le coût de retour vers la ville de départ pour obtenir la tournée complète."
+    ]
+  },
+  {
+    "kind": "paragraph",
+    "chapter": "Chapitre 06",
+    "title": "📝 Conclusion",
+    "body": [
+      "La programmation dynamique améliore fortement la recherche exhaustive, mais elle reste exponentielle. Elle est donc très utile pour comprendre les limites du TSP et pour résoudre des instances de taille modérée."
+    ]
+  },
+  {
+    "kind": "chapter",
+    "chapter": "Chapitre 07",
+    "title": "Méthodes de résolution",
+    "body": [
+      "Ouverture du méthodes de résolution"
+    ]
+  },
+  {
+    "kind": "paragraph",
+    "chapter": "Chapitre 07",
+    "title": "Méthodes de résolution",
+    "body": [
+      "Les méthodes de résolution du problème de Voyageur de Commerce Asymétrique sont généralement scindées en deux catégories : les méthodes exactes et les méthodes approchées (heuristiques et métaheuristiques)."
+    ]
+  },
+  {
+    "kind": "paragraph",
+    "chapter": "Chapitre 07",
+    "title": "Méthodes de résolution",
+    "body": [
+      "Les méthodes exactes ont souvent des durées de calcul qui augmentent exponentiellement avec la taille des problèmes. Les méthodes approchées sont conçues pour produire des solutions admissibles de bonne qualité avec un temps de résolution raisonnable, mais pas nécessairement optimales."
+    ]
+  },
+  {
+    "kind": "paragraph",
+    "chapter": "Chapitre 07",
+    "title": "Méthodes de résolution",
+    "body": [
+      "Les méthodes exactes et les méthodes approchées sont complémentaires : un faible écart entre bornes inférieures et supérieures signifie que l'optimum est proche, alors qu'un écart nul prouve l'optimalité."
+    ]
+  },
+  {
+    "kind": "paragraph",
+    "chapter": "Chapitre 07",
+    "title": "📊 Classification des méthodes",
+    "body": [
+      "Méthodes d'Optimisation Combinatoire"
+    ]
+  },
+  {
+    "kind": "paragraph",
+    "chapter": "Chapitre 07",
+    "title": "🔵 Méthodes exactes",
+    "body": [
+      "Le principe essentiel d'une méthode exacte consiste à énumérer, souvent de manière implicite, l'ensemble des solutions de l'espace de recherche. Les algorithmes exacts les plus réussis appartiennent à quatre grandes classes :"
+    ]
+  },
+  {
+    "kind": "list",
+    "chapter": "Chapitre 07",
+    "title": "🔵 Méthodes exactes",
+    "body": [
+      "La programmation dynamique",
+      "La programmation par contraintes",
+      "Les méthodes d'énumération implicite (Branch and Bound)",
+      "Les méthodes de plans coupant"
+    ]
+  },
+  {
+    "kind": "paragraph",
+    "chapter": "Chapitre 07",
+    "title": "🟡 Méthodes approchées",
+    "body": [
+      "Heuristique : Le mot heuristique vient du grec « Eurisko » qui signifie « je trouve ». Une heuristique est un algorithme qui fournit rapidement une solution réalisable, pas nécessairement optimale."
+    ]
+  },
+  {
+    "kind": "paragraph",
+    "chapter": "Chapitre 07",
+    "title": "🟡 Méthodes approchées",
+    "body": [
+      "Métaheuristique : Dérivé de « méta » (au-delà) et « heuristique ». Ce sont des méthodes génériques pouvant optimiser une large gamme de problèmes différents."
+    ]
+  },
+  {
+    "kind": "paragraph",
+    "chapter": "Chapitre 07",
+    "title": "🧠 Métaheuristiques",
+    "body": [
+      "Contrairement aux méthodes exactes, les métaheuristiques permettent de s'attaquer aux instances de grande taille en fournissant des solutions satisfaisantes dans un délai raisonnable. Il n'y a aucune garantie de trouver des solutions optimales globales."
+    ]
+  },
+  {
+    "kind": "paragraph",
+    "chapter": "Chapitre 07",
+    "title": "🧠 Métaheuristiques",
+    "body": [
+      "Domaines d'application : conception technique, VLSI, télécommunications, robotique, apprentissage automatique, bioinformatique, traitement du signal, logistique, transport..."
+    ]
+  },
+  {
+    "kind": "paragraph",
+    "chapter": "Chapitre 07",
+    "title": "🎯 Concepts fondamentaux des métaheuristiques",
+    "body": [
+      "Diversification : Capacité de parcourir aisément l'espace de recherche pour obtenir des solutions très différentes. Exploration large de l'espace."
+    ]
+  },
+  {
+    "kind": "paragraph",
+    "chapter": "Chapitre 07",
+    "title": "🎯 Concepts fondamentaux des métaheuristiques",
+    "body": [
+      "🔍 Processus de diversification d'une solution → exploration de zones variées"
+    ]
+  },
+  {
+    "kind": "paragraph",
+    "chapter": "Chapitre 07",
+    "title": "🎯 Concepts fondamentaux des métaheuristiques",
+    "body": [
+      "Intensification : Vise à forcer une solution donnée à tendre vers l'optimum local de la zone à laquelle elle est attachée. Exploitation de l'information accumulée."
+    ]
+  },
+  {
+    "kind": "paragraph",
+    "chapter": "Chapitre 07",
+    "title": "🎯 Concepts fondamentaux des métaheuristiques",
+    "body": [
+      "⚡ Processus d'intensification de plusieurs solutions → convergence vers l'optimum local"
+    ]
+  },
+  {
+    "kind": "paragraph",
+    "chapter": "Chapitre 07",
+    "title": "🔹 Métaheuristiques à solution unique",
+    "body": [
+      "Les méthodes itératives à solution unique sont basées sur un algorithme de recherche de voisinage qui commence avec une solution initiale, puis l'améliore pas à pas."
+    ]
+  },
+  {
+    "kind": "paragraph",
+    "chapter": "Chapitre 07",
+    "title": "🔹 Métaheuristiques à solution unique",
+    "body": [
+      "Principe des métaheuristiques à solution unique"
+    ]
+  },
+  {
+    "kind": "paragraph",
+    "chapter": "Chapitre 07",
+    "title": "🔹 Métaheuristiques à solution unique",
+    "body": [
+      "La recherche locale itérative améliore le principe de recherche locale multi-départ. Une recherche par descente est appliquée sur une solution initiale pour générer une meilleure solution, puis on perturbe et on répète."
+    ]
+  },
+  {
+    "kind": "paragraph",
+    "chapter": "Chapitre 07",
+    "title": "🔹 Métaheuristiques à solution unique",
+    "body": [
+      "Minimum local : ∀ x ∈ V(x) on a f(x*) ≤ f(x)"
+    ]
+  },
+  {
+    "kind": "paragraph",
+    "chapter": "Chapitre 07",
+    "title": "🔹 Métaheuristiques à solution unique",
+    "body": [
+      "Minimum global : minimum local de coût minimum"
+    ]
+  },
+  {
+    "kind": "paragraph",
+    "chapter": "Chapitre 07",
+    "title": "🔹 Métaheuristiques à solution unique",
+    "body": [
+      "Le recuit simulé est une technique d'optimisation de type Monte-Carlo généralisé où on introduit un paramètre de température. Inspiré du recuit des métaux en métallurgie : un métal refroidi trop vite présente des défauts (optimum local), refroidi lentement il atteint une structure ordonnée (optimum global)."
+    ]
+  },
+  {
+    "kind": "paragraph",
+    "chapter": "Chapitre 07",
+    "title": "🔹 Métaheuristiques à solution unique",
+    "body": [
+      "Organigramme de l'algorithme du recuit simulé"
+    ]
+  },
+  {
+    "kind": "paragraph",
+    "chapter": "Chapitre 07",
+    "title": "🔹 Métaheuristiques à solution unique",
+    "body": [
+      "Avantages : peut traiter des systèmes arbitraires, converge vers l'optimum global, facile à mettre en œuvre."
+    ]
+  },
+  {
+    "kind": "paragraph",
+    "chapter": "Chapitre 07",
+    "title": "🔹 Métaheuristiques à solution unique",
+    "body": [
+      "Inconvénients : nombre important de paramètres (température initiale, taux de décroissance), réglage empirique, temps de calcul excessif."
+    ]
+  },
+  {
+    "kind": "paragraph",
+    "chapter": "Chapitre 07",
+    "title": "🔹 Métaheuristiques à solution unique",
+    "body": [
+      "La recherche tabou a été introduite par F. Glover. À chaque itération, le voisinage de la solution courante est examiné et la meilleure solution non interdite est sélectionnée, même si elle est moins bonne. Cela permet d'échapper aux optima locaux."
+    ]
+  },
+  {
+    "kind": "paragraph",
+    "chapter": "Chapitre 07",
+    "title": "🔹 Métaheuristiques à solution unique",
+    "body": [
+      "Structure générale de la méthode recherche tabou"
+    ]
+  },
+  {
+    "kind": "paragraph",
+    "chapter": "Chapitre 07",
+    "title": "🔹 Métaheuristiques à solution unique",
+    "body": [
+      "Avantages : grande efficacité, fonctionnement simple à comprendre."
+    ]
+  },
+  {
+    "kind": "paragraph",
+    "chapter": "Chapitre 07",
+    "title": "🔹 Métaheuristiques à solution unique",
+    "body": [
+      "Inconvénients : paramètres peu intuitifs, demande en ressources importante, aucune démonstration de convergence."
+    ]
+  },
+  {
+    "kind": "paragraph",
+    "chapter": "Chapitre 07",
+    "title": "👥 Métaheuristiques à population",
+    "body": [
+      "Dans cette classe, les métaheuristiques utilisent une population de solutions. L'intérêt est d'utiliser la population comme facteur de diversité. Les méthodes améliorent, au fur et à mesure des itérations, une population de solutions."
+    ]
+  },
+  {
+    "kind": "paragraph",
+    "chapter": "Chapitre 07",
+    "title": "👥 Métaheuristiques à population",
+    "body": [
+      "Principe des métaheuristiques à population"
+    ]
+  },
+  {
+    "kind": "paragraph",
+    "chapter": "Chapitre 07",
+    "title": "👥 Métaheuristiques à population",
+    "body": [
+      "Introduits par J.H. Holland (années 1970). S'appuient sur des techniques dérivées de la génétique et de l'évolution naturelle : croisements, mutations, sélection. Appliqués en économie, finance, optimisation, théorie des jeux."
+    ]
+  },
+  {
+    "kind": "paragraph",
+    "chapter": "Chapitre 07",
+    "title": "👥 Métaheuristiques à population",
+    "body": [
+      "Principalement utilisé pour produire des solutions quasi-optimales pour le TSP. S'inspire du comportement des fourmis cherchant de la nourriture et déposant des phéromones."
+    ]
+  },
+  {
+    "kind": "paragraph",
+    "chapter": "Chapitre 07",
+    "title": "👥 Métaheuristiques à population",
+    "body": [
+      "Introduit par Kennedy et Eberhart (1995). Inspiré des essaims d'insectes, bancs de poissons ou nuées d'oiseaux. Les individus (particules) se déplacent dans l'espace de recherche en échangeant des informations."
+    ]
+  },
+  {
+    "kind": "paragraph",
+    "chapter": "Chapitre 07",
+    "title": "📝 Conclusion du chapitre",
+    "body": [
+      "À travers ce chapitre, nous avons abordé les définitions essentielles à la compréhension du travail du point de vue optimisation. Nous avons vu qu'un grand nombre de méthodes d'optimisation existe pour résoudre un problème combinatoire :"
+    ]
+  },
+  {
+    "kind": "paragraph",
+    "chapter": "Chapitre 07",
+    "title": "📝 Conclusion du chapitre",
+    "body": [
+      "Nous avons présenté en détail deux techniques largement utilisées : le recuit simulé et la recherche tabou, avec leurs définitions, algorithmes, domaines d'application, avantages et inconvénients."
+    ]
+  },
+  {
+    "kind": "list",
+    "chapter": "Chapitre 07",
+    "title": "📝 Conclusion du chapitre",
+    "body": [
+      "Méthodes exactes — optimalité garantie, temps exponentiel (Branch & Bound, programmation dynamique)",
+      "Méthodes approchées — solutions de qualité, temps polynomial",
+      "Heuristiques — spécifiques à un problème",
+      "Métaheuristiques — méthodes génériques (recuit simulé, recherche tabou, algorithmes génétiques, colonies de fourmis, essaim de particules)"
+    ]
+  },
+  {
+    "kind": "application",
+    "chapter": "Application",
+    "title": "TSP World Pro",
+    "body": [
+      "Démonstrateur interactif pour visualiser les villes, les distances, les tournées et l’effet de l’explosion combinatoire.",
+      "L’objectif est de relier le mémoire théorique à une expérience de présentation concrète devant le jury."
+    ],
+    "meta": "Accès direct depuis la barre supérieure."
+  },
+  {
+    "kind": "conclusion",
+    "chapter": "Conclusion",
+    "title": "Bilan final",
+    "body": [
+      "Le projet montre qu’un problème simple à énoncer peut devenir très difficile à résoudre à grande échelle.",
+      "La présentation permet de défendre le travail chapitre par chapitre avec les touches gauche/droite, comme dans PowerPoint."
+    ]
+  }
+]
+</script>
+<script>
+const slides = JSON.parse(document.getElementById('slide-data').textContent);
+const stage = document.getElementById('stage');
+function escapeHtml(s){return String(s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));}
+function renderSlide(slide, i){
+  const section = document.createElement('section'); section.className = 'slide ' + (slide.kind || '');
+  const body = slide.kind === 'cover'
+    ? `<div class="cover-grid"><div><span class="kicker">${escapeHtml(slide.chapter)}</span><h1>${escapeHtml(slide.title).replace('Combinatoire','<span class="gold">Combinatoire</span>').replace('Voyageur de Commerce','<span class="teal">Voyageur de Commerce</span>')}</h1><div class="body"><p>${escapeHtml(slide.body[0])}</p></div><p style="margin-top:28px;color:#5b6b80;font-weight:800">${escapeHtml(slide.meta||'')}</p></div><div class="metric"><div><strong>${slides.length}</strong>slides détaillées</div><div><strong>← →</strong>navigation clavier</div><div><strong>PDF</strong>export prêt</div></div></div>`
+    : `<span class="kicker">${escapeHtml(slide.chapter)}</span><h2>${escapeHtml(slide.title)}</h2><div class="body">${slide.body.length > 1 ? '<ul>'+slide.body.map(x=>'<li>'+escapeHtml(x)+'</li>').join('')+'</ul>' : '<p>'+escapeHtml(slide.body[0]||'')+'</p>'}</div>${slide.meta?'<p style="margin-top:24px;color:#6b7b8d;font-weight:800">'+escapeHtml(slide.meta)+'</p>':''}`;
+  section.innerHTML = `<div class="card">${body}</div>`; return section;
+}
+stage.append(...slides.map(renderSlide));
+const els=[...document.querySelectorAll('.slide')], prev=document.getElementById('prevBtn'), next=document.getElementById('nextBtn'), counter=document.getElementById('counter'), progress=document.getElementById('progress'), dots=document.getElementById('dots');
+dots.innerHTML = slides.slice(0,28).map((_,i)=>`<span class="dot" data-dot="${i}"></span>`).join('');
+let current = Math.max(0, Math.min((Number(new URLSearchParams(location.search).get('slide'))||1)-1, els.length-1));
+function show(i){current=Math.max(0,Math.min(i,els.length-1)); els.forEach((el,k)=>el.classList.toggle('active',k===current)); prev.disabled=current===0; next.disabled=current===els.length-1; counter.textContent=`${current+1} / ${els.length}`; progress.style.width=`${((current+1)/els.length)*100}%`; document.querySelectorAll('.dot').forEach((d,k)=>d.classList.toggle('active',k===Math.min(current,27))); history.replaceState(null,'',`?slide=${current+1}`);}
+prev.onclick=()=>show(current-1); next.onclick=()=>show(current+1);
+document.addEventListener('keydown',e=>{ if(['ArrowRight','PageDown',' ','Enter'].includes(e.key)){e.preventDefault();show(current+1)} if(['ArrowLeft','PageUp','Backspace'].includes(e.key)){e.preventDefault();show(current-1)} if(e.key==='Home')show(0); if(e.key==='End')show(els.length-1); });
+show(current);
+</script>
 </body>
 </html>
