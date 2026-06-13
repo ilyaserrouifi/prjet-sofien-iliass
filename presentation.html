@@ -14,7 +14,7 @@
 <div class="progress-track"><div class="progress" id="progress"></div></div>
 <button class="nav-arrow nav-left" id="prevBtn" aria-label="Slide précédente">‹</button><button class="nav-arrow nav-right" id="nextBtn" aria-label="Slide suivante">›</button>
 <main class="stage" id="stage"></main>
-<footer class="bottom"><span class="counter" id="counter"></span><div class="dots" id="dots"></div><span class="hint">Utilise les touches ← → comme PowerPoint</span></footer>
+<footer class="bottom"><span class="counter" id="counter"></span><div class="dots" id="dots"></div><span class="hint">Clavier: End/→ = suivant · Home/← = précédent</span></footer>
 <script id="slide-data" type="application/json">
 [
   {
@@ -1177,7 +1177,24 @@ dots.innerHTML = slides.slice(0,28).map((_,i)=>`<span class="dot" data-dot="${i}
 let current = Math.max(0, Math.min((Number(new URLSearchParams(location.search).get('slide'))||1)-1, els.length-1));
 function show(i){current=Math.max(0,Math.min(i,els.length-1)); els.forEach((el,k)=>el.classList.toggle('active',k===current)); prev.disabled=current===0; next.disabled=current===els.length-1; counter.textContent=`${current+1} / ${els.length}`; progress.style.width=`${((current+1)/els.length)*100}%`; document.querySelectorAll('.dot').forEach((d,k)=>d.classList.toggle('active',k===Math.min(current,27))); history.replaceState(null,'',`?slide=${current+1}`);}
 prev.onclick=()=>show(current-1); next.onclick=()=>show(current+1);
-document.addEventListener('keydown',e=>{ if(['ArrowRight','PageDown',' ','Enter'].includes(e.key)){e.preventDefault();show(current+1)} if(['ArrowLeft','PageUp','Backspace'].includes(e.key)){e.preventDefault();show(current-1)} if(e.key==='Home')show(0); if(e.key==='End')show(els.length-1); });
+function handleKeyboard(e){
+  const nextKeys = ['ArrowRight','PageDown',' ','Enter','End','N','n'];
+  const prevKeys = ['ArrowLeft','PageUp','Backspace','Home','P','p'];
+  if(nextKeys.includes(e.key) || e.code === 'End'){
+    e.preventDefault();
+    show(current + 1);
+    return;
+  }
+  if(prevKeys.includes(e.key) || e.code === 'Home'){
+    e.preventDefault();
+    show(current - 1);
+    return;
+  }
+  if(e.key === 'Escape') show(0);
+}
+document.addEventListener('keydown', handleKeyboard, {capture:true});
+window.addEventListener('load', () => document.body.focus());
+document.body.tabIndex = -1;
 show(current);
 </script>
 </body>
