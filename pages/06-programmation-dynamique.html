@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chapitre 6 | Programmation Dynamique | Optimisation Combinatoire & TSP</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;900&family=Raleway:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Raleway', sans-serif; background: #f5f7fb; color: #1a2a3a; line-height: 1.6; }
+    .navbar { position: fixed; top: 0; width: 100%; padding: 1rem 3rem; background: rgba(255,255,255,.96); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(0,0,0,.08); z-index: 1000; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 10px rgba(0,0,0,.03); }
+    .logo { font-family: 'Cinzel', serif; font-size: 1.2rem; font-weight: 700; letter-spacing: 4px; color: #c9a84c; text-decoration: none; }
+    .logo span { color: #0088aa; }
+    .nav-links { display: flex; gap: 1.4rem; list-style: none; }
+    .nav-links a { color: #4a5568; text-decoration: none; font-size: .7rem; letter-spacing: 2px; text-transform: uppercase; transition: .3s; font-weight: 600; }
+    .nav-links a:hover { color: #c9a84c; }
+    .container { max-width: 1000px; margin: 0 auto; padding: 100px 2rem 3rem; }
+    h1 { font-family: 'Cinzel', serif; font-size: 2rem; font-weight: 800; color: #1a2a3a; margin-bottom: .5rem; border-left: 4px solid #c9a84c; padding-left: 1rem; }
+    h1 span, h2 span { color: #c9a84c; }
+    h2 { font-family: 'Cinzel', serif; font-size: 1.3rem; color: #0088aa; margin: 1.8rem 0 1rem; border-bottom: 2px solid rgba(0,136,170,.15); padding-bottom: .3rem; }
+    .chapitre-badge { display: inline-block; background: rgba(201,168,76,.12); border: 1px solid rgba(201,168,76,.3); border-radius: 50px; padding: .2rem .8rem; font-size: .6rem; letter-spacing: 2px; color: #c9a84c; margin: .5rem 0 1rem 1rem; font-weight: 600; }
+    .content-card { background: white; border-radius: 16px; padding: 1.5rem; margin: 1rem 0; box-shadow: 0 2px 8px rgba(0,0,0,.04); border: 1px solid #e2e8f0; }
+    p { color: #4a5568; margin-bottom: 1rem; }
+    ul { margin-left: 1.2rem; color: #4a5568; }
+    li { margin-bottom: .55rem; }
+    .formula { font-family: 'JetBrains Mono', monospace; background: #102033; color: #e6f7ff; border-radius: 14px; padding: 1rem; overflow: auto; margin: 1rem 0; }
+    .table { width: 100%; border-collapse: collapse; margin-top: 1rem; font-size: .9rem; }
+    .table th, .table td { border: 1px solid #e2e8f0; padding: .8rem; text-align: left; }
+    .table th { background: #f8fafc; color: #0088aa; }
+    .btn-nav { display: flex; justify-content: space-between; margin-top: 3rem; gap: 1rem; }
+    .btn-prev, .btn-next { padding: .7rem 1.5rem; text-decoration: none; border-radius: 50px; font-size: .7rem; letter-spacing: 2px; text-transform: uppercase; transition: .3s; }
+    .btn-prev { border: 1px solid #c9a84c; color: #c9a84c; background: transparent; }
+    .btn-next { background: linear-gradient(135deg, #c9a84c, #0088aa); color: white; border: none; }
+    footer { text-align: center; padding: 2rem; border-top: 1px solid #e2e8f0; background: #fff; margin-top: 2rem; color: #718096; font-size: .7rem; }
+    @media (max-width: 768px) { .navbar { padding: 1rem; } .nav-links { display: none; } .container { padding: 80px 1rem 2rem; } h1 { font-size: 1.5rem; } }
+  </style>
+</head>
+<body>
+<nav class="navbar">
+  <a href="../index.html" class="logo">PFE<span>·ENS</span></a>
+  <ul class="nav-links">
+    <li><a href="../index.html">Accueil</a></li>
+    <li><a href="../presentation.html">Slides</a></li>
+    <li><a href="05-tsp.html">Ch.5</a></li>
+    <li><a href="07-methodes-resolution.html">Ch.7</a></li>
+    <li><a href="../tsp-world-pro.html">Application</a></li>
+  </ul>
+</nav>
+<div class="container">
+  <span class="chapitre-badge">CHAPITRE 6</span>
+  <h1>Programmation <span>Dynamique</span></h1>
+  <div class="content-card">
+    <p>La programmation dynamique est une méthode algorithmique qui résout un problème complexe en le décomposant en sous-problèmes plus simples, puis en mémorisant leurs résultats afin d'éviter les recalculs.</p>
+    <p>Elle repose sur le principe d'optimalité de Bellman : une solution optimale contient des sous-solutions elles-mêmes optimales.</p>
+  </div>
+  <h2>⚙️ Principe général</h2>
+  <div class="content-card">
+    <ul>
+      <li>Identifier des sous-problèmes qui se répètent.</li>
+      <li>Définir un état qui décrit exactement l'information nécessaire.</li>
+      <li>Écrire une relation de récurrence.</li>
+      <li>Stocker les résultats dans une table de mémoïsation.</li>
+    </ul>
+  </div>
+  <h2>🚚 Application au TSP : Held-Karp</h2>
+  <div class="content-card">
+    <p>L'algorithme de Held-Karp représente un état par un ensemble de villes déjà visitées <strong>S</strong> et par la dernière ville <strong>j</strong>. Il calcule le plus court chemin partant de la ville initiale, visitant exactement les villes de S, et terminant en j.</p>
+    <div class="formula">DP[S][j] = min(DP[S - {j}][i] + d(i,j)) pour i ∈ S, i ≠ j</div>
+    <p>Après avoir rempli la table, on ajoute le coût de retour vers la ville de départ pour obtenir la tournée complète.</p>
+  </div>
+  <h2>📊 Comparaison avec la force brute</h2>
+  <div class="content-card">
+    <table class="table">
+      <tr><th>Méthode</th><th>Complexité</th><th>Idée</th></tr>
+      <tr><td>Force brute</td><td>O(n!)</td><td>Tester toutes les permutations possibles.</td></tr>
+      <tr><td>Held-Karp</td><td>O(n² · 2ⁿ)</td><td>Réutiliser les sous-chemins optimaux.</td></tr>
+    </table>
+  </div>
+  <h2>📝 Conclusion</h2>
+  <div class="content-card">
+    <p>La programmation dynamique améliore fortement la recherche exhaustive, mais elle reste exponentielle. Elle est donc très utile pour comprendre les limites du TSP et pour résoudre des instances de taille modérée.</p>
+  </div>
+  <div class="btn-nav">
+    <a href="05-tsp.html" class="btn-prev">← Chapitre 5</a>
+    <a href="07-methodes-resolution.html" class="btn-next">Chapitre 7 : Méthodes de résolution →</a>
+  </div>
+</div>
+<footer>
+  <p>PFE — Iliass Errouifi & Soufiane Er-Rthimi — Optimisation Combinatoire appliquée au TSP</p>
+  <p>École Normale Supérieure Tétouan — Université Abdelmalek Essaâdi — 2025-2026</p>
+</footer>
+</body>
+</html>
