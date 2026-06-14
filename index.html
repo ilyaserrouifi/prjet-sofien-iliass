@@ -1,7 +1,1121 @@
 <!DOCTYPE html>
-<html lang="fr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Présentation PFE | TSP WORLD PRO</title><link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800;900&family=Raleway:wght@400;500;600;700;800&display=swap" rel="stylesheet"><style>
-*{box-sizing:border-box;margin:0;padding:0}:root{--navy:#10243a;--teal:#0f9fa8;--gold:#c9a84c;--paper:#fbfaf7;--ink:#17243a;--line:#dfe8ef}html,body{height:100%;overflow:hidden}body{font-family:Raleway,sans-serif;color:var(--ink);background:radial-gradient(circle at 10% 20%,#dff7f8 0,transparent 24%),linear-gradient(135deg,#f8fbff,#eef4f8)}.topbar{position:fixed;top:10px;left:16px;right:16px;z-index:20;display:flex;gap:7px;justify-content:center;flex-wrap:wrap}.topbar a,.topbar button{border:0;border-radius:999px;padding:.45rem .7rem;background:#ffffffe8;color:#24364d;font:800 .58rem Cinzel;cursor:pointer;box-shadow:0 8px 20px #10243a17;text-decoration:none}.topbar .active{background:linear-gradient(135deg,var(--gold),var(--teal));color:white}.deck{height:100vh;display:grid;place-items:center;padding:3.3rem 2rem 4.2rem}.slide{width:min(1240px,95vw);height:min(650px,82vh);display:grid;grid-template-columns:34% 66%;border-radius:30px;overflow:hidden;background:#fff;box-shadow:0 28px 80px #10243a28;border:1px solid #ffffffaa}.panel{color:white;padding:3.4rem 2.4rem;display:flex;flex-direction:column;justify-content:center;background:linear-gradient(155deg,#10243a,#0f9fa8);position:relative}.panel:after{content:'';position:absolute;inset:auto -80px -90px auto;width:260px;height:260px;border-radius:50%;border:36px solid #ffffff18}.panel h1{font:900 clamp(1.9rem,3.8vw,3.1rem)/1 Cinzel;text-transform:uppercase;z-index:1}.gold{color:#f3ca58;display:block}.badge{z-index:1;align-self:flex-start;border:1px solid #ffffff66;border-radius:999px;padding:.35rem .9rem;margin-bottom:1.3rem;color:#f3ca58;font-weight:900;font-size:.65rem;letter-spacing:.16rem}.panel p{z-index:1;margin-top:1.2rem;line-height:1.55;color:#edf9fb}.content{position:relative;padding:3.6rem 4rem;display:flex;flex-direction:column;justify-content:center}.number{position:absolute;top:1.1rem;right:2rem;font:900 4.5rem Cinzel;color:#c9a84c24}.tag{align-self:flex-start;color:var(--gold);border:1px solid #c9a84c66;border-radius:999px;padding:.3rem .85rem;font-size:.62rem;letter-spacing:.18rem;font-weight:900;text-transform:uppercase;margin-bottom:.9rem}h2{font:900 clamp(1.45rem,2.6vw,2.35rem)/1.08 Cinzel;color:var(--navy);text-transform:uppercase;border-bottom:2px solid var(--line);padding-bottom:.9rem}p,li{font-size:1.01rem;line-height:1.7;color:#405064}ul{margin:1rem 0 0 1.2rem}.hero,.smart,.roadmap,.visual,.diagram{display:grid;gap:.8rem;margin-top:1.1rem}.hero{grid-template-columns:1fr}.hero div,.card,.smart div,.roadmap div,.visual span,.diagram div{background:#f7fafc;border:1px solid var(--line);border-radius:16px;padding:1rem}.hero strong,.roadmap b{display:block;color:var(--teal);font-family:Cinzel}.smart{grid-template-columns:repeat(4,1fr)}.visual,.diagram{grid-template-columns:repeat(4,1fr);align-items:center;text-align:center;font-weight:800}.diagram{grid-template-columns:1fr auto 1fr auto 1fr}.diagram i{font-style:normal;color:var(--gold);font-size:1.8rem}.roadmap{grid-template-columns:repeat(2,1fr)}.roadmap div{display:flex;gap:.8rem;align-items:center}.chart{height:145px;display:flex;align-items:end;gap:18px;margin-top:1.3rem;padding:1rem;background:#f7fafc;border:1px solid var(--line);border-radius:18px}.chart span{flex:1;background:linear-gradient(180deg,var(--teal),var(--gold));border-radius:12px 12px 0 0}.qr{width:138px;height:138px;margin:1.2rem 0;border-radius:18px;background:repeating-linear-gradient(45deg,#10243a 0 8px,#fff 8px 16px);display:grid;place-items:center;font-size:3rem;color:#c9a84c;border:8px solid #fff;box-shadow:0 10px 30px #10243a22}.thanks{font:900 4rem Cinzel;color:var(--teal);margin-top:1rem}.controls{position:fixed;left:2rem;right:2rem;bottom:1rem;display:grid;grid-template-columns:180px 1fr 180px;gap:1rem;align-items:center}.navbtn{height:46px;border:0;border-radius:999px;font:900 .75rem Cinzel;cursor:pointer}.prev{background:white;color:var(--gold)}.next{background:linear-gradient(135deg,var(--gold),var(--teal));color:white}.progress-wrap{text-align:center;font-weight:800;color:#64748b}.progress{height:9px;background:#dce6ef;border-radius:999px;margin-top:.45rem;overflow:hidden}.bar{height:100%;background:linear-gradient(90deg,var(--gold),var(--teal))}@media(max-width:900px){html,body{overflow:auto}.deck{height:auto;padding:6rem 1rem}.slide{height:auto;grid-template-columns:1fr}.content,.panel{padding:2rem}.smart,.roadmap,.visual{grid-template-columns:1fr}.controls{grid-template-columns:1fr}}
-</style></head><body><nav class="topbar" id="chapters"><a href="pages/01-introduction.html">Détails</a></nav><main class="deck"><section class="slide" aria-live="polite"><aside class="panel"><div class="badge" id="chapterBadge"></div><h1 id="chapterTitle"></h1><p id="chapterIntro"></p></aside><article class="content"><div class="number" id="slideNumber"></div><span class="tag" id="slideTag"></span><h2 id="slideTitle"></h2><div id="slideBody"></div></article></section></main><footer class="controls"><button class="navbtn prev" id="prev">← Précédent</button><div class="progress-wrap"><span id="counter"></span><div class="progress"><div class="bar" id="bar"></div></div></div><button class="navbtn next" id="next">Suivant →</button></footer><script>
-const slides = [{"section": "Préliminaire", "ch": "Garde", "title": "Soutenance PFE", "intro": "Optimisation combinatoire et TSP WORLD PRO.", "tag": "Ouverture", "t": "Projet de Fin d’Études", "b": "<div class='hero'><div><strong>Optimisation combinatoire</strong><span>Étude théorique et application au Problème du Voyageur de Commerce</span></div><div><strong>Réalisé par</strong><span>Iliass Errouifi & Soufiane Er-Rthimi</span></div><div><strong>Encadrement</strong><span>Pr. EL HICHAMI OTHMANE</span></div></div>", "theme": "navy"}, {"section": "Préliminaire", "ch": "Remerciements", "title": "Soutenance PFE", "intro": "Remerciements et contexte académique.", "tag": "Merci", "t": "Remerciements", "b": "<p>Nous exprimons notre gratitude à notre encadrant, aux enseignants, aux membres du jury et à toutes les personnes ayant accompagné ce travail.</p><div class='smart'><div>🎓 Encadrement</div><div>👥 Jury</div><div>🏫 Département</div><div>🤝 Famille & amis</div></div>", "theme": "navy"}, {"section": "Préliminaire", "ch": "Plan", "title": "Soutenance PFE", "intro": "Organisation globale claire et progressive.", "tag": "Plan", "t": "Plan général de la présentation", "b": "<div class='roadmap'><div><b>01</b><span>Introduction générale</span></div><div><b>02</b><span>Chapitre 1 : Optimisation combinatoire</span></div><div><b>03</b><span>Chapitre 2 : Calculabilité</span></div><div><b>04</b><span>Chapitre 3 : Complexité</span></div><div><b>05</b><span>Chapitre 4 : TSP</span></div><div><b>06</b><span>Chapitre 5 : Méthodes exactes</span></div><div><b>07</b><span>Chapitre 6 : Heuristiques</span></div><div><b>08</b><span>Chapitre 7 : Métaheuristiques</span></div><div><b>09</b><span>Application</span></div><div><b>10</b><span>Conclusion</span></div></div>", "theme": "navy"}, {"section": "Introduction", "ch": "Intro", "title": "Introduction Générale", "intro": "Contexte, problématique, objectifs et démarche.", "tag": "Contexte", "t": "Pourquoi optimiser ?", "b": "<p>L’optimisation combinatoire aide à choisir la meilleure solution parmi un grand nombre de possibilités discrètes : tournées, affectations, ordonnancements et réseaux.</p><div class='visual'><span>Problème</span><span>Modèle</span><span>Algorithme</span><span>Application</span></div>", "theme": "teal"}, {"section": "Introduction", "ch": "Intro", "title": "Introduction Générale", "intro": "Contexte, problématique, objectifs et démarche.", "tag": "Problématique", "t": "Difficulté principale", "b": "<p>Quand le nombre de décisions augmente, l’énumération exhaustive devient irréaliste. La question centrale devient : comment trouver une très bonne solution dans un temps raisonnable ?</p><div class='visual'><span>Problème</span><span>Modèle</span><span>Algorithme</span><span>Application</span></div>", "theme": "teal"}, {"section": "Introduction", "ch": "Intro", "title": "Introduction Générale", "intro": "Contexte, problématique, objectifs et démarche.", "tag": "Objectifs", "t": "Objectifs du mémoire", "b": "<p>Présenter les bases théoriques, expliquer la difficulté du TSP, comparer les familles d’algorithmes et réaliser une application interactive de démonstration.</p><div class='visual'><span>Problème</span><span>Modèle</span><span>Algorithme</span><span>Application</span></div>", "theme": "teal"}, {"section": "Introduction", "ch": "Intro", "title": "Introduction Générale", "intro": "Contexte, problématique, objectifs et démarche.", "tag": "Méthode", "t": "Fil conducteur", "b": "<p>La présentation avance de la théorie vers la pratique : calculabilité, complexité, modélisation, algorithmes, puis application TSP WORLD PRO.</p><div class='visual'><span>Problème</span><span>Modèle</span><span>Algorithme</span><span>Application</span></div>", "theme": "teal"}, {"section": "Chapitre 1", "ch": "Ch.1", "title": "Optimisation Combinatoire", "intro": "Décisions discrètes, modèles et exemples.", "tag": "Définition", "t": "Définition", "b": "<p>Ce chapitre introduit <b>optimisation combinatoire</b> et place les notions utiles pour comprendre la suite de la soutenance.</p><div class='diagram'><div>Entrée</div><i>→</i><div>Traitement</div><i>→</i><div>Résultat</div></div>", "theme": "gold"}, {"section": "Chapitre 1", "ch": "Ch.1", "title": "Optimisation Combinatoire", "intro": "Décisions discrètes, modèles et exemples.", "tag": "Variables et contraintes", "t": "Variables et contraintes", "b": "<p><b>Variables et contraintes</b> : notion essentielle à retenir pour une soutenance claire. Elle est présentée sous forme courte, structurée et directement liée au problème du voyageur de commerce.</p><ul><li>Définition concise.</li><li>Rôle dans le chapitre.</li><li>Exemple ou interprétation.</li></ul>", "theme": "gold"}, {"section": "Chapitre 1", "ch": "Ch.1", "title": "Optimisation Combinatoire", "intro": "Décisions discrètes, modèles et exemples.", "tag": "Fonction objectif", "t": "Fonction objectif", "b": "<p><b>Fonction objectif</b> : notion essentielle à retenir pour une soutenance claire. Elle est présentée sous forme courte, structurée et directement liée au problème du voyageur de commerce.</p><ul><li>Définition concise.</li><li>Rôle dans le chapitre.</li><li>Exemple ou interprétation.</li></ul>", "theme": "gold"}, {"section": "Chapitre 1", "ch": "Ch.1", "title": "Optimisation Combinatoire", "intro": "Décisions discrètes, modèles et exemples.", "tag": "Espace de recherche", "t": "Espace de recherche", "b": "<p><b>Espace de recherche</b> : notion essentielle à retenir pour une soutenance claire. Elle est présentée sous forme courte, structurée et directement liée au problème du voyageur de commerce.</p><ul><li>Définition concise.</li><li>Rôle dans le chapitre.</li><li>Exemple ou interprétation.</li></ul>", "theme": "gold"}, {"section": "Chapitre 1", "ch": "Ch.1", "title": "Optimisation Combinatoire", "intro": "Décisions discrètes, modèles et exemples.", "tag": "Schéma général", "t": "Schéma général", "b": "<p>Schéma général permet de transformer une idée théorique en support visuel simple à expliquer devant le jury.</p><div class='chart'><span style='height:38%'></span><span style='height:58%'></span><span style='height:78%'></span><span style='height:48%'></span></div>", "theme": "gold"}, {"section": "Chapitre 1", "ch": "Ch.1", "title": "Optimisation Combinatoire", "intro": "Décisions discrètes, modèles et exemples.", "tag": "Exemple affectation", "t": "Exemple affectation", "b": "<p><b>Exemple affectation</b> : notion essentielle à retenir pour une soutenance claire. Elle est présentée sous forme courte, structurée et directement liée au problème du voyageur de commerce.</p><ul><li>Définition concise.</li><li>Rôle dans le chapitre.</li><li>Exemple ou interprétation.</li></ul>", "theme": "gold"}, {"section": "Chapitre 1", "ch": "Ch.1", "title": "Optimisation Combinatoire", "intro": "Décisions discrètes, modèles et exemples.", "tag": "Exemple ordonnancement", "t": "Exemple ordonnancement", "b": "<p><b>Exemple ordonnancement</b> : notion essentielle à retenir pour une soutenance claire. Elle est présentée sous forme courte, structurée et directement liée au problème du voyageur de commerce.</p><ul><li>Définition concise.</li><li>Rôle dans le chapitre.</li><li>Exemple ou interprétation.</li></ul>", "theme": "gold"}, {"section": "Chapitre 1", "ch": "Ch.1", "title": "Optimisation Combinatoire", "intro": "Décisions discrètes, modèles et exemples.", "tag": "Modélisation mathématique", "t": "Modélisation mathématique", "b": "<p>Modélisation mathématique permet de transformer une idée théorique en support visuel simple à expliquer devant le jury.</p><div class='chart'><span style='height:38%'></span><span style='height:58%'></span><span style='height:78%'></span><span style='height:48%'></span></div>", "theme": "gold"}, {"section": "Chapitre 1", "ch": "Ch.1", "title": "Optimisation Combinatoire", "intro": "Décisions discrètes, modèles et exemples.", "tag": "Difficultés pratiques", "t": "Difficultés pratiques", "b": "<p><b>Difficultés pratiques</b> : notion essentielle à retenir pour une soutenance claire. Elle est présentée sous forme courte, structurée et directement liée au problème du voyageur de commerce.</p><ul><li>Définition concise.</li><li>Rôle dans le chapitre.</li><li>Exemple ou interprétation.</li></ul>", "theme": "gold"}, {"section": "Chapitre 1", "ch": "Ch.1", "title": "Optimisation Combinatoire", "intro": "Décisions discrètes, modèles et exemples.", "tag": "Synthèse", "t": "Synthèse", "b": "<p>Synthèse du chapitre : les notions importantes sont conservées, les détails secondaires sont retirés et le lien avec le TSP est explicité.</p><div class='smart'><div>Idée clé</div><div>Schéma</div><div>Exemple</div><div>Transition</div></div>", "theme": "gold"}, {"section": "Chapitre 2", "ch": "Ch.2", "title": "Calculabilité", "intro": "Ce qu’un algorithme peut résoudre.", "tag": "Algorithme", "t": "Algorithme", "b": "<p>Ce chapitre introduit <b>calculabilité</b> et place les notions utiles pour comprendre la suite de la soutenance.</p><div class='diagram'><div>Entrée</div><i>→</i><div>Traitement</div><i>→</i><div>Résultat</div></div>", "theme": "cyan"}, {"section": "Chapitre 2", "ch": "Ch.2", "title": "Calculabilité", "intro": "Ce qu’un algorithme peut résoudre.", "tag": "Machine de Turing", "t": "Machine de Turing", "b": "<p><b>Machine de Turing</b> : notion essentielle à retenir pour une soutenance claire. Elle est présentée sous forme courte, structurée et directement liée au problème du voyageur de commerce.</p><ul><li>Définition concise.</li><li>Rôle dans le chapitre.</li><li>Exemple ou interprétation.</li></ul>", "theme": "cyan"}, {"section": "Chapitre 2", "ch": "Ch.2", "title": "Calculabilité", "intro": "Ce qu’un algorithme peut résoudre.", "tag": "Langages", "t": "Langages", "b": "<p><b>Langages</b> : notion essentielle à retenir pour une soutenance claire. Elle est présentée sous forme courte, structurée et directement liée au problème du voyageur de commerce.</p><ul><li>Définition concise.</li><li>Rôle dans le chapitre.</li><li>Exemple ou interprétation.</li></ul>", "theme": "cyan"}, {"section": "Chapitre 2", "ch": "Ch.2", "title": "Calculabilité", "intro": "Ce qu’un algorithme peut résoudre.", "tag": "Décidabilité", "t": "Décidabilité", "b": "<p><b>Décidabilité</b> : notion essentielle à retenir pour une soutenance claire. Elle est présentée sous forme courte, structurée et directement liée au problème du voyageur de commerce.</p><ul><li>Définition concise.</li><li>Rôle dans le chapitre.</li><li>Exemple ou interprétation.</li></ul>", "theme": "cyan"}, {"section": "Chapitre 2", "ch": "Ch.2", "title": "Calculabilité", "intro": "Ce qu’un algorithme peut résoudre.", "tag": "Indécidabilité", "t": "Indécidabilité", "b": "<p>Indécidabilité permet de transformer une idée théorique en support visuel simple à expliquer devant le jury.</p><div class='chart'><span style='height:38%'></span><span style='height:58%'></span><span style='height:78%'></span><span style='height:48%'></span></div>", "theme": "cyan"}, {"section": "Chapitre 2", "ch": "Ch.2", "title": "Calculabilité", "intro": "Ce qu’un algorithme peut résoudre.", "tag": "Problème de l’arrêt", "t": "Problème de l’arrêt", "b": "<p><b>Problème de l’arrêt</b> : notion essentielle à retenir pour une soutenance claire. Elle est présentée sous forme courte, structurée et directement liée au problème du voyageur de commerce.</p><ul><li>Définition concise.</li><li>Rôle dans le chapitre.</li><li>Exemple ou interprétation.</li></ul>", "theme": "cyan"}, {"section": "Chapitre 2", "ch": "Ch.2", "title": "Calculabilité", "intro": "Ce qu’un algorithme peut résoudre.", "tag": "Réduction", "t": "Réduction", "b": "<p><b>Réduction</b> : notion essentielle à retenir pour une soutenance claire. Elle est présentée sous forme courte, structurée et directement liée au problème du voyageur de commerce.</p><ul><li>Définition concise.</li><li>Rôle dans le chapitre.</li><li>Exemple ou interprétation.</li></ul>", "theme": "cyan"}, {"section": "Chapitre 2", "ch": "Ch.2", "title": "Calculabilité", "intro": "Ce qu’un algorithme peut résoudre.", "tag": "Lien avec optimisation", "t": "Lien avec optimisation", "b": "<p>Lien avec optimisation permet de transformer une idée théorique en support visuel simple à expliquer devant le jury.</p><div class='chart'><span style='height:38%'></span><span style='height:58%'></span><span style='height:78%'></span><span style='height:48%'></span></div>", "theme": "cyan"}, {"section": "Chapitre 2", "ch": "Ch.2", "title": "Calculabilité", "intro": "Ce qu’un algorithme peut résoudre.", "tag": "Exemple TSP décidable", "t": "Exemple TSP décidable", "b": "<p><b>Exemple TSP décidable</b> : notion essentielle à retenir pour une soutenance claire. Elle est présentée sous forme courte, structurée et directement liée au problème du voyageur de commerce.</p><ul><li>Définition concise.</li><li>Rôle dans le chapitre.</li><li>Exemple ou interprétation.</li></ul>", "theme": "cyan"}, {"section": "Chapitre 2", "ch": "Ch.2", "title": "Calculabilité", "intro": "Ce qu’un algorithme peut résoudre.", "tag": "Synthèse", "t": "Synthèse", "b": "<p>Synthèse du chapitre : les notions importantes sont conservées, les détails secondaires sont retirés et le lien avec le TSP est explicité.</p><div class='smart'><div>Idée clé</div><div>Schéma</div><div>Exemple</div><div>Transition</div></div>", "theme": "cyan"}, {"section": "Chapitre 3", "ch": "Ch.3", "title": "Complexité", "intro": "Mesurer temps, mémoire et classes de problèmes.", "tag": "Taille d’entrée", "t": "Taille d’entrée", "b": "<p>Ce chapitre introduit <b>complexité</b> et place les notions utiles pour comprendre la suite de la soutenance.</p><div class='diagram'><div>Entrée</div><i>→</i><div>Traitement</div><i>→</i><div>Résultat</div></div>", "theme": "purple"}, {"section": "Chapitre 3", "ch": "Ch.3", "title": "Complexité", "intro": "Mesurer temps, mémoire et classes de problèmes.", "tag": "Notation O", "t": "Notation O", "b": "<p><b>Notation O</b> : notion essentielle à retenir pour une soutenance claire. Elle est présentée sous forme courte, structurée et directement liée au problème du voyageur de commerce.</p><ul><li>Définition concise.</li><li>Rôle dans le chapitre.</li><li>Exemple ou interprétation.</li></ul>", "theme": "purple"}, {"section": "Chapitre 3", "ch": "Ch.3", "title": "Complexité", "intro": "Mesurer temps, mémoire et classes de problèmes.", "tag": "Temps polynomial", "t": "Temps polynomial", "b": "<p><b>Temps polynomial</b> : notion essentielle à retenir pour une soutenance claire. Elle est présentée sous forme courte, structurée et directement liée au problème du voyageur de commerce.</p><ul><li>Définition concise.</li><li>Rôle dans le chapitre.</li><li>Exemple ou interprétation.</li></ul>", "theme": "purple"}, {"section": "Chapitre 3", "ch": "Ch.3", "title": "Complexité", "intro": "Mesurer temps, mémoire et classes de problèmes.", "tag": "Temps exponentiel", "t": "Temps exponentiel", "b": "<p><b>Temps exponentiel</b> : notion essentielle à retenir pour une soutenance claire. Elle est présentée sous forme courte, structurée et directement liée au problème du voyageur de commerce.</p><ul><li>Définition concise.</li><li>Rôle dans le chapitre.</li><li>Exemple ou interprétation.</li></ul>", "theme": "purple"}, {"section": "Chapitre 3", "ch": "Ch.3", "title": "Complexité", "intro": "Mesurer temps, mémoire et classes de problèmes.", "tag": "Classe P", "t": "Classe P", "b": "<p>Classe P permet de transformer une idée théorique en support visuel simple à expliquer devant le jury.</p><div class='chart'><span style='height:38%'></span><span style='height:58%'></span><span style='height:78%'></span><span style='height:48%'></span></div>", "theme": "purple"}, {"section": "Chapitre 3", "ch": "Ch.3", "title": "Complexité", "intro": "Mesurer temps, mémoire et classes de problèmes.", "tag": "Classe NP", "t": "Classe NP", "b": "<p><b>Classe NP</b> : notion essentielle à retenir pour une soutenance claire. Elle est présentée sous forme courte, structurée et directement liée au problème du voyageur de commerce.</p><ul><li>Définition concise.</li><li>Rôle dans le chapitre.</li><li>Exemple ou interprétation.</li></ul>", "theme": "purple"}, {"section": "Chapitre 3", "ch": "Ch.3", "title": "Complexité", "intro": "Mesurer temps, mémoire et classes de problèmes.", "tag": "Vérification", "t": "Vérification", "b": "<p><b>Vérification</b> : notion essentielle à retenir pour une soutenance claire. Elle est présentée sous forme courte, structurée et directement liée au problème du voyageur de commerce.</p><ul><li>Définition concise.</li><li>Rôle dans le chapitre.</li><li>Exemple ou interprétation.</li></ul>", "theme": "purple"}, {"section": "Chapitre 3", "ch": "Ch.3", "title": "Complexité", "intro": "Mesurer temps, mémoire et classes de problèmes.", "tag": "NP-complet", "t": "NP-complet", "b": "<p>NP-complet permet de transformer une idée théorique en support visuel simple à expliquer devant le jury.</p><div class='chart'><span style='height:38%'></span><span style='height:58%'></span><span style='height:78%'></span><span style='height:48%'></span></div>", "theme": "purple"}, {"section": "Chapitre 3", "ch": "Ch.3", "title": "Complexité", "intro": "Mesurer temps, mémoire et classes de problèmes.", "tag": "NP-difficile", "t": "NP-difficile", "b": "<p><b>NP-difficile</b> : notion essentielle à retenir pour une soutenance claire. Elle est présentée sous forme courte, structurée et directement liée au problème du voyageur de commerce.</p><ul><li>Définition concise.</li><li>Rôle dans le chapitre.</li><li>Exemple ou interprétation.</li></ul>", "theme": "purple"}, {"section": "Chapitre 3", "ch": "Ch.3", "title": "Complexité", "intro": "Mesurer temps, mémoire et classes de problèmes.", "tag": "Synthèse", "t": "Synthèse", "b": "<p>Synthèse du chapitre : les notions importantes sont conservées, les détails secondaires sont retirés et le lien avec le TSP est explicité.</p><div class='smart'><div>Idée clé</div><div>Schéma</div><div>Exemple</div><div>Transition</div></div>", "theme": "purple"}, {"section": "Chapitre 4", "ch": "Ch.4", "title": "Problème du Voyageur de Commerce", "intro": "Définition, variantes et modélisation du TSP.", "tag": "Énoncé", "t": "Énoncé", "b": "<p>Ce chapitre introduit <b>problème du voyageur de commerce</b> et place les notions utiles pour comprendre la suite de la soutenance.</p><div class='diagram'><div>Entrée</div><i>→</i><div>Traitement</div><i>→</i><div>Résultat</div></div>", "theme": "orange"}, {"section": "Chapitre 4", "ch": "Ch.4", "title": "Problème du Voyageur de Commerce", "intro": "Définition, variantes et modélisation du TSP.", "tag": "Graphe pondéré", "t": "Graphe pondéré", "b": "<p><b>Graphe pondéré</b> : notion essentielle à retenir pour une soutenance claire. Elle est présentée sous forme courte, structurée et directement liée au problème du voyageur de commerce.</p><ul><li>Définition concise.</li><li>Rôle dans le chapitre.</li><li>Exemple ou interprétation.</li></ul>", "theme": "orange"}, {"section": "Chapitre 4", "ch": "Ch.4", "title": "Problème du Voyageur de Commerce", "intro": "Définition, variantes et modélisation du TSP.", "tag": "Cycle hamiltonien", "t": "Cycle hamiltonien", "b": "<p><b>Cycle hamiltonien</b> : notion essentielle à retenir pour une soutenance claire. Elle est présentée sous forme courte, structurée et directement liée au problème du voyageur de commerce.</p><ul><li>Définition concise.</li><li>Rôle dans le chapitre.</li><li>Exemple ou interprétation.</li></ul>", "theme": "orange"}, {"section": "Chapitre 4", "ch": "Ch.4", "title": "Problème du Voyageur de Commerce", "intro": "Définition, variantes et modélisation du TSP.", "tag": "Formulation mathématique", "t": "Formulation mathématique", "b": "<p><b>Formulation mathématique</b> : notion essentielle à retenir pour une soutenance claire. Elle est présentée sous forme courte, structurée et directement liée au problème du voyageur de commerce.</p><ul><li>Définition concise.</li><li>Rôle dans le chapitre.</li><li>Exemple ou interprétation.</li></ul>", "theme": "orange"}, {"section": "Chapitre 4", "ch": "Ch.4", "title": "Problème du Voyageur de Commerce", "intro": "Définition, variantes et modélisation du TSP.", "tag": "TSP symétrique", "t": "TSP symétrique", "b": "<p>TSP symétrique permet de transformer une idée théorique en support visuel simple à expliquer devant le jury.</p><div class='chart'><span style='height:38%'></span><span style='height:58%'></span><span style='height:78%'></span><span style='height:48%'></span></div>", "theme": "orange"}, {"section": "Chapitre 4", "ch": "Ch.4", "title": "Problème du Voyageur de Commerce", "intro": "Définition, variantes et modélisation du TSP.", "tag": "TSP asymétrique", "t": "TSP asymétrique", "b": "<p><b>TSP asymétrique</b> : notion essentielle à retenir pour une soutenance claire. Elle est présentée sous forme courte, structurée et directement liée au problème du voyageur de commerce.</p><ul><li>Définition concise.</li><li>Rôle dans le chapitre.</li><li>Exemple ou interprétation.</li></ul>", "theme": "orange"}, {"section": "Chapitre 4", "ch": "Ch.4", "title": "Problème du Voyageur de Commerce", "intro": "Définition, variantes et modélisation du TSP.", "tag": "TSP métrique", "t": "TSP métrique", "b": "<p><b>TSP métrique</b> : notion essentielle à retenir pour une soutenance claire. Elle est présentée sous forme courte, structurée et directement liée au problème du voyageur de commerce.</p><ul><li>Définition concise.</li><li>Rôle dans le chapitre.</li><li>Exemple ou interprétation.</li></ul>", "theme": "orange"}, {"section": "Chapitre 4", "ch": "Ch.4", "title": "Problème du Voyageur de Commerce", "intro": "Définition, variantes et modélisation du TSP.", "tag": "Explosion combinatoire", "t": "Explosion combinatoire", "b": "<p>Explosion combinatoire permet de transformer une idée théorique en support visuel simple à expliquer devant le jury.</p><div class='chart'><span style='height:38%'></span><span style='height:58%'></span><span style='height:78%'></span><span style='height:48%'></span></div>", "theme": "orange"}, {"section": "Chapitre 4", "ch": "Ch.4", "title": "Problème du Voyageur de Commerce", "intro": "Définition, variantes et modélisation du TSP.", "tag": "Domaines abstraits", "t": "Domaines abstraits", "b": "<p><b>Domaines abstraits</b> : notion essentielle à retenir pour une soutenance claire. Elle est présentée sous forme courte, structurée et directement liée au problème du voyageur de commerce.</p><ul><li>Définition concise.</li><li>Rôle dans le chapitre.</li><li>Exemple ou interprétation.</li></ul>", "theme": "orange"}, {"section": "Chapitre 4", "ch": "Ch.4", "title": "Problème du Voyageur de Commerce", "intro": "Définition, variantes et modélisation du TSP.", "tag": "Synthèse", "t": "Synthèse", "b": "<p>Synthèse du chapitre : les notions importantes sont conservées, les détails secondaires sont retirés et le lien avec le TSP est explicité.</p><div class='smart'><div>Idée clé</div><div>Schéma</div><div>Exemple</div><div>Transition</div></div>", "theme": "orange"}, {"section": "Chapitre 5", "ch": "Ch.5", "title": "Méthodes Exactes", "intro": "Garantir l’optimalité avec preuve.", "tag": "Force brute", "t": "Force brute", "b": "<p>Ce chapitre introduit <b>méthodes exactes</b> et place les notions utiles pour comprendre la suite de la soutenance.</p><div class='diagram'><div>Entrée</div><i>→</i><div>Traitement</div><i>→</i><div>Résultat</div></div>", "theme": "green"}, {"section": "Chapitre 5", "ch": "Ch.5", "title": "Méthodes Exactes", "intro": "Garantir l’optimalité avec preuve.", "tag": "Held-Karp", "t": "Held-Karp", "b": "<p><b>Held-Karp</b> : notion essentielle à retenir pour une soutenance claire. Elle est présentée sous forme courte, structurée et directement liée au problème du voyageur de commerce.</p><ul><li>Définition concise.</li><li>Rôle dans le chapitre.</li><li>Exemple ou interprétation.</li></ul>", "theme": "green"}, {"section": "Chapitre 5", "ch": "Ch.5", "title": "Méthodes Exactes", "intro": "Garantir l’optimalité avec preuve.", "tag": "Branch and Bound", "t": "Branch and Bound", "b": "<p><b>Branch and Bound</b> : notion essentielle à retenir pour une soutenance claire. Elle est présentée sous forme courte, structurée et directement liée au problème du voyageur de commerce.</p><ul><li>Définition concise.</li><li>Rôle dans le chapitre.</li><li>Exemple ou interprétation.</li></ul>", "theme": "green"}, {"section": "Chapitre 5", "ch": "Ch.5", "title": "Méthodes Exactes", "intro": "Garantir l’optimalité avec preuve.", "tag": "Bornes", "t": "Bornes", "b": "<p><b>Bornes</b> : notion essentielle à retenir pour une soutenance claire. Elle est présentée sous forme courte, structurée et directement liée au problème du voyageur de commerce.</p><ul><li>Définition concise.</li><li>Rôle dans le chapitre.</li><li>Exemple ou interprétation.</li></ul>", "theme": "green"}, {"section": "Chapitre 5", "ch": "Ch.5", "title": "Méthodes Exactes", "intro": "Garantir l’optimalité avec preuve.", "tag": "Branch and Cut", "t": "Branch and Cut", "b": "<p>Branch and Cut permet de transformer une idée théorique en support visuel simple à expliquer devant le jury.</p><div class='chart'><span style='height:38%'></span><span style='height:58%'></span><span style='height:78%'></span><span style='height:48%'></span></div>", "theme": "green"}, {"section": "Chapitre 5", "ch": "Ch.5", "title": "Méthodes Exactes", "intro": "Garantir l’optimalité avec preuve.", "tag": "Programmation linéaire", "t": "Programmation linéaire", "b": "<p><b>Programmation linéaire</b> : notion essentielle à retenir pour une soutenance claire. Elle est présentée sous forme courte, structurée et directement liée au problème du voyageur de commerce.</p><ul><li>Définition concise.</li><li>Rôle dans le chapitre.</li><li>Exemple ou interprétation.</li></ul>", "theme": "green"}, {"section": "Chapitre 5", "ch": "Ch.5", "title": "Méthodes Exactes", "intro": "Garantir l’optimalité avec preuve.", "tag": "Coupes", "t": "Coupes", "b": "<p><b>Coupes</b> : notion essentielle à retenir pour une soutenance claire. Elle est présentée sous forme courte, structurée et directement liée au problème du voyageur de commerce.</p><ul><li>Définition concise.</li><li>Rôle dans le chapitre.</li><li>Exemple ou interprétation.</li></ul>", "theme": "green"}, {"section": "Chapitre 5", "ch": "Ch.5", "title": "Méthodes Exactes", "intro": "Garantir l’optimalité avec preuve.", "tag": "Avantages", "t": "Avantages", "b": "<p>Avantages permet de transformer une idée théorique en support visuel simple à expliquer devant le jury.</p><div class='chart'><span style='height:38%'></span><span style='height:58%'></span><span style='height:78%'></span><span style='height:48%'></span></div>", "theme": "green"}, {"section": "Chapitre 5", "ch": "Ch.5", "title": "Méthodes Exactes", "intro": "Garantir l’optimalité avec preuve.", "tag": "Limites", "t": "Limites", "b": "<p><b>Limites</b> : notion essentielle à retenir pour une soutenance claire. Elle est présentée sous forme courte, structurée et directement liée au problème du voyageur de commerce.</p><ul><li>Définition concise.</li><li>Rôle dans le chapitre.</li><li>Exemple ou interprétation.</li></ul>", "theme": "green"}, {"section": "Chapitre 5", "ch": "Ch.5", "title": "Méthodes Exactes", "intro": "Garantir l’optimalité avec preuve.", "tag": "Synthèse", "t": "Synthèse", "b": "<p>Synthèse du chapitre : les notions importantes sont conservées, les détails secondaires sont retirés et le lien avec le TSP est explicité.</p><div class='smart'><div>Idée clé</div><div>Schéma</div><div>Exemple</div><div>Transition</div></div>", "theme": "green"}, {"section": "Chapitre 6", "ch": "Ch.6", "title": "Heuristiques", "intro": "Construire vite de bonnes solutions.", "tag": "Principe", "t": "Principe", "b": "<p>Ce chapitre introduit <b>heuristiques</b> et place les notions utiles pour comprendre la suite de la soutenance.</p><div class='diagram'><div>Entrée</div><i>→</i><div>Traitement</div><i>→</i><div>Résultat</div></div>", "theme": "rose"}, {"section": "Chapitre 6", "ch": "Ch.6", "title": "Heuristiques", "intro": "Construire vite de bonnes solutions.", "tag": "Plus proche voisin", "t": "Plus proche voisin", "b": "<p><b>Plus proche voisin</b> : notion essentielle à retenir pour une soutenance claire. Elle est présentée sous forme courte, structurée et directement liée au problème du voyageur de commerce.</p><ul><li>Définition concise.</li><li>Rôle dans le chapitre.</li><li>Exemple ou interprétation.</li></ul>", "theme": "rose"}, {"section": "Chapitre 6", "ch": "Ch.6", "title": "Heuristiques", "intro": "Construire vite de bonnes solutions.", "tag": "Insertion", "t": "Insertion", "b": "<p><b>Insertion</b> : notion essentielle à retenir pour une soutenance claire. Elle est présentée sous forme courte, structurée et directement liée au problème du voyageur de commerce.</p><ul><li>Définition concise.</li><li>Rôle dans le chapitre.</li><li>Exemple ou interprétation.</li></ul>", "theme": "rose"}, {"section": "Chapitre 6", "ch": "Ch.6", "title": "Heuristiques", "intro": "Construire vite de bonnes solutions.", "tag": "Savings", "t": "Savings", "b": "<p><b>Savings</b> : notion essentielle à retenir pour une soutenance claire. Elle est présentée sous forme courte, structurée et directement liée au problème du voyageur de commerce.</p><ul><li>Définition concise.</li><li>Rôle dans le chapitre.</li><li>Exemple ou interprétation.</li></ul>", "theme": "rose"}, {"section": "Chapitre 6", "ch": "Ch.6", "title": "Heuristiques", "intro": "Construire vite de bonnes solutions.", "tag": "2-opt", "t": "2-opt", "b": "<p>2-opt permet de transformer une idée théorique en support visuel simple à expliquer devant le jury.</p><div class='chart'><span style='height:38%'></span><span style='height:58%'></span><span style='height:78%'></span><span style='height:48%'></span></div>", "theme": "rose"}, {"section": "Chapitre 6", "ch": "Ch.6", "title": "Heuristiques", "intro": "Construire vite de bonnes solutions.", "tag": "3-opt", "t": "3-opt", "b": "<p><b>3-opt</b> : notion essentielle à retenir pour une soutenance claire. Elle est présentée sous forme courte, structurée et directement liée au problème du voyageur de commerce.</p><ul><li>Définition concise.</li><li>Rôle dans le chapitre.</li><li>Exemple ou interprétation.</li></ul>", "theme": "rose"}, {"section": "Chapitre 6", "ch": "Ch.6", "title": "Heuristiques", "intro": "Construire vite de bonnes solutions.", "tag": "Recherche locale", "t": "Recherche locale", "b": "<p><b>Recherche locale</b> : notion essentielle à retenir pour une soutenance claire. Elle est présentée sous forme courte, structurée et directement liée au problème du voyageur de commerce.</p><ul><li>Définition concise.</li><li>Rôle dans le chapitre.</li><li>Exemple ou interprétation.</li></ul>", "theme": "rose"}, {"section": "Chapitre 6", "ch": "Ch.6", "title": "Heuristiques", "intro": "Construire vite de bonnes solutions.", "tag": "Qualité", "t": "Qualité", "b": "<p>Qualité permet de transformer une idée théorique en support visuel simple à expliquer devant le jury.</p><div class='chart'><span style='height:38%'></span><span style='height:58%'></span><span style='height:78%'></span><span style='height:48%'></span></div>", "theme": "rose"}, {"section": "Chapitre 6", "ch": "Ch.6", "title": "Heuristiques", "intro": "Construire vite de bonnes solutions.", "tag": "Comparaison", "t": "Comparaison", "b": "<p><b>Comparaison</b> : notion essentielle à retenir pour une soutenance claire. Elle est présentée sous forme courte, structurée et directement liée au problème du voyageur de commerce.</p><ul><li>Définition concise.</li><li>Rôle dans le chapitre.</li><li>Exemple ou interprétation.</li></ul>", "theme": "rose"}, {"section": "Chapitre 6", "ch": "Ch.6", "title": "Heuristiques", "intro": "Construire vite de bonnes solutions.", "tag": "Synthèse", "t": "Synthèse", "b": "<p>Synthèse du chapitre : les notions importantes sont conservées, les détails secondaires sont retirés et le lien avec le TSP est explicité.</p><div class='smart'><div>Idée clé</div><div>Schéma</div><div>Exemple</div><div>Transition</div></div>", "theme": "rose"}, {"section": "Chapitre 7", "ch": "Ch.7", "title": "Métaheuristiques", "intro": "Explorer intelligemment de grands espaces.", "tag": "Principe", "t": "Principe", "b": "<p>Ce chapitre introduit <b>métaheuristiques</b> et place les notions utiles pour comprendre la suite de la soutenance.</p><div class='diagram'><div>Entrée</div><i>→</i><div>Traitement</div><i>→</i><div>Résultat</div></div>", "theme": "blue"}, {"section": "Chapitre 7", "ch": "Ch.7", "title": "Métaheuristiques", "intro": "Explorer intelligemment de grands espaces.", "tag": "Recuit simulé", "t": "Recuit simulé", "b": "<p><b>Recuit simulé</b> : notion essentielle à retenir pour une soutenance claire. Elle est présentée sous forme courte, structurée et directement liée au problème du voyageur de commerce.</p><ul><li>Définition concise.</li><li>Rôle dans le chapitre.</li><li>Exemple ou interprétation.</li></ul>", "theme": "blue"}, {"section": "Chapitre 7", "ch": "Ch.7", "title": "Métaheuristiques", "intro": "Explorer intelligemment de grands espaces.", "tag": "Recherche tabou", "t": "Recherche tabou", "b": "<p><b>Recherche tabou</b> : notion essentielle à retenir pour une soutenance claire. Elle est présentée sous forme courte, structurée et directement liée au problème du voyageur de commerce.</p><ul><li>Définition concise.</li><li>Rôle dans le chapitre.</li><li>Exemple ou interprétation.</li></ul>", "theme": "blue"}, {"section": "Chapitre 7", "ch": "Ch.7", "title": "Métaheuristiques", "intro": "Explorer intelligemment de grands espaces.", "tag": "Algorithme génétique", "t": "Algorithme génétique", "b": "<p><b>Algorithme génétique</b> : notion essentielle à retenir pour une soutenance claire. Elle est présentée sous forme courte, structurée et directement liée au problème du voyageur de commerce.</p><ul><li>Définition concise.</li><li>Rôle dans le chapitre.</li><li>Exemple ou interprétation.</li></ul>", "theme": "blue"}, {"section": "Chapitre 7", "ch": "Ch.7", "title": "Métaheuristiques", "intro": "Explorer intelligemment de grands espaces.", "tag": "Colonies de fourmis", "t": "Colonies de fourmis", "b": "<p>Colonies de fourmis permet de transformer une idée théorique en support visuel simple à expliquer devant le jury.</p><div class='chart'><span style='height:38%'></span><span style='height:58%'></span><span style='height:78%'></span><span style='height:48%'></span></div>", "theme": "blue"}, {"section": "Chapitre 7", "ch": "Ch.7", "title": "Métaheuristiques", "intro": "Explorer intelligemment de grands espaces.", "tag": "Paramétrage", "t": "Paramétrage", "b": "<p><b>Paramétrage</b> : notion essentielle à retenir pour une soutenance claire. Elle est présentée sous forme courte, structurée et directement liée au problème du voyageur de commerce.</p><ul><li>Définition concise.</li><li>Rôle dans le chapitre.</li><li>Exemple ou interprétation.</li></ul>", "theme": "blue"}, {"section": "Chapitre 7", "ch": "Ch.7", "title": "Métaheuristiques", "intro": "Explorer intelligemment de grands espaces.", "tag": "Diversification", "t": "Diversification", "b": "<p><b>Diversification</b> : notion essentielle à retenir pour une soutenance claire. Elle est présentée sous forme courte, structurée et directement liée au problème du voyageur de commerce.</p><ul><li>Définition concise.</li><li>Rôle dans le chapitre.</li><li>Exemple ou interprétation.</li></ul>", "theme": "blue"}, {"section": "Chapitre 7", "ch": "Ch.7", "title": "Métaheuristiques", "intro": "Explorer intelligemment de grands espaces.", "tag": "Intensification", "t": "Intensification", "b": "<p>Intensification permet de transformer une idée théorique en support visuel simple à expliquer devant le jury.</p><div class='chart'><span style='height:38%'></span><span style='height:58%'></span><span style='height:78%'></span><span style='height:48%'></span></div>", "theme": "blue"}, {"section": "Chapitre 7", "ch": "Ch.7", "title": "Métaheuristiques", "intro": "Explorer intelligemment de grands espaces.", "tag": "Critères d’arrêt", "t": "Critères d’arrêt", "b": "<p><b>Critères d’arrêt</b> : notion essentielle à retenir pour une soutenance claire. Elle est présentée sous forme courte, structurée et directement liée au problème du voyageur de commerce.</p><ul><li>Définition concise.</li><li>Rôle dans le chapitre.</li><li>Exemple ou interprétation.</li></ul>", "theme": "blue"}, {"section": "Chapitre 7", "ch": "Ch.7", "title": "Métaheuristiques", "intro": "Explorer intelligemment de grands espaces.", "tag": "Synthèse", "t": "Synthèse", "b": "<p>Synthèse du chapitre : les notions importantes sont conservées, les détails secondaires sont retirés et le lien avec le TSP est explicité.</p><div class='smart'><div>Idée clé</div><div>Schéma</div><div>Exemple</div><div>Transition</div></div>", "theme": "blue"}, {"section": "Application", "ch": "Application", "title": "TSP WORLD PRO", "intro": "Partie centrale : conception, réalisation, résultats et démonstration.", "tag": "Présentation du cas d’étude", "t": "Présentation du cas d’étude", "b": "<p>Présentation du cas d’étude de l’application TSP WORLD PRO, présenté avec un objectif professionnel : montrer ce qui a été conçu, comment cela fonctionne et ce que l’utilisateur peut vérifier pendant la démonstration.</p><div class='smart'><div>Objectif</div><div>Entrées</div><div>Traitement</div><div>Sortie</div></div>", "theme": "app"}, {"section": "Application", "ch": "Application", "title": "TSP WORLD PRO", "intro": "Partie centrale : conception, réalisation, résultats et démonstration.", "tag": "Besoins fonctionnels", "t": "Besoins fonctionnels", "b": "<p>Besoins fonctionnels de l’application TSP WORLD PRO, présenté avec un objectif professionnel : montrer ce qui a été conçu, comment cela fonctionne et ce que l’utilisateur peut vérifier pendant la démonstration.</p><div class='smart'><div>Objectif</div><div>Entrées</div><div>Traitement</div><div>Sortie</div></div>", "theme": "app"}, {"section": "Application", "ch": "Application", "title": "TSP WORLD PRO", "intro": "Partie centrale : conception, réalisation, résultats et démonstration.", "tag": "Architecture globale", "t": "Architecture globale", "b": "<div class='diagram'><div>Interface</div><i>→</i><div>Moteur TSP</div><i>→</i><div>Résultats</div></div><p>Architecture modulaire pour séparer visualisation, calcul et restitution.</p>", "theme": "app"}, {"section": "Application", "ch": "Application", "title": "TSP WORLD PRO", "intro": "Partie centrale : conception, réalisation, résultats et démonstration.", "tag": "Méthodologie", "t": "Méthodologie", "b": "<p>Méthodologie de l’application TSP WORLD PRO, présenté avec un objectif professionnel : montrer ce qui a été conçu, comment cela fonctionne et ce que l’utilisateur peut vérifier pendant la démonstration.</p><div class='smart'><div>Objectif</div><div>Entrées</div><div>Traitement</div><div>Sortie</div></div>", "theme": "app"}, {"section": "Application", "ch": "Application", "title": "TSP WORLD PRO", "intro": "Partie centrale : conception, réalisation, résultats et démonstration.", "tag": "Diagramme de cas d’utilisation", "t": "Diagramme de cas d’utilisation", "b": "<p>Diagramme de cas d’utilisation de l’application TSP WORLD PRO, présenté avec un objectif professionnel : montrer ce qui a été conçu, comment cela fonctionne et ce que l’utilisateur peut vérifier pendant la démonstration.</p><div class='smart'><div>Objectif</div><div>Entrées</div><div>Traitement</div><div>Sortie</div></div>", "theme": "app"}, {"section": "Application", "ch": "Application", "title": "TSP WORLD PRO", "intro": "Partie centrale : conception, réalisation, résultats et démonstration.", "tag": "Diagramme de classes", "t": "Diagramme de classes", "b": "<p>Diagramme de classes de l’application TSP WORLD PRO, présenté avec un objectif professionnel : montrer ce qui a été conçu, comment cela fonctionne et ce que l’utilisateur peut vérifier pendant la démonstration.</p><div class='smart'><div>Objectif</div><div>Entrées</div><div>Traitement</div><div>Sortie</div></div>", "theme": "app"}, {"section": "Application", "ch": "Application", "title": "TSP WORLD PRO", "intro": "Partie centrale : conception, réalisation, résultats et démonstration.", "tag": "Diagramme de séquence", "t": "Diagramme de séquence", "b": "<p>Diagramme de séquence de l’application TSP WORLD PRO, présenté avec un objectif professionnel : montrer ce qui a été conçu, comment cela fonctionne et ce que l’utilisateur peut vérifier pendant la démonstration.</p><div class='smart'><div>Objectif</div><div>Entrées</div><div>Traitement</div><div>Sortie</div></div>", "theme": "app"}, {"section": "Application", "ch": "Application", "title": "TSP WORLD PRO", "intro": "Partie centrale : conception, réalisation, résultats et démonstration.", "tag": "Base de données", "t": "Base de données", "b": "<p>Base de données de l’application TSP WORLD PRO, présenté avec un objectif professionnel : montrer ce qui a été conçu, comment cela fonctionne et ce que l’utilisateur peut vérifier pendant la démonstration.</p><div class='smart'><div>Objectif</div><div>Entrées</div><div>Traitement</div><div>Sortie</div></div>", "theme": "app"}, {"section": "Application", "ch": "Application", "title": "TSP WORLD PRO", "intro": "Partie centrale : conception, réalisation, résultats et démonstration.", "tag": "Algorithmes intégrés", "t": "Algorithmes intégrés", "b": "<p>Algorithmes intégrés de l’application TSP WORLD PRO, présenté avec un objectif professionnel : montrer ce qui a été conçu, comment cela fonctionne et ce que l’utilisateur peut vérifier pendant la démonstration.</p><div class='smart'><div>Objectif</div><div>Entrées</div><div>Traitement</div><div>Sortie</div></div>", "theme": "app"}, {"section": "Application", "ch": "Application", "title": "TSP WORLD PRO", "intro": "Partie centrale : conception, réalisation, résultats et démonstration.", "tag": "Workflow utilisateur", "t": "Workflow utilisateur", "b": "<p>Workflow utilisateur de l’application TSP WORLD PRO, présenté avec un objectif professionnel : montrer ce qui a été conçu, comment cela fonctionne et ce que l’utilisateur peut vérifier pendant la démonstration.</p><div class='smart'><div>Objectif</div><div>Entrées</div><div>Traitement</div><div>Sortie</div></div>", "theme": "app"}, {"section": "Application", "ch": "Application", "title": "TSP WORLD PRO", "intro": "Partie centrale : conception, réalisation, résultats et démonstration.", "tag": "Implémentation front-end", "t": "Implémentation front-end", "b": "<p>Implémentation front-end de l’application TSP WORLD PRO, présenté avec un objectif professionnel : montrer ce qui a été conçu, comment cela fonctionne et ce que l’utilisateur peut vérifier pendant la démonstration.</p><div class='smart'><div>Objectif</div><div>Entrées</div><div>Traitement</div><div>Sortie</div></div>", "theme": "app"}, {"section": "Application", "ch": "Application", "title": "TSP WORLD PRO", "intro": "Partie centrale : conception, réalisation, résultats et démonstration.", "tag": "Implémentation logique", "t": "Implémentation logique", "b": "<p>Implémentation logique de l’application TSP WORLD PRO, présenté avec un objectif professionnel : montrer ce qui a été conçu, comment cela fonctionne et ce que l’utilisateur peut vérifier pendant la démonstration.</p><div class='smart'><div>Objectif</div><div>Entrées</div><div>Traitement</div><div>Sortie</div></div>", "theme": "app"}, {"section": "Application", "ch": "Application", "title": "TSP WORLD PRO", "intro": "Partie centrale : conception, réalisation, résultats et démonstration.", "tag": "Interfaces principales", "t": "Interfaces principales", "b": "<p>Interfaces principales de l’application TSP WORLD PRO, présenté avec un objectif professionnel : montrer ce qui a été conçu, comment cela fonctionne et ce que l’utilisateur peut vérifier pendant la démonstration.</p><div class='smart'><div>Objectif</div><div>Entrées</div><div>Traitement</div><div>Sortie</div></div>", "theme": "app"}, {"section": "Application", "ch": "Application", "title": "TSP WORLD PRO", "intro": "Partie centrale : conception, réalisation, résultats et démonstration.", "tag": "Captures et scénarios", "t": "Captures et scénarios", "b": "<p>Captures et scénarios de l’application TSP WORLD PRO, présenté avec un objectif professionnel : montrer ce qui a été conçu, comment cela fonctionne et ce que l’utilisateur peut vérifier pendant la démonstration.</p><div class='smart'><div>Objectif</div><div>Entrées</div><div>Traitement</div><div>Sortie</div></div>", "theme": "app"}, {"section": "Application", "ch": "Application", "title": "TSP WORLD PRO", "intro": "Partie centrale : conception, réalisation, résultats et démonstration.", "tag": "Résultats obtenus", "t": "Résultats obtenus", "b": "<p>Résultats obtenus de l’application TSP WORLD PRO, présenté avec un objectif professionnel : montrer ce qui a été conçu, comment cela fonctionne et ce que l’utilisateur peut vérifier pendant la démonstration.</p><div class='smart'><div>Objectif</div><div>Entrées</div><div>Traitement</div><div>Sortie</div></div>", "theme": "app"}, {"section": "Application", "ch": "Application", "title": "TSP WORLD PRO", "intro": "Partie centrale : conception, réalisation, résultats et démonstration.", "tag": "Analyse comparative", "t": "Analyse comparative", "b": "<p>Analyse comparative de l’application TSP WORLD PRO, présenté avec un objectif professionnel : montrer ce qui a été conçu, comment cela fonctionne et ce que l’utilisateur peut vérifier pendant la démonstration.</p><div class='smart'><div>Objectif</div><div>Entrées</div><div>Traitement</div><div>Sortie</div></div>", "theme": "app"}, {"section": "Application", "ch": "Application", "title": "TSP WORLD PRO", "intro": "Partie centrale : conception, réalisation, résultats et démonstration.", "tag": "QR Codes et accès", "t": "QR Codes et accès", "b": "<div class='qr'>▦</div><p>QR Code prévu pour accéder rapidement à la démonstration, au dépôt ou aux ressources de soutenance.</p>", "theme": "app"}, {"section": "Application", "ch": "Application", "title": "TSP WORLD PRO", "intro": "Partie centrale : conception, réalisation, résultats et démonstration.", "tag": "Démonstration", "t": "Démonstration", "b": "<p>Démonstration de l’application TSP WORLD PRO, présenté avec un objectif professionnel : montrer ce qui a été conçu, comment cela fonctionne et ce que l’utilisateur peut vérifier pendant la démonstration.</p><div class='smart'><div>Objectif</div><div>Entrées</div><div>Traitement</div><div>Sortie</div></div>", "theme": "app"}, {"section": "Conclusion", "ch": "Conclusion", "title": "Conclusion Générale", "intro": "Bilan, contributions et perspectives.", "tag": "Résumé", "t": "Résumé du travail", "b": "<p>Résumé du travail : cette partie ferme la soutenance en reliant les résultats obtenus aux objectifs annoncés au début.</p><ul><li>Synthèse claire.</li><li>Apport théorique et pratique.</li><li>Ouverture vers des améliorations.</li></ul>", "theme": "navy"}, {"section": "Conclusion", "ch": "Conclusion", "title": "Conclusion Générale", "intro": "Bilan, contributions et perspectives.", "tag": "Réponse", "t": "Réponse à la problématique", "b": "<p>Réponse à la problématique : cette partie ferme la soutenance en reliant les résultats obtenus aux objectifs annoncés au début.</p><ul><li>Synthèse claire.</li><li>Apport théorique et pratique.</li><li>Ouverture vers des améliorations.</li></ul>", "theme": "navy"}, {"section": "Conclusion", "ch": "Conclusion", "title": "Conclusion Générale", "intro": "Bilan, contributions et perspectives.", "tag": "Contributions", "t": "Contributions principales", "b": "<p>Contributions principales : cette partie ferme la soutenance en reliant les résultats obtenus aux objectifs annoncés au début.</p><ul><li>Synthèse claire.</li><li>Apport théorique et pratique.</li><li>Ouverture vers des améliorations.</li></ul>", "theme": "navy"}, {"section": "Conclusion", "ch": "Conclusion", "title": "Conclusion Générale", "intro": "Bilan, contributions et perspectives.", "tag": "Perspectives", "t": "Améliorations futures", "b": "<p>Améliorations futures : cette partie ferme la soutenance en reliant les résultats obtenus aux objectifs annoncés au début.</p><ul><li>Synthèse claire.</li><li>Apport théorique et pratique.</li><li>Ouverture vers des améliorations.</li></ul>", "theme": "navy"}, {"section": "Conclusion", "ch": "Conclusion", "title": "Conclusion Générale", "intro": "Bilan, contributions et perspectives.", "tag": "Évolutions", "t": "Évolutions possibles", "b": "<p>Évolutions possibles : cette partie ferme la soutenance en reliant les résultats obtenus aux objectifs annoncés au début.</p><ul><li>Synthèse claire.</li><li>Apport théorique et pratique.</li><li>Ouverture vers des améliorations.</li></ul>", "theme": "navy"}, {"section": "Conclusion", "ch": "Conclusion", "title": "Conclusion Générale", "intro": "Bilan, contributions et perspectives.", "tag": "Bilan", "t": "Conclusion générale", "b": "<p>Conclusion générale : cette partie ferme la soutenance en reliant les résultats obtenus aux objectifs annoncés au début.</p><ul><li>Synthèse claire.</li><li>Apport théorique et pratique.</li><li>Ouverture vers des améliorations.</li></ul>", "theme": "navy"}, {"section": "Finale", "ch": "Merci", "title": "Merci pour votre attention", "intro": "Slide finale de soutenance.", "tag": "Final", "t": "Merci pour votre attention", "b": "<div class='thanks'>Questions ?</div><p>Merci pour votre écoute.</p>", "theme": "navy"}];
-let index=0;const chapters=[...new Set(slides.map(s=>s.ch))],nav=document.getElementById('chapters');chapters.forEach(ch=>{const b=document.createElement('button');b.textContent=ch;b.onclick=()=>{index=slides.findIndex(s=>s.ch===ch);render()};nav.appendChild(b)});function splitTitle(t){const w=t.split(' '),m=Math.ceil(w.length/2);return w.slice(0,m).join(' ')+"<span class='gold'>"+w.slice(m).join(' ')+"</span>"}function badge(s){return s.ch.startsWith('Ch.')?'CHAPITRE '+s.ch.split('.')[1]:s.ch.toUpperCase()}function render(){const s=slides[index];document.querySelector('.panel').style.background=`linear-gradient(155deg,#10243a,var(--teal))`;document.getElementById('chapterBadge').textContent=badge(s);document.getElementById('chapterTitle').innerHTML=splitTitle(s.title);document.getElementById('chapterIntro').textContent=s.intro;document.getElementById('slideNumber').textContent=String(index+1).padStart(2,'0');document.getElementById('slideTag').textContent=s.tag;document.getElementById('slideTitle').textContent=s.t;document.getElementById('slideBody').innerHTML=s.b;document.getElementById('counter').textContent=`Slide ${index+1} / ${slides.length}`;document.getElementById('bar').style.width=`${(index+1)/slides.length*100}%`;document.querySelectorAll('#chapters button').forEach(b=>b.classList.toggle('active',b.textContent===s.ch))}document.getElementById('prev').onclick=()=>{index=(index-1+slides.length)%slides.length;render()};document.getElementById('next').onclick=()=>{index=(index+1)%slides.length;render()};document.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key===' '){index=(index+1)%slides.length;render()}if(e.key==='ArrowLeft'){index=(index-1+slides.length)%slides.length;render()}});render();
-</script></body></html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Présentation PFE | TSP WORLD PRO</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Raleway:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --navy:#14243a; --teal:#0088aa; --gold:#c9a84c; --paper:#f5f7fb; --ink:#1a2a3a; --muted:#65758b; --line:#e2e8f0; }
+    html, body { height: 100%; overflow: hidden; }
+    body { font-family: Raleway, sans-serif; color: var(--ink); background: linear-gradient(135deg,#f7f9fd,#edf3f8); }
+    .deck { height: 100vh; display: grid; grid-template-columns: 290px 1fr; gap: 1.1rem; padding: 1.2rem; }
+    .sidebar { background: rgba(255,255,255,.96); border: 1px solid var(--line); border-radius: 26px; padding: 1.15rem; box-shadow: 0 18px 55px rgba(20,36,58,.10); overflow: hidden; }
+    .brand { font-family: Cinzel, serif; font-weight: 900; letter-spacing: .25rem; color: var(--gold); margin: .25rem 0 1rem; }
+    .brand span { color: var(--teal); }
+    .chapter-list { display: grid; gap: .45rem; max-height: calc(100vh - 130px); overflow: auto; padding-right: .2rem; }
+    .chapter-list button { width: 100%; border: 1px solid transparent; background: transparent; color: var(--ink); text-align: left; border-radius: 14px; padding: .68rem .72rem; cursor: pointer; font-weight: 800; font-size: .78rem; line-height: 1.25; }
+    .chapter-list button small { display:block; color: var(--muted); font-weight:600; margin-top:.15rem; }
+    .chapter-list button.active { border-color: rgba(201,168,76,.55); background: linear-gradient(135deg, rgba(201,168,76,.13), rgba(0,136,170,.10)); color: var(--teal); }
+    .slide { background: rgba(255,255,255,.98); border: 1px solid var(--line); border-radius: 30px; box-shadow: 0 22px 70px rgba(20,36,58,.14); overflow: hidden; display: grid; grid-template-columns: 34% 66%; min-width: 0; }
+    .panel { background: radial-gradient(circle at 100% 0%, rgba(255,255,255,.23), transparent 34%), linear-gradient(155deg, var(--navy), var(--teal)); color: white; padding: 3rem 2.25rem; display:flex; flex-direction:column; justify-content:center; }
+    .badge { align-self:flex-start; border: 1px solid rgba(255,255,255,.38); border-radius:999px; padding:.36rem .9rem; margin-bottom:1.35rem; color:#f6d86d; font-size:.65rem; font-weight:900; letter-spacing:.16rem; text-transform:uppercase; }
+    .panel h1 { font-family:Cinzel,serif; font-size: clamp(2rem, 3.8vw, 3.35rem); line-height:1.02; text-transform:uppercase; }
+    .panel p { margin-top:1.25rem; line-height:1.65; color:#eef9fb; font-weight:500; }
+    .content { position:relative; padding: 3.2rem 4rem; display:flex; flex-direction:column; justify-content:center; min-width:0; }
+    .number { position:absolute; top:1.1rem; right:2rem; font:900 4.6rem Cinzel; color:rgba(201,168,76,.16); }
+    .tag { align-self:flex-start; border:1px solid rgba(201,168,76,.5); color:var(--gold); border-radius:999px; padding:.32rem .85rem; font-size:.65rem; letter-spacing:.16rem; text-transform:uppercase; font-weight:900; margin-bottom:.9rem; }
+    h2 { font:900 clamp(1.55rem,2.8vw,2.55rem)/1.08 Cinzel; color:var(--navy); text-transform:uppercase; border-bottom:2px solid var(--line); padding-bottom:.85rem; max-width: 880px; }
+    p, li { color:#405064; font-size:1.02rem; line-height:1.72; } ul { margin:1rem 0 0 1.2rem; }
+    .smart,.roadmap,.flow,.diagram,.stats,.qr-grid,.cover-grid,.app-mosaic { display:grid; gap:.85rem; margin-top:1.15rem; }
+    .smart { grid-template-columns:repeat(4,1fr); } .smart div,.roadmap div,.flow span,.diagram span,.stats span,.app-mosaic div,.qr-grid>div { background:#f8fafc; border:1px solid var(--line); border-radius:18px; padding:1rem; }
+    .roadmap { grid-template-columns:repeat(2,1fr); } .roadmap div { display:flex; gap:.8rem; align-items:center; } .roadmap b { font-family:Cinzel; color:var(--gold); }
+    .flow { grid-template-columns:1fr auto 1fr auto 1fr auto 1fr; align-items:center; text-align:center; font-weight:900; } .flow i,.diagram i { color:var(--gold); font-style:normal; font-size:1.7rem; }
+    .diagram { grid-template-columns:1fr auto 1fr auto 1fr; align-items:center; text-align:center; font-weight:900; }
+    .chart { height:145px; display:flex; gap:18px; align-items:end; background:#f8fafc; border:1px solid var(--line); border-radius:18px; padding:1rem; margin-top:1.2rem; } .chart b { flex:1; background:linear-gradient(180deg,var(--teal),var(--gold)); border-radius:12px 12px 0 0; }
+    .cover-grid { grid-template-columns: .9fr 1.1fr; align-items:center; } .cover-kicker { color:var(--gold); font:900 .8rem Cinzel; letter-spacing:.22rem; margin-bottom:.8rem; } .cover-grid h3 { font:900 1.35rem Cinzel; color:var(--navy); margin-bottom:.8rem; }
+    .stats { grid-template-columns:repeat(4,1fr); } .stats b { display:block; color:var(--gold); font:900 1.55rem Cinzel; }
+    .app-mosaic { grid-template-columns:repeat(2,1fr); } .app-mosaic div { min-height:96px; display:grid; place-items:center; text-align:center; font-size:2rem; } .app-mosaic .wide { grid-column:span 2; } .app-mosaic small { display:block; font-size:.7rem; color:#405064; margin-top:.4rem; } .app-mosaic.mini div { min-height:70px; }
+    .qr-grid { grid-template-columns:repeat(2,1fr); align-items:start; } .qr-grid h3 { font:900 1rem Cinzel; color:var(--navy); text-align:center; margin-bottom:.8rem; } .qrbox { width:180px; height:180px; margin:.2rem auto .8rem; display:grid; place-items:center; } .qr-grid p { font-size:.78rem; text-align:center; word-break:break-word; }
+    .thanks { font:900 4rem Cinzel; color:var(--teal); margin-top:1rem; }
+    .controls { position:fixed; left:330px; right:2rem; bottom:1.4rem; display:grid; grid-template-columns:170px 1fr 170px; gap:1rem; align-items:center; }
+    .navbtn { height:46px; border:0; border-radius:999px; font:900 .72rem Cinzel; cursor:pointer; } .prev { background:white; color:var(--gold); border:1px solid rgba(201,168,76,.35); } .next { background:linear-gradient(135deg,var(--gold),var(--teal)); color:white; }
+    .progress-wrap { text-align:center; font-weight:800; color:var(--muted); } .progress { height:9px; border-radius:999px; background:#dce6ef; overflow:hidden; margin-top:.45rem; } .bar { height:100%; background:linear-gradient(90deg,var(--gold),var(--teal)); }
+    @media(max-width:980px) { html,body{overflow:auto} .deck{height:auto;grid-template-columns:1fr;padding:1rem 1rem 6rem} .sidebar{position:static} .slide{grid-template-columns:1fr} .content,.panel{padding:2rem} .smart,.roadmap,.stats,.qr-grid,.cover-grid,.app-mosaic{grid-template-columns:1fr} .app-mosaic .wide{grid-column:auto} .flow,.diagram{grid-template-columns:1fr} .flow i,.diagram i{display:none} .controls{left:1rem;right:1rem;grid-template-columns:1fr} }
+  </style>
+</head>
+<body>
+  <main class="deck">
+    <aside class="sidebar">
+      <div class="brand">PFE·<span>ENS</span></div>
+      <div class="chapter-list" id="chapters"></div>
+    </aside>
+    <section class="slide" aria-live="polite">
+      <aside class="panel"><div class="badge" id="chapterBadge"></div><h1 id="chapterTitle"></h1><p id="chapterIntro"></p></aside>
+      <article class="content"><div class="number" id="slideNumber"></div><span class="tag" id="slideTag"></span><h2 id="slideTitle"></h2><div id="slideBody"></div></article>
+    </section>
+  </main>
+  <footer class="controls"><button class="navbtn prev" id="prev">← Précédent</button><div class="progress-wrap"><span id="counter"></span><div class="progress"><div class="bar" id="bar"></div></div></div><button class="navbtn next" id="next">Suivant →</button></footer>
+  <script>
+    const slides = [
+      {
+            "part": "Préliminaire",
+            "chapter": "Garde",
+            "title": "TSP WORLD PRO",
+            "subtitle": "Planification intelligente de tournées · Optimisation combinatoire · Carte interactive · GPS · QR Code · Algorithmes TSP en temps réel",
+            "tag": "Application finale — PFE 2025-2026",
+            "heading": "TSP WORLD PRO",
+            "body": "<div class=\"cover-grid\"><div><div class=\"cover-kicker\">PFE·ENS</div><h3>Optimisation combinatoire appliquée au Problème du Voyageur de Commerce</h3><p>Une soutenance structurée, visuelle et orientée démonstration.</p><div class=\"stats\"><span><b>10+</b> algorithmes</span><span><b>5000+</b> lignes de code</span><span><b>8</b> mois</span><span><b>100%</b> optimisation</span></div></div><div class=\"app-mosaic\"><div>🗺️<small>Carte interactive · Leaflet 3D</small></div><div>📍<small>Géolocalisation GPS temps réel</small></div><div class=\"wide\">🚀<small>Algorithmes TSP · NN · 2-OPT</small></div><div>📱<small>QR Code · Partage position</small></div><div>☁️<small>Météo en temps réel</small></div></div></div>",
+            "layout": "cover"
+      },
+      {
+            "part": "Préliminaire",
+            "chapter": "Remerciements",
+            "title": "Remerciements",
+            "subtitle": "Encadrement, jury, enseignants et soutien personnel.",
+            "tag": "Merci",
+            "heading": "Remerciements",
+            "body": "<p>Nous remercions notre encadrant, les enseignants, les membres du jury, nos familles et toutes les personnes ayant contribué à la réalisation de ce projet de fin d’études.</p><div class='smart'><div>🎓 Encadrement</div><div>🏫 ENS Tétouan</div><div>👥 Jury</div><div>🤝 Soutien</div></div>",
+            "layout": "standard"
+      },
+      {
+            "part": "Préliminaire",
+            "chapter": "Plan général",
+            "title": "Plan général",
+            "subtitle": "Structure finale de la soutenance.",
+            "tag": "Plan",
+            "heading": "Structure de la présentation",
+            "body": "<div class='roadmap'><div><b>01</b><span>Introduction générale</span></div><div><b>02</b><span>Chapitre 1 · Optimisation combinatoire</span></div><div><b>03</b><span>Chapitre 2 · Calculabilité et décidabilité</span></div><div><b>04</b><span>Chapitre 3 · Complexité algorithmique</span></div><div><b>05</b><span>Chapitre 4 · Problème du Voyageur de Commerce</span></div><div><b>06</b><span>Chapitre 5 · Méthodes exactes</span></div><div><b>07</b><span>Chapitre 6 · Heuristiques</span></div><div><b>08</b><span>Chapitre 7 · Métaheuristiques</span></div><div><b>09</b><span>Application · TSP WORLD PRO</span></div><div><b>10</b><span>Conclusion générale</span></div></div>",
+            "layout": "standard"
+      },
+      {
+            "part": "Introduction",
+            "chapter": "Introduction générale",
+            "title": "Introduction générale",
+            "subtitle": "Contexte, problématique, objectifs et démarche.",
+            "tag": "Contexte général",
+            "heading": "Contexte général",
+            "body": "<p>L’optimisation combinatoire recherche une solution optimale dans un ensemble discret et fini. Elle permet de modéliser des décisions complexes liées aux tournées, aux affectations, à la planification et à l’organisation de réseaux.</p><div class='flow'><span>Contexte</span><i>→</i><span>Théorie</span><i>→</i><span>Algorithmes</span><i>→</i><span>Application</span></div>",
+            "layout": "standard"
+      },
+      {
+            "part": "Introduction",
+            "chapter": "Introduction générale",
+            "title": "Introduction générale",
+            "subtitle": "Contexte, problématique, objectifs et démarche.",
+            "tag": "Problématique",
+            "heading": "Problématique",
+            "body": "<p>Le TSP est facile à comprendre mais difficile à résoudre efficacement : le nombre de tournées possibles augmente de manière factoriale lorsque le nombre de villes grandit.</p><div class='flow'><span>Contexte</span><i>→</i><span>Théorie</span><i>→</i><span>Algorithmes</span><i>→</i><span>Application</span></div>",
+            "layout": "standard"
+      },
+      {
+            "part": "Introduction",
+            "chapter": "Introduction générale",
+            "title": "Introduction générale",
+            "subtitle": "Contexte, problématique, objectifs et démarche.",
+            "tag": "Objectifs",
+            "heading": "Objectifs",
+            "body": "<p>Présenter les fondements théoriques, expliquer la difficulté algorithmique, comparer les méthodes de résolution et développer une application interactive de démonstration.</p><div class='flow'><span>Contexte</span><i>→</i><span>Théorie</span><i>→</i><span>Algorithmes</span><i>→</i><span>Application</span></div>",
+            "layout": "standard"
+      },
+      {
+            "part": "Introduction",
+            "chapter": "Introduction générale",
+            "title": "Introduction générale",
+            "subtitle": "Contexte, problématique, objectifs et démarche.",
+            "tag": "Démarche",
+            "heading": "Démarche",
+            "body": "<p>La soutenance suit un fil logique : théorie du calcul, complexité, modélisation du TSP, méthodes de résolution, puis application pratique TSP WORLD PRO.</p><div class='flow'><span>Contexte</span><i>→</i><span>Théorie</span><i>→</i><span>Algorithmes</span><i>→</i><span>Application</span></div>",
+            "layout": "standard"
+      },
+      {
+            "part": "Chapitre 1",
+            "chapter": "Optimisation combinatoire",
+            "title": "Optimisation combinatoire",
+            "subtitle": "Décisions discrètes, modèles, contraintes et exemples.",
+            "tag": "Introduction du chapitre",
+            "heading": "Introduction du chapitre",
+            "body": "<p>Ce chapitre présente <b>Optimisation combinatoire</b> avec les notions nécessaires pour passer progressivement vers le TSP et l’application finale.</p><div class='diagram'><span>Notion</span><i>→</i><span>Schéma</span><i>→</i><span>Exemple</span></div>",
+            "layout": "standard"
+      },
+      {
+            "part": "Chapitre 1",
+            "chapter": "Optimisation combinatoire",
+            "title": "Optimisation combinatoire",
+            "subtitle": "Décisions discrètes, modèles, contraintes et exemples.",
+            "tag": "Concepts fondamentaux",
+            "heading": "Concepts fondamentaux",
+            "body": "<p><b>Concepts fondamentaux</b> : élément important du chapitre. La notion est résumée pour garder uniquement l’information utile à une soutenance PFE.</p><ul><li>Définition courte et précise.</li><li>Rôle dans la compréhension du TSP.</li><li>Illustration ou interprétation pratique.</li></ul>",
+            "layout": "standard"
+      },
+      {
+            "part": "Chapitre 1",
+            "chapter": "Optimisation combinatoire",
+            "title": "Optimisation combinatoire",
+            "subtitle": "Décisions discrètes, modèles, contraintes et exemples.",
+            "tag": "Variables de décision",
+            "heading": "Variables de décision",
+            "body": "<p><b>Variables de décision</b> : élément important du chapitre. La notion est résumée pour garder uniquement l’information utile à une soutenance PFE.</p><ul><li>Définition courte et précise.</li><li>Rôle dans la compréhension du TSP.</li><li>Illustration ou interprétation pratique.</li></ul>",
+            "layout": "standard"
+      },
+      {
+            "part": "Chapitre 1",
+            "chapter": "Optimisation combinatoire",
+            "title": "Optimisation combinatoire",
+            "subtitle": "Décisions discrètes, modèles, contraintes et exemples.",
+            "tag": "Contraintes",
+            "heading": "Contraintes",
+            "body": "<p><b>Contraintes</b> : élément important du chapitre. La notion est résumée pour garder uniquement l’information utile à une soutenance PFE.</p><ul><li>Définition courte et précise.</li><li>Rôle dans la compréhension du TSP.</li><li>Illustration ou interprétation pratique.</li></ul>",
+            "layout": "standard"
+      },
+      {
+            "part": "Chapitre 1",
+            "chapter": "Optimisation combinatoire",
+            "title": "Optimisation combinatoire",
+            "subtitle": "Décisions discrètes, modèles, contraintes et exemples.",
+            "tag": "Fonction objectif",
+            "heading": "Fonction objectif",
+            "body": "<p><b>Fonction objectif</b> : élément important du chapitre. La notion est résumée pour garder uniquement l’information utile à une soutenance PFE.</p><ul><li>Définition courte et précise.</li><li>Rôle dans la compréhension du TSP.</li><li>Illustration ou interprétation pratique.</li></ul>",
+            "layout": "standard"
+      },
+      {
+            "part": "Chapitre 1",
+            "chapter": "Optimisation combinatoire",
+            "title": "Optimisation combinatoire",
+            "subtitle": "Décisions discrètes, modèles, contraintes et exemples.",
+            "tag": "Espace de recherche",
+            "heading": "Espace de recherche",
+            "body": "<p><b>Espace de recherche</b> : élément important du chapitre. La notion est résumée pour garder uniquement l’information utile à une soutenance PFE.</p><ul><li>Définition courte et précise.</li><li>Rôle dans la compréhension du TSP.</li><li>Illustration ou interprétation pratique.</li></ul>",
+            "layout": "standard"
+      },
+      {
+            "part": "Chapitre 1",
+            "chapter": "Optimisation combinatoire",
+            "title": "Optimisation combinatoire",
+            "subtitle": "Décisions discrètes, modèles, contraintes et exemples.",
+            "tag": "Schéma de modélisation",
+            "heading": "Schéma de modélisation",
+            "body": "<p><b>Schéma de modélisation</b> est expliqué sous forme visuelle afin de faciliter la soutenance et limiter les textes trop longs.</p><div class='chart'><b style='height:42%'></b><b style='height:65%'></b><b style='height:84%'></b><b style='height:58%'></b></div>",
+            "layout": "standard"
+      },
+      {
+            "part": "Chapitre 1",
+            "chapter": "Optimisation combinatoire",
+            "title": "Optimisation combinatoire",
+            "subtitle": "Décisions discrètes, modèles, contraintes et exemples.",
+            "tag": "Exemple simple",
+            "heading": "Exemple simple",
+            "body": "<p><b>Exemple simple</b> est expliqué sous forme visuelle afin de faciliter la soutenance et limiter les textes trop longs.</p><div class='chart'><b style='height:42%'></b><b style='height:65%'></b><b style='height:84%'></b><b style='height:58%'></b></div>",
+            "layout": "standard"
+      },
+      {
+            "part": "Chapitre 1",
+            "chapter": "Optimisation combinatoire",
+            "title": "Optimisation combinatoire",
+            "subtitle": "Décisions discrètes, modèles, contraintes et exemples.",
+            "tag": "Lien avec le TSP",
+            "heading": "Lien avec le TSP",
+            "body": "<p><b>Lien avec le TSP</b> : élément important du chapitre. La notion est résumée pour garder uniquement l’information utile à une soutenance PFE.</p><ul><li>Définition courte et précise.</li><li>Rôle dans la compréhension du TSP.</li><li>Illustration ou interprétation pratique.</li></ul>",
+            "layout": "standard"
+      },
+      {
+            "part": "Chapitre 1",
+            "chapter": "Optimisation combinatoire",
+            "title": "Optimisation combinatoire",
+            "subtitle": "Décisions discrètes, modèles, contraintes et exemples.",
+            "tag": "Synthèse du chapitre",
+            "heading": "Synthèse du chapitre",
+            "body": "<p>Synthèse claire du chapitre : idées essentielles, lien avec le TSP et transition vers la partie suivante.</p><div class='smart'><div>Idée clé</div><div>Exemple</div><div>Limite</div><div>Transition</div></div>",
+            "layout": "standard"
+      },
+      {
+            "part": "Chapitre 2",
+            "chapter": "Calculabilité et décidabilité",
+            "title": "Calculabilité et décidabilité",
+            "subtitle": "Comprendre ce qu’un algorithme peut résoudre.",
+            "tag": "Introduction",
+            "heading": "Introduction",
+            "body": "<p>Ce chapitre présente <b>Calculabilité et décidabilité</b> avec les notions nécessaires pour passer progressivement vers le TSP et l’application finale.</p><div class='diagram'><span>Notion</span><i>→</i><span>Schéma</span><i>→</i><span>Exemple</span></div>",
+            "layout": "standard"
+      },
+      {
+            "part": "Chapitre 2",
+            "chapter": "Calculabilité et décidabilité",
+            "title": "Calculabilité et décidabilité",
+            "subtitle": "Comprendre ce qu’un algorithme peut résoudre.",
+            "tag": "Notion d’algorithme",
+            "heading": "Notion d’algorithme",
+            "body": "<p><b>Notion d’algorithme</b> : élément important du chapitre. La notion est résumée pour garder uniquement l’information utile à une soutenance PFE.</p><ul><li>Définition courte et précise.</li><li>Rôle dans la compréhension du TSP.</li><li>Illustration ou interprétation pratique.</li></ul>",
+            "layout": "standard"
+      },
+      {
+            "part": "Chapitre 2",
+            "chapter": "Calculabilité et décidabilité",
+            "title": "Calculabilité et décidabilité",
+            "subtitle": "Comprendre ce qu’un algorithme peut résoudre.",
+            "tag": "Machine de Turing",
+            "heading": "Machine de Turing",
+            "body": "<p><b>Machine de Turing</b> : élément important du chapitre. La notion est résumée pour garder uniquement l’information utile à une soutenance PFE.</p><ul><li>Définition courte et précise.</li><li>Rôle dans la compréhension du TSP.</li><li>Illustration ou interprétation pratique.</li></ul>",
+            "layout": "standard"
+      },
+      {
+            "part": "Chapitre 2",
+            "chapter": "Calculabilité et décidabilité",
+            "title": "Calculabilité et décidabilité",
+            "subtitle": "Comprendre ce qu’un algorithme peut résoudre.",
+            "tag": "Langages et problèmes",
+            "heading": "Langages et problèmes",
+            "body": "<p><b>Langages et problèmes</b> : élément important du chapitre. La notion est résumée pour garder uniquement l’information utile à une soutenance PFE.</p><ul><li>Définition courte et précise.</li><li>Rôle dans la compréhension du TSP.</li><li>Illustration ou interprétation pratique.</li></ul>",
+            "layout": "standard"
+      },
+      {
+            "part": "Chapitre 2",
+            "chapter": "Calculabilité et décidabilité",
+            "title": "Calculabilité et décidabilité",
+            "subtitle": "Comprendre ce qu’un algorithme peut résoudre.",
+            "tag": "Décidabilité",
+            "heading": "Décidabilité",
+            "body": "<p><b>Décidabilité</b> : élément important du chapitre. La notion est résumée pour garder uniquement l’information utile à une soutenance PFE.</p><ul><li>Définition courte et précise.</li><li>Rôle dans la compréhension du TSP.</li><li>Illustration ou interprétation pratique.</li></ul>",
+            "layout": "standard"
+      },
+      {
+            "part": "Chapitre 2",
+            "chapter": "Calculabilité et décidabilité",
+            "title": "Calculabilité et décidabilité",
+            "subtitle": "Comprendre ce qu’un algorithme peut résoudre.",
+            "tag": "Indécidabilité",
+            "heading": "Indécidabilité",
+            "body": "<p><b>Indécidabilité</b> : élément important du chapitre. La notion est résumée pour garder uniquement l’information utile à une soutenance PFE.</p><ul><li>Définition courte et précise.</li><li>Rôle dans la compréhension du TSP.</li><li>Illustration ou interprétation pratique.</li></ul>",
+            "layout": "standard"
+      },
+      {
+            "part": "Chapitre 2",
+            "chapter": "Calculabilité et décidabilité",
+            "title": "Calculabilité et décidabilité",
+            "subtitle": "Comprendre ce qu’un algorithme peut résoudre.",
+            "tag": "Problème de l’arrêt",
+            "heading": "Problème de l’arrêt",
+            "body": "<p><b>Problème de l’arrêt</b> est expliqué sous forme visuelle afin de faciliter la soutenance et limiter les textes trop longs.</p><div class='chart'><b style='height:42%'></b><b style='height:65%'></b><b style='height:84%'></b><b style='height:58%'></b></div>",
+            "layout": "standard"
+      },
+      {
+            "part": "Chapitre 2",
+            "chapter": "Calculabilité et décidabilité",
+            "title": "Calculabilité et décidabilité",
+            "subtitle": "Comprendre ce qu’un algorithme peut résoudre.",
+            "tag": "Réductions",
+            "heading": "Réductions",
+            "body": "<p><b>Réductions</b> est expliqué sous forme visuelle afin de faciliter la soutenance et limiter les textes trop longs.</p><div class='chart'><b style='height:42%'></b><b style='height:65%'></b><b style='height:84%'></b><b style='height:58%'></b></div>",
+            "layout": "standard"
+      },
+      {
+            "part": "Chapitre 2",
+            "chapter": "Calculabilité et décidabilité",
+            "title": "Calculabilité et décidabilité",
+            "subtitle": "Comprendre ce qu’un algorithme peut résoudre.",
+            "tag": "TSP comme problème décidable",
+            "heading": "TSP comme problème décidable",
+            "body": "<p><b>TSP comme problème décidable</b> : élément important du chapitre. La notion est résumée pour garder uniquement l’information utile à une soutenance PFE.</p><ul><li>Définition courte et précise.</li><li>Rôle dans la compréhension du TSP.</li><li>Illustration ou interprétation pratique.</li></ul>",
+            "layout": "standard"
+      },
+      {
+            "part": "Chapitre 2",
+            "chapter": "Calculabilité et décidabilité",
+            "title": "Calculabilité et décidabilité",
+            "subtitle": "Comprendre ce qu’un algorithme peut résoudre.",
+            "tag": "Synthèse",
+            "heading": "Synthèse",
+            "body": "<p>Synthèse claire du chapitre : idées essentielles, lien avec le TSP et transition vers la partie suivante.</p><div class='smart'><div>Idée clé</div><div>Exemple</div><div>Limite</div><div>Transition</div></div>",
+            "layout": "standard"
+      },
+      {
+            "part": "Chapitre 3",
+            "chapter": "Complexité algorithmique",
+            "title": "Complexité algorithmique",
+            "subtitle": "Mesurer temps, mémoire et difficulté.",
+            "tag": "Introduction",
+            "heading": "Introduction",
+            "body": "<p>Ce chapitre présente <b>Complexité algorithmique</b> avec les notions nécessaires pour passer progressivement vers le TSP et l’application finale.</p><div class='diagram'><span>Notion</span><i>→</i><span>Schéma</span><i>→</i><span>Exemple</span></div>",
+            "layout": "standard"
+      },
+      {
+            "part": "Chapitre 3",
+            "chapter": "Complexité algorithmique",
+            "title": "Complexité algorithmique",
+            "subtitle": "Mesurer temps, mémoire et difficulté.",
+            "tag": "Taille de l’entrée",
+            "heading": "Taille de l’entrée",
+            "body": "<p><b>Taille de l’entrée</b> : élément important du chapitre. La notion est résumée pour garder uniquement l’information utile à une soutenance PFE.</p><ul><li>Définition courte et précise.</li><li>Rôle dans la compréhension du TSP.</li><li>Illustration ou interprétation pratique.</li></ul>",
+            "layout": "standard"
+      },
+      {
+            "part": "Chapitre 3",
+            "chapter": "Complexité algorithmique",
+            "title": "Complexité algorithmique",
+            "subtitle": "Mesurer temps, mémoire et difficulté.",
+            "tag": "Notation grand O",
+            "heading": "Notation grand O",
+            "body": "<p><b>Notation grand O</b> : élément important du chapitre. La notion est résumée pour garder uniquement l’information utile à une soutenance PFE.</p><ul><li>Définition courte et précise.</li><li>Rôle dans la compréhension du TSP.</li><li>Illustration ou interprétation pratique.</li></ul>",
+            "layout": "standard"
+      },
+      {
+            "part": "Chapitre 3",
+            "chapter": "Complexité algorithmique",
+            "title": "Complexité algorithmique",
+            "subtitle": "Mesurer temps, mémoire et difficulté.",
+            "tag": "Polynomial vs exponentiel",
+            "heading": "Polynomial vs exponentiel",
+            "body": "<p><b>Polynomial vs exponentiel</b> : élément important du chapitre. La notion est résumée pour garder uniquement l’information utile à une soutenance PFE.</p><ul><li>Définition courte et précise.</li><li>Rôle dans la compréhension du TSP.</li><li>Illustration ou interprétation pratique.</li></ul>",
+            "layout": "standard"
+      },
+      {
+            "part": "Chapitre 3",
+            "chapter": "Complexité algorithmique",
+            "title": "Complexité algorithmique",
+            "subtitle": "Mesurer temps, mémoire et difficulté.",
+            "tag": "Classe P",
+            "heading": "Classe P",
+            "body": "<p><b>Classe P</b> : élément important du chapitre. La notion est résumée pour garder uniquement l’information utile à une soutenance PFE.</p><ul><li>Définition courte et précise.</li><li>Rôle dans la compréhension du TSP.</li><li>Illustration ou interprétation pratique.</li></ul>",
+            "layout": "standard"
+      },
+      {
+            "part": "Chapitre 3",
+            "chapter": "Complexité algorithmique",
+            "title": "Complexité algorithmique",
+            "subtitle": "Mesurer temps, mémoire et difficulté.",
+            "tag": "Classe NP",
+            "heading": "Classe NP",
+            "body": "<p><b>Classe NP</b> : élément important du chapitre. La notion est résumée pour garder uniquement l’information utile à une soutenance PFE.</p><ul><li>Définition courte et précise.</li><li>Rôle dans la compréhension du TSP.</li><li>Illustration ou interprétation pratique.</li></ul>",
+            "layout": "standard"
+      },
+      {
+            "part": "Chapitre 3",
+            "chapter": "Complexité algorithmique",
+            "title": "Complexité algorithmique",
+            "subtitle": "Mesurer temps, mémoire et difficulté.",
+            "tag": "Vérification polynomiale",
+            "heading": "Vérification polynomiale",
+            "body": "<p><b>Vérification polynomiale</b> est expliqué sous forme visuelle afin de faciliter la soutenance et limiter les textes trop longs.</p><div class='chart'><b style='height:42%'></b><b style='height:65%'></b><b style='height:84%'></b><b style='height:58%'></b></div>",
+            "layout": "standard"
+      },
+      {
+            "part": "Chapitre 3",
+            "chapter": "Complexité algorithmique",
+            "title": "Complexité algorithmique",
+            "subtitle": "Mesurer temps, mémoire et difficulté.",
+            "tag": "NP-complet",
+            "heading": "NP-complet",
+            "body": "<p><b>NP-complet</b> est expliqué sous forme visuelle afin de faciliter la soutenance et limiter les textes trop longs.</p><div class='chart'><b style='height:42%'></b><b style='height:65%'></b><b style='height:84%'></b><b style='height:58%'></b></div>",
+            "layout": "standard"
+      },
+      {
+            "part": "Chapitre 3",
+            "chapter": "Complexité algorithmique",
+            "title": "Complexité algorithmique",
+            "subtitle": "Mesurer temps, mémoire et difficulté.",
+            "tag": "NP-difficile",
+            "heading": "NP-difficile",
+            "body": "<p><b>NP-difficile</b> : élément important du chapitre. La notion est résumée pour garder uniquement l’information utile à une soutenance PFE.</p><ul><li>Définition courte et précise.</li><li>Rôle dans la compréhension du TSP.</li><li>Illustration ou interprétation pratique.</li></ul>",
+            "layout": "standard"
+      },
+      {
+            "part": "Chapitre 3",
+            "chapter": "Complexité algorithmique",
+            "title": "Complexité algorithmique",
+            "subtitle": "Mesurer temps, mémoire et difficulté.",
+            "tag": "Synthèse",
+            "heading": "Synthèse",
+            "body": "<p>Synthèse claire du chapitre : idées essentielles, lien avec le TSP et transition vers la partie suivante.</p><div class='smart'><div>Idée clé</div><div>Exemple</div><div>Limite</div><div>Transition</div></div>",
+            "layout": "standard"
+      },
+      {
+            "part": "Chapitre 4",
+            "chapter": "Problème du Voyageur de Commerce",
+            "title": "Problème du Voyageur de Commerce",
+            "subtitle": "Définition, variantes et modélisation du TSP.",
+            "tag": "Introduction",
+            "heading": "Introduction",
+            "body": "<p>Ce chapitre présente <b>Problème du Voyageur de Commerce</b> avec les notions nécessaires pour passer progressivement vers le TSP et l’application finale.</p><div class='diagram'><span>Notion</span><i>→</i><span>Schéma</span><i>→</i><span>Exemple</span></div>",
+            "layout": "standard"
+      },
+      {
+            "part": "Chapitre 4",
+            "chapter": "Problème du Voyageur de Commerce",
+            "title": "Problème du Voyageur de Commerce",
+            "subtitle": "Définition, variantes et modélisation du TSP.",
+            "tag": "Énoncé du TSP",
+            "heading": "Énoncé du TSP",
+            "body": "<p><b>Énoncé du TSP</b> : élément important du chapitre. La notion est résumée pour garder uniquement l’information utile à une soutenance PFE.</p><ul><li>Définition courte et précise.</li><li>Rôle dans la compréhension du TSP.</li><li>Illustration ou interprétation pratique.</li></ul>",
+            "layout": "standard"
+      },
+      {
+            "part": "Chapitre 4",
+            "chapter": "Problème du Voyageur de Commerce",
+            "title": "Problème du Voyageur de Commerce",
+            "subtitle": "Définition, variantes et modélisation du TSP.",
+            "tag": "Graphe pondéré",
+            "heading": "Graphe pondéré",
+            "body": "<p><b>Graphe pondéré</b> : élément important du chapitre. La notion est résumée pour garder uniquement l’information utile à une soutenance PFE.</p><ul><li>Définition courte et précise.</li><li>Rôle dans la compréhension du TSP.</li><li>Illustration ou interprétation pratique.</li></ul>",
+            "layout": "standard"
+      },
+      {
+            "part": "Chapitre 4",
+            "chapter": "Problème du Voyageur de Commerce",
+            "title": "Problème du Voyageur de Commerce",
+            "subtitle": "Définition, variantes et modélisation du TSP.",
+            "tag": "Cycle hamiltonien",
+            "heading": "Cycle hamiltonien",
+            "body": "<p><b>Cycle hamiltonien</b> : élément important du chapitre. La notion est résumée pour garder uniquement l’information utile à une soutenance PFE.</p><ul><li>Définition courte et précise.</li><li>Rôle dans la compréhension du TSP.</li><li>Illustration ou interprétation pratique.</li></ul>",
+            "layout": "standard"
+      },
+      {
+            "part": "Chapitre 4",
+            "chapter": "Problème du Voyageur de Commerce",
+            "title": "Problème du Voyageur de Commerce",
+            "subtitle": "Définition, variantes et modélisation du TSP.",
+            "tag": "Formulation mathématique",
+            "heading": "Formulation mathématique",
+            "body": "<p><b>Formulation mathématique</b> : élément important du chapitre. La notion est résumée pour garder uniquement l’information utile à une soutenance PFE.</p><ul><li>Définition courte et précise.</li><li>Rôle dans la compréhension du TSP.</li><li>Illustration ou interprétation pratique.</li></ul>",
+            "layout": "standard"
+      },
+      {
+            "part": "Chapitre 4",
+            "chapter": "Problème du Voyageur de Commerce",
+            "title": "Problème du Voyageur de Commerce",
+            "subtitle": "Définition, variantes et modélisation du TSP.",
+            "tag": "TSP symétrique",
+            "heading": "TSP symétrique",
+            "body": "<p><b>TSP symétrique</b> : élément important du chapitre. La notion est résumée pour garder uniquement l’information utile à une soutenance PFE.</p><ul><li>Définition courte et précise.</li><li>Rôle dans la compréhension du TSP.</li><li>Illustration ou interprétation pratique.</li></ul>",
+            "layout": "standard"
+      },
+      {
+            "part": "Chapitre 4",
+            "chapter": "Problème du Voyageur de Commerce",
+            "title": "Problème du Voyageur de Commerce",
+            "subtitle": "Définition, variantes et modélisation du TSP.",
+            "tag": "TSP asymétrique",
+            "heading": "TSP asymétrique",
+            "body": "<p><b>TSP asymétrique</b> est expliqué sous forme visuelle afin de faciliter la soutenance et limiter les textes trop longs.</p><div class='chart'><b style='height:42%'></b><b style='height:65%'></b><b style='height:84%'></b><b style='height:58%'></b></div>",
+            "layout": "standard"
+      },
+      {
+            "part": "Chapitre 4",
+            "chapter": "Problème du Voyageur de Commerce",
+            "title": "Problème du Voyageur de Commerce",
+            "subtitle": "Définition, variantes et modélisation du TSP.",
+            "tag": "Explosion combinatoire",
+            "heading": "Explosion combinatoire",
+            "body": "<p><b>Explosion combinatoire</b> est expliqué sous forme visuelle afin de faciliter la soutenance et limiter les textes trop longs.</p><div class='chart'><b style='height:42%'></b><b style='height:65%'></b><b style='height:84%'></b><b style='height:58%'></b></div>",
+            "layout": "standard"
+      },
+      {
+            "part": "Chapitre 4",
+            "chapter": "Problème du Voyageur de Commerce",
+            "title": "Problème du Voyageur de Commerce",
+            "subtitle": "Définition, variantes et modélisation du TSP.",
+            "tag": "Applications abstraites",
+            "heading": "Applications abstraites",
+            "body": "<p><b>Applications abstraites</b> : élément important du chapitre. La notion est résumée pour garder uniquement l’information utile à une soutenance PFE.</p><ul><li>Définition courte et précise.</li><li>Rôle dans la compréhension du TSP.</li><li>Illustration ou interprétation pratique.</li></ul>",
+            "layout": "standard"
+      },
+      {
+            "part": "Chapitre 4",
+            "chapter": "Problème du Voyageur de Commerce",
+            "title": "Problème du Voyageur de Commerce",
+            "subtitle": "Définition, variantes et modélisation du TSP.",
+            "tag": "Synthèse",
+            "heading": "Synthèse",
+            "body": "<p>Synthèse claire du chapitre : idées essentielles, lien avec le TSP et transition vers la partie suivante.</p><div class='smart'><div>Idée clé</div><div>Exemple</div><div>Limite</div><div>Transition</div></div>",
+            "layout": "standard"
+      },
+      {
+            "part": "Chapitre 5",
+            "chapter": "Méthodes exactes",
+            "title": "Méthodes exactes",
+            "subtitle": "Trouver l’optimum avec preuve.",
+            "tag": "Introduction",
+            "heading": "Introduction",
+            "body": "<p>Ce chapitre présente <b>Méthodes exactes</b> avec les notions nécessaires pour passer progressivement vers le TSP et l’application finale.</p><div class='diagram'><span>Notion</span><i>→</i><span>Schéma</span><i>→</i><span>Exemple</span></div>",
+            "layout": "standard"
+      },
+      {
+            "part": "Chapitre 5",
+            "chapter": "Méthodes exactes",
+            "title": "Méthodes exactes",
+            "subtitle": "Trouver l’optimum avec preuve.",
+            "tag": "Force brute",
+            "heading": "Force brute",
+            "body": "<p><b>Force brute</b> : élément important du chapitre. La notion est résumée pour garder uniquement l’information utile à une soutenance PFE.</p><ul><li>Définition courte et précise.</li><li>Rôle dans la compréhension du TSP.</li><li>Illustration ou interprétation pratique.</li></ul>",
+            "layout": "standard"
+      },
+      {
+            "part": "Chapitre 5",
+            "chapter": "Méthodes exactes",
+            "title": "Méthodes exactes",
+            "subtitle": "Trouver l’optimum avec preuve.",
+            "tag": "Programmation dynamique Held-Karp",
+            "heading": "Programmation dynamique Held-Karp",
+            "body": "<p><b>Programmation dynamique Held-Karp</b> : élément important du chapitre. La notion est résumée pour garder uniquement l’information utile à une soutenance PFE.</p><ul><li>Définition courte et précise.</li><li>Rôle dans la compréhension du TSP.</li><li>Illustration ou interprétation pratique.</li></ul>",
+            "layout": "standard"
+      },
+      {
+            "part": "Chapitre 5",
+            "chapter": "Méthodes exactes",
+            "title": "Méthodes exactes",
+            "subtitle": "Trouver l’optimum avec preuve.",
+            "tag": "Branch and Bound",
+            "heading": "Branch and Bound",
+            "body": "<p><b>Branch and Bound</b> : élément important du chapitre. La notion est résumée pour garder uniquement l’information utile à une soutenance PFE.</p><ul><li>Définition courte et précise.</li><li>Rôle dans la compréhension du TSP.</li><li>Illustration ou interprétation pratique.</li></ul>",
+            "layout": "standard"
+      },
+      {
+            "part": "Chapitre 5",
+            "chapter": "Méthodes exactes",
+            "title": "Méthodes exactes",
+            "subtitle": "Trouver l’optimum avec preuve.",
+            "tag": "Bornes inférieures",
+            "heading": "Bornes inférieures",
+            "body": "<p><b>Bornes inférieures</b> : élément important du chapitre. La notion est résumée pour garder uniquement l’information utile à une soutenance PFE.</p><ul><li>Définition courte et précise.</li><li>Rôle dans la compréhension du TSP.</li><li>Illustration ou interprétation pratique.</li></ul>",
+            "layout": "standard"
+      },
+      {
+            "part": "Chapitre 5",
+            "chapter": "Méthodes exactes",
+            "title": "Méthodes exactes",
+            "subtitle": "Trouver l’optimum avec preuve.",
+            "tag": "Branch and Cut",
+            "heading": "Branch and Cut",
+            "body": "<p><b>Branch and Cut</b> : élément important du chapitre. La notion est résumée pour garder uniquement l’information utile à une soutenance PFE.</p><ul><li>Définition courte et précise.</li><li>Rôle dans la compréhension du TSP.</li><li>Illustration ou interprétation pratique.</li></ul>",
+            "layout": "standard"
+      },
+      {
+            "part": "Chapitre 5",
+            "chapter": "Méthodes exactes",
+            "title": "Méthodes exactes",
+            "subtitle": "Trouver l’optimum avec preuve.",
+            "tag": "Programmation linéaire",
+            "heading": "Programmation linéaire",
+            "body": "<p><b>Programmation linéaire</b> est expliqué sous forme visuelle afin de faciliter la soutenance et limiter les textes trop longs.</p><div class='chart'><b style='height:42%'></b><b style='height:65%'></b><b style='height:84%'></b><b style='height:58%'></b></div>",
+            "layout": "standard"
+      },
+      {
+            "part": "Chapitre 5",
+            "chapter": "Méthodes exactes",
+            "title": "Méthodes exactes",
+            "subtitle": "Trouver l’optimum avec preuve.",
+            "tag": "Preuve d’optimalité",
+            "heading": "Preuve d’optimalité",
+            "body": "<p><b>Preuve d’optimalité</b> est expliqué sous forme visuelle afin de faciliter la soutenance et limiter les textes trop longs.</p><div class='chart'><b style='height:42%'></b><b style='height:65%'></b><b style='height:84%'></b><b style='height:58%'></b></div>",
+            "layout": "standard"
+      },
+      {
+            "part": "Chapitre 5",
+            "chapter": "Méthodes exactes",
+            "title": "Méthodes exactes",
+            "subtitle": "Trouver l’optimum avec preuve.",
+            "tag": "Limites pratiques",
+            "heading": "Limites pratiques",
+            "body": "<p><b>Limites pratiques</b> : élément important du chapitre. La notion est résumée pour garder uniquement l’information utile à une soutenance PFE.</p><ul><li>Définition courte et précise.</li><li>Rôle dans la compréhension du TSP.</li><li>Illustration ou interprétation pratique.</li></ul>",
+            "layout": "standard"
+      },
+      {
+            "part": "Chapitre 5",
+            "chapter": "Méthodes exactes",
+            "title": "Méthodes exactes",
+            "subtitle": "Trouver l’optimum avec preuve.",
+            "tag": "Synthèse",
+            "heading": "Synthèse",
+            "body": "<p>Synthèse claire du chapitre : idées essentielles, lien avec le TSP et transition vers la partie suivante.</p><div class='smart'><div>Idée clé</div><div>Exemple</div><div>Limite</div><div>Transition</div></div>",
+            "layout": "standard"
+      },
+      {
+            "part": "Chapitre 6",
+            "chapter": "Heuristiques",
+            "title": "Heuristiques",
+            "subtitle": "Obtenir rapidement de bonnes solutions.",
+            "tag": "Introduction",
+            "heading": "Introduction",
+            "body": "<p>Ce chapitre présente <b>Heuristiques</b> avec les notions nécessaires pour passer progressivement vers le TSP et l’application finale.</p><div class='diagram'><span>Notion</span><i>→</i><span>Schéma</span><i>→</i><span>Exemple</span></div>",
+            "layout": "standard"
+      },
+      {
+            "part": "Chapitre 6",
+            "chapter": "Heuristiques",
+            "title": "Heuristiques",
+            "subtitle": "Obtenir rapidement de bonnes solutions.",
+            "tag": "Principe général",
+            "heading": "Principe général",
+            "body": "<p><b>Principe général</b> : élément important du chapitre. La notion est résumée pour garder uniquement l’information utile à une soutenance PFE.</p><ul><li>Définition courte et précise.</li><li>Rôle dans la compréhension du TSP.</li><li>Illustration ou interprétation pratique.</li></ul>",
+            "layout": "standard"
+      },
+      {
+            "part": "Chapitre 6",
+            "chapter": "Heuristiques",
+            "title": "Heuristiques",
+            "subtitle": "Obtenir rapidement de bonnes solutions.",
+            "tag": "Plus proche voisin",
+            "heading": "Plus proche voisin",
+            "body": "<p><b>Plus proche voisin</b> : élément important du chapitre. La notion est résumée pour garder uniquement l’information utile à une soutenance PFE.</p><ul><li>Définition courte et précise.</li><li>Rôle dans la compréhension du TSP.</li><li>Illustration ou interprétation pratique.</li></ul>",
+            "layout": "standard"
+      },
+      {
+            "part": "Chapitre 6",
+            "chapter": "Heuristiques",
+            "title": "Heuristiques",
+            "subtitle": "Obtenir rapidement de bonnes solutions.",
+            "tag": "Insertion",
+            "heading": "Insertion",
+            "body": "<p><b>Insertion</b> : élément important du chapitre. La notion est résumée pour garder uniquement l’information utile à une soutenance PFE.</p><ul><li>Définition courte et précise.</li><li>Rôle dans la compréhension du TSP.</li><li>Illustration ou interprétation pratique.</li></ul>",
+            "layout": "standard"
+      },
+      {
+            "part": "Chapitre 6",
+            "chapter": "Heuristiques",
+            "title": "Heuristiques",
+            "subtitle": "Obtenir rapidement de bonnes solutions.",
+            "tag": "Savings",
+            "heading": "Savings",
+            "body": "<p><b>Savings</b> : élément important du chapitre. La notion est résumée pour garder uniquement l’information utile à une soutenance PFE.</p><ul><li>Définition courte et précise.</li><li>Rôle dans la compréhension du TSP.</li><li>Illustration ou interprétation pratique.</li></ul>",
+            "layout": "standard"
+      },
+      {
+            "part": "Chapitre 6",
+            "chapter": "Heuristiques",
+            "title": "Heuristiques",
+            "subtitle": "Obtenir rapidement de bonnes solutions.",
+            "tag": "2-opt",
+            "heading": "2-opt",
+            "body": "<p><b>2-opt</b> : élément important du chapitre. La notion est résumée pour garder uniquement l’information utile à une soutenance PFE.</p><ul><li>Définition courte et précise.</li><li>Rôle dans la compréhension du TSP.</li><li>Illustration ou interprétation pratique.</li></ul>",
+            "layout": "standard"
+      },
+      {
+            "part": "Chapitre 6",
+            "chapter": "Heuristiques",
+            "title": "Heuristiques",
+            "subtitle": "Obtenir rapidement de bonnes solutions.",
+            "tag": "3-opt",
+            "heading": "3-opt",
+            "body": "<p><b>3-opt</b> est expliqué sous forme visuelle afin de faciliter la soutenance et limiter les textes trop longs.</p><div class='chart'><b style='height:42%'></b><b style='height:65%'></b><b style='height:84%'></b><b style='height:58%'></b></div>",
+            "layout": "standard"
+      },
+      {
+            "part": "Chapitre 6",
+            "chapter": "Heuristiques",
+            "title": "Heuristiques",
+            "subtitle": "Obtenir rapidement de bonnes solutions.",
+            "tag": "Recherche locale",
+            "heading": "Recherche locale",
+            "body": "<p><b>Recherche locale</b> est expliqué sous forme visuelle afin de faciliter la soutenance et limiter les textes trop longs.</p><div class='chart'><b style='height:42%'></b><b style='height:65%'></b><b style='height:84%'></b><b style='height:58%'></b></div>",
+            "layout": "standard"
+      },
+      {
+            "part": "Chapitre 6",
+            "chapter": "Heuristiques",
+            "title": "Heuristiques",
+            "subtitle": "Obtenir rapidement de bonnes solutions.",
+            "tag": "Comparaison qualité/temps",
+            "heading": "Comparaison qualité/temps",
+            "body": "<p><b>Comparaison qualité/temps</b> : élément important du chapitre. La notion est résumée pour garder uniquement l’information utile à une soutenance PFE.</p><ul><li>Définition courte et précise.</li><li>Rôle dans la compréhension du TSP.</li><li>Illustration ou interprétation pratique.</li></ul>",
+            "layout": "standard"
+      },
+      {
+            "part": "Chapitre 6",
+            "chapter": "Heuristiques",
+            "title": "Heuristiques",
+            "subtitle": "Obtenir rapidement de bonnes solutions.",
+            "tag": "Synthèse",
+            "heading": "Synthèse",
+            "body": "<p>Synthèse claire du chapitre : idées essentielles, lien avec le TSP et transition vers la partie suivante.</p><div class='smart'><div>Idée clé</div><div>Exemple</div><div>Limite</div><div>Transition</div></div>",
+            "layout": "standard"
+      },
+      {
+            "part": "Chapitre 7",
+            "chapter": "Métaheuristiques",
+            "title": "Métaheuristiques",
+            "subtitle": "Explorer de grands espaces de solutions.",
+            "tag": "Introduction",
+            "heading": "Introduction",
+            "body": "<p>Ce chapitre présente <b>Métaheuristiques</b> avec les notions nécessaires pour passer progressivement vers le TSP et l’application finale.</p><div class='diagram'><span>Notion</span><i>→</i><span>Schéma</span><i>→</i><span>Exemple</span></div>",
+            "layout": "standard"
+      },
+      {
+            "part": "Chapitre 7",
+            "chapter": "Métaheuristiques",
+            "title": "Métaheuristiques",
+            "subtitle": "Explorer de grands espaces de solutions.",
+            "tag": "Recuit simulé",
+            "heading": "Recuit simulé",
+            "body": "<p><b>Recuit simulé</b> : élément important du chapitre. La notion est résumée pour garder uniquement l’information utile à une soutenance PFE.</p><ul><li>Définition courte et précise.</li><li>Rôle dans la compréhension du TSP.</li><li>Illustration ou interprétation pratique.</li></ul>",
+            "layout": "standard"
+      },
+      {
+            "part": "Chapitre 7",
+            "chapter": "Métaheuristiques",
+            "title": "Métaheuristiques",
+            "subtitle": "Explorer de grands espaces de solutions.",
+            "tag": "Recherche tabou",
+            "heading": "Recherche tabou",
+            "body": "<p><b>Recherche tabou</b> : élément important du chapitre. La notion est résumée pour garder uniquement l’information utile à une soutenance PFE.</p><ul><li>Définition courte et précise.</li><li>Rôle dans la compréhension du TSP.</li><li>Illustration ou interprétation pratique.</li></ul>",
+            "layout": "standard"
+      },
+      {
+            "part": "Chapitre 7",
+            "chapter": "Métaheuristiques",
+            "title": "Métaheuristiques",
+            "subtitle": "Explorer de grands espaces de solutions.",
+            "tag": "Algorithmes génétiques",
+            "heading": "Algorithmes génétiques",
+            "body": "<p><b>Algorithmes génétiques</b> : élément important du chapitre. La notion est résumée pour garder uniquement l’information utile à une soutenance PFE.</p><ul><li>Définition courte et précise.</li><li>Rôle dans la compréhension du TSP.</li><li>Illustration ou interprétation pratique.</li></ul>",
+            "layout": "standard"
+      },
+      {
+            "part": "Chapitre 7",
+            "chapter": "Métaheuristiques",
+            "title": "Métaheuristiques",
+            "subtitle": "Explorer de grands espaces de solutions.",
+            "tag": "Colonies de fourmis",
+            "heading": "Colonies de fourmis",
+            "body": "<p><b>Colonies de fourmis</b> : élément important du chapitre. La notion est résumée pour garder uniquement l’information utile à une soutenance PFE.</p><ul><li>Définition courte et précise.</li><li>Rôle dans la compréhension du TSP.</li><li>Illustration ou interprétation pratique.</li></ul>",
+            "layout": "standard"
+      },
+      {
+            "part": "Chapitre 7",
+            "chapter": "Métaheuristiques",
+            "title": "Métaheuristiques",
+            "subtitle": "Explorer de grands espaces de solutions.",
+            "tag": "Intensification",
+            "heading": "Intensification",
+            "body": "<p><b>Intensification</b> : élément important du chapitre. La notion est résumée pour garder uniquement l’information utile à une soutenance PFE.</p><ul><li>Définition courte et précise.</li><li>Rôle dans la compréhension du TSP.</li><li>Illustration ou interprétation pratique.</li></ul>",
+            "layout": "standard"
+      },
+      {
+            "part": "Chapitre 7",
+            "chapter": "Métaheuristiques",
+            "title": "Métaheuristiques",
+            "subtitle": "Explorer de grands espaces de solutions.",
+            "tag": "Diversification",
+            "heading": "Diversification",
+            "body": "<p><b>Diversification</b> est expliqué sous forme visuelle afin de faciliter la soutenance et limiter les textes trop longs.</p><div class='chart'><b style='height:42%'></b><b style='height:65%'></b><b style='height:84%'></b><b style='height:58%'></b></div>",
+            "layout": "standard"
+      },
+      {
+            "part": "Chapitre 7",
+            "chapter": "Métaheuristiques",
+            "title": "Métaheuristiques",
+            "subtitle": "Explorer de grands espaces de solutions.",
+            "tag": "Paramétrage",
+            "heading": "Paramétrage",
+            "body": "<p><b>Paramétrage</b> est expliqué sous forme visuelle afin de faciliter la soutenance et limiter les textes trop longs.</p><div class='chart'><b style='height:42%'></b><b style='height:65%'></b><b style='height:84%'></b><b style='height:58%'></b></div>",
+            "layout": "standard"
+      },
+      {
+            "part": "Chapitre 7",
+            "chapter": "Métaheuristiques",
+            "title": "Métaheuristiques",
+            "subtitle": "Explorer de grands espaces de solutions.",
+            "tag": "Critères d’arrêt",
+            "heading": "Critères d’arrêt",
+            "body": "<p><b>Critères d’arrêt</b> : élément important du chapitre. La notion est résumée pour garder uniquement l’information utile à une soutenance PFE.</p><ul><li>Définition courte et précise.</li><li>Rôle dans la compréhension du TSP.</li><li>Illustration ou interprétation pratique.</li></ul>",
+            "layout": "standard"
+      },
+      {
+            "part": "Chapitre 7",
+            "chapter": "Métaheuristiques",
+            "title": "Métaheuristiques",
+            "subtitle": "Explorer de grands espaces de solutions.",
+            "tag": "Synthèse",
+            "heading": "Synthèse",
+            "body": "<p>Synthèse claire du chapitre : idées essentielles, lien avec le TSP et transition vers la partie suivante.</p><div class='smart'><div>Idée clé</div><div>Exemple</div><div>Limite</div><div>Transition</div></div>",
+            "layout": "standard"
+      },
+      {
+            "part": "Application",
+            "chapter": "Application · TSP WORLD PRO",
+            "title": "TSP WORLD PRO",
+            "subtitle": "Partie la plus importante : conception, application, QR Codes et démonstration.",
+            "tag": "Présentation du cas d’étude",
+            "heading": "Présentation du cas d’étude",
+            "body": "<p>TSP WORLD PRO vise à planifier des tournées intelligentes sur une carte interactive, en reliant théorie TSP, géolocalisation, QR Code et comparaison d’algorithmes.</p><div class='smart'><div>Objectif</div><div>Données</div><div>Traitement</div><div>Résultat</div></div>",
+            "layout": "standard"
+      },
+      {
+            "part": "Application",
+            "chapter": "Application · TSP WORLD PRO",
+            "title": "TSP WORLD PRO",
+            "subtitle": "Partie la plus importante : conception, application, QR Codes et démonstration.",
+            "tag": "Objectifs fonctionnels",
+            "heading": "Objectifs fonctionnels",
+            "body": "<p>L’utilisateur peut placer des points, lancer des algorithmes, visualiser une tournée, comparer les résultats et partager l’accès via QR Code.</p><div class='smart'><div>Objectif</div><div>Données</div><div>Traitement</div><div>Résultat</div></div>",
+            "layout": "standard"
+      },
+      {
+            "part": "Application",
+            "chapter": "Application · TSP WORLD PRO",
+            "title": "TSP WORLD PRO",
+            "subtitle": "Partie la plus importante : conception, application, QR Codes et démonstration.",
+            "tag": "Architecture globale",
+            "heading": "Architecture globale",
+            "body": "<p>L’application sépare l’interface, la carte, le moteur algorithmique, la gestion des positions et la restitution des résultats.</p><div class='diagram'><span>Interface</span><i>→</i><span>Moteur TSP</span><i>→</i><span>Résultats</span></div>",
+            "layout": "standard"
+      },
+      {
+            "part": "Application",
+            "chapter": "Application · TSP WORLD PRO",
+            "title": "TSP WORLD PRO",
+            "subtitle": "Partie la plus importante : conception, application, QR Codes et démonstration.",
+            "tag": "Méthodologie",
+            "heading": "Méthodologie",
+            "body": "<p>La démarche suit analyse, conception, modélisation UML, implémentation, tests, comparaison et démonstration.</p><div class='smart'><div>Objectif</div><div>Données</div><div>Traitement</div><div>Résultat</div></div>",
+            "layout": "standard"
+      },
+      {
+            "part": "Application",
+            "chapter": "Application · TSP WORLD PRO",
+            "title": "TSP WORLD PRO",
+            "subtitle": "Partie la plus importante : conception, application, QR Codes et démonstration.",
+            "tag": "UML · Cas d’utilisation",
+            "heading": "UML · Cas d’utilisation",
+            "body": "<p>Les acteurs principaux sont l’utilisateur, le module carte, le module GPS et le moteur TSP.</p><div class='smart'><div>Objectif</div><div>Données</div><div>Traitement</div><div>Résultat</div></div>",
+            "layout": "standard"
+      },
+      {
+            "part": "Application",
+            "chapter": "Application · TSP WORLD PRO",
+            "title": "TSP WORLD PRO",
+            "subtitle": "Partie la plus importante : conception, application, QR Codes et démonstration.",
+            "tag": "UML · Classes",
+            "heading": "UML · Classes",
+            "body": "<p>Les classes principales structurent les villes, distances, routes, algorithmes, résultats et paramètres de visualisation.</p><div class='smart'><div>Objectif</div><div>Données</div><div>Traitement</div><div>Résultat</div></div>",
+            "layout": "standard"
+      },
+      {
+            "part": "Application",
+            "chapter": "Application · TSP WORLD PRO",
+            "title": "TSP WORLD PRO",
+            "subtitle": "Partie la plus importante : conception, application, QR Codes et démonstration.",
+            "tag": "UML · Séquence",
+            "heading": "UML · Séquence",
+            "body": "<p>Le workflow part de la sélection des points, passe par le calcul de tournée, puis affiche distance, ordre et tracé.</p><div class='smart'><div>Objectif</div><div>Données</div><div>Traitement</div><div>Résultat</div></div>",
+            "layout": "standard"
+      },
+      {
+            "part": "Application",
+            "chapter": "Application · TSP WORLD PRO",
+            "title": "TSP WORLD PRO",
+            "subtitle": "Partie la plus importante : conception, application, QR Codes et démonstration.",
+            "tag": "Base de données",
+            "heading": "Base de données",
+            "body": "<p>Les données utiles concernent les villes, coordonnées, distances, résultats, paramètres et historiques de comparaison.</p><div class='smart'><div>Objectif</div><div>Données</div><div>Traitement</div><div>Résultat</div></div>",
+            "layout": "standard"
+      },
+      {
+            "part": "Application",
+            "chapter": "Application · TSP WORLD PRO",
+            "title": "TSP WORLD PRO",
+            "subtitle": "Partie la plus importante : conception, application, QR Codes et démonstration.",
+            "tag": "Algorithmes intégrés",
+            "heading": "Algorithmes intégrés",
+            "body": "<p>Le moteur compare notamment plus proche voisin, heuristiques d’amélioration et 2-OPT pour améliorer la tournée.</p><div class='smart'><div>Objectif</div><div>Données</div><div>Traitement</div><div>Résultat</div></div>",
+            "layout": "standard"
+      },
+      {
+            "part": "Application",
+            "chapter": "Application · TSP WORLD PRO",
+            "title": "TSP WORLD PRO",
+            "subtitle": "Partie la plus importante : conception, application, QR Codes et démonstration.",
+            "tag": "Workflow utilisateur",
+            "heading": "Workflow utilisateur",
+            "body": "<p>Choisir les points → lancer le calcul → visualiser la route → comparer → exporter ou partager.</p><div class='diagram'><span>Interface</span><i>→</i><span>Moteur TSP</span><i>→</i><span>Résultats</span></div>",
+            "layout": "standard"
+      },
+      {
+            "part": "Application",
+            "chapter": "Application · TSP WORLD PRO",
+            "title": "TSP WORLD PRO",
+            "subtitle": "Partie la plus importante : conception, application, QR Codes et démonstration.",
+            "tag": "Implémentation front-end",
+            "heading": "Implémentation front-end",
+            "body": "<p>L’interface reprend la charte premium : blanc, bleu nuit, doré et turquoise, avec cartes, boutons arrondis et sections lisibles.</p><div class='smart'><div>Objectif</div><div>Données</div><div>Traitement</div><div>Résultat</div></div>",
+            "layout": "standard"
+      },
+      {
+            "part": "Application",
+            "chapter": "Application · TSP WORLD PRO",
+            "title": "TSP WORLD PRO",
+            "subtitle": "Partie la plus importante : conception, application, QR Codes et démonstration.",
+            "tag": "Carte interactive",
+            "heading": "Carte interactive",
+            "body": "<p>La carte interactive permet de manipuler les positions et de rendre le TSP concret pendant la démonstration.</p><div class='smart'><div>Objectif</div><div>Données</div><div>Traitement</div><div>Résultat</div></div>",
+            "layout": "standard"
+      },
+      {
+            "part": "Application",
+            "chapter": "Application · TSP WORLD PRO",
+            "title": "TSP WORLD PRO",
+            "subtitle": "Partie la plus importante : conception, application, QR Codes et démonstration.",
+            "tag": "Interface GPS",
+            "heading": "Interface GPS",
+            "body": "<p>La géolocalisation renforce le lien avec des scénarios réels : point de départ, position courante et suivi.</p><div class='smart'><div>Objectif</div><div>Données</div><div>Traitement</div><div>Résultat</div></div>",
+            "layout": "standard"
+      },
+      {
+            "part": "Application",
+            "chapter": "Application · TSP WORLD PRO",
+            "title": "TSP WORLD PRO",
+            "subtitle": "Partie la plus importante : conception, application, QR Codes et démonstration.",
+            "tag": "Captures d’écran",
+            "heading": "Captures d’écran",
+            "body": "<p>Les écrans de garde, accès QR, démonstration et développeurs sont intégrés comme références visuelles de la partie Application.</p><div class='app-mosaic mini'><div>🗺️</div><div>📱</div><div class='wide'>🚀</div><div>👥</div><div>📊</div></div>",
+            "layout": "standard"
+      },
+      {
+            "part": "Application",
+            "chapter": "Application · TSP WORLD PRO",
+            "title": "TSP WORLD PRO",
+            "subtitle": "Partie la plus importante : conception, application, QR Codes et démonstration.",
+            "tag": "Résultats obtenus",
+            "heading": "Résultats obtenus",
+            "body": "<p>Les résultats montrent la route calculée, le coût total, les étapes et les gains apportés par l’amélioration.</p><div class='smart'><div>Objectif</div><div>Données</div><div>Traitement</div><div>Résultat</div></div>",
+            "layout": "standard"
+      },
+      {
+            "part": "Application",
+            "chapter": "Application · TSP WORLD PRO",
+            "title": "TSP WORLD PRO",
+            "subtitle": "Partie la plus importante : conception, application, QR Codes et démonstration.",
+            "tag": "Analyse comparative",
+            "heading": "Analyse comparative",
+            "body": "<p>La comparaison porte sur distance finale, temps d’exécution, simplicité, qualité et stabilité des méthodes.</p><div class='smart'><div>Objectif</div><div>Données</div><div>Traitement</div><div>Résultat</div></div>",
+            "layout": "standard"
+      },
+      {
+            "part": "Application",
+            "chapter": "Application · TSP WORLD PRO",
+            "title": "TSP WORLD PRO",
+            "subtitle": "Partie la plus importante : conception, application, QR Codes et démonstration.",
+            "tag": "QR Codes réels",
+            "heading": "QR Codes réels",
+            "body": "<div class='qr-grid'><div><h3>📖 Présentation du PFE</h3><div id='qr-pfe' class='qrbox'></div><p>https://prjet-sofien-iliass.vercel.app/</p></div><div><h3>🚀 Application TSP WORLD PRO</h3><div id='qr-app' class='qrbox'></div><p>https://ilyaserrouifi.github.io/tsp-world-pro-ilyas-errouifi/</p></div></div>",
+            "layout": "standard"
+      },
+      {
+            "part": "Application",
+            "chapter": "Application · TSP WORLD PRO",
+            "title": "TSP WORLD PRO",
+            "subtitle": "Partie la plus importante : conception, application, QR Codes et démonstration.",
+            "tag": "Démonstration finale",
+            "heading": "Démonstration finale",
+            "body": "<p>La démonstration conclut la partie application : lancement, scénario complet, lecture des résultats et discussion.</p><div class='smart'><div>Objectif</div><div>Données</div><div>Traitement</div><div>Résultat</div></div>",
+            "layout": "standard"
+      },
+      {
+            "part": "Conclusion",
+            "chapter": "Conclusion générale",
+            "title": "Conclusion générale",
+            "subtitle": "Bilan final du mémoire et ouverture.",
+            "tag": "Résumé du travail",
+            "heading": "Résumé du travail",
+            "body": "<p>Résumé du travail : cette slide relie les résultats obtenus aux objectifs annoncés et ouvre vers les améliorations possibles.</p><ul><li>Apport théorique.</li><li>Apport pratique.</li><li>Ouverture professionnelle.</li></ul>",
+            "layout": "standard"
+      },
+      {
+            "part": "Conclusion",
+            "chapter": "Conclusion générale",
+            "title": "Conclusion générale",
+            "subtitle": "Bilan final du mémoire et ouverture.",
+            "tag": "Réponse à la problématique",
+            "heading": "Réponse à la problématique",
+            "body": "<p>Réponse à la problématique : cette slide relie les résultats obtenus aux objectifs annoncés et ouvre vers les améliorations possibles.</p><ul><li>Apport théorique.</li><li>Apport pratique.</li><li>Ouverture professionnelle.</li></ul>",
+            "layout": "standard"
+      },
+      {
+            "part": "Conclusion",
+            "chapter": "Conclusion générale",
+            "title": "Conclusion générale",
+            "subtitle": "Bilan final du mémoire et ouverture.",
+            "tag": "Contributions",
+            "heading": "Contributions",
+            "body": "<p>Contributions : cette slide relie les résultats obtenus aux objectifs annoncés et ouvre vers les améliorations possibles.</p><ul><li>Apport théorique.</li><li>Apport pratique.</li><li>Ouverture professionnelle.</li></ul>",
+            "layout": "standard"
+      },
+      {
+            "part": "Conclusion",
+            "chapter": "Conclusion générale",
+            "title": "Conclusion générale",
+            "subtitle": "Bilan final du mémoire et ouverture.",
+            "tag": "Perspectives",
+            "heading": "Perspectives",
+            "body": "<p>Perspectives : cette slide relie les résultats obtenus aux objectifs annoncés et ouvre vers les améliorations possibles.</p><ul><li>Apport théorique.</li><li>Apport pratique.</li><li>Ouverture professionnelle.</li></ul>",
+            "layout": "standard"
+      },
+      {
+            "part": "Conclusion",
+            "chapter": "Conclusion générale",
+            "title": "Conclusion générale",
+            "subtitle": "Bilan final du mémoire et ouverture.",
+            "tag": "Améliorations futures",
+            "heading": "Améliorations futures",
+            "body": "<p>Améliorations futures : cette slide relie les résultats obtenus aux objectifs annoncés et ouvre vers les améliorations possibles.</p><ul><li>Apport théorique.</li><li>Apport pratique.</li><li>Ouverture professionnelle.</li></ul>",
+            "layout": "standard"
+      },
+      {
+            "part": "Conclusion",
+            "chapter": "Conclusion générale",
+            "title": "Conclusion générale",
+            "subtitle": "Bilan final du mémoire et ouverture.",
+            "tag": "Évolutions possibles",
+            "heading": "Évolutions possibles",
+            "body": "<p>Évolutions possibles : cette slide relie les résultats obtenus aux objectifs annoncés et ouvre vers les améliorations possibles.</p><ul><li>Apport théorique.</li><li>Apport pratique.</li><li>Ouverture professionnelle.</li></ul>",
+            "layout": "standard"
+      },
+      {
+            "part": "Finale",
+            "chapter": "Merci",
+            "title": "Merci pour votre attention",
+            "subtitle": "Fin de la soutenance.",
+            "tag": "Final",
+            "heading": "Merci pour votre attention",
+            "body": "<div class='thanks'>Questions ?</div><p>Merci pour votre écoute.</p>",
+            "layout": "standard"
+      }
+];
+    let index = 0;
+    const chapterNames = [...new Set(slides.map(s => s.chapter))];
+    const nav = document.getElementById('chapters');
+    chapterNames.forEach((chapter) => {
+      const first = slides.find(s => s.chapter === chapter);
+      const button = document.createElement('button');
+      button.innerHTML = `${chapter}<small>${first.part}</small>`;
+      button.addEventListener('click', () => { index = slides.findIndex(s => s.chapter === chapter); render(); });
+      nav.appendChild(button);
+    });
+    function splitTitle(title) { const words = title.split(' '); const mid = Math.ceil(words.length / 2); return `${words.slice(0, mid).join(' ')}<span style="display:block;color:#f3ca58">${words.slice(mid).join(' ')}</span>`; }
+    function renderQr() {
+      if (!window.QRCode) return;
+      const pfe = document.getElementById('qr-pfe'); const app = document.getElementById('qr-app');
+      if (pfe && !pfe.dataset.done) { new QRCode(pfe, { text:'https://prjet-sofien-iliass.vercel.app/', width:180, height:180, colorDark:'#c9a84c', colorLight:'#ffffff' }); pfe.dataset.done = '1'; }
+      if (app && !app.dataset.done) { new QRCode(app, { text:'https://ilyaserrouifi.github.io/tsp-world-pro-ilyas-errouifi/', width:180, height:180, colorDark:'#c9a84c', colorLight:'#ffffff' }); app.dataset.done = '1'; }
+    }
+    function render() {
+      const s = slides[index];
+      document.getElementById('chapterBadge').textContent = s.part;
+      document.getElementById('chapterTitle').innerHTML = splitTitle(s.title);
+      document.getElementById('chapterIntro').textContent = s.subtitle;
+      document.getElementById('slideNumber').textContent = String(index + 1).padStart(2, '0');
+      document.getElementById('slideTag').textContent = s.tag;
+      document.getElementById('slideTitle').textContent = s.heading;
+      document.getElementById('slideBody').innerHTML = s.body;
+      document.getElementById('counter').textContent = `Slide ${index + 1} / ${slides.length}`;
+      document.getElementById('bar').style.width = `${((index + 1) / slides.length) * 100}%`;
+      document.querySelectorAll('#chapters button').forEach((button) => button.classList.toggle('active', button.textContent.includes(s.chapter)));
+      renderQr();
+    }
+    document.getElementById('prev').addEventListener('click', () => { index = (index - 1 + slides.length) % slides.length; render(); });
+    document.getElementById('next').addEventListener('click', () => { index = (index + 1) % slides.length; render(); });
+    document.addEventListener('keydown', (event) => { if (event.key === 'ArrowRight' || event.key === ' ') { index = (index + 1) % slides.length; render(); } if (event.key === 'ArrowLeft') { index = (index - 1 + slides.length) % slides.length; render(); } });
+    render();
+  </script>
+</body>
+</html>
