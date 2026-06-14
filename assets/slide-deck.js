@@ -7,7 +7,7 @@
   function splitText(text){const parts=text.match(/[^.!?;:]+[.!?;:]?/g)||[text]; const chunks=[]; for(let i=0;i<parts.length;i+=4){chunks.push(parts.slice(i,i+4).join(' ').trim())} return chunks.filter(Boolean)}
   function splitNode(node){
     if(!node) return [];
-    if(node.matches && node.matches('table,.formula,.definition')) return [wrap(node.outerHTML)];
+    if(node.matches && node.matches('table,.formula,.definition,.schema,.graph-schema')) return [wrap(node.outerHTML)];
     if(node.matches && node.matches('ul,ol')){const items=[...node.children]; const out=[]; for(let i=0;i<items.length;i+=5){const list=node.cloneNode(false); items.slice(i,i+5).forEach(li=>list.appendChild(li.cloneNode(true))); out.push(wrap(list.outerHTML));} return out;}
     if(node.matches && node.matches('p')){const parts=splitText(txt(node)); return parts.map(p=>wrap('<p>'+p+'</p>'));}
     if(node.matches && node.matches('.card')){let out=[]; [...node.children].forEach(child=>{out=out.concat(splitNode(child));}); return out.length?out:[wrap(node.innerHTML)];}
