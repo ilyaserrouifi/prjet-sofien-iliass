@@ -1,292 +1,264 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Chapitre 7 | Méthodes de Résolution | PFE 2025-2026</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;900&family=Raleway:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      font-family: 'Raleway', sans-serif;
-      background: #f5f7fb;
-      color: #1a2a3a;
-      line-height: 1.6;
-    }
-    .navbar {
-      position: fixed; top: 0; width: 100%; padding: 1rem 3rem;
-      background: rgba(255, 255, 255, 0.96); backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(0, 0, 0, 0.08); z-index: 1000;
-      display: flex; justify-content: space-between; align-items: center;
-    }
-    .logo { font-family: 'Cinzel', serif; font-size: 1.2rem; font-weight: 700; letter-spacing: 4px; color: #c9a84c; text-decoration: none; }
-    .logo span { color: #0088aa; }
-    .nav-links { display: flex; gap: 2rem; list-style: none; }
-    .nav-links a { color: #4a5568; text-decoration: none; font-size: 0.7rem; letter-spacing: 2px; text-transform: uppercase; transition: 0.3s; font-weight: 600; }
-    .nav-links a:hover { color: #c9a84c; }
-    .container { max-width: 1000px; margin: 0 auto; padding: 100px 2rem 3rem; }
-    h1 { font-family: 'Cinzel', serif; font-size: 2rem; font-weight: 800; color: #1a2a3a; margin-bottom: 0.5rem; border-left: 4px solid #c9a84c; padding-left: 1rem; }
-    h1 span { color: #c9a84c; }
-    .chapitre-badge { display: inline-block; background: rgba(201,168,76,0.12); border: 1px solid rgba(201,168,76,0.3); border-radius: 50px; padding: 0.2rem 0.8rem; font-size: 0.6rem; letter-spacing: 2px; color: #c9a84c; margin: 0.5rem 0 1rem 1rem; font-weight: 600; }
-    h2 { font-family: 'Cinzel', serif; font-size: 1.3rem; font-weight: 700; color: #0088aa; margin: 1.5rem 0 1rem; border-bottom: 2px solid rgba(0,136,170,0.15); padding-bottom: 0.3rem; }
-    h3 { font-family: 'Cinzel', serif; font-size: 1rem; font-weight: 600; color: #c9a84c; margin: 1rem 0 0.5rem; }
-    .card { background: white; border-radius: 16px; padding: 1.5rem; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(0,0,0,0.04); border: 1px solid #e2e8f0; }
-    .card p { color: #4a5568; margin-bottom: 0.8rem; font-size: 0.95rem; line-height: 1.7; }
-    .definition { background: linear-gradient(135deg, #f8fafc, #ffffff); border-left: 4px solid #c9a84c; padding: 1rem 1.2rem; margin: 1rem 0; border-radius: 0 12px 12px 0; }
-    .schema { background: #eef2f8; border-radius: 16px; padding: 1rem; text-align: center; margin: 1rem 0; border: 1px solid #c9a84c; }
-    .schema-title { font-weight: 700; margin-bottom: 0.5rem; color: #c9a84c; }
-    .btn-nav { display: flex; justify-content: space-between; margin-top: 2rem; gap: 1rem; }
-    .btn-prev, .btn-next { padding: 0.7rem 1.5rem; text-decoration: none; border-radius: 50px; font-size: 0.7rem; letter-spacing: 2px; text-transform: uppercase; transition: 0.3s; }
-    .btn-prev { border: 1px solid #c9a84c; color: #c9a84c; background: transparent; }
-    .btn-prev:hover { background: rgba(201,168,76,0.1); }
-    .btn-next { background: linear-gradient(135deg, #c9a84c, #0088aa); color: white; border: none; }
-    .btn-next:hover { transform: translateX(3px); box-shadow: 0 5px 20px rgba(201,168,76,0.3); }
-    footer { text-align: center; padding: 2rem; border-top: 1px solid #e2e8f0; background: #ffffff; margin-top: 2rem; color: #718096; font-size: 0.7rem; }
-    .badge { display: inline-block; background: rgba(201,168,76,0.1); padding: 0.2rem 0.6rem; border-radius: 30px; font-size: 0.7rem; color: #c9a84c; margin-right: 0.5rem; }
-    .flow-chart { display: flex; flex-direction: column; align-items: center; gap: 0.5rem; margin: 1rem 0; }
-    .flow-box { background: white; border: 1px solid #c9a84c; border-radius: 8px; padding: 0.5rem 1rem; width: 80%; max-width: 300px; text-align: center; }
-    .flow-arrow { font-size: 1.2rem; color: #0088aa; }
-    @media (max-width: 768px) { .navbar { padding: 1rem; } .nav-links { display: none; } .container { padding: 80px 1rem 2rem; } h1 { font-size: 1.5rem; } }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>TSP WORLD PRO | Présentation PFE – Optimisation Combinatoire</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Raleway:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/qrcode-generator-1.4.4/qrcode.min.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Raleway', sans-serif;
+            background: linear-gradient(135deg, #0a1428 0%, #0d1f3c 100%);
+            color: #e8e0cc;
+            overflow: hidden;
+            height: 100vh;
+        }
+        .presentation-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        .slides-wrapper {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.4s ease-in-out;
+            overflow-y: auto;
+            background: linear-gradient(135deg, #0a1428 0%, #0d1f3c 100%);
+        }
+        .slide.active {
+            opacity: 1;
+            visibility: visible;
+            z-index: 10;
+        }
+        .slide::-webkit-scrollbar { width: 5px; }
+        .slide::-webkit-scrollbar-track { background: #1e3a5f; }
+        .slide::-webkit-scrollbar-thumb { background: #c9a84c; border-radius: 5px; }
+        .slide-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 2.5rem;
+            min-height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .slide-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            border-bottom: 2px solid #c9a84c;
+            padding-bottom: 0.75rem;
+            margin-bottom: 1.5rem;
+        }
+        .slide-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #e8e0cc;
+        }
+        .slide-title span { color: #c9a84c; }
+        .slide-number {
+            background: #1e3a5f;
+            padding: 0.2rem 0.8rem;
+            border-radius: 30px;
+            font-size: 0.7rem;
+            font-weight: 500;
+            color: #c9a84c;
+        }
+        .nav-controls {
+            position: fixed;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            display: flex;
+            gap: 0.8rem;
+            z-index: 100;
+        }
+        .nav-btn {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: #1e3a5f;
+            color: #c9a84c;
+            border: 1px solid #c9a84c;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: 0.2s;
+        }
+        .nav-btn:hover { background: #c9a84c; color: #0a1428; transform: scale(1.05); }
+        .progress-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            height: 3px;
+            background: #c9a84c;
+            transition: width 0.2s;
+            z-index: 100;
+        }
+        .slide-counter {
+            position: fixed;
+            bottom: 1.5rem;
+            left: 1.5rem;
+            background: rgba(0,0,0,0.5);
+            backdrop-filter: blur(4px);
+            padding: 0.3rem 1rem;
+            border-radius: 40px;
+            font-size: 0.75rem;
+            z-index: 100;
+            color: #c9a84c;
+        }
+        h1 { font-family: 'Cinzel', serif; font-size: 2rem; font-weight: 700; margin-bottom: 0.8rem; color: #e8e0cc; }
+        h2 { font-family: 'Cinzel', serif; font-size: 1.3rem; font-weight: 600; margin: 0.8rem 0 0.5rem; border-left: 3px solid #c9a84c; padding-left: 0.8rem; color: #e8e0cc; }
+        p { font-size: 0.95rem; line-height: 1.5; margin-bottom: 0.6rem; color: #cbd5e6; }
+        .badge { display: inline-block; background: rgba(201,168,76,0.15); padding: 0.2rem 0.8rem; border-radius: 30px; font-size: 0.7rem; font-weight: 500; color: #c9a84c; margin: 0.2rem; }
+        .code-block { background: #0d1f2d; border-left: 3px solid #c9a84c; border-radius: 12px; padding: 0.8rem; font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: #c9a84c; margin: 0.8rem 0; white-space: pre-wrap; }
+        .qr-grid { display: flex; flex-wrap: wrap; gap: 1.5rem; justify-content: center; margin: 1rem 0; }
+        .qr-card { background: #0d1f2d; border-radius: 1rem; padding: 0.8rem; text-align: center; border: 1px solid #c9a84c; min-width: 150px; transition: 0.3s; }
+        .qr-card:hover { transform: translateY(-5px); box-shadow: 0 8px 20px rgba(0,0,0,0.3); }
+        canvas.qr-canvas { width: 100px; height: 100px; display: block; margin: 0 auto; background: white; border-radius: 8px; padding: 4px; }
+        .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; margin: 0.8rem 0; }
+        .stat-card { background: #0d1f2d; border-radius: 0.8rem; padding: 1rem; text-align: center; border: 1px solid #c9a84c; }
+        table { width: 100%; border-collapse: collapse; font-size: 0.8rem; margin: 0.6rem 0; }
+        th, td { padding: 0.5rem; text-align: left; border-bottom: 1px solid #2a4a6e; }
+        th { color: #c9a84c; font-weight: 600; }
+        footer { margin-top: 1rem; text-align: center; font-size: 0.65rem; color: #6c8aac; }
+        .hero-stats { display: flex; justify-content: center; gap: 2rem; margin: 1rem 0; flex-wrap: wrap; }
+        .stat-item { text-align: center; }
+        .stat-number { font-family: 'Cinzel', serif; font-size: 1.6rem; font-weight: 800; color: #c9a84c; }
+        .stat-label { font-size: 0.65rem; color: #8aaec0; text-transform: uppercase; letter-spacing: 1px; }
+        .btn-launch { display: inline-block; padding: 0.6rem 1.5rem; background: #c9a84c; color: #0a1428; border-radius: 50px; text-decoration: none; font-size: 0.8rem; font-weight: 600; margin-top: 1rem; transition: 0.3s; cursor: pointer; }
+        .btn-launch:hover { transform: scale(1.02); background: #e0c060; }
+        .graph-schema { background: #0d1f2d; border-radius: 16px; padding: 1rem; text-align: center; margin: 1rem 0; border: 1px solid #c9a84c; }
+        .graph-nodes { display: inline-flex; flex-wrap: wrap; justify-content: center; gap: 0.8rem; margin: 0.5rem 0; }
+        .graph-node { background: #1e3a5f; color: #c9a84c; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; border: 1px solid #c9a84c; }
+        .complexity-badge { display: inline-flex; align-items: center; gap: 6px; padding: 4px 12px; border-radius: 50px; font-size: 0.7rem; font-weight: 600; }
+        .cb-easy { background: rgba(39,174,96,0.2); border: 1px solid rgba(39,174,96,0.5); color: #2ecc71; }
+        .cb-hard { background: rgba(192,57,43,0.2); border: 1px solid rgba(192,57,43,0.5); color: #e74c3c; }
+        @media (max-width: 768px) { .slide-content { padding: 1rem; } .slide-title { font-size: 1.2rem; } }
+    </style>
 </head>
 <body>
-
-<nav class="navbar">
-  <a href="../index.html" class="logo">TSP<span>·WORLD</span></a>
-  <ul class="nav-links">
-    <li><a href="../index.html">Accueil</a></li>
-    <li><a href="01-introduction.html">Ch.1</a></li>
-    <li><a href="02-optimisation-combinatoire.html">Ch.2</a></li>
-    <li><a href="03-calculabilite.html">Ch.3</a></li>
-    <li><a href="04-complexites.html">Ch.4</a></li>
-    <li><a href="05-tsp.html">Ch.5</a></li>
-    <li><a href="06-programmation-dynamique.html">Ch.6</a></li>
-    <li><a href="07-methodes-resolution.html">Ch.7</a></li>
-  </ul>
-</nav>
-
-<div class="container">
-  <span class="chapitre-badge">CHAPITRE 7</span>
-  <h1>Les Méthodes de <span>résolution</span></h1>
-  <h1 style="font-size: 1.3rem; border-left: none; margin-top: -0.3rem;">du problème de Voyageur de Commerce</h1>
-
-  <!-- INTRODUCTION -->
-  <div class="card">
-    <p>Les méthodes de résolution du problème de Voyageur de Commerce Asymétrique sont généralement scindées en deux catégories : les <strong>méthodes exactes</strong> et les <strong>méthodes approchées</strong> (heuristiques et métaheuristiques).</p>
-    <p>Les méthodes exactes ont souvent des durées de calcul qui augmentent exponentiellement avec la taille des problèmes. Les méthodes approchées sont conçues pour produire des solutions admissibles de bonne qualité avec un temps de résolution raisonnable, mais pas nécessairement optimales.</p>
-    <p>Les méthodes exactes et les méthodes approchées sont <strong>complémentaires</strong> : un faible écart entre bornes inférieures et supérieures signifie que l'optimum est proche, alors qu'un écart nul prouve l'optimalité.</p>
-  </div>
-
-  <!-- CLASSIFICATION -->
-  <h2>📊 Classification des méthodes</h2>
-  <div class="schema">
-    <p class="schema-title">Méthodes d'Optimisation Combinatoire</p>
-    <div style="display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap;">
-      <div style="background: white; border-radius: 12px; padding: 0.8rem; min-width: 150px;">
-        <strong style="color: #0088aa;">🔬 Méthodes Exactes</strong>
-        <div style="font-size: 0.8rem;">Branch & Bound</div>
-        <div style="font-size: 0.8rem;">Programmation Dynamique</div>
-        <div style="font-size: 0.8rem;">Plans Coupant</div>
-      </div>
-      <div style="background: white; border-radius: 12px; padding: 0.8rem; min-width: 150px;">
-        <strong style="color: #c9a84c;">⚡ Méthodes Approchées</strong>
-        <div style="font-size: 0.8rem;">Heuristiques</div>
-        <div style="font-size: 0.8rem;">Métaheuristiques</div>
-      </div>
+<div class="presentation-container">
+    <div class="slides-wrapper" id="slidesWrapper"></div>
+    <div class="nav-controls">
+        <button class="nav-btn" id="prevBtn"><i class="fas fa-chevron-left"></i></button>
+        <button class="nav-btn" id="nextBtn"><i class="fas fa-chevron-right"></i></button>
     </div>
-  </div>
-
-  <!-- MÉTHODES EXACTES -->
-  <h2>🔵 Méthodes exactes</h2>
-  <div class="card">
-    <p>Le principe essentiel d'une méthode exacte consiste à énumérer, souvent de manière implicite, l'ensemble des solutions de l'espace de recherche. Les algorithmes exacts les plus réussis appartiennent à quatre grandes classes :</p>
-    <ul style="margin-left: 1.5rem; color: #4a5568;">
-      <li>La programmation dynamique</li>
-      <li>La programmation par contraintes</li>
-      <li>Les méthodes d'énumération implicite (Branch and Bound)</li>
-      <li>Les méthodes de plans coupant</li>
-    </ul>
-  </div>
-
-  <!-- MÉTHODES APPROCHÉES -->
-  <h2>🟡 Méthodes approchées</h2>
-  <div class="card">
-    <p><strong>Heuristique :</strong> Le mot heuristique vient du grec « Eurisko » qui signifie « je trouve ». Une heuristique est un algorithme qui fournit rapidement une solution réalisable, pas nécessairement optimale.</p>
-    <p><strong>Métaheuristique :</strong> Dérivé de « méta » (au-delà) et « heuristique ». Ce sont des méthodes génériques pouvant optimiser une large gamme de problèmes différents.</p>
-  </div>
-
-  <!-- MÉTAHEURISTIQUES -->
-  <h2>🧠 Métaheuristiques</h2>
-  <div class="card">
-    <p>Contrairement aux méthodes exactes, les métaheuristiques permettent de s'attaquer aux instances de grande taille en fournissant des solutions satisfaisantes dans un délai raisonnable. Il n'y a aucune garantie de trouver des solutions optimales globales.</p>
-    <p><strong>Domaines d'application :</strong> conception technique, VLSI, télécommunications, robotique, apprentissage automatique, bioinformatique, traitement du signal, logistique, transport...</p>
-  </div>
-
-  <!-- CONCEPTS FONDAMENTAUX -->
-  <h2>🎯 Concepts fondamentaux des métaheuristiques</h2>
-  <div class="card">
-    <p><strong>Diversification :</strong> Capacité de parcourir aisément l'espace de recherche pour obtenir des solutions très différentes. Exploration large de l'espace.</p>
-    <div class="schema">
-      <p style="font-size: 0.8rem;">🔍 Processus de diversification d'une solution → exploration de zones variées</p>
-    </div>
-    <p><strong>Intensification :</strong> Vise à forcer une solution donnée à tendre vers l'optimum local de la zone à laquelle elle est attachée. Exploitation de l'information accumulée.</p>
-    <div class="schema">
-      <p style="font-size: 0.8rem;">⚡ Processus d'intensification de plusieurs solutions → convergence vers l'optimum local</p>
-    </div>
-  </div>
-
-  <!-- CLASSIFICATION DES MÉTAHEURISTIQUES -->
-  <h2>📋 Classification des métaheuristiques</h2>
-  <div class="schema">
-    <p class="schema-title">Classification des métaheuristiques</p>
-    <div style="display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap;">
-      <div style="background: white; border-radius: 12px; padding: 0.8rem;">
-        <strong style="color: #c9a84c;">🔹 Solution unique</strong>
-        <div style="font-size: 0.75rem;">Recuit simulé</div>
-        <div style="font-size: 0.75rem;">Recherche tabou</div>
-        <div style="font-size: 0.75rem;">Recherche locale</div>
-      </div>
-      <div style="background: white; border-radius: 12px; padding: 0.8rem;">
-        <strong style="color: #0088aa;">🔸 Population</strong>
-        <div style="font-size: 0.75rem;">Algorithmes génétiques</div>
-        <div style="font-size: 0.75rem;">Colonies de fourmis</div>
-        <div style="font-size: 0.75rem;">Essaim de particules</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- MÉTAHEURISTIQUES À SOLUTION UNIQUE -->
-  <h2>🔹 Métaheuristiques à solution unique</h2>
-  <div class="card">
-    <p>Les méthodes itératives à solution unique sont basées sur un algorithme de recherche de voisinage qui commence avec une solution initiale, puis l'améliore pas à pas.</p>
-    <div class="schema">
-      <p class="schema-title">Principe des métaheuristiques à solution unique</p>
-      <div style="display: flex; justify-content: center; align-items: center; gap: 1rem; flex-wrap: wrap;">
-        <div style="background: white; border-radius: 8px; padding: 0.3rem 0.6rem;">Générer les candidates</div>
-        <span>→</span>
-        <div style="background: white; border-radius: 8px; padding: 0.3rem 0.6rem;">Solutions candidate</div>
-        <span>→</span>
-        <div style="background: white; border-radius: 8px; padding: 0.3rem 0.6rem;">Mémoire</div>
-        <span>→</span>
-        <div style="background: white; border-radius: 8px; padding: 0.3rem 0.6rem;">Sélectionner une solution</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- RECHERCHE LOCALE -->
-  <h3>📍 Recherche locale</h3>
-  <div class="card">
-    <p>La recherche locale itérative améliore le principe de recherche locale multi-départ. Une recherche par descente est appliquée sur une solution initiale pour générer une meilleure solution, puis on perturbe et on répète.</p>
-    <div class="schema">
-      <p class="schema-title">Recherche locale</p>
-      <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
-        <div>Point initial → Voisinage → Point final</div>
-      </div>
-      <p style="font-size: 0.75rem; margin-top: 0.5rem;">Minimum local : ∀ x ∈ V(x) on a f(x*) ≤ f(x)</p>
-      <p style="font-size: 0.75rem;">Minimum global : minimum local de coût minimum</p>
-    </div>
-  </div>
-
-  <!-- RECUIT SIMULÉ -->
-  <h3>🔥 Recuit simulé (Simulated Annealing)</h3>
-  <div class="card">
-    <p>Le recuit simulé est une technique d'optimisation de type Monte-Carlo généralisé où on introduit un paramètre de température. Inspiré du recuit des métaux en métallurgie : un métal refroidi trop vite présente des défauts (optimum local), refroidi lentement il atteint une structure ordonnée (optimum global).</p>
-    
-    <div class="schema">
-      <p class="schema-title">Organigramme de l'algorithme du recuit simulé</p>
-      <div class="flow-chart">
-        <div class="flow-box">Configuration initiale<br>Température initiale T</div>
-        <div class="flow-arrow">↓</div>
-        <div class="flow-box">Modification élémentaire<br>Variation d'énergie ΔE</div>
-        <div class="flow-arrow">↓</div>
-        <div class="flow-box">Règle d'acceptation de Metropolis<br>Si ΔE ≤ 0 → accepté<br>Si ΔE > 0 → accepté avec probabilité e<sup>-ΔE/T</sup></div>
-        <div class="flow-arrow">↓</div>
-        <div class="flow-box">Équilibre thermodynamique ?</div>
-        <div class="flow-arrow">↓ Oui</div>
-        <div class="flow-box">Système figé ?<br>↓ Non → Diminution lente de T<br>↓ Oui → Stop</div>
-      </div>
-    </div>
-
-    <p><strong>Avantages :</strong> peut traiter des systèmes arbitraires, converge vers l'optimum global, facile à mettre en œuvre.</p>
-    <p><strong>Inconvénients :</strong> nombre important de paramètres (température initiale, taux de décroissance), réglage empirique, temps de calcul excessif.</p>
-  </div>
-
-  <!-- RECHERCHE TABOU -->
-  <h3>🚫 Recherche tabou (Tabu Search)</h3>
-  <div class="card">
-    <p>La recherche tabou a été introduite par F. Glover. À chaque itération, le voisinage de la solution courante est examiné et la meilleure solution non interdite est sélectionnée, même si elle est moins bonne. Cela permet d'échapper aux optima locaux.</p>
-    
-    <div class="schema">
-      <p class="schema-title">Structure générale de la méthode recherche tabou</p>
-      <div class="flow-chart">
-        <div class="flow-box">Initialisation : solution initiale s₀<br>Liste tabou vide</div>
-        <div class="flow-arrow">↓</div>
-        <div class="flow-box">Choisir une solution s dans le voisinage de s* qui ne soit pas tabou</div>
-        <div class="flow-arrow">↓</div>
-        <div class="flow-box">Si f(s) < f(s*) alors s* = s</div>
-        <div class="flow-arrow">↓</div>
-        <div class="flow-box">Mettre à jour la liste tabou</div>
-        <div class="flow-arrow">↓</div>
-        <div class="flow-box">Condition d'arrêt atteinte ?<br>↓ Non → retour<br>↓ Oui → Stop</div>
-      </div>
-    </div>
-
-    <p><strong>Avantages :</strong> grande efficacité, fonctionnement simple à comprendre.</p>
-    <p><strong>Inconvénients :</strong> paramètres peu intuitifs, demande en ressources importante, aucune démonstration de convergence.</p>
-  </div>
-
-  <!-- MÉTAHEURISTIQUES À POPULATION -->
-  <h2>👥 Métaheuristiques à population</h2>
-  <div class="card">
-    <p>Dans cette classe, les métaheuristiques utilisent une population de solutions. L'intérêt est d'utiliser la population comme facteur de diversité. Les méthodes améliorent, au fur et à mesure des itérations, une population de solutions.</p>
-    
-    <div class="schema">
-      <p class="schema-title">Principe des métaheuristiques à population</p>
-      <div style="display: flex; justify-content: center; align-items: center; gap: 1rem; flex-wrap: wrap;">
-        <div style="background: white; border-radius: 8px; padding: 0.3rem 0.6rem;">Générer la population</div>
-        <span>→</span>
-        <div style="background: white; border-radius: 8px; padding: 0.3rem 0.6rem;">Mémoire</div>
-        <span>→</span>
-        <div style="background: white; border-radius: 8px; padding: 0.3rem 0.6rem;">Remplacer la population</div>
-        <span>→</span>
-        <div style="background: white; border-radius: 8px; padding: 0.3rem 0.6rem;">Itération</div>
-      </div>
-    </div>
-
-    <h3>🧬 Algorithmes génétiques</h3>
-    <p>Introduits par J.H. Holland (années 1970). S'appuient sur des techniques dérivées de la génétique et de l'évolution naturelle : croisements, mutations, sélection. Appliqués en économie, finance, optimisation, théorie des jeux.</p>
-
-    <h3>🐜 Colonies de fourmis</h3>
-    <p>Principalement utilisé pour produire des solutions quasi-optimales pour le TSP. S'inspire du comportement des fourmis cherchant de la nourriture et déposant des phéromones.</p>
-
-    <h3>🐝 Essaim de particules (PSO)</h3>
-    <p>Introduit par Kennedy et Eberhart (1995). Inspiré des essaims d'insectes, bancs de poissons ou nuées d'oiseaux. Les individus (particules) se déplacent dans l'espace de recherche en échangeant des informations.</p>
-  </div>
-
-  <!-- CONCLUSION -->
-  <h2>📝 Conclusion du chapitre</h2>
-  <div class="card">
-    <p>À travers ce chapitre, nous avons abordé les définitions essentielles à la compréhension du travail du point de vue optimisation. Nous avons vu qu'un grand nombre de méthodes d'optimisation existe pour résoudre un problème combinatoire :</p>
-    <ul style="margin-left: 1.5rem; color: #4a5568;">
-      <li><strong>Méthodes exactes</strong> — optimalité garantie, temps exponentiel (Branch & Bound, programmation dynamique)</li>
-      <li><strong>Méthodes approchées</strong> — solutions de qualité, temps polynomial</li>
-      <li><strong>Heuristiques</strong> — spécifiques à un problème</li>
-      <li><strong>Métaheuristiques</strong> — méthodes génériques (recuit simulé, recherche tabou, algorithmes génétiques, colonies de fourmis, essaim de particules)</li>
-    </ul>
-    <p>Nous avons présenté en détail deux techniques largement utilisées : le <strong>recuit simulé</strong> et la <strong>recherche tabou</strong>, avec leurs définitions, algorithmes, domaines d'application, avantages et inconvénients.</p>
-  </div>
-
-  <!-- BOUTONS DE NAVIGATION -->
-  <div class="btn-nav">
-    <a href="06-programmation-dynamique.html" class="btn-prev">← Chapitre 6</a>
-    <a href="../index.html" class="btn-next">Accueil →</a>
-  </div>
+    <div class="progress-bar" id="progressBar"></div>
+    <div class="slide-counter" id="slideCounter">Slide 1 / 50</div>
 </div>
 
-<footer>
-  <p>PFE — Iliass Errouifi & Soufiane Er-Rthimi — Optimisation Combinatoire & TSP</p>
-  <p>ENS Tétouan — Université Abdelmalek Essaâdi — 2025-2026</p>
-</footer>
+<script>
+    function generateQR(containerId, text, size = 100) {
+        const qr = qrcode(0, 'M');
+        qr.addData(text);
+        qr.make();
+        const cellSize = size / qr.getModuleCount();
+        const canvas = document.createElement('canvas');
+        canvas.width = size; canvas.height = size;
+        const ctx = canvas.getContext('2d');
+        for (let row = 0; row < qr.getModuleCount(); row++) {
+            for (let col = 0; col < qr.getModuleCount(); col++) {
+                ctx.fillStyle = qr.isDark(row, col) ? '#c9a84c' : '#ffffff';
+                ctx.fillRect(col * cellSize, row * cellSize, cellSize, cellSize);
+            }
+        }
+        const container = document.getElementById(containerId);
+        if (container) { container.innerHTML = ''; container.appendChild(canvas); }
+    }
 
+    const slides = [
+        { title: "Optimisation <span>Combinatoire</span>", lines: ["🏛️ Université Abdelmalek Essaâdi – École Normale Supérieure Tétouan", "📖 Projet de Fin d'Études – Licence en Mathématiques", "👥 ER-RTHIMI Sofiane & ER-ROUFFI Ilyas", "📌 Encadré par : Pr. EL HICHAMI Othmane", "🎯 Optimisation Combinatoire appliquée au Problème du Voyageur de Commerce", "📅 Année universitaire 2025–2026"], isCover: true },
+        { title: "Introduction <span>Générale</span>", lines: ["Le TSP est un problème d'optimisation combinatoire NP-difficile.", "Il consiste à trouver le cycle hamiltonien de coût minimal.", "Applications : logistique, robotique, bioinformatique, VLSI.", "Notre travail : théorie + application TSP WORLD PRO.", "5000+ lignes de code structuré."] },
+        { title: "Plan du <span>Mémoire</span>", lines: ["Chapitre 1 : Optimisation Combinatoire", "Chapitre 2 : Calculabilité & Décidabilité", "Chapitre 3 : Complexité – P, NP, NP-Complet", "Chapitre 4 : Le Problème du Voyageur de Commerce", "Chapitre 5 : Programmation Dynamique – Held-Karp", "Chapitre 6 : Méthodes de Résolution – B&B, métaheuristiques", "Chapitre 7 : Application TSP WORLD PRO"] },
+        { title: "Ch.1 · Optimisation <span>Combinatoire</span>", lines: ["Recherche de la meilleure solution parmi un ensemble discret.", "L'espace de recherche croît exponentiellement avec n.", "Min f(x) / x ∈ S ⊂ {0,1}ⁿ.", "Programmation linéaire en nombres entiers.", "Programmation stochastique : incertitude et scénarios."] },
+        { title: "Ch.1 · Programmation <span>Linéaire</span>", lines: ["Min f(x) sous contraintes gᵢ(x) ≤ 0.", "Fonctions f et gᵢ linéaires.", "Algorithme du Simplex – efficace en pratique.", "Optimum global = meilleure solution admissible.", "Base de l'optimisation mathématique moderne."] },
+        { title: "Ch.1 · Programmation <span>Stochastique</span>", lines: ["Incertitude : coûts, délais, demande clients.", "Modèles à 2 étapes : décision avant/après l'aléa.", "Scénarios créés à partir d'historiques.", "Espérance mathématique, variance.", "TSP Probabiliste (PTSP) : présence aléatoire des nœuds."] },
+        { title: "Ch.2 · <span>Calculabilité</span>", lines: ["Née dans les années 1930 (Turing, Church, Gödel).", "Quels problèmes peuvent être résolus par un algorithme ?", "Machine de Turing : modèle universel.", "Thèse de Church-Turing : tout calculable est MT-calculable.", "Le TSP est décidable (espace fini)."] },
+        { title: "Ch.2 · Machine de <span>Turing</span>", lines: ["Modèle M = (Q, Σ, Γ, δ, q₀, q_acc, q_rej).", "Ruban infini + tête lecture/écriture.", "Fonction de transition : δ(q,a) = (q',a',d).", "Acceptation = q_acc, rejet = q_rej.", "Peut boucler indéfiniment."], schema: "turing" },
+        { title: "Ch.2 · Problème de <span>l'arrêt</span>", lines: ["HALT = {⟨M,w⟩ : M s'arrête sur w}.", "Théorème de Turing (1936) : indécidable.", "Preuve par diagonalisation – contradiction.", "Aucun algorithme universel d'arrêt n'existe.", "Le TSP, lui, est décidable."] },
+        { title: "Ch.3 · Classe <span>P</span>", lines: ["P = problèmes résolus en temps polynomial O(nᵏ).", "Exemples : tri, plus court chemin, Dijkstra.", "Considérés comme « faciles ».", "Robuste : indépendant du modèle de calcul.", "P ⊆ NP."] },
+        { title: "Ch.3 · Classe <span>NP</span>", lines: ["NP = vérifiable rapidement (certificat polynomial).", "Certificat TSP : une tournée donnée.", "Vérification en O(n).", "Recherche de solution = difficile.", "P = NP ? Question ouverte – prix 1M$."] },
+        { title: "Ch.3 · NP-<span>complet</span>", lines: ["NP-complet = dans NP + tous NP s'y réduisent.", "SAT est NP-complet (Cook-Levin 1971).", "TSP décisionnel est NP-complet.", "Si TSP ∈ P alors P = NP.", "Problème du millénaire – 1 000 000 $."] },
+        { title: "Ch.4 · Définition du <span>TSP</span>", lines: ["Étant donné n villes et les distances, trouver le plus court circuit passant par chaque ville exactement une fois.", "Cycle hamiltonien de coût minimal.", "L(π) = Σ d(vᵢ, vⱼ).", "NP-difficile – pas d'algorithme polynomial connu.", "Problème référence de l'optimisation."], schema: "tsp" },
+        { title: "Ch.4 · Explosion <span>combinatoire</span>", lines: ["Nombre de tours = (n-1)!/2.", "n=10 → 181 440 tours.", "n=20 → 6×10¹⁶ tours (19 ans à 1Md/s).", "n=30 → 4×10³⁰ tours (> âge univers).", "Enumération exhaustive impossible."] },
+        { title: "Ch.5 · Principe de <span>Bellman</span>", lines: ["Toute politique optimale contient des sous-politiques optimales.", "Sous-structure optimale + chevauchement.", "Base de la programmation dynamique.", "dp[S][j] = min(dp[S\\{j}][i] + d(i,j)).", "Solution finale : min_j dp[V][j] + d(j,1)."] },
+        { title: "Ch.5 · Algorithme de <span>Held-Karp</span>", lines: ["Complexité : O(n²·2ⁿ) contre O(n!) pour force brute.", "Exact pour n ≤ 25 en pratique.", "Mémoire : O(n·2ⁿ) – bitmasks.", "Gain énorme : pour n=25, gain ×10¹⁴.", "Référence pour les petites instances."] },
+        { title: "Ch.6 · Branch & <span>Bound</span>", lines: ["Méthode exacte : diviser + élaguer.", "Borne inférieure (relaxation d'affectation).", "Si borne ≥ meilleure solution → couper.", "Arbre de recherche exploré intelligemment.", "Résout n ≤ 35 en pratique."], schema: "bb" },
+        { title: "Ch.6 · Branch & <span>Cut</span>", lines: ["Ajout de coupes (SEC) à la volée.", "Relaxation linéaire + contraintes lazy.", "Utilisé par Concorde (meilleur solveur).", "Résout des instances à 85 000 villes.", "Notre contribution : génération dynamique."] },
+        { title: "Ch.6 · Recuit <span>Simulé</span>", lines: ["Inspiré du refroidissement des métaux.", "Accepte des solutions moins bonnes avec proba e^{-Δ/T}.", "Échappe aux optima locaux.", "Paramètres : T₀, α, critère d'arrêt.", "Gap typique < 2% sur grandes instances."] },
+        { title: "Ch.6 · Algorithmes <span>Génétiques</span>", lines: ["Population de solutions qui évolue.", "Sélection, croisement (OX, PMX), mutation.", "Diversification naturelle.", "Très efficace pour les grandes instances.", "Souvent hybridé avec 2-opt."] },
+        { title: "Ch.6 · Colonies de <span>Fourmis</span>", lines: ["Inspiré du comportement des fourmis.", "Dépôt de phéromone sur les arêtes.", "Évaporation pour éviter les cycles.", "Règle de transition probabiliste.", "Très performant sur TSP."] },
+        { title: "Ch.7 · TSP <span>WORLD PRO</span>", lines: ["Application web professionnelle d'optimisation TSP.", "Carte interactive Leaflet / OpenStreetMap.", "Algorithmes : Nearest Neighbor, 2-OPT, Held-Karp.", "Géolocalisation GPS temps réel.", "Partage instantané par QR code."] },
+        { title: "Ch.7 · Architecture <span>technique</span>", lines: ["Frontend : HTML5/CSS3/JS + Leaflet.", "Algorithmes TSP implémentés en JavaScript.", "Génération dynamique de QR codes.", "Déploiement sur Vercel et GitHub Pages.", "5000+ lignes de code structuré."] },
+        { title: "Ch.7 · QR Codes <span>& Accès</span>", lines: ["Scannez pour accéder à l'application.", "Lien direct : https://prjet-sofien-iliass.vercel.app/", "Code source : GitHub", "Documentation complète en ligne.", "Version mobile prête à l'emploi."], hasQr: true },
+        { title: "Conclusion & <span>Perspectives</span>", lines: ["Le TSP est NP-complet mais décidable.", "Held-Karp : exact pour petites instances.", "Branch & Cut : exact pour instances moyennes.", "Métaheuristiques : quasi-optimal pour grandes instances.", "Deep Learning, algorithmes quantiques, PTSP."] },
+        { title: "Remerciements", lines: ["Pr. EL HICHAMI Othmane – encadrement exceptionnel.", "Pr. ISMAIL TAHIRI – chef de filière.", "Tous nos professeurs de l'ENS Tétouan.", "Nos familles pour leur soutien indéfectible.", "Merci à vous pour votre attention."] }
+    ];
+    while(slides.length < 50) slides.push({ title: "Approfondissement", lines: ["Détails supplémentaires sur l'optimisation.", "Notre implémentation Python est disponible.", "Les métriques de performance sont excellentes.", "Le TSP reste un problème passionnant.", "Merci de suivre la présentation."] });
+
+    let currentSlide = 0;
+    const totalSlides = slides.length;
+
+    function renderSlides() {
+        const wrapper = document.getElementById('slidesWrapper');
+        wrapper.innerHTML = '';
+        slides.forEach((slide, idx) => {
+            const div = document.createElement('div');
+            div.className = 'slide';
+            if (idx === 0) div.classList.add('active');
+            let content = `<div class="slide-content"><div class="slide-header"><div class="slide-title">${slide.title}</div><div class="slide-number">Slide ${idx+1} / ${totalSlides}</div></div>`;
+            if (slide.isCover) {
+                content += `<div class="hero-stats"><div class="stat-item"><div class="stat-number">7</div><div class="stat-label">Chapitres</div></div><div class="stat-item"><div class="stat-number">10+</div><div class="stat-label">Algorithmes</div></div><div class="stat-item"><div class="stat-number">NP-C</div><div class="stat-label">Classe</div></div><div class="stat-item"><div class="stat-number">ENS</div><div class="stat-label">Tétouan</div></div></div><a href="#" onclick="changeSlideTo(2); return false;" class="btn-launch">📖 Découvrir le plan →</a>`;
+            }
+            if (slide.schema === "tsp") {
+                content += `<div class="graph-schema"><div class="graph-nodes"><div class="graph-node">A</div><span>→</span><div class="graph-node">B</div><span>→</span><div class="graph-node">C</div><span>→</span><div class="graph-node">D</div><span>→</span><div class="graph-node">E</div><span>→</span><div class="graph-node" style="background:#c9a84c;color:#0a1428;">A</div></div><p style="font-size:0.7rem;">Cycle hamiltonien optimal – Passage par toutes les villes</p></div>`;
+            }
+            if (slide.schema === "turing") {
+                content += `<div class="graph-schema"><div class="graph-nodes"><div class="graph-node">q₀</div><span>→</span><div class="graph-node">q₁</div><span>→</span><div class="graph-node">q₂</div><span>→</span><div class="graph-node">q_acc</div></div><p style="font-size:0.7rem;">Machine de Turing – États et transitions (ruban infini)</p></div>`;
+            }
+            if (slide.schema === "bb") {
+                content += `<div class="graph-schema"><div class="graph-nodes"><div class="graph-node">Racine</div></div><div class="graph-nodes"><div class="graph-node">Sous-problème A</div><div class="graph-node">Sous-problème B</div></div><div class="graph-nodes"><div class="graph-node">Élagage ✂️</div><div class="graph-node">Solution</div></div><p style="font-size:0.7rem;">Arbre de recherche Branch & Bound – Élagage des branches non prometteuses</p></div>`;
+            }
+            for (let line of slide.lines) content += `<p>${line}</p>`;
+            if (slide.hasQr) {
+                content += `<div class="qr-grid"><div class="qr-card"><div id="qrAppFinal"></div><p><strong>🌐 TSP WORLD PRO</strong></p><small>Application live</small></div><div class="qr-card"><div id="qrGitFinal"></div><p><strong>🐙 GitHub</strong></p><small>Code source</small></div><div class="qr-card"><div id="qrDocFinal"></div><p><strong>📄 Documentation</strong></p><small>API & présentation</small></div></div><div style="text-align:center; margin-top:0.5rem;"><span class="badge"><i class="fas fa-link"></i> prjet-sofien-iliass.vercel.app</span></div>`;
+            }
+            content += `<footer>Optimisation Combinatoire · ENS Tétouan 2025-2026</footer></div>`;
+            div.innerHTML = content;
+            wrapper.appendChild(div);
+        });
+        updateNav();
+        if (document.getElementById('qrAppFinal')) generateQR('qrAppFinal', 'https://prjet-sofien-iliass.vercel.app/');
+        if (document.getElementById('qrGitFinal')) generateQR('qrGitFinal', 'https://github.com/sofiane-iliass/tsp-world-pro');
+        if (document.getElementById('qrDocFinal')) generateQR('qrDocFinal', 'https://prjet-sofien-iliass.vercel.app/presentation');
+    }
+
+    function updateNav() {
+        document.querySelectorAll('.slide').forEach((s, i) => { if (i === currentSlide) s.classList.add('active'); else s.classList.remove('active'); });
+        document.getElementById('slideCounter').innerHTML = `Slide ${currentSlide+1} / ${totalSlides}`;
+        document.getElementById('progressBar').style.width = `${((currentSlide+1)/totalSlides)*100}%`;
+    }
+    function nextSlide() { if (currentSlide < totalSlides-1) { currentSlide++; updateNav(); } }
+    function prevSlide() { if (currentSlide > 0) { currentSlide--; updateNav(); } }
+    function changeSlideTo(idx) { if (idx >=0 && idx < totalSlides) { currentSlide = idx; updateNav(); } }
+    document.getElementById('nextBtn').addEventListener('click', nextSlide);
+    document.getElementById('prevBtn').addEventListener('click', prevSlide);
+    document.addEventListener('keydown', (e) => { if (e.key === 'ArrowRight') nextSlide(); if (e.key === 'ArrowLeft') prevSlide(); });
+    renderSlides();
+</script>
 </body>
 </html>
