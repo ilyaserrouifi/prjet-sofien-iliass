@@ -3,463 +3,182 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PFE | Optimisation Combinatoire & TSP | Iliass & Soufiane</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;900&family=Raleway:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+  <title>Slides PFE | Optimisation Combinatoire & TSP</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;800;900&family=Raleway:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --navy: #10243a;
+      --teal: #0f9fa8;
+      --gold: #c9a84c;
+      --paper: #fbfaf7;
+      --ink: #17243a;
+      --muted: #64748b;
+      --line: #dfe8ef;
+    }
+    html, body { height: 100%; overflow: hidden; }
     body {
       font-family: 'Raleway', sans-serif;
-      background: linear-gradient(135deg, #f5f7fb 0%, #eef2f8 100%);
-      color: #1a2a3a;
-      overflow-x: hidden;
+      color: var(--ink);
+      background:
+        linear-gradient(rgba(15,159,168,0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(15,159,168,0.06) 1px, transparent 1px),
+        #f5f8fb;
+      background-size: 36px 36px;
     }
-    html { scroll-behavior: smooth; }
-    ::-webkit-scrollbar { width: 5px; }
-    ::-webkit-scrollbar-track { background: #e0e5ec; }
-    ::-webkit-scrollbar-thumb { background: #c9a84c; border-radius: 10px; }
-
-    .navbar {
-      position: fixed; top: 0; width: 100%; padding: 1rem 3rem;
-      background: rgba(255, 255, 255, 0.96); backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(0, 0, 0, 0.06); z-index: 1000;
-      display: flex; justify-content: space-between; align-items: center;
-      box-shadow: 0 2px 20px rgba(0,0,0,0.02);
+    .topbar {
+      position: fixed; top: 12px; right: 24px; z-index: 30;
+      display: flex; gap: 10px; align-items: center; flex-wrap: wrap;
     }
-    .logo { 
-      font-family: 'Cinzel', serif; 
-      font-size: 1.2rem; 
-      font-weight: 700; 
-      letter-spacing: 4px; 
-      color: #c9a84c; 
-      text-decoration: none; 
+    .topbar button, .topbar a {
+      border: none; background: rgba(255,255,255,0.92); color: var(--ink);
+      padding: 0.55rem 1rem; border-radius: 999px; cursor: pointer;
+      font-family: 'Cinzel', serif; font-weight: 800; font-size: 0.68rem;
+      text-decoration: none; box-shadow: 0 8px 25px rgba(16,36,58,0.10);
+      transition: 0.25s ease;
     }
-    .logo span { color: #0088aa; }
-    .nav-links { display: flex; gap: 2rem; list-style: none; }
-    .nav-links a { color: #4a5568; text-decoration: none; font-size: 0.7rem; letter-spacing: 2px; text-transform: uppercase; transition: 0.3s; font-weight: 600; }
-    .nav-links a:hover { color: #c9a84c; }
-
-    .hero {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 8rem 2rem 4rem;
-      position: relative;
+    .topbar button:hover, .topbar a:hover, .topbar .active { color: white; background: linear-gradient(135deg, var(--gold), var(--teal)); }
+    .deck { height: 100vh; padding: 2.1rem 2.4rem 4.5rem; display: grid; place-items: center; }
+    .slide {
+      width: min(1180px, 94vw); height: min(620px, 82vh); display: grid;
+      grid-template-columns: 36% 64%; background: rgba(255,255,255,0.96);
+      border-radius: 28px; overflow: hidden; box-shadow: 0 25px 70px rgba(16,36,58,0.16);
+      border: 1px solid rgba(223,232,239,0.85); position: relative;
     }
-    .hero-content {
-      max-width: 1200px;
-      margin: 0 auto;
-      text-align: center;
-      z-index: 2;
+    .panel {
+      background: radial-gradient(circle at 80% 0%, rgba(255,255,255,0.18), transparent 36%), linear-gradient(160deg, #10243a 0%, #126b7e 56%, #11a6aa 100%);
+      color: white; padding: 4.4rem 3rem; display: flex; flex-direction: column; justify-content: center; position: relative; overflow: hidden;
     }
-    
-    .uni-block {
-      margin-bottom: 1.5rem;
-    }
-    .uni-block .university {
-      font-size: 1rem;
-      font-weight: 600;
-      color: #c9a84c;
-      margin-bottom: 0.2rem;
-    }
-    .uni-block .school {
-      font-size: 0.9rem;
-      font-weight: 500;
-      color: #0088aa;
-    }
-    
-    .hero-title-main {
-      font-family: 'Cinzel', serif;
-      font-size: clamp(1.6rem, 4vw, 2.5rem);
-      font-weight: 800;
-      color: #1a2a3a;
-      margin-bottom: 0.5rem;
-    }
-    .hero-title-main .gold { color: #c9a84c; }
-    .hero-title-second {
-      font-family: 'Cinzel', serif;
-      font-size: clamp(1.3rem, 3.5vw, 2rem);
-      font-weight: 700;
-      color: #0088aa;
-      margin-bottom: 1.5rem;
-      border-bottom: 2px solid rgba(0,136,170,0.15);
-      display: inline-block;
-      padding-bottom: 0.3rem;
-    }
-    .pfe-badge {
-      background: rgba(201,168,76,0.12);
-      border: 1px solid rgba(201,168,76,0.3);
-      border-radius: 50px;
-      padding: 0.3rem 1rem;
-      font-size: 0.65rem;
-      letter-spacing: 2px;
-      color: #c9a84c;
-      margin: 1rem 0;
-      display: inline-block;
-      font-weight: 600;
-    }
-    .authors {
-      background: linear-gradient(135deg, #f8fafc, #ffffff);
-      border-radius: 16px;
-      padding: 1.2rem;
-      margin: 1rem auto;
-      border: 1px solid #e2e8f0;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.02);
-      max-width: 500px;
-    }
-    .authors p {
-      margin: 0.3rem 0;
-      font-size: 0.9rem;
-    }
-    .authors strong {
-      color: #c9a84c;
-      font-weight: 700;
-    }
-    .supervisor {
-      color: #4a5568;
-      font-size: 0.8rem;
-      margin-top: 0.4rem;
-      padding-top: 0.4rem;
-      border-top: 1px dashed #e2e8f0;
-    }
-    .supervisor span {
-      color: #0088aa;
-      font-weight: 700;
-    }
-    .uni-year {
-      margin-top: 0.8rem;
-      font-size: 0.7rem;
-      color: #718096;
-    }
-    .hero-stats {
-      display: flex;
-      justify-content: center;
-      gap: 2rem;
-      margin-top: 1.5rem;
-      flex-wrap: wrap;
-    }
-    .stat-item { text-align: center; }
-    .stat-number { font-family: 'Cinzel', serif; font-size: 1.6rem; font-weight: 800; color: #c9a84c; }
-    .stat-label { font-size: 0.65rem; color: #718096; text-transform: uppercase; letter-spacing: 1px; font-weight: 600; }
-    .btn-launch {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 0.8rem 2rem;
-      background: linear-gradient(135deg, #c9a84c, #0088aa);
-      border: none;
-      border-radius: 50px;
-      color: white;
-      font-family: 'Cinzel', serif;
-      font-size: 0.8rem;
-      font-weight: 700;
-      letter-spacing: 2px;
-      text-decoration: none;
-      transition: 0.3s;
-      margin-top: 1.5rem;
-      box-shadow: 0 4px 12px rgba(0,136,170,0.2);
-    }
-    .btn-launch:hover { transform: scale(1.02); box-shadow: 0 8px 20px rgba(0,136,170,0.3); }
-
-    .section { padding: 70px 5%; }
-    .section-header { text-align: center; margin-bottom: 2.5rem; }
-    .section-header h2 { font-family: 'Cinzel', serif; font-size: 1.8rem; font-weight: 700; color: #1a2a3a; }
-    .section-header h2 span { color: #c9a84c; }
-    .section-line { width: 50px; height: 2px; background: linear-gradient(90deg, #c9a84c, #0088aa); margin: 0.8rem auto 0; }
-    .section-bg { background: #ffffff; border-top: 1px solid #e2e8f0; border-bottom: 1px solid #e2e8f0; }
-
-    .toc-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.5rem;
-      max-width: 1000px;
-      margin: 0 auto;
-    }
-    .toc-card {
-      background: white;
-      border: 1px solid #e2e8f0;
-      border-radius: 18px;
-      padding: 1.2rem 1.5rem;
-      transition: 0.3s;
-      text-decoration: none;
-      color: inherit;
-      display: block;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.02);
-    }
-    .toc-card:hover { border-color: #c9a84c; transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
-    .toc-num { font-family: 'Cinzel', serif; font-size: 1.5rem; font-weight: 800; color: #c9a84c; opacity: 0.4; margin-bottom: 0.3rem; }
-    .toc-card h3 { font-family: 'Cinzel', serif; font-size: 1rem; margin-bottom: 0.4rem; color: #1a2a3a; }
-    .toc-card p { font-size: 0.7rem; color: #718096; line-height: 1.5; }
-    .app-badge {
-      display: inline-block;
-      background: linear-gradient(135deg, #c9a84c, #0088aa);
-      color: white;
-      font-size: 0.55rem;
-      padding: 0.2rem 0.7rem;
-      border-radius: 30px;
-      margin-top: 0.5rem;
-      font-weight: 600;
-    }
-
-    /* QR Section */
-    .qr-section {
-      display: flex;
-      justify-content: center;
-      gap: 2rem;
-      flex-wrap: wrap;
-      margin: 2rem 0;
-      padding: 1rem;
-    }
-    .qr-card {
-      background: white;
-      border: 1px solid #e2e8f0;
-      border-radius: 20px;
-      padding: 1.5rem;
-      text-align: center;
-      width: 260px;
-      transition: 0.3s;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.02);
-    }
-    .qr-card:hover {
-      border-color: #c9a84c;
-      transform: translateY(-5px);
-      box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-    }
-    .qr-card h4 {
-      font-family: 'Cinzel', serif;
-      font-size: 0.9rem;
-      margin-bottom: 0.5rem;
-      color: #1a2a3a;
-    }
-    .qr-card p {
-      font-size: 0.65rem;
-      color: #718096;
-      margin-top: 0.5rem;
-      word-break: break-all;
-    }
-    .qrcode-container {
-      display: flex;
-      justify-content: center;
-      margin: 0.5rem 0;
-    }
-    .qrcode-container canvas,
-    .qrcode-container img {
-      border-radius: 12px;
-      background: white;
-      padding: 4px;
-      border: 1px solid #e2e8f0;
-    }
-
-    footer {
-      text-align: center;
-      padding: 2rem;
-      border-top: 1px solid #e2e8f0;
-      background: #ffffff;
-    }
-    .footer-logo { font-family: 'Cinzel', serif; font-size: 1rem; color: #c9a84c; margin-bottom: 0.3rem; }
-    .footer-logo span { color: #0088aa; }
-    footer p { color: #718096; font-size: 0.65rem; }
-
-    @media (max-width: 768px) {
-      .navbar { padding: 1rem; }
-      .nav-links { gap: 1rem; }
-      .nav-links a { font-size: 0.5rem; }
-      .hero { padding: 7rem 1rem 3rem; }
-      .section { padding: 40px 1.2rem; }
-      .authors { padding: 1rem; }
-      .authors p { font-size: 0.8rem; }
-      .qr-section { gap: 1rem; }
-      .qr-card { width: 220px; padding: 1rem; }
+    .panel::before { content: ''; position: absolute; width: 390px; height: 390px; border: 2px solid rgba(255,255,255,0.10); border-radius: 50%; top: -115px; right: -125px; }
+    .badge { align-self: flex-start; border: 1px solid rgba(255,255,255,0.35); border-radius: 999px; padding: 0.34rem 1rem; letter-spacing: 0.28rem; color: #f6d86d; font-weight: 800; font-size: 0.64rem; margin-bottom: 1.7rem; }
+    .panel h1 { font-family: 'Cinzel', serif; font-size: clamp(2rem, 4vw, 3.35rem); line-height: 0.98; color: #07182d; text-shadow: 0 1px 0 rgba(255,255,255,0.18); text-transform: uppercase; }
+    .panel h1 .gold { color: var(--gold); display: block; }
+    .panel p { margin-top: 1.6rem; max-width: 320px; color: rgba(255,255,255,0.88); font-size: 1rem; line-height: 1.55; }
+    .content { padding: 4.2rem 4rem; position: relative; display: flex; flex-direction: column; justify-content: center; }
+    .number { position: absolute; top: 1.4rem; right: 2.2rem; font-family: 'Cinzel', serif; font-size: 4.2rem; color: rgba(201,168,76,0.13); font-weight: 900; }
+    .tag { display: inline-block; color: var(--gold); border: 1px solid rgba(201,168,76,0.4); border-radius: 999px; padding: 0.3rem 0.9rem; font-size: 0.65rem; letter-spacing: 0.22rem; font-weight: 800; text-transform: uppercase; margin-bottom: 1rem; }
+    .content h2 { font-family: 'Cinzel', serif; color: var(--navy); font-size: clamp(1.55rem, 2.8vw, 2.45rem); line-height: 1.08; text-transform: uppercase; padding-bottom: 1rem; border-bottom: 2px solid var(--line); max-width: 760px; }
+    .content p { margin-top: 1.25rem; color: #3f4c61; line-height: 1.75; font-size: 1.02rem; max-width: 760px; }
+    .content ul { margin-top: 1.15rem; padding-left: 1.15rem; color: #3f4c61; line-height: 1.7; font-size: 1rem; max-width: 790px; }
+    .content li { margin-bottom: 0.45rem; }
+    .grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 0.8rem; margin-top: 1.25rem; }
+    .card { background: #f7fafc; border: 1px solid var(--line); border-radius: 16px; padding: 1rem; }
+    .card strong { color: var(--teal); display: block; margin-bottom: 0.3rem; font-family: 'Cinzel', serif; }
+    .formula { margin-top: 1.1rem; background: #eef5f8; border-left: 5px solid var(--teal); padding: 1rem 1.2rem; border-radius: 0 14px 14px 0; font-weight: 700; color: var(--navy); }
+    .controls { position: fixed; left: 2rem; right: 2rem; bottom: 1.2rem; display: grid; grid-template-columns: 190px 1fr 190px; gap: 1.5rem; align-items: center; z-index: 30; }
+    .navbtn { height: 48px; border: none; border-radius: 999px; font-family: 'Cinzel', serif; font-weight: 900; letter-spacing: 0.16rem; cursor: pointer; box-shadow: 0 8px 22px rgba(16,36,58,0.12); }
+    .prev { background: white; color: var(--gold); border: 1px solid rgba(201,168,76,0.35); }
+    .next { background: linear-gradient(135deg, var(--gold), var(--teal)); color: white; }
+    .progress-wrap { text-align: center; font-weight: 800; color: #718096; font-size: 0.85rem; }
+    .progress { width: 100%; height: 9px; background: #dce6ef; border-radius: 999px; margin-top: 0.55rem; overflow: hidden; }
+    .bar { height: 100%; width: 0; background: linear-gradient(90deg, var(--gold), var(--teal)); border-radius: inherit; transition: width 0.25s; }
+    @media (max-width: 860px) {
+      html, body { overflow: auto; }
+      .deck { height: auto; min-height: 100vh; padding: 5rem 1rem 6rem; }
+      .slide { height: auto; min-height: 720px; grid-template-columns: 1fr; }
+      .panel { padding: 2.2rem; }
+      .content { padding: 2.2rem; }
+      .grid { grid-template-columns: 1fr; }
+      .controls { grid-template-columns: 1fr; gap: 0.5rem; }
+      .topbar { left: 10px; right: 10px; justify-content: center; }
     }
   </style>
 </head>
 <body>
+  <nav class="topbar" id="chapters">
+    <a href="pages/01-introduction.html">Détails</a>
+  </nav>
 
-<nav class="navbar">
-  <a href="index.html" class="logo">PFE<span>·ENS</span></a>
-  <ul class="nav-links">
-    <li><a href="#introduction">Accueil</a></li>
-    <li><a href="#plan">Plan</a></li>
-    <li><a href="pages/01-introduction.html">Introduction</a></li>
-    <li><a href="pages/02-optimisation-combinatoire.html">Ch.1</a></li>
-    <li><a href="pages/03-calculabilite.html">Ch.2</a></li>
-    <li><a href="pages/04-complexites.html">Ch.3</a></li>
-    <li><a href="pages/05-tsp.html">Ch.4</a></li>
-    <li><a href="pages/06-programmation-dynamique.html">Ch.5</a></li>
-    <li><a href="pages/07-methodes-resolution.html">Ch.6</a></li>
-    <li><a href="tsp-world-pro.html">Application</a></li>
-  </ul>
-</nav>
+  <main class="deck">
+    <section class="slide" aria-live="polite">
+      <aside class="panel">
+        <div class="badge" id="chapterBadge">CHAPITRE</div>
+        <h1 id="chapterTitle"></h1>
+        <p id="chapterIntro"></p>
+      </aside>
+      <article class="content">
+        <div class="number" id="slideNumber">01</div>
+        <span class="tag" id="slideTag">Concept clé</span>
+        <h2 id="slideTitle"></h2>
+        <div id="slideBody"></div>
+      </article>
+    </section>
+  </main>
 
-<!-- HERO SECTION -->
-<section class="hero" id="introduction">
-  <div class="hero-content">
-    <div class="uni-block">
-      <div class="university">🏛️ Université Abdelmalek Essaâdi</div>
-      <div class="school">📚 École Normale Supérieure Tétouan</div>
+  <footer class="controls">
+    <button class="navbtn prev" id="prev">← Précédent</button>
+    <div class="progress-wrap">
+      <span id="counter">Slide 1 / 1</span>
+      <div class="progress"><div class="bar" id="bar"></div></div>
     </div>
-    
-    <div class="hero-title-main">Optimisation Combinatoire appliquée au</div>
-    <div class="hero-title-second">Problème du Voyageur de Commerce</div>
-    
-    <div class="pfe-badge">📖 PROJET DE FIN D'ÉTUDES</div>
-    
-    <div class="authors">
-      <p><strong>👥 Réalisé par :</strong></p>
-      <p>ER-RTHIMI SOFIANE</p>
-      <p>ER ROUIFFI ILYAS</p>
-      <div class="supervisor"><strong>📌 Encadré par :</strong> <span>Pr. EL HICHAMI OTHMANE</span></div>
-    </div>
-    
-    <div class="uni-year">🎓 Année universitaire 2025–2026 — Licence en Mathématiques</div>
-    
-    <div class="hero-stats">
-      <div class="stat-item"><div class="stat-number">6</div><div class="stat-label">Chapitres</div></div>
-      <div class="stat-item"><div class="stat-number">10+</div><div class="stat-label">Algorithmes</div></div>
-      <div class="stat-item"><div class="stat-number">NP-C</div><div class="stat-label">Classe</div></div>
-      <div class="stat-item"><div class="stat-number">ENS</div><div class="stat-label">Tétouan</div></div>
-    </div>
-    
-    <a href="#plan" class="btn-launch">📖 Découvrir le plan →</a>
-  </div>
-</section>
+    <button class="navbtn next" id="next">Suivant →</button>
+  </footer>
 
-<!-- SECTION PLAN DU MÉMOIRE -->
-<section class="section section-bg" id="plan">
-  <div class="section-header">
-    <h2>Plan du <span>mémoire</span></h2>
-    <div class="section-line"></div>
-  </div>
-  <div class="toc-grid">
-    <a href="pages/01-introduction.html" class="toc-card">
-      <div class="toc-num">📖</div>
-      <h3>Introduction Générale</h3>
-      <p>Contexte, historique, présentation du TSP.</p>
-    </a>
-    <a href="pages/02-optimisation-combinatoire.html" class="toc-card">
-      <div class="toc-num">01</div>
-      <h3>📐 Optimisation Combinatoire</h3>
-      <p>Définitions, programmation linéaire, stochastique et classification des méthodes.</p>
-    </a>
-    <a href="pages/03-calculabilite.html" class="toc-card">
-      <div class="toc-num">02</div>
-      <h3>⚙️ Calculabilité & Décidabilité</h3>
-      <p>Machines de Turing, thèse de Church-Turing, problème de l'arrêt.</p>
-    </a>
-    <a href="pages/04-complexites.html" class="toc-card">
-      <div class="toc-num">03</div>
-      <h3>🔬 Complexité : P, NP, NP-Complet</h3>
-      <p>Classes de complexité, réduction polynomiale, conjecture P vs NP.</p>
-    </a>
-    <a href="pages/05-tsp.html" class="toc-card">
-      <div class="toc-num">04</div>
-      <h3>🚚 Problème du Voyageur de Commerce</h3>
-      <p>Définition, variantes, explosion combinatoire, applications.</p>
-    </a>
-    <a href="pages/06-programmation-dynamique.html" class="toc-card">
-      <div class="toc-num">05</div>
-      <h3>⚡ Programmation Dynamique</h3>
-      <p>Principe de Bellman, algorithme de Held-Karp, complexité O(n²·2ⁿ).</p>
-    </a>
-    <a href="pages/07-methodes-resolution.html" class="toc-card">
-      <div class="toc-num">06</div>
-      <h3>🎯 Méthodes de Résolution</h3>
-      <p>Branch & Bound, Christofides, recuit simulé, recherche tabou, AG, colonies de fourmis.</p>
-    </a>
-    <a href="tsp-world-pro.html" class="toc-card">
-      <div class="toc-num">🚀</div>
-      <h3>Application : TSP WORLD PRO</h3>
-      <p>Plateforme interactive de planification de tournées — Carte, GPS, QR Code, Algorithmes TSP.</p>
-      <div class="app-badge">✨ Application finale</div>
-    </a>
-  </div>
-</section>
+  <script>
+    const slides = [
+      {ch:'Intro', title:'Introduction Générale', intro:'Contexte du mémoire, problématique et fil conducteur.', tag:'Ouverture', t:'Projet de Fin d’Études', b:`<p>Ce mémoire étudie l’optimisation combinatoire appliquée au Problème du Voyageur de Commerce. L’objectif est de présenter les bases théoriques nécessaires, puis de montrer pourquoi le TSP est un modèle central pour comprendre la difficulté algorithmique et les méthodes de résolution.</p><div class="grid"><div class="card"><strong>Réalisé par</strong>Iliass Errouifi & Soufiane Er-Rthimi</div><div class="card"><strong>Encadré par</strong>Pr. EL HICHAMI OTHMANE</div></div>`},
+      {ch:'Intro', title:'Introduction Générale', intro:'Contexte du mémoire, problématique et fil conducteur.', tag:'Contexte', t:'Pourquoi l’optimisation combinatoire ?', b:`<p>L’optimisation combinatoire cherche la meilleure solution dans un ensemble fini, discret et souvent très grand. Elle intervient lorsque les décisions possibles sont nombreuses : ordre de passage, affectation de ressources, choix d’un chemin, planification ou organisation d’un réseau.</p><ul><li>Les solutions possibles sont dénombrables.</li><li>La meilleure solution dépend d’un critère mesurable.</li><li>L’énumération exhaustive devient rapidement impossible.</li></ul>`},
+      {ch:'Intro', title:'Introduction Générale', intro:'Contexte du mémoire, problématique et fil conducteur.', tag:'Problématique', t:'Le TSP comme problème central', b:`<p>Le Problème du Voyageur de Commerce consiste à trouver une tournée de coût minimal qui visite chaque ville exactement une fois et revient au point de départ. Malgré son énoncé simple, le nombre de tournées possibles augmente de façon explosive avec le nombre de villes.</p><div class="formula">Pour n villes : nombre de cycles symétriques = (n − 1)! / 2</div>`},
+      {ch:'Intro', title:'Introduction Générale', intro:'Contexte du mémoire, problématique et fil conducteur.', tag:'Plan', t:'Structure générale du mémoire', b:`<div class="grid"><div class="card"><strong>Chapitre 1</strong>Introduction générale et contexte du TSP.</div><div class="card"><strong>Chapitre 2</strong>Calculabilité et décidabilité.</div><div class="card"><strong>Chapitre 3</strong>Complexité : P, NP, NP-complet et NP-difficile.</div><div class="card"><strong>Chapitre 4</strong>Définition, variantes et modélisation du TSP.</div><div class="card"><strong>Chapitre 5</strong>Méthodes exactes, approchées et métaheuristiques.</div><div class="card"><strong>Application</strong>Interface interactive TSP WORLD PRO.</div></div>`},
+      {ch:'Ch.2', title:'Calculabilité & Décidabilité', intro:'Savoir si un problème peut être résolu par un algorithme.', tag:'Idée clé', t:'Qu’est-ce qu’un problème calculable ?', b:`<p>Un problème est calculable lorsqu’il existe une procédure algorithmique capable de produire un résultat correct après un nombre fini d’étapes. Cette notion permet de distinguer les questions qui peuvent être automatisées de celles qui dépassent les limites du calcul.</p><ul><li>Un algorithme doit être fini, précis et effectif.</li><li>Un problème peut être calculable sans être efficace.</li><li>La calculabilité précède l’étude de la complexité.</li></ul>`},
+      {ch:'Ch.2', title:'Calculabilité & Décidabilité', intro:'Savoir si un problème peut être résolu par un algorithme.', tag:'Modèle', t:'Machine de Turing', b:`<p>La machine de Turing fournit un modèle mathématique simple pour formaliser la notion d’algorithme. Elle possède un ruban, une tête de lecture-écriture, des états internes et une fonction de transition qui décrit son comportement.</p><div class="formula">M = (Q, Σ, Γ, δ, q₀, q<sub>acc</sub>, q<sub>rej</sub>)</div>`},
+      {ch:'Ch.2', title:'Calculabilité & Décidabilité', intro:'Savoir si un problème peut être résolu par un algorithme.', tag:'Décision', t:'Décidable ou indécidable ?', b:`<p>Un langage est décidable s’il existe une machine de Turing qui s’arrête toujours et répond correctement oui ou non. Certains problèmes, comme le problème de l’arrêt, sont indécidables : aucun algorithme général ne peut les résoudre dans tous les cas.</p><div class="grid"><div class="card"><strong>Décidable</strong>La machine s’arrête toujours.</div><div class="card"><strong>Semi-décidable</strong>La machine peut boucler dans certains cas.</div></div>`},
+      {ch:'Ch.2', title:'Calculabilité & Décidabilité', intro:'Savoir si un problème peut être résolu par un algorithme.', tag:'Lien TSP', t:'Le TSP est décidable', b:`<p>Le TSP est décidable parce que le nombre de tournées possibles est fini. En théorie, on peut toutes les énumérer, calculer leurs coûts et choisir la meilleure. Mais cette solution naïve devient inutilisable dès que le nombre de villes augmente.</p><p>Cette observation conduit naturellement à la question suivante : si le TSP est résoluble, combien de temps faut-il pour le résoudre ?</p>`},
+      {ch:'Ch.3', title:'Théorie de la Complexité', intro:'Mesurer le coût d’un algorithme et classer les problèmes.', tag:'Transition', t:'De la possibilité à l’efficacité', b:`<p>La calculabilité répond à la question : “peut-on résoudre le problème ?”. La complexité répond à une question plus pratique : “peut-on le résoudre efficacement ?”. On mesure alors le temps et la mémoire nécessaires en fonction de la taille de l’entrée.</p><ul><li>Temps polynomial : généralement considéré comme efficace.</li><li>Temps exponentiel : devient vite impraticable.</li><li>Le TSP illustre parfaitement cette différence.</li></ul>`},
+      {ch:'Ch.3', title:'Théorie de la Complexité', intro:'Mesurer le coût d’un algorithme et classer les problèmes.', tag:'Classe P', t:'Classe P : problèmes traitables', b:`<p>La classe P contient les problèmes de décision qui peuvent être résolus en temps polynomial par un algorithme déterministe. Ces problèmes sont considérés comme efficacement résolubles.</p><div class="grid"><div class="card"><strong>Exemples</strong>Tri, plus court chemin, arbre couvrant minimal.</div><div class="card"><strong>Forme</strong>O(n), O(n log n), O(n²), O(n³)…</div></div>`},
+      {ch:'Ch.3', title:'Théorie de la Complexité', intro:'Mesurer le coût d’un algorithme et classer les problèmes.', tag:'Classe NP', t:'Classe NP : solutions vérifiables', b:`<p>La classe NP regroupe les problèmes dont une solution candidate peut être vérifiée en temps polynomial. Pour le TSP décisionnel, si l’on donne une tournée et une borne K, il est facile de vérifier si la tournée respecte la borne.</p><div class="formula">TSP décisionnel : existe-t-il une tournée de coût ≤ K ?</div>`},
+      {ch:'Ch.3', title:'Théorie de la Complexité', intro:'Mesurer le coût d’un algorithme et classer les problèmes.', tag:'Difficulté', t:'NP-complet et NP-difficile', b:`<p>Un problème NP-complet est à la fois dans NP et au moins aussi difficile que tous les problèmes de NP. Un problème NP-difficile peut être encore plus général : il n’est pas forcément dans NP, mais il est au moins aussi difficile que les problèmes NP-complets.</p><ul><li>TSP décisionnel : NP-complet.</li><li>TSP optimisation : NP-difficile.</li><li>Ces classes expliquent la difficulté pratique du problème.</li></ul>`},
+      {ch:'Ch.3', title:'Théorie de la Complexité', intro:'Mesurer le coût d’un algorithme et classer les problèmes.', tag:'Synthèse', t:'Pourquoi P vs NP est important ?', b:`<p>La question P = NP demande si tout problème dont la solution est rapidement vérifiable est aussi rapidement résoluble. Si P = NP, de nombreux problèmes difficiles deviendraient théoriquement efficaces. Si P ≠ NP, il n’existe probablement pas d’algorithme polynomial exact pour les problèmes NP-complets.</p><p>Le TSP est donc un cas d’étude majeur pour tester les stratégies exactes et approchées.</p>`},
+      {ch:'Ch.4', title:'Problème du Voyageur de Commerce', intro:'Définition, modélisation et variantes du TSP.', tag:'Définition', t:'Énoncé du TSP', b:`<p>Étant donné un ensemble de villes et les distances entre chaque paire de villes, le TSP cherche une tournée de coût minimal visitant chaque ville une seule fois avant de revenir à la ville de départ.</p><div class="formula">Minimiser la somme des distances du cycle hamiltonien.</div>`},
+      {ch:'Ch.4', title:'Problème du Voyageur de Commerce', intro:'Définition, modélisation et variantes du TSP.', tag:'Graphe', t:'Modélisation par graphe', b:`<p>On représente le TSP par un graphe G = (V, E), où V est l’ensemble des villes et E l’ensemble des arêtes ou arcs reliant ces villes. Chaque arête possède un coût représentant une distance, un temps ou un prix.</p><ul><li>Sommet : ville ou client.</li><li>Arête : trajet possible.</li><li>Poids : coût associé au trajet.</li><li>Solution : cycle hamiltonien de coût minimal.</li></ul>`},
+      {ch:'Ch.4', title:'Problème du Voyageur de Commerce', intro:'Définition, modélisation et variantes du TSP.', tag:'Variantes', t:'Principales variantes du TSP', b:`<div class="grid"><div class="card"><strong>TSP symétrique</strong>La distance i → j est égale à j → i.</div><div class="card"><strong>TSP asymétrique</strong>Les distances peuvent dépendre du sens.</div><div class="card"><strong>TSP métrique</strong>Les distances vérifient l’inégalité triangulaire.</div><div class="card"><strong>TSP avec contraintes</strong>Fenêtres de temps, plusieurs voyageurs, capacités.</div></div>`},
+      {ch:'Ch.4', title:'Problème du Voyageur de Commerce', intro:'Définition, modélisation et variantes du TSP.', tag:'Explosion', t:'Explosion combinatoire', b:`<p>Le nombre de solutions augmente factorialement. Cela signifie qu’ajouter seulement quelques villes peut multiplier massivement le nombre de tournées possibles. Cette croissance rend les méthodes exactes coûteuses pour les grandes instances.</p><div class="grid"><div class="card"><strong>10 villes</strong>181 440 tournées symétriques.</div><div class="card"><strong>20 villes</strong>Plus de 10¹⁷ tournées.</div></div>`},
+      {ch:'Ch.4', title:'Problème du Voyageur de Commerce', intro:'Définition, modélisation et variantes du TSP.', tag:'Applications', t:'Domaines d’utilisation', b:`<p>Le TSP sert de modèle abstrait pour de nombreux problèmes de tournée, d’ordonnancement et de planification. Il est aussi utilisé comme banc d’essai pour comparer les algorithmes d’optimisation.</p><ul><li>Planification de tournées et distribution.</li><li>Ordonnancement de tâches.</li><li>Conception de circuits et réseaux.</li><li>Comparaison de méthodes exactes et heuristiques.</li></ul>`},
+      {ch:'Ch.5', title:'Méthodes de Résolution', intro:'Méthodes exactes, approximation et métaheuristiques.', tag:'Vue globale', t:'Deux grandes familles de méthodes', b:`<p>Les méthodes de résolution se divisent en méthodes exactes et méthodes approchées. Les méthodes exactes garantissent l’optimalité mais peuvent être lentes. Les méthodes approchées sont plus rapides et donnent de bonnes solutions sans toujours prouver l’optimalité.</p><div class="grid"><div class="card"><strong>Exactes</strong>Force brute, programmation dynamique, Branch & Bound, Branch & Cut.</div><div class="card"><strong>Approchées</strong>Heuristiques, approximation, métaheuristiques.</div></div>`},
+      {ch:'Ch.5', title:'Méthodes de Résolution', intro:'Méthodes exactes, approximation et métaheuristiques.', tag:'Exact', t:'Force brute et programmation dynamique', b:`<p>La force brute énumère toutes les tournées et garantit la meilleure solution, mais son coût est factorial. La programmation dynamique de Held-Karp réduit cette explosion à O(n²·2ⁿ), ce qui reste exponentiel mais beaucoup plus efficace que l’énumération complète.</p><div class="formula">Held-Karp : O(n² · 2ⁿ)</div>`},
+      {ch:'Ch.5', title:'Méthodes de Résolution', intro:'Méthodes exactes, approximation et métaheuristiques.', tag:'Exact', t:'Branch & Bound et Branch & Cut', b:`<p>Branch & Bound explore l’espace des solutions sous forme d’arbre et élimine les branches qui ne peuvent pas améliorer la meilleure solution connue. Branch & Cut ajoute des contraintes valides pour renforcer le modèle et accélérer la convergence.</p><ul><li>Garantit l’optimalité si l’exploration se termine.</li><li>Utilise des bornes inférieures et supérieures.</li><li>Très performant sur des instances structurées.</li></ul>`},
+      {ch:'Ch.5', title:'Méthodes de Résolution', intro:'Méthodes exactes, approximation et métaheuristiques.', tag:'Approximation', t:'Algorithmes d’approximation', b:`<p>Les algorithmes d’approximation fournissent des garanties sur la qualité de la solution. Pour le TSP métrique, l’algorithme de Christofides donne une tournée dont le coût est au plus 1,5 fois le coût optimal.</p><div class="grid"><div class="card"><strong>Avantage</strong>Rapidité et garantie théorique.</div><div class="card"><strong>Limite</strong>Ne donne pas toujours la solution optimale.</div></div>`},
+      {ch:'Ch.5', title:'Méthodes de Résolution', intro:'Méthodes exactes, approximation et métaheuristiques.', tag:'Métaheuristiques', t:'Recuit, tabou, génétique et fourmis', b:`<p>Les métaheuristiques explorent intelligemment l’espace de recherche pour obtenir rapidement de bonnes solutions. Elles sont adaptées aux grandes instances, surtout lorsqu’une solution optimale exacte est trop coûteuse à obtenir.</p><ul><li>Recuit simulé : accepte parfois de mauvaises solutions pour éviter les pièges locaux.</li><li>Recherche tabou : mémorise les mouvements interdits temporairement.</li><li>Algorithmes génétiques : sélection, croisement et mutation.</li><li>Colonies de fourmis : apprentissage collectif par phéromones.</li></ul>`},
+      {ch:'Application', title:'TSP WORLD PRO', intro:'Application finale pour expérimenter le TSP.', tag:'Projet', t:'Interface interactive', b:`<p>L’application TSP WORLD PRO permet de visualiser des villes, construire une tournée, comparer des stratégies et mieux comprendre l’effet de la complexité sur le temps de résolution. Elle relie la partie théorique du mémoire à une démonstration concrète.</p><div class="grid"><div class="card"><strong>Carte</strong>Visualisation et interaction avec les points.</div><div class="card"><strong>Algorithmes</strong>Comparaison de méthodes de résolution.</div></div>`},
+      {ch:'Conclusion', title:'Synthèse Générale', intro:'Résumé de tout le parcours.', tag:'Conclusion', t:'De la théorie à la pratique', b:`<p>Le TSP montre clairement la différence entre un problème décidable et un problème efficacement résoluble. L’étude de la calculabilité, de la complexité, de la modélisation et des méthodes de résolution permet de comprendre pourquoi l’optimisation combinatoire est à la fois théorique, pratique et essentielle.</p><ul><li>Le TSP est simple à énoncer mais difficile à résoudre.</li><li>Les méthodes exactes prouvent l’optimalité.</li><li>Les méthodes approchées permettent de traiter de grandes instances.</li><li>L’application finale illustre les concepts étudiés.</li></ul>`}
+    ];
 
-<!-- QR CODES SECTION -->
-<section class="section">
-  <div class="section-header">
-    <h2>📱 Accès <span>rapide</span> par QR</h2>
-    <div class="section-line"></div>
-  </div>
-  <div class="qr-section">
-    <!-- QR pour la présentation -->
-    <div class="qr-card">
-      <h4>📖 Présentation du PFE</h4>
-      <div id="qrcode-presentation" class="qrcode-container"></div>
-      <p>https://prjet-sofien-iliass.vercel.app/</p>
-    </div>
-    <!-- QR pour l'application -->
-    <div class="qr-card">
-      <h4>🚀 Application TSP WORLD PRO</h4>
-      <div id="qrcode-app" class="qrcode-container"></div>
-      <p>https://ilyaserrouifi.github.io/tsp-world-pro-ilyas-errouifi/</p>
-    </div>
-  </div>
-</section>
+    let index = 0;
+    const chapters = [...new Set(slides.map(s => s.ch))];
+    const chapterNav = document.getElementById('chapters');
+    chapters.forEach(ch => {
+      const btn = document.createElement('button');
+      btn.textContent = ch;
+      btn.addEventListener('click', () => { index = slides.findIndex(s => s.ch === ch); render(); });
+      chapterNav.appendChild(btn);
+    });
 
-<!-- SECTION ÉQUIPE -->
-<section class="section">
-  <div class="section-header">
-    <h2>Notre <span>équipe</span></h2>
-    <div class="section-line"></div>
-  </div>
-  <div style="display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; max-width: 700px; margin: 0 auto;">
-    <div style="text-align: center; background: white; border: 1px solid #e2e8f0; border-radius: 18px; padding: 1.2rem; width: 200px;">
-      <div style="width: 70px; height: 70px; background: linear-gradient(135deg, #c9a84c, #0088aa); border-radius: 50%; margin: 0 auto 0.6rem; display: flex; align-items: center; justify-content: center; font-size: 1.6rem; font-weight: bold; color: white;">IE</div>
-      <h3 style="font-size: 0.9rem; color: #1a2a3a;">Iliass Errouifi</h3>
-      <p style="font-size: 0.65rem; color: #718096;">Algorithmes · Développement · Application</p>
-    </div>
-    <div style="text-align: center; background: white; border: 1px solid #e2e8f0; border-radius: 18px; padding: 1.2rem; width: 200px;">
-      <div style="width: 70px; height: 70px; background: linear-gradient(135deg, #c9a84c, #0088aa); border-radius: 50%; margin: 0 auto 0.6rem; display: flex; align-items: center; justify-content: center; font-size: 1.6rem; font-weight: bold; color: white;">SR</div>
-      <h3 style="font-size: 0.9rem; color: #1a2a3a;">Soufiane Er-Rthimi</h3>
-      <p style="font-size: 0.65rem; color: #718096;">Optimisation · RO · Documentation</p>
-    </div>
-  </div>
-  <div style="text-align: center; margin-top: 1.5rem;">
-    <p style="color: #718096; font-size: 0.75rem;">Encadré par <strong style="color: #c9a84c;">Monsieur Outman El Hichami</strong> — ENS Tétouan</p>
-  </div>
-</section>
-
-<footer>
-  <div class="footer-logo">ENS<span>·Tétouan</span></div>
-  <p>Projet de Fin d'Études — 2025-2026 — École Normale Supérieure de Tétouan</p>
-  <p>Iliass Errouifi & Soufiane Er-Rthimi — Sous la direction de Monsieur Outman El Hichami</p>
-  <div style="margin-top: 0.8rem;">
-    <a href="pages/01-introduction.html" style="color:#718096; text-decoration:none; margin:0 0.4rem; font-size:0.65rem;">Introduction</a>
-    <a href="pages/02-optimisation-combinatoire.html" style="color:#718096; text-decoration:none; margin:0 0.4rem; font-size:0.65rem;">Ch.1</a>
-    <a href="pages/03-calculabilite.html" style="color:#718096; text-decoration:none; margin:0 0.4rem; font-size:0.65rem;">Ch.2</a>
-    <a href="pages/04-complexites.html" style="color:#718096; text-decoration:none; margin:0 0.4rem; font-size:0.65rem;">Ch.3</a>
-    <a href="pages/05-tsp.html" style="color:#718096; text-decoration:none; margin:0 0.4rem; font-size:0.65rem;">Ch.4</a>
-    <a href="pages/06-programmation-dynamique.html" style="color:#718096; text-decoration:none; margin:0 0.4rem; font-size:0.65rem;">Ch.5</a>
-    <a href="pages/07-methodes-resolution.html" style="color:#718096; text-decoration:none; margin:0 0.4rem; font-size:0.65rem;">Ch.6</a>
-    <a href="tsp-world-pro.html" style="color:#c9a84c; text-decoration:none; margin:0 0.4rem; font-size:0.65rem;">Application</a>
-  </div>
-</footer>
-
-<script>
-  // Génération des QR codes
-  function generateQR(elementId, text, size = 120) {
-    const element = document.getElementById(elementId);
-    if (element) {
-      element.innerHTML = '';
-      new QRCode(element, {
-        text: text,
-        width: size,
-        height: size,
-        colorDark: "#c9a84c",
-        colorLight: "#ffffff",
-        correctLevel: QRCode.CorrectLevel.H
-      });
+    function render() {
+      const s = slides[index];
+      document.getElementById('chapterBadge').textContent = s.ch === 'Intro' ? 'CHAPITRE 1' : s.ch === 'Application' || s.ch === 'Conclusion' ? s.ch.toUpperCase() : s.ch.replace('Ch.', 'CHAPITRE');
+      document.getElementById('chapterTitle').innerHTML = splitTitle(s.title);
+      document.getElementById('chapterIntro').textContent = s.intro;
+      document.getElementById('slideNumber').textContent = String(index + 1).padStart(2, '0');
+      document.getElementById('slideTag').textContent = s.tag;
+      document.getElementById('slideTitle').textContent = s.t;
+      document.getElementById('slideBody').innerHTML = s.b;
+      document.getElementById('counter').textContent = `Slide ${index + 1} / ${slides.length}`;
+      document.getElementById('bar').style.width = `${((index + 1) / slides.length) * 100}%`;
+      document.querySelectorAll('#chapters button').forEach(btn => btn.classList.toggle('active', btn.textContent === s.ch));
     }
-  }
-
-  // Attendre que la page soit chargée
-  document.addEventListener('DOMContentLoaded', function() {
-    generateQR('qrcode-presentation', 'https://prjet-sofien-iliass.vercel.app/', 140);
-    generateQR('qrcode-app', 'https://ilyaserrouifi.github.io/tsp-world-pro-ilyas-errouifi/', 140);
-  });
-</script>
-<script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+    function splitTitle(title) {
+      const words = title.split(' ');
+      const first = words.slice(0, Math.ceil(words.length / 2)).join(' ');
+      const second = words.slice(Math.ceil(words.length / 2)).join(' ');
+      return `${first}<span class="gold">${second}</span>`;
+    }
+    document.getElementById('prev').addEventListener('click', () => { index = (index - 1 + slides.length) % slides.length; render(); });
+    document.getElementById('next').addEventListener('click', () => { index = (index + 1) % slides.length; render(); });
+    document.addEventListener('keydown', e => {
+      if (e.key === 'ArrowRight' || e.key === ' ') { index = (index + 1) % slides.length; render(); }
+      if (e.key === 'ArrowLeft') { index = (index - 1 + slides.length) % slides.length; render(); }
+    });
+    render();
+  </script>
 </body>
 </html>
