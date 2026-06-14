@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chapitre 6 | Programmation Dynamique | PFE 2025-2026</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;900&family=Raleway:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/slide-deck.css">
+</head>
+<body>
+<nav class="navbar">
+  <a href="../index.html" class="logo">PFE<span>·ENS</span></a>
+  <ul class="nav-links">
+    <li><a href="../index.html">Accueil</a></li>
+    <li><a href="01-introduction.html">Ch.1</a></li>
+    <li><a href="02-optimisation-combinatoire.html">Ch.2</a></li>
+    <li><a href="03-calculabilite.html">Ch.3</a></li>
+    <li><a href="04-complexites.html">Ch.4</a></li>
+    <li><a href="05-tsp.html">Ch.5</a></li>
+    <li><a href="06-programmation-dynamique.html">Ch.6</a></li>
+    <li><a href="07-methodes-resolution.html">Ch.7</a></li>
+    <li><a href="../tsp-world-pro.html">Application</a></li>
+  </ul>
+</nav>
+<div class="container">
+  <span class="chapitre-badge">CHAPITRE 6</span>
+  <h1>Programmation <span>Dynamique</span></h1>
+  <div class="card">
+    <p>La programmation dynamique transforme un problème global en sous-problèmes mémorisés. Pour le TSP, elle évite de recalculer plusieurs fois les mêmes chemins partiels et constitue une amélioration majeure par rapport à la force brute.</p>
+  </div>
+  <h2>📌 Principe de Bellman</h2>
+  <div class="card">
+    <p>Le principe d'optimalité affirme qu'une solution optimale contient des sous-solutions optimales. Si une tournée optimale passe par un ensemble de villes déjà visitées, le chemin partiel utilisé doit lui aussi être optimal pour cet état.</p>
+    <div class="definition"><strong>État dynamique :</strong> un couple (S, j) où S est l'ensemble des villes visitées et j la dernière ville atteinte.</div>
+  </div>
+  <h2>🧮 Algorithme de Held-Karp</h2>
+  <div class="card">
+    <p>L'algorithme de Held-Karp calcule le meilleur coût pour atteindre chaque ville j après avoir visité exactement les villes de S. La récurrence compare toutes les villes précédentes possibles.</p>
+    <div class="formula">DP[S, j] = minᵢ∈S\{j} ( DP[S\{j}, i] + d(i,j) )</div>
+    <p>La tournée finale est obtenue en ajoutant le coût de retour vers la ville de départ.</p>
+  </div>
+  <h2>⚖️ Complexité</h2>
+  <div class="card">
+    <p>Held-Karp reste exponentiel, mais il réduit fortement le coût de l'énumération naïve.</p>
+    <table class="table-classes"><tbody><tr><td class="badge">Force brute</td><td>O(n!)</td></tr><tr><td class="badge">Held-Karp</td><td>O(n² · 2ⁿ)</td></tr><tr><td class="badge">Mémoire</td><td>O(n · 2ⁿ)</td></tr></tbody></table>
+  </div>
+  <h2>📝 Conclusion</h2>
+  <div class="card">
+    <p>La programmation dynamique montre comment exploiter la structure du TSP pour gagner plusieurs ordres de grandeur. Elle reste limitée pour les très grandes instances, mais elle prépare naturellement l'étude des méthodes exactes avancées et des métaheuristiques.</p>
+  </div>
+  <div class="btn-nav"><a href="05-tsp.html" class="btn-prev">← Chapitre 5</a><a href="07-methodes-resolution.html" class="btn-next">Chapitre 7 →</a></div>
+</div>
+<footer><p>PFE — Iliass Errouifi & Soufiane Er-Rthimi — Optimisation Combinatoire & TSP</p></footer>
+<script src="../assets/slide-deck.js"></script>
+</body>
+</html>
