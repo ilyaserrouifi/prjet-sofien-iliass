@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chapitre 2 | Optimisation Combinatoire | PFE 2025-2026</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;900&family=Raleway:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Raleway', sans-serif;
+      background: #f5f7fb;
+      color: #1a2a3a;
+      line-height: 1.6;
+    }
+    .navbar {
+      position: fixed; top: 0; width: 100%; padding: 1rem 3rem;
+      background: rgba(255, 255, 255, 0.96); backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.08); z-index: 1000;
+      display: flex; justify-content: space-between; align-items: center;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+    }
+    .logo { font-family: 'Cinzel', serif; font-size: 1.2rem; font-weight: 700; letter-spacing: 4px; color: #c9a84c; text-decoration: none; }
+    .logo span { color: #0088aa; }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { color: #4a5568; text-decoration: none; font-size: 0.7rem; letter-spacing: 2px; text-transform: uppercase; transition: 0.3s; font-weight: 600; }
+    .nav-links a:hover { color: #c9a84c; }
+    .container { max-width: 1000px; margin: 0 auto; padding: 100px 2rem 3rem; }
+    h1 { font-family: 'Cinzel', serif; font-size: 2rem; font-weight: 800; color: #1a2a3a; margin-bottom: 0.5rem; border-left: 4px solid #c9a84c; padding-left: 1rem; }
+    h1 span { color: #c9a84c; }
+    .chapitre-badge { display: inline-block; background: rgba(201,168,76,0.12); border: 1px solid rgba(201,168,76,0.3); border-radius: 50px; padding: 0.2rem 0.8rem; font-size: 0.6rem; letter-spacing: 2px; color: #c9a84c; margin: 0.5rem 0 1rem 1rem; font-weight: 600; }
+    h2 { font-family: 'Cinzel', serif; font-size: 1.3rem; font-weight: 700; color: #0088aa; margin: 1.5rem 0 1rem; border-bottom: 2px solid rgba(0,136,170,0.15); padding-bottom: 0.3rem; }
+    h3 { font-family: 'Cinzel', serif; font-size: 1rem; font-weight: 600; color: #c9a84c; margin: 1rem 0 0.5rem; }
+    .card { background: white; border-radius: 16px; padding: 1.5rem; margin: 1.2rem 0; box-shadow: 0 2px 8px rgba(0,0,0,0.04); border: 1px solid #e2e8f0; }
+    .card p { color: #4a5568; margin-bottom: 0.8rem; font-size: 0.95rem; line-height: 1.7; }
+    .definition { background: linear-gradient(135deg, #f8fafc, #ffffff); border-left: 4px solid #c9a84c; padding: 1rem 1.2rem; margin: 1rem 0; border-radius: 0 12px 12px 0; }
+    .formula { background: #eef2f8; border-left: 4px solid #0088aa; padding: 0.8rem 1.2rem; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; color: #1a2a3a; margin: 0.8rem 0; overflow-x: auto; }
+    .badge { display: inline-block; background: rgba(201,168,76,0.1); padding: 0.2rem 0.6rem; border-radius: 30px; font-size: 0.7rem; color: #c9a84c; margin-right: 0.5rem; }
+    .methodes-grid { display: flex; gap: 1rem; flex-wrap: wrap; margin: 1rem 0; }
+    .methode-card { flex: 1; background: #eef2f8; border-radius: 12px; padding: 1rem; text-align: center; min-width: 180px; }
+    .methode-card strong { color: #0088aa; }
+    .domains-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0.5rem; margin: 0.5rem 0; }
+    .btn-nav { display: flex; justify-content: space-between; margin-top: 2rem; gap: 1rem; }
+    .btn-prev, .btn-next { padding: 0.7rem 1.5rem; text-decoration: none; border-radius: 50px; font-size: 0.7rem; letter-spacing: 2px; text-transform: uppercase; transition: 0.3s; }
+    .btn-prev { border: 1px solid #c9a84c; color: #c9a84c; background: transparent; }
+    .btn-prev:hover { background: rgba(201,168,76,0.1); }
+    .btn-next { background: linear-gradient(135deg, #c9a84c, #0088aa); color: white; border: none; }
+    .btn-next:hover { transform: translateX(3px); box-shadow: 0 5px 20px rgba(201,168,76,0.3); }
+    footer { text-align: center; padding: 2rem; border-top: 1px solid #e2e8f0; background: #ffffff; margin-top: 2rem; color: #718096; font-size: 0.7rem; }
+    @media (max-width: 768px) { .navbar { padding: 1rem; } .nav-links { display: none; } .container { padding: 80px 1rem 2rem; } h1 { font-size: 1.5rem; } }
+  </style>
+</head>
+<body>
+
+<nav class="navbar">
+  <a href="../index.html" class="logo">PFE<span>·ENS</span></a>
+  <ul class="nav-links">
+    <li><a href="../index.html">Accueil</a></li>
+    <li><a href="01-introduction.html">Introduction</a></li>
+    <li><a href="02-optimisation-combinatoire.html">Ch.1</a></li>
+    <li><a href="03-calculabilite.html">Ch.2</a></li>
+    <li><a href="04-complexites.html">Ch.3</a></li>
+    <li><a href="05-tsp.html">Ch.4</a></li>
+    <li><a href="06-programmation-dynamique.html">Ch.5</a></li>
+    <li><a href="07-methodes-resolution.html">Ch.6</a></li>
+    <li><a href="../tsp-world-pro.html">Application</a></li>
+  </ul>
+</nav>
+
+<div class="container">
+  <span class="chapitre-badge">CHAPITRE 1</span>
+  <h1>Optimisation <span>Combinatoire</span></h1>
+
+  <!-- INTRODUCTION -->
+  <div class="card">
+    <p>L'optimisation mathématique est la science de la détermination du meilleur choix parmi un ensemble de solutions réalisables. Elle est définie par la recherche d'un extremum d'une fonction numérique appelée fonction objectif.</p>
+    <p>Les problèmes d'optimisation combinatoire constituent une classe de problèmes qui cherche à trouver la solution optimale parmi un ensemble fini de choix. Or, pour la plupart des problèmes de cette classe, la taille de l'espace de recherche croît de manière exponentielle avec la taille du problème en entrée, et la recherche d'une solution optimale exacte est généralement infaisable sur le plan informatique.</p>
+   
+  </div>
+
+  <!-- FORMALISATION MATHÉMATIQUE -->
+  <h2>📐 Formalisation mathématique</h2>
+  <div class="card">
+    <p>Formellement, un problème d'optimisation combinatoire se définit comme suit :</p>
+    <div class="formula">
+      Min f(x) / x ∈ S
+    </div>
+    <p>où S ⊂ {0,1}<sup>n</sup> est l'ensemble des solutions réalisables et f : S → ℝ est la fonction objectif. Bien que S soit fini, sa cardinalité croît de manière exponentielle avec la dimension n, rendant toute énumération exhaustive impraticable dès que n dépasse quelques dizaines.</p>
+    <p>Son objet est la recherche d'une solution optimale au sein d'un ensemble discret et fini, mais souvent exponentiellement grand, de configurations possibles.</p>
+  </div>
+
+  <!-- PROGRAMMATION MATHÉMATIQUE -->
+  <h2>🧮 La programmation mathématique</h2>
+  <div class="card">
+    <div class="definition">
+      <strong>📌 Définition :</strong> La programmation mathématique discrète est l'étude des programmes mathématiques discrets. Il s'agit d'un domaine plutôt récent qui n'est pas constitué d'une seule approche théorique., on ferait un petit rappel sur les bases de la programmation linéaire en nombre entier et la programmation stochastique.
+    </div>
+  </div>
+
+  <!-- PROGRAMMATION LINÉAIRE EN NOMBRE ENTIER -->
+  <h2>🔢 La programmation linéaire en nombre entier</h2>
+  <div class="card">
+    <p>On dit qu'un programme mathématique est présenté sous forme d'un programme linéaire (noté : PL) lorsque sa fonction-objectif et ses contraintes sont linéaires. Un problème de programmation linéaire consiste à minimiser (ou à maximiser) une fonction linéaire sous certaines contraintes linéaires.</p>
+    
+    <h3>📝 Formulation d'un Programme linéaire</h3>
+    <p>Ainsi, une forme d'un programme linéaire dans le cas d'une minimisation, est la suivante :</p>
+    <div class="formula">
+      (P) { min f(x) }<br>
+      gᵢ(x) ≤ 0 , i = 1…M<br>
+      x ∈ {x₁, x₂, …, x<sub>N</sub>} ∈ ℝ
+    </div>
+    <p>Où les fonctions f et gᵢ sont des fonctions linéaires avec des variables x₁, x₂, …, x<sub>N</sub>. La fonction f est appelée <strong>fonction-objectif</strong> ou fonction-économique et les conditions posées représentent les <strong>contraintes</strong> du problème (P).. Le coût d'une solution est la valeur de la fonction objectif f. Une solution optimale du problème (P) est la solution qui minimise f(x) parmi l'ensemble de toutes les solutions admissibles. Dans ce cas, on parle d'un <strong>optimum global</strong>.</p>
+  </div>
+
+  <!-- PROGRAMMATION STOCHASTIQUE -->
+  <h2>🎲 La Programmation stochastique</h2>
+  <div class="card">
+    <h3>📌 Définition et Notation</h3>
+    <p>La notion d'incertitude dans la programmation mathématique est apparue pour la première fois dans les années 50 avec les travaux de Bellman, Vela et al., John R. Birge, et elle a rencontré depuis un développement rapide. L'incertitude dans les problèmes d'optimisation touche notamment les coûts de production, les prix des marchés, les pénalités en cas de violations des contrats, aussi bien que la demande de clients, les délais de livraison, les temps de traitement, la disponibilité des machines et d'autres coefficients technologiques.</p>
+    <p>Il se peut que l'on connaisse partiellement certains aspects du phénomène à travers soit des scénarios, soit un historique, soit une loi de probabilité, soit des variables aléatoires (par exemple espérance mathématique, variance). Des scénarios peuvent être créés à partir des historiques (comme par exemple les ventes des dernières années, les températures de la dernière décennie, la mortalité d'une certaine population).</p>
+    <p>Si la loi de probabilité de la variable aléatoire est connue de façon analytique, on peut soit créer des méthodes analytiques qui tiennent compte de cette loi de probabilité, soit générer un ensemble de scénarios suivant cette loi.</p>
+    <p>Le but que l'on se fixe dans un problème d'optimisation est de prendre la meilleure décision vis à vis des situations qui comportent de l'incertitude. Le regard vers l'incertitude reste subjectif et varie d'un décideur à l'autre. On peut par exemple souhaiter que, dans l'espace de tout évènement possible, la solution adoptée soit telle que son coût soit minimal en moyenne.</p>
+  </div>
+
+  <!-- LE PROBLÈME D'OPTIMISATION COMBINATOIRE -->
+  <h2>⚙️ Le problème d'optimisation combinatoire</h2>
+  <div class="card">
+    <h3>📌 Définition</h3>
+    <p>L'une des difficultés majeures est que la décision peut dépendre d'une multitude de paramètres, ce qui rend délicat la vérification et validation d'un choix parmi plusieurs possibilités admissibles. Les mathématiques de l'optimisation et de la décision concernent des mathématiques appliquées dans les domaines tels que :</p>
+    <ul style="margin-left: 1.5rem; color: #4a5568;">
+      <li>l'analyse non linéaire;</li>
+      <li>le contrôle optimal;</li>
+      <li>la théorie des jeux;</li>
+      <li>la recherche opérationnelle;</li>
+      <li>la théorie des graphes (algorithmique et algébrique);</li>
+      <li>les modélisations mathématiques en économie, finance et sciences sociales;</li>
+      <li>la minimisation d'énergie dans des espaces fonctionnels;</li>
+      <li>les mathématiques discrètes;</li>
+      <li>la conception et le dimensionnement de réseaux;</li>
+      <li>la programmation mathématique (continue, discrète et stochastique).</li>
+    </ul>
+  </div>
+
+  <!-- CLASSIFICATION DES MÉTHODES -->
+  <h2>📊 Classification des méthodes d'optimisation combinatoire</h2>
+  <div class="card">
+    <p>La résolution d'un problème d'optimisation combinatoire est réalisée à l'aide des méthodes illustrées dans la figure suivante :</p>
+    
+    <div style="text-align: center; margin: 1.5rem 0;">
+      <div style="display: inline-block; background: #eef2f8; border-radius: 20px; padding: 1.5rem; width: 100%;">
+        <p style="font-weight: 700; font-family: 'Cinzel', serif; margin-bottom: 1rem;">Méthodes d'Optimisation Combinatoire</p>
+        <div class="methodes-grid">
+          <div class="methode-card">
+            <strong style="color: #0088aa;">🔬 Méthodes Exactes</strong>
+            <p style="font-size: 0.8rem; margin-top: 0.3rem;">Branch & Bound<br>Programmation Dynamique<br>Held-karp<br>Bellmen<br>Christofides</p>
+          </div>
+          <div class="methode-card">
+            <strong style="color: #c9a84c;">⚡ Méthodes Approchées</strong>
+            <p style="font-size: 0.8rem; margin-top: 0.3rem;">Heuristiques spécifiques<br>Métaheuristiques</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="definition">
+      <strong>📌 REMARQUE :</strong> Méthodes exactes : Elles garantissent l'optimalité mais peuvent nécessiter un temps exponentiel (Branch & Bound, programmation dynamique). Elles sont adaptées aux problèmes de taille raisonnable.
+    </div>
+  </div>
+
+  <!-- DOMAINES D'APPLICATION -->
+  <h2>🌍 Domaines d'Application de l'Aide à la Décision</h2>
+  <div class="card">
+    <p>L'optimisation combinatoire est un levier de performance dans plusieurs secteurs stratégiques :</p>
+    
+    <div class="domains-grid">
+      <div><span class="badge">🚚</span> Transport et Logistique<br><span style="font-size: 0.75rem; color: #718096;">Optimisation des réseaux de distribution, gestion de flottes</span></div>
+      <div><span class="badge">🏭</span> Planification Industrielle<br><span style="font-size: 0.75rem; color: #718096;">Ordonnancement des tâches, maximisation des ressources</span></div>
+      <div><span class="badge">📡</span> Télécommunications<br><span style="font-size: 0.75rem; color: #718096;">Routage des flux, allocation de fréquences</span></div>
+      <div><span class="badge">💰</span> Économie et Finance<br><span style="font-size: 0.75rem; color: #718096;">Allocation de ressources, gestion des risques</span></div>
+      <div><span class="badge">🧬</span> Biologie<br><span style="font-size: 0.75rem; color: #718096;">Séquençage du génome, modélisation de structures</span></div>
+    </div>
+
+    <p>Les mathématiques de l'optimisation et de la décision concernent des mathématiques appliquées dans des domaines tels que :</p>
+    <ul style="margin-left: 1.5rem; color: #4a5568;">
+      <li>l'analyse non linéaire;</li>
+      <li>le contrôle optimal;</li>
+      <li>la théorie des jeux;</li>
+      <li>la recherche opérationnelle;</li>
+      <li>la théorie des graphes (algorithmique et algébrique);</li>
+      <li>les modélisations mathématiques en économie, finance et sciences sociales;</li>
+      <li>la conception et le dimensionnement de réseaux;</li>
+      <li>la programmation mathématique (continue, discrète et stochastique).</li>
+    </ul>
+  </div>
+
+  <!-- CONCLUSION -->
+  <h2>📝 Conclusion</h2>
+  <div class="card">
+    <p>En conclusion, ce chapitre a permis d'établir les fondements mathématiques et structurels indispensables à l'étude de l'optimisation combinatoire et de l'aide à la décision. En formalisant la recherche d'un optimum global sur un ensemble discret et fini S ⊂ {0,1}<sup>n</sup>, nous avons mis en évidence le défi majeur de cette discipline : l'explosion exponentielle de l'espace de recherche qui rend toute énumération exhaustive impraticable à grande échelle.</p>
+    <p>À travers l'étude de la programmation mathématique, nous avons analysé la complémentarité de deux paradigmes essentiels : d'une part, la <strong>programmation linéaire en nombres entiers (PLNE)</strong>, qui offre un cadre déterministe rigoureux pour caractériser géométriquement les solutions admissibles ; d'autre part, la <strong>programmation stochastique</strong>, qui introduit la modélisation de l'incertitude et des scénarios probabilistes pour garantir des décisions robustes en moyenne ou en espérance mathématique.</p>
+    <p>Face à la complexité de ces problèmes, la classification des méthodes de résolution a souligné le compromis permanent entre le temps de calcul exponentiel des méthodes exactes (comme le Branch & Bound) et l'efficacité des approches polyédrales. L'impact stratégique de ces outils dans des secteurs clés tels que la logistique, l'industrie ou la finance démontre la nécessité de confronter ces théories à des modèles de référence.</p>
+    <p>C'est précisément dans cette dynamique que s'inscrit la suite de notre manuscrit. Afin d'appliquer ces concepts de programmation en nombres entiers, d'approche polyédrale et de gestion de l'incertitude, le <strong>Chapitre 2</strong> sera entièrement dédié à l'étude structurelle et algorithmique du problème-phare de la discipline : le <strong>Problème du Voyageur de Commerce (TSP)</strong>.</p>
+  </div>
+
+  <!-- BOUTONS -->
+  <div class="btn-nav">
+    <a href="01-introduction.html" class="btn-prev">← Chapitre 1</a>
+    <a href="03-calculabilite.html" class="btn-next">Chapitre 3 : Calculabilité →</a>
+  </div>
+</div>
+
+<footer>
+  <p>PFE — Iliass Errouifi & Soufiane Er-Rthimi — Optimisation Combinatoire & TSP</p>
+  <p>ENS Tétouan — Université Abdelmalek Essaâdi — 2025-2026</p>
+</footer>
+
+</body>
+</html>
